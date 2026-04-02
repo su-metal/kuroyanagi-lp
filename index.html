@@ -432,7 +432,7 @@
     </aside>
 
     <!-- 2. Header (Mobile) -->
-    <header class="lg:hidden fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-primary/5">
+    <header id="mobile-header" class="lg:hidden fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-primary/5 transition-transform duration-300">
         <div class="flex justify-between items-center px-4 py-3">
             <a href="#home" class="flex items-center gap-2 text-primary">
                 <span class="material-symbols-outlined text-2xl">spa</span>
@@ -441,8 +441,8 @@
                     <span class="text-[9px] font-medium opacity-80 tracking-widest">介護老人保健施設</span>
                 </h1>
             </a>
-            <button class="text-primary p-2" id="mobile-menu-btn">
-                <span class="material-symbols-outlined text-3xl">menu</span>
+            <button class="text-primary p-2" id="mobile-menu-btn" aria-label="メニューを開く" aria-expanded="false">
+                <span class="material-symbols-outlined text-3xl" id="mobile-menu-icon">menu</span>
             </button>
         </div>
     </header>
@@ -1198,8 +1198,44 @@
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
         // モバイルメニューの開閉
+        const mobileHeader = document.getElementById('mobile-header');
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuIcon = document.getElementById('mobile-menu-icon');
         const sideNav = document.querySelector('aside');
+        let lastScrollY = window.scrollY;
+
+        const isMobileMenuOpen = () =>
+            !!sideNav && sideNav.classList.contains('flex') && !sideNav.classList.contains('hidden');
+
+        const syncMobileMenuButton = () => {
+            if (!mobileMenuBtn || !mobileMenuIcon) return;
+            const open = isMobileMenuOpen();
+            mobileMenuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            mobileMenuBtn.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+            mobileMenuIcon.textContent = open ? 'close' : 'menu';
+        };
+
+        const syncMobileHeader = () => {
+            if (!mobileHeader) return;
+            if (window.innerWidth >= 1024) {
+                mobileHeader.classList.remove('-translate-y-full');
+                return;
+            }
+
+            if (window.scrollY <= 16 || isMobileMenuOpen()) {
+                mobileHeader.classList.remove('-translate-y-full');
+                lastScrollY = window.scrollY;
+                return;
+            }
+
+            if (window.scrollY > lastScrollY) {
+                mobileHeader.classList.add('-translate-y-full');
+            } else {
+                mobileHeader.classList.remove('-translate-y-full');
+            }
+
+            lastScrollY = window.scrollY;
+        };
 
         const syncSideNavLayout = () => {
             if (!sideNav) return;
@@ -1211,16 +1247,23 @@
                 sideNav.classList.remove('flex');
                 sideNav.classList.remove('w-full');
             }
+            syncMobileMenuButton();
+            syncMobileHeader();
         };
         
         mobileMenuBtn?.addEventListener('click', () => {
             sideNav.classList.toggle('hidden');
             sideNav.classList.toggle('flex');
             sideNav.classList.add('w-full'); // モバイルでは全幅
+            syncMobileMenuButton();
+            syncMobileHeader();
         });
 
         window.addEventListener('resize', syncSideNavLayout);
+        window.addEventListener('scroll', syncMobileHeader, { passive: true });
         syncSideNavLayout();
+        syncMobileMenuButton();
+        syncMobileHeader();
 
         // スムーススクロール
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1235,6 +1278,9 @@
                     if (window.innerWidth < 1024) {
                         sideNav.classList.add('hidden');
                         sideNav.classList.remove('flex');
+                        sideNav.classList.remove('w-full');
+                        syncMobileMenuButton();
+                        syncMobileHeader();
                     }
                 }
             });
