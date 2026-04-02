@@ -23,4 +23,4 @@ Examples:
 
 - `index.html` is the landing page.
 - `privacy.html` is linked from the form and footer.
-- Only the images referenced by the site are included in `photo/`.
+- Only the images referenced by the site are included in `photo/`.# kuroyanagi-lp
