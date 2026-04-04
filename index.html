@@ -731,6 +731,14 @@
                             </div>
                         </article>
                     </div>
+                    <div class="mt-5 flex items-center justify-center gap-3 lg:hidden">
+                        <button type="button" class="facility-slider-button inline-flex h-12 w-12 items-center justify-center rounded-full border border-primary/10 bg-white text-primary shadow-sm transition-colors hover:border-primary hover:bg-primary hover:text-white" data-facility-slider-prev aria-label="前の施設写真を見る">
+                            <span class="material-symbols-outlined">arrow_back</span>
+                        </button>
+                        <button type="button" class="facility-slider-button inline-flex h-12 w-12 items-center justify-center rounded-full border border-primary/10 bg-white text-primary shadow-sm transition-colors hover:border-primary hover:bg-primary hover:text-white" data-facility-slider-next aria-label="次の施設写真を見る">
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1345,9 +1353,8 @@
 
         // 施設紹介の横スライダーは、PCで矢印操作とドラッグ操作を有効にする
         const facilitySlider = document.querySelector('[data-facility-slider]');
-        const facilitySliderPrev = document.querySelector('[data-facility-slider-prev]');
-        const facilitySliderNext = document.querySelector('[data-facility-slider-next]');
-
+        const facilitySliderPrevButtons = document.querySelectorAll('[data-facility-slider-prev]');
+        const facilitySliderNextButtons = document.querySelectorAll('[data-facility-slider-next]');
         if (facilitySlider) {
             let isPointerDown = false;
             let dragStartX = 0;
@@ -1365,12 +1372,16 @@
                 image.addEventListener("dragstart", (event) => event.preventDefault());
             });
 
-            facilitySliderPrev?.addEventListener('click', () => {
-                facilitySlider.scrollBy({ left: -facilitySlideAmount(), behavior: 'smooth' });
+            facilitySliderPrevButtons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    facilitySlider.scrollBy({ left: -facilitySlideAmount(), behavior: 'smooth' });
+                });
             });
 
-            facilitySliderNext?.addEventListener('click', () => {
-                facilitySlider.scrollBy({ left: facilitySlideAmount(), behavior: 'smooth' });
+            facilitySliderNextButtons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    facilitySlider.scrollBy({ left: facilitySlideAmount(), behavior: 'smooth' });
+                });
             });
 
             facilitySlider.addEventListener('pointerdown', (event) => {
@@ -1407,6 +1418,8 @@
     </script>
 </body>
 </html>
+
+
 
 
 
