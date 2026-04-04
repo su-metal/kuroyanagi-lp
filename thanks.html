@@ -25,6 +25,13 @@
     </script>
     <style>
         body { font-family: "Noto Sans JP", sans-serif; }
+
+        @media (min-width: 768px) {
+            .tel-link-mobile-only {
+                pointer-events: none;
+                cursor: default;
+            }
+        }
     </style>
 </head>
 <body class="bg-bg-light text-text-main">
@@ -38,7 +45,7 @@
             </p>
             <div class="space-y-4 mb-10">
                 <p class="text-[11px] font-black tracking-[0.3em] text-primary/55">施設代表・お問い合わせ</p>
-                <a href="tel:053-524-1000" class="inline-flex items-center justify-center rounded-full bg-primary px-8 py-5 text-white text-2xl font-black tracking-tight">053-524-1000</a>
+                <a href="tel:053-524-1000" class="tel-link-mobile-only inline-flex items-center justify-center rounded-full bg-primary px-8 py-5 text-white text-2xl font-black tracking-tight">053-524-1000</a>
                 <p class="text-sm text-primary/60">相談窓口受付 8:30〜17:00 / 年中無休</p>
             </div>
             <a href="./index.html" class="inline-flex items-center justify-center rounded-full border border-primary/15 px-8 py-4 font-bold text-primary hover:border-primary hover:bg-primary hover:text-white transition-colors">トップページへ戻る</a>
@@ -46,3 +53,4 @@
     </main>
 </body>
 </html>
+

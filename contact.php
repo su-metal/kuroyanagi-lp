@@ -4,7 +4,8 @@ declare(strict_types=1);
 mb_language('Japanese');
 mb_internal_encoding('UTF-8');
 
-$recipient = 'barairono.dance@gmail.com';
+$recipient = 'tossy104104@gmail.com';
+$fromAddress = 'postmaster@kuroyanagi-clinic.jp';
 $subject = '【みっかび東LP】お問い合わせを受け付けました';
 
 function renderError(string $message): void
@@ -19,7 +20,16 @@ function renderError(string $message): void
     <title>送信エラー | みっかび東介護老人保健施設</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <style>body { font-family: "Noto Sans JP", sans-serif; }</style>
+    <style>
+        body { font-family: "Noto Sans JP", sans-serif; }
+
+        @media (min-width: 768px) {
+            .tel-link-mobile-only {
+                pointer-events: none;
+                cursor: default;
+            }
+        }
+    </style>
 </head>
 <body class="bg-[#f3f7fb] text-[#333]">
     <main class="min-h-screen flex items-center justify-center px-6 py-16">
@@ -29,7 +39,7 @@ function renderError(string $message): void
             <p class="text-[#333]/75 leading-loose mb-8"><?php echo htmlspecialchars($message, ENT_QUOTES, 'UTF-8'); ?></p>
             <div class="flex flex-col gap-4 items-center">
                 <a href="./index.html#contact-form" class="inline-flex items-center justify-center rounded-full bg-[#00367f] px-8 py-4 text-white font-bold">フォームに戻る</a>
-                <a href="tel:053-524-1000" class="text-[#00367f] font-bold">お急ぎの方は 053-524-1000 へお電話ください</a>
+                <a href="tel:053-524-1000" class="tel-link-mobile-only text-[#00367f] font-bold">お急ぎの方は 053-524-1000 へお電話ください</a>
             </div>
         </div>
     </main>
@@ -128,13 +138,24 @@ $mailBody = implode("\n", [
     '送信元IP: ' . ($_SERVER['REMOTE_ADDR'] ?? 'unknown'),
 ]);
 
+$mailEncoding = 'ISO-2022-JP-MS';
+$encodedFromName = mb_encode_mimeheader('みっかび東介護老人保健施設', $mailEncoding, 'B', "\r\n");
+$encodedBody = mb_convert_encoding($mailBody, $mailEncoding, 'UTF-8');
+
 $headers = [
-    'From: noreply@' . ($_SERVER['HTTP_HOST'] ?? 'localhost'),
+    'From: ' . $encodedFromName . ' <' . $fromAddress . '>',
     'Reply-To: ' . $clean($email),
-    'Content-Type: text/plain; charset=UTF-8',
+    'Content-Type: text/plain; charset=' . $mailEncoding,
+    'Content-Transfer-Encoding: 7bit',
 ];
 
-$sent = mb_send_mail($recipient, $subject, $mailBody, implode("\r\n", $headers));
+$sent = mb_send_mail(
+    $recipient,
+    $subject,
+    $encodedBody,
+    implode("\r\n", $headers),
+    '-f' . $fromAddress
+);
 
 if (!$sent) {
     renderError('メール送信に失敗しました。時間をおいて再度お試しいただくか、お電話にてお問い合わせください。');
@@ -142,4 +163,8 @@ if (!$sent) {
 
 header('Location: ./thanks.html');
 exit;
+
+
+
+
 
