@@ -31,6 +31,8 @@
                 },
             },
         }
+
+        
     </script>
     <style>
         .material-symbols-outlined {
@@ -362,15 +364,16 @@
             object-position: center 42%;
         }
         .horizontal-scroll {
-            scrollbar-width: thin;
-            scrollbar-color: rgba(0, 54, 127, 0.28) transparent;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
         .horizontal-scroll::-webkit-scrollbar {
-            height: 8px;
+            display: none;
         }
-        .horizontal-scroll::-webkit-scrollbar-thumb {
-            background: rgba(0, 54, 127, 0.22);
-            border-radius: 999px;
+        .horizontal-scroll.is-dragging {
+            cursor: grabbing;
+            scroll-snap-type: none;
+            user-select: none;
         }
     </style>
 </head>
@@ -675,74 +678,66 @@
                 </div>
 
                 <div class="reveal" style="transition-delay: 0.35s;">
-                    <div class="horizontal-scroll flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4">
-                        <article class="min-w-[88%] md:min-w-[64%] xl:min-w-[52%] snap-start overflow-hidden rounded-[2.5rem] border border-primary/5 bg-white">
+                    <div class="hidden lg:flex items-center justify-end gap-3 mb-5">
+                        <button type="button" class="facility-slider-button inline-flex h-12 w-12 items-center justify-center rounded-full border border-primary/10 bg-white text-primary shadow-sm transition-colors hover:border-primary hover:bg-primary hover:text-white" data-facility-slider-prev aria-label="前の施設写真を見る">
+                            <span class="material-symbols-outlined">arrow_back</span>
+                        </button>
+                        <button type="button" class="facility-slider-button inline-flex h-12 w-12 items-center justify-center rounded-full border border-primary/10 bg-white text-primary shadow-sm transition-colors hover:border-primary hover:bg-primary hover:text-white" data-facility-slider-next aria-label="次の施設写真を見る">
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </button>
+                    </div>
+                    <div class="horizontal-scroll flex gap-5 overflow-x-auto pb-4 lg:cursor-grab" data-facility-slider>
+                        <article class="min-w-[88%] md:min-w-[64%] xl:min-w-[52%] overflow-hidden rounded-[2.5rem] border border-primary/5 bg-white">
                             <div class="relative">
-                                <img src="photo/facility_lobby.jpg" alt="ロビー" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
-                                <div class="hidden md:block absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
-                                <div class="hidden md:block absolute left-0 right-0 bottom-0 p-6 md:p-8 text-white">
+                                <img src="photo/facility_lobby.jpg" alt="ロビー" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover" draggable="false">
+                                <div class="p-5 md:p-8">
                                     <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">空間 01</p>
-                                    <h3 class="text-xl md:text-3xl font-bold mb-2">開放感のあるロビー</h3>
-                                    <p class="text-sm md:text-base text-white/80 leading-loose">ご家族が見学に来たときにも、明るく落ち着いた空気が伝わる共用空間です。</p>
-                                </div>
-                                <div class="md:hidden p-5">
-                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">空間 01</p>
-                                    <h3 class="text-xl font-bold text-primary mb-2">開放感のあるロビー</h3>
-                                    <p class="text-sm text-text-main/70 leading-loose">ご家族が見学に来たときにも、明るく落ち着いた空気が伝わる共用空間です。</p>
+                                    <h3 class="text-xl md:text-3xl font-bold text-primary mb-2">開放感のあるロビー</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">ご家族が見学に来たときにも、明るく落ち着いた空気が伝わる共用空間です。</p>
                                 </div>
                             </div>
                         </article>
 
-                        <article class="min-w-[88%] md:min-w-[64%] xl:min-w-[52%] snap-start overflow-hidden rounded-[2.5rem] border border-primary/5 bg-white">
+                        <article class="min-w-[88%] md:min-w-[64%] xl:min-w-[52%] overflow-hidden rounded-[2.5rem] border border-primary/5 bg-white">
                             <div class="relative">
-                                <img src="photo/facility_lounge.jpg" alt="談話室" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
-                                <div class="hidden md:block absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
-                                <div class="hidden md:block absolute left-0 right-0 bottom-0 p-6 md:p-8 text-white">
+                                <img src="photo/facility_lounge.jpg" alt="談話室" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover" draggable="false">
+                                <div class="p-5 md:p-8">
                                     <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">空間 02</p>
-                                    <h3 class="text-xl md:text-3xl font-bold mb-2">安らぎの談話スペース</h3>
-                                    <p class="text-sm md:text-base text-white/80 leading-loose">他の利用者様やスタッフとの距離感が心地よい、日中の居場所としての空間です。</p>
-                                </div>
-                                <div class="md:hidden p-5">
-                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">空間 02</p>
-                                    <h3 class="text-xl font-bold text-primary mb-2">安らぎの談話スペース</h3>
-                                    <p class="text-sm text-text-main/70 leading-loose">他の利用者様やスタッフとの距離感が心地よい、日中の居場所としての空間です。</p>
+                                    <h3 class="text-xl md:text-3xl font-bold text-primary mb-2">安らぎの談話スペース</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">他の利用者様やスタッフとの距離感が心地よい、日中の居場所としての空間です。</p>
                                 </div>
                             </div>
                         </article>
 
-                        <article class="min-w-[88%] md:min-w-[64%] xl:min-w-[52%] snap-start overflow-hidden rounded-[2.5rem] border border-primary/5 bg-white">
+                        <article class="min-w-[88%] md:min-w-[64%] xl:min-w-[52%] overflow-hidden rounded-[2.5rem] border border-primary/5 bg-white">
                             <div class="relative">
-                                <img src="photo/access_entrance.jpg" alt="エントランス" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
-                                <div class="hidden md:block absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
-                                <div class="hidden md:block absolute left-0 right-0 bottom-0 p-6 md:p-8 text-white">
+                                <img src="photo/access_entrance.jpg" alt="エントランス" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover" draggable="false">
+                                <div class="p-5 md:p-8">
                                     <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">空間 03</p>
-                                    <h3 class="text-xl md:text-3xl font-bold mb-2">バリアフリーな玄関</h3>
-                                    <p class="text-sm md:text-base text-white/80 leading-loose">見学や面談の段階から、入りやすさそのものが安心につながる入口です。</p>
-                                </div>
-                                <div class="md:hidden p-5">
-                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">空間 03</p>
-                                    <h3 class="text-xl font-bold text-primary mb-2">バリアフリーな玄関</h3>
-                                    <p class="text-sm text-text-main/70 leading-loose">見学や面談の段階から、入りやすさそのものが安心につながる入口です。</p>
+                                    <h3 class="text-xl md:text-3xl font-bold text-primary mb-2">バリアフリーな玄関</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">見学や面談の段階から、入りやすさそのものが安心につながる入口です。</p>
                                 </div>
                             </div>
                         </article>
 
-                        <article class="min-w-[88%] md:min-w-[64%] xl:min-w-[52%] snap-start overflow-hidden rounded-[2.5rem] border border-primary/5 bg-white">
+                        <article class="min-w-[88%] md:min-w-[64%] xl:min-w-[52%] overflow-hidden rounded-[2.5rem] border border-primary/5 bg-white">
                             <div class="relative">
-                                <img src="photo/facility_courtyard.jpg" alt="中庭" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
-                                <div class="hidden md:block absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
-                                <div class="hidden md:block absolute left-0 right-0 bottom-0 p-6 md:p-8 text-white">
+                                <img src="photo/facility_courtyard.jpg" alt="中庭" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover" draggable="false">
+                                <div class="p-5 md:p-8">
                                     <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">空間 04</p>
-                                    <h3 class="text-xl md:text-3xl font-bold mb-2">光あふれる中庭</h3>
-                                    <p class="text-sm md:text-base text-white/80 leading-loose">三ヶ日の自然を感じられる環境も、在宅復帰へ向かう日々を穏やかに支えます。</p>
-                                </div>
-                                <div class="md:hidden p-5">
-                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">空間 04</p>
-                                    <h3 class="text-xl font-bold text-primary mb-2">光あふれる中庭</h3>
-                                    <p class="text-sm text-text-main/70 leading-loose">三ヶ日の自然を感じられる環境も、在宅復帰へ向かう日々を穏やかに支えます。</p>
+                                    <h3 class="text-xl md:text-3xl font-bold text-primary mb-2">光あふれる中庭</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">三ヶ日の自然を感じられる環境も、在宅復帰へ向かう日々を穏やかに支えます。</p>
                                 </div>
                             </div>
                         </article>
+                    </div>
+                    <div class="mt-5 flex items-center justify-center gap-3 lg:hidden">
+                        <button type="button" class="facility-slider-button inline-flex h-12 w-12 items-center justify-center rounded-full border border-primary/10 bg-white text-primary shadow-sm transition-colors hover:border-primary hover:bg-primary hover:text-white" data-facility-slider-prev aria-label="前の施設写真を見る">
+                            <span class="material-symbols-outlined">arrow_back</span>
+                        </button>
+                        <button type="button" class="facility-slider-button inline-flex h-12 w-12 items-center justify-center rounded-full border border-primary/10 bg-white text-primary shadow-sm transition-colors hover:border-primary hover:bg-primary hover:text-white" data-facility-slider-next aria-label="次の施設写真を見る">
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -1355,9 +1350,85 @@
             parallaxReduceMotion.addEventListener('change', requestFixedParallax);
         }
 
+
+        // 施設紹介の横スライダーは、PCで矢印操作とドラッグ操作を有効にする
+        const facilitySlider = document.querySelector('[data-facility-slider]');
+        const facilitySliderPrevButtons = document.querySelectorAll('[data-facility-slider-prev]');
+        const facilitySliderNextButtons = document.querySelectorAll('[data-facility-slider-next]');
+        if (facilitySlider) {
+            let isPointerDown = false;
+            let dragStartX = 0;
+            let dragStartScrollLeft = 0;
+
+            const facilitySlideAmount = () => {
+                const firstCard = facilitySlider.querySelector('article');
+                if (!firstCard) return facilitySlider.clientWidth * 0.85;
+                return firstCard.getBoundingClientRect().width + 20;
+            };
+
+
+            facilitySlider.querySelectorAll("img").forEach((image) => {
+                image.setAttribute("draggable", "false");
+                image.addEventListener("dragstart", (event) => event.preventDefault());
+            });
+
+            facilitySliderPrevButtons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    facilitySlider.scrollBy({ left: -facilitySlideAmount(), behavior: 'smooth' });
+                });
+            });
+
+            facilitySliderNextButtons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    facilitySlider.scrollBy({ left: facilitySlideAmount(), behavior: 'smooth' });
+                });
+            });
+
+            facilitySlider.addEventListener('pointerdown', (event) => {
+                if (window.innerWidth < 1024) return;
+                isPointerDown = true;
+                dragStartX = event.clientX;
+                dragStartScrollLeft = facilitySlider.scrollLeft;
+                facilitySlider.classList.add('is-dragging');
+                facilitySlider.setPointerCapture(event.pointerId);
+            });
+
+            facilitySlider.addEventListener('pointermove', (event) => {
+                if (!isPointerDown || window.innerWidth < 1024) return;
+                const deltaX = event.clientX - dragStartX;
+                facilitySlider.scrollLeft = dragStartScrollLeft - deltaX;
+            });
+
+            const stopFacilityDrag = (event) => {
+                if (!isPointerDown) return;
+                isPointerDown = false;
+                facilitySlider.classList.remove('is-dragging');
+                if (event) {
+                    facilitySlider.releasePointerCapture(event.pointerId);
+                }
+            };
+
+            facilitySlider.addEventListener('pointerup', stopFacilityDrag);
+            facilitySlider.addEventListener('pointercancel', stopFacilityDrag);
+            facilitySlider.addEventListener('lostpointercapture', () => {
+                isPointerDown = false;
+                facilitySlider.classList.remove('is-dragging');
+            });
+        }
     </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
