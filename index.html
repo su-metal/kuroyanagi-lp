@@ -1106,17 +1106,17 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div class="space-y-3">
                                     <label class="text-xs font-black uppercase tracking-widest text-primary/65 ml-4">お名前（必須）</label>
-                                    <input type="text" placeholder="例：三ヶ日 太郎" class="w-full px-8 py-5 rounded-full border border-primary/10 bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all text-base text-primary placeholder:text-primary/35">
+                                    <input id="contact-name" type="text" required placeholder="例：三ヶ日 太郎" class="w-full px-8 py-5 rounded-full border border-primary/10 bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all text-base text-primary placeholder:text-primary/35">
                                 </div>
                                 <div class="space-y-3">
                                     <label class="text-xs font-black uppercase tracking-widest text-primary/65 ml-4">電話番号（必須）</label>
-                                    <input type="tel" placeholder="例：053-524-1000" class="w-full px-8 py-5 rounded-full border border-primary/10 bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all text-base text-primary placeholder:text-primary/35">
+                                    <input id="contact-phone" type="tel" inputmode="tel" required placeholder="例：053-524-1000" class="w-full px-8 py-5 rounded-full border border-primary/10 bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all text-base text-primary placeholder:text-primary/35">
                                 </div>
                             </div>
                             
                             <div class="space-y-3">
                                 <label class="text-xs font-black uppercase tracking-widest text-primary/65 ml-4">メールアドレス（必須）</label>
-                                <input type="email" placeholder="例：example@mail.com" class="w-full px-8 py-5 rounded-full border border-primary/10 bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all text-base text-primary placeholder:text-primary/35">
+                                <input id="contact-email" type="email" inputmode="email" required placeholder="例：example@mail.com" class="w-full px-8 py-5 rounded-full border border-primary/10 bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all text-base text-primary placeholder:text-primary/35">
                             </div>
                             
                             <div class="space-y-3">
@@ -1293,8 +1293,72 @@
         // フォーム送信前チェック
         const contactFormElement = document.getElementById('contact-form-element');
         const privacyConsent = document.getElementById('privacy-consent');
+        const contactNameInput = document.getElementById('contact-name');
+        const contactPhoneInput = document.getElementById('contact-phone');
+        const contactEmailInput = document.getElementById('contact-email');
+
+        const normalizePhoneValue = (value) =>
+            (value || '')
+                .replace(/[０-９]/g, (char) => String.fromCharCode(char.charCodeAt(0) - 65248))
+                .replace(/[‐‑‒–—―ー－]/g, '-');
+
+        const formatPhoneNumber = (value) => {
+            const normalized = normalizePhoneValue(value);
+            const digits = normalized.replace(/\D/g, '');
+
+            if (digits.length === 10) {
+                if (digits.startsWith('03') || digits.startsWith('06')) {
+                    return `${digits.slice(0, 2)}-${digits.slice(2, 6)}-${digits.slice(6)}`;
+                }
+                return `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6)}`;
+            }
+
+            if (digits.length === 11) {
+                return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7)}`;
+            }
+
+            return normalized;
+        };
+
+        contactPhoneInput?.addEventListener('blur', () => {
+            contactPhoneInput.value = formatPhoneNumber(contactPhoneInput.value);
+        });
 
         contactFormElement?.addEventListener('submit', (e) => {
+            const requiredFields = [
+                { element: contactNameInput, message: 'お名前を入力してください。' },
+                { element: contactPhoneInput, message: '電話番号を入力してください。' },
+                { element: contactEmailInput, message: 'メールアドレスを入力してください。' },
+            ];
+
+            const missingField = requiredFields.find(({ element }) => !element?.value.trim());
+
+            if (missingField) {
+                e.preventDefault();
+                alert(missingField.message);
+                missingField.element?.focus();
+                return;
+            }
+
+            const normalizedPhoneValue = normalizePhoneValue(contactPhoneInput?.value || '');
+            contactPhoneInput.value = formatPhoneNumber(normalizedPhoneValue);
+            const phoneDigits = normalizedPhoneValue.replace(/\D/g, '');
+            if (phoneDigits.length < 10 || phoneDigits.length > 11) {
+                e.preventDefault();
+                alert('電話番号は10桁または11桁で入力してください。');
+                contactPhoneInput?.focus();
+                return;
+            }
+
+            const emailValue = (contactEmailInput?.value || '').trim();
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(emailValue)) {
+                e.preventDefault();
+                alert('メールアドレスの形式が正しくありません。');
+                contactEmailInput?.focus();
+                return;
+            }
+
             if (!privacyConsent?.checked) {
                 e.preventDefault();
                 alert('送信前にプライバシーポリシーへの同意をお願いいたします。');
@@ -1428,6 +1492,7 @@
     </script>
 </body>
 </html>
+
 
 
 
