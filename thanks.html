@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>送信完了 | みっかび東介護老人保健施設</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00367f",
+                        secondary: "#c1a173",
+                        "bg-light": "#f3f7fb",
+                        "text-main": "#333333"
+                    },
+                    fontFamily: {
+                        sans: ["Noto Sans JP", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: "Noto Sans JP", sans-serif; }
+    </style>
+</head>
+<body class="bg-bg-light text-text-main">
+    <main class="min-h-screen flex items-center justify-center px-6 py-16">
+        <div class="max-w-2xl w-full bg-white rounded-[2.5rem] border border-primary/10 p-8 md:p-12 text-center shadow-sm">
+            <p class="text-secondary font-bold tracking-[0.28em] mb-4">THANK YOU</p>
+            <h1 class="text-3xl md:text-5xl font-black text-primary mb-6">お問い合わせを受け付けました</h1>
+            <p class="text-text-main/75 leading-loose mb-10">
+                内容を確認のうえ、担当より順次ご連絡いたします。<br>
+                お急ぎの際は、下記番号までお電話ください。
+            </p>
+            <div class="space-y-4 mb-10">
+                <p class="text-[11px] font-black tracking-[0.3em] text-primary/55">施設代表・お問い合わせ</p>
+                <a href="tel:053-524-1000" class="inline-flex items-center justify-center rounded-full bg-primary px-8 py-5 text-white text-2xl font-black tracking-tight">053-524-1000</a>
+                <p class="text-sm text-primary/60">相談窓口受付 8:30〜17:00 / 年中無休</p>
+            </div>
+            <a href="./index.html" class="inline-flex items-center justify-center rounded-full border border-primary/15 px-8 py-4 font-bold text-primary hover:border-primary hover:bg-primary hover:text-white transition-colors">トップページへ戻る</a>
+        </div>
+    </main>
+</body>
+</html>
