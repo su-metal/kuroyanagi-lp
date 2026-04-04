@@ -44,7 +44,7 @@
                         <p class="text-[11px] tracking-[0.2em] uppercase text-primary/60">Mikkabi Higashi</p>
                     </div>
                 </a>
-                <a href="./index.html" class="text-sm font-bold text-primary hover:text-secondary transition-colors">トップへ戻る</a>
+                <button type="button" onclick="window.close(); setTimeout(() => { if (!window.closed) { if (window.history.length > 1) { history.back(); } else { location.href = './index.html'; } } }, 150);" class="text-sm font-bold text-primary hover:text-secondary transition-colors">このタブを閉じる</button>
             </div>
         </section>
 
@@ -129,4 +129,6 @@
     </main>
 </body>
 </html>
+
+
 
