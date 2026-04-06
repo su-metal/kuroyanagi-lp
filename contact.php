@@ -4,7 +4,7 @@ declare(strict_types=1);
 mb_language('Japanese');
 mb_internal_encoding('UTF-8');
 
-$recipient = 'tossy104104@gmail.com';
+$recipient = 'kk@kawabecom.jp';
 $fromAddress = 'postmaster@kuroyanagi-clinic.jp';
 $subject = '【みっかび東LP】お問い合わせを受け付けました';
 
