@@ -238,7 +238,7 @@ ul {
   grid-template-columns: 1.65fr 0.35fr;
   gap: 20px;
   position: relative;
-  align-items: flex-start;
+  align-items: stretch;
 }
 
 /* =====================
@@ -398,7 +398,7 @@ ul {
 /* Vertical staircase catchcopy */
 .copy-vertical-wrapper {
   position: absolute;
-  top: 44px;
+  bottom: 480px; /* 写真の高さに合わせて底辺から調整 */
   right: 34px;
   display: flex;
   align-items: flex-start;
@@ -413,7 +413,7 @@ ul {
   line-height: 1.35;
   font-family: var(--font-serif);
   white-space: nowrap;
-  font-size: 1.48rem;
+  font-size: 2.2rem;
   color: var(--primary-blue);
   font-weight: 700;
 }
@@ -450,7 +450,7 @@ ul {
 /* Family illustration */
 .deco-family {
   position: absolute;
-  bottom: 146px;
+  bottom: 240px; /* 写真の底辺付近（160px + 余裕）に配置 */
   right: 26px;
   width: 132px;
   z-index: 2;
