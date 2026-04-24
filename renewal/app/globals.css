@@ -253,9 +253,16 @@ ul {
   position: relative;
   width: 100%;
   aspect-ratio: 16/10;
-  border-radius: 32px;
+  border-radius: 80px 80px 0 0;
   overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 50, 100, 0.12);
+  background: transparent;
+  filter: drop-shadow(0 10px 30px rgba(0, 50, 100, 0.08));
+  clip-path: polygon(
+    0% 0%, 100% 0%, 100% 80%, 
+    95% 89%, 90% 91%, 85% 93%, 80% 95%, 75% 97%, 70% 98.5%, 65% 99.5%, 60% 100%, 
+    55% 100%, 50% 99%, 45% 97%, 40% 95%, 35% 95%, 30% 92.5%, 25% 91.5%, 20% 91%, 
+    15% 91.5%, 10% 92%, 5% 92.5%, 0% 93%
+  );
 }
 
 .hero-photo {
@@ -267,7 +274,7 @@ ul {
 /* Bottom-left landscape illustration overlaying the photo */
 .hero-deco-landscape {
   position: absolute;
-  bottom: 120px;
+  bottom: 111px;
   left: -20px;
   width: 50%;
   z-index: 5;
@@ -277,6 +284,8 @@ ul {
 .hero-deco-landscape img {
   width: 100%;
   height: auto;
+  display: block;
+  background: transparent !important;
 }
 
 /* Schedule card overlays bottom-right corner of the photo */
