@@ -26,10 +26,9 @@ const features = [
   {
     title: "みっかび東介護老人保健施設",
     text: "隣接施設のご案内",
-    icon: HeartCareIcon,
+    icon: HeartPeopleIcon,
   },
 ];
-
 const departments = [
   "内科",
   "消化器科",
@@ -422,22 +421,30 @@ export default function ClinicHomePage() {
         </div>
       </section>
 
-      <section className="care-banner" id="care">
-        <div className="care-copy">
-          <p className="care-lead">介護が必要な方の生活を支える</p>
-          <h2>みっかび東介護老人保健施設</h2>
-          <p>
-            当院と同敷地内に併設され、入所・短期入所ショートステイ・
-            <br />
-            通所リハビリテーションなどを通じて、地域での暮らしを支えます。
-          </p>
-        </div>
-        <div className="care-photo" aria-hidden="true" />
-        <div className="care-action">
-          <a className="secondary-green-button" href="/">
-            施設のご案内はこちら
-            <ArrowIcon />
-          </a>
+      {/* 介護施設セクション */}
+      <section className="care-section">
+        <div className="care-layout">
+          <div className="care-image">
+            <img src="/photo/facility_courtyard.jpg" alt="みっかび東 施設外観" />
+          </div>
+          <div className="care-content">
+            <div className="care-icon">
+              <HeartPeopleIcon />
+            </div>
+            <span className="care-label">介護が必要な方の生活を支える</span>
+            <h2 className="care-title">
+              みっかび東<br />
+              介護老人保健施設
+            </h2>
+            <div className="care-divider"></div>
+            <p className="care-description">
+              当院と同敷地内に併設され、入所・短期入所ショートステイ・通所リハビリテーションなどを通じて、地域での暮らしを支えます。
+            </p>
+            <a href="#" className="care-cta">
+              <span>施設のご案内</span>
+              <ArrowIcon />
+            </a>
+          </div>
         </div>
       </section>
 
@@ -644,6 +651,17 @@ function ThinArrowIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M5 12h14M13 5l7 7-7 7" />
+    </svg>
+  );
+}
+
+function HeartPeopleIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
     </svg>
   );
 }

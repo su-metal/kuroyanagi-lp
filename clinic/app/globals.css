@@ -1156,7 +1156,7 @@ svg {
 
 .access-section {
   padding: 140px 0;
-  background: linear-gradient(180deg, #eef5fd 0%, #f6f9fe 100%);
+  background: #fff;
 }
 
 .access-card {
@@ -1255,51 +1255,113 @@ svg {
   height: 100%;
 }
 
-.care-banner {
+.care-section {
+  padding: 100px 0;
+  background: #fff;
+  border-top: 1px solid #eef2f7;
+  border-bottom: 1px solid #eef2f7;
+}
+
+.care-layout {
   display: grid;
-  grid-template-columns: 0.9fr 0.9fr auto;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
   align-items: center;
-  gap: 24px;
-  padding: 16px 24px;
-  margin-bottom: 18px;
+  width: min(calc(100% - (var(--edge-gutter) * 2)), 1100px);
+  margin: 0 auto;
 }
 
-.care-copy {
-  padding-right: 8px;
+.care-image {
+  position: relative;
 }
 
-.care-lead {
-  margin: 0 0 8px;
-  color: #607655;
-  font-family: var(--font-serif), serif;
-  font-size: 1.1rem;
-  font-weight: 700;
+.care-image img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 24px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
 }
 
-.care-copy h2 {
-  margin: 0 0 12px;
-  color: var(--green);
-  font-family: var(--font-serif), serif;
-  font-size: clamp(1.9rem, 2.1vw, 2.8rem);
-  font-weight: 700;
+.care-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.care-copy p {
-  margin: 0;
-  color: #56657e;
+.care-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 24px;
+  color: var(--brand);
+}
+
+.care-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.care-label {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--brand);
   font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.care-title {
+  margin: 0 0 16px;
+  color: var(--brand);
+  font-family: var(--font-serif), serif;
+  font-size: clamp(2.4rem, 3.5vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.care-divider {
+  width: 48px;
+  height: 2px;
+  margin-bottom: 32px;
+  background: var(--brand);
+  opacity: 0.4;
+}
+
+.care-description {
+  margin: 0 0 48px;
+  color: #56657e;
+  font-size: 1.05rem;
   line-height: 1.8;
 }
 
-.care-photo {
-  min-height: 150px;
-  border-radius: 14px;
-  background: url("/photo/facility_courtyard.jpg") center / cover no-repeat;
+.care-cta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto;
+  text-decoration: none;
+  color: var(--brand);
+  font-weight: 700;
+  transition: all 0.2s;
 }
 
-.care-action {
-  display: flex;
-  justify-content: center;
+.care-cta span {
+  font-size: 1.1rem;
+}
+
+.care-cta svg {
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  border-radius: 50%;
+  background: var(--brand);
+  color: #fff;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.care-cta:hover svg {
+  transform: translateX(6px);
+  box-shadow: 0 8px 20px rgba(13, 71, 161, 0.25);
 }
 
 .site-footer {
@@ -1374,7 +1436,7 @@ svg {
   }
 
   .guide-grid,
-  .care-banner,
+  .care-layout,
   .access-summary {
     grid-template-columns: 1fr;
   }
