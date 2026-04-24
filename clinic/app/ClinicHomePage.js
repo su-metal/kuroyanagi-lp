@@ -224,127 +224,133 @@ export default function ClinicHomePage() {
       </section>
 
       <section className="medical-guide-section" id="guide">
-        <div className="medical-guide-header">
-          <div className="medical-guide-symbol">
-            <StethoscopeIcon />
+        <img src="/photo/guide/leaf_shadow.png" alt="" className="guide-bg-decoration guide-bg-leaf" />
+        <img src="/photo/guide/bg_wave.png" alt="" className="guide-bg-decoration guide-bg-wave" />
+        
+        <div className="guide-container">
+          <div className="guide-info">
+            <img src="/photo/guide/logo_leaf.png" alt="" className="guide-logo-leaf" />
+            <div className="guide-title-area">
+              <span className="en-title">Medical Information</span>
+              <h2>診療案内</h2>
+            </div>
+            <div className="title-divider" />
+            <p>
+              内科を中心に、健康診断や予防接種など、
+              <br />
+              地域の皆さまの健康を支える
+              <br />
+              診療をご案内します。
+            </p>
+            <a href="#contact" className="cta-button">
+              詳しく見る
+              <span className="arrow">→</span>
+            </a>
           </div>
-          <div className="medical-guide-title">
-            <span />
-            <h2>診療案内</h2>
-            <span />
+
+          <div className="guide-grid">
+            {[
+              { title: "内科", icon: "/photo/assets/icon_01_stethoscope.png" },
+              { title: "生活習慣病", icon: "/photo/assets/icon_02_heartbeat.png" },
+              { title: "健康診断", icon: "/photo/assets/icon_03_clipboard.png" },
+              { title: "予防接種", icon: "/photo/assets/icon_04_syringe.png" },
+              { title: "発熱外来", icon: "/photo/assets/icon_05_thermometer.png" },
+              { title: "各種相談", icon: "/photo/assets/icon_06_chat.png" }
+            ].map((item, index) => (
+              <a href="#contact" key={index} className="guide-card">
+                <div className="card-icon-wrapper">
+                  <img src={item.icon} alt={item.title} />
+                </div>
+                <div className="card-divider" />
+                <div className="card-footer">
+                  <span>{item.title}</span>
+                  <span className="arrow">→</span>
+                </div>
+              </a>
+            ))}
           </div>
-          <p>地域の皆さまの健康を支える、安心の医療を提供します。</p>
+
+          <div className="guide-visit-area">
+            <div className="visit-grid">
+              <article className="panel hours-panel">
+                <div className="panel-heading">
+                  <div className="panel-heading-icon">
+                    <ClockIcon />
+                  </div>
+                  <div>
+                    <h3>診療時間</h3>
+                    <span />
+                  </div>
+                </div>
+
+                <table className="hours-table">
+                  <thead>
+                    <tr>
+                      <th aria-label="診療時間" />
+                      <th>月</th>
+                      <th>火</th>
+                      <th>水</th>
+                      <th>木</th>
+                      <th>金</th>
+                      <th>土</th>
+                      <th>日・祝</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>9:00〜12:00</th>
+                      <td>○</td>
+                      <td>○</td>
+                      <td>○</td>
+                      <td>○</td>
+                      <td>○</td>
+                      <td>○</td>
+                      <td>ー</td>
+                    </tr>
+                    <tr>
+                      <th>14:00〜17:00</th>
+                      <td>○</td>
+                      <td>○</td>
+                      <td>ー</td>
+                      <td>○</td>
+                      <td>○</td>
+                      <td>ー</td>
+                      <td>ー</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div className="guide-notes">
+                  <p>
+                    <CalendarIcon />
+                    <strong>休診日</strong>
+                    <span>水曜午後・土曜午後・日曜・祝日</span>
+                  </p>
+                  <p>
+                    <ClockIcon />
+                    <span>受付は診療終了の30分前までとなります</span>
+                  </p>
+                </div>
+              </article>
+
+              <a className="visit-card" href="#access">
+                <div className="visit-card-icon">
+                  <PeopleIcon />
+                </div>
+                <div className="visit-card-title">
+                  <h3>ご来院の方へ</h3>
+                </div>
+                <div className="visit-card-copy">
+                  <p>初めて受診される方は、保険証・各種医療証をご持参ください。</p>
+                  <p>ご不明な点がございましたら、お気軽にスタッフまでお声がけください。</p>
+                </div>
+                <div className="visit-card-arrow" aria-hidden="true">
+                  <ArrowIcon />
+                </div>
+              </a>
+            </div>
+          </div>
         </div>
-
-        <div className="guide-grid">
-          <article className="panel guide-panel department-panel">
-            <div className="panel-heading">
-              <div className="panel-heading-icon">
-                <StethoscopeIcon />
-              </div>
-              <div>
-                <h3>診療科目</h3>
-                <span />
-              </div>
-            </div>
-
-            <div className="department-highlight">
-              <div className="department-illustration">
-                <HeartPulseIcon />
-              </div>
-              <div className="department-copy">
-                <strong>内科</strong>
-                <p>
-                  一般内科・生活習慣病・
-                  <br />
-                  健康診断・予防接種など
-                </p>
-                <ul className="department-tags" aria-label="対応診療科目">
-                  {departments.map((department) => (
-                    <li key={department}>{department}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </article>
-
-          <article className="panel guide-panel hours-panel" id="visit">
-            <div className="panel-heading">
-              <div className="panel-heading-icon">
-                <ClockIcon />
-              </div>
-              <div>
-                <h3>診療時間</h3>
-                <span />
-              </div>
-            </div>
-
-            <table className="hours-table guide-hours-table">
-              <thead>
-                <tr>
-                  <th aria-label="診療時間" />
-                  <th>月</th>
-                  <th>火</th>
-                  <th>水</th>
-                  <th>木</th>
-                  <th>金</th>
-                  <th>土</th>
-                  <th>日・祝</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th>9:00〜12:00</th>
-                  <td>○</td>
-                  <td>○</td>
-                  <td>○</td>
-                  <td>○</td>
-                  <td>○</td>
-                  <td>○</td>
-                  <td>ー</td>
-                </tr>
-                <tr>
-                  <th>14:00〜17:00</th>
-                  <td>○</td>
-                  <td>○</td>
-                  <td>ー</td>
-                  <td>○</td>
-                  <td>○</td>
-                  <td>ー</td>
-                  <td>ー</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <div className="guide-notes">
-              <p>
-                <CalendarIcon />
-                <strong>休診日</strong>
-                <span>水曜午後・土曜午後・日曜・祝日</span>
-              </p>
-              <p>
-                <ClockIcon />
-                <span>受付は診療終了の30分前までとなります</span>
-              </p>
-            </div>
-          </article>
-        </div>
-
-        <a className="visit-card" href="#access">
-          <div className="visit-card-icon">
-            <PeopleIcon />
-          </div>
-          <div className="visit-card-title">
-            <h3>ご来院の方へ</h3>
-          </div>
-          <div className="visit-card-copy">
-            <p>初めて受診される方は、保険証・各種医療証をご持参ください。</p>
-            <p>ご不明な点がございましたら、お気軽にスタッフまでお声がけください。</p>
-          </div>
-          <div className="visit-card-arrow" aria-hidden="true">
-            <ArrowIcon />
-          </div>
-        </a>
       </section>
 
       <section className="access-section" id="access">
