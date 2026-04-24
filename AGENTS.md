@@ -8,8 +8,10 @@
 
 ## 現在のリポジトリ構成
 
-- 現在、このリポジトリには `requirements_definition.md`、`requirements.md`、`design.md`、`tasklist.md` は未作成である。
-- 今後、要件整理・設計・タスク管理が必要な作業では、以下の構成でドキュメントを追加して運用する。
+- ルートには既存の静的サイト (`index.html`、`contact.php`、`privacy.html`、`thanks.html`) と共有画像素材 (`photo/`) がある。
+- `clinic/` は作りかけの Next.js 版クロヤナギ医院サイトとして残す。
+- `renewal/` は、既存サイトを壊さずゼロベースで作り直す新しいクロヤナギ医院サイトの作業領域として扱う。
+- ルートの `requirements_definition.md`、`requirements.md`、`design.md`、`tasklist.md` は、現在の `renewal/` 新規構築方針を管理する。
 
 ## ステアリングファイル運用ルール
 
@@ -68,3 +70,4 @@
 - リポジトリの構造や仕様の前提を変える変更では、コード修正だけでなく `AGENTS.md` 更新要否も確認する。
 - 大きな機能追加や画面改修では、必要に応じて `requirements.md`、`design.md`、`tasklist.md` を追加する。
 - 実装内容とドキュメントの整合を崩さないことを優先する。
+- `renewal/` の作業では、既存ルートサイトと `clinic/` を参照対象として扱い、完成前に置き換えたり削除したりしない。

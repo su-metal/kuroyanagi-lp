@@ -1,10 +1,12 @@
+"use client";
+
+import { useState, useEffect } from "react";
+
 const navLinks = [
-  ["ホーム", "#home"],
   ["当院について", "#about"],
+  ["当院の特長", "#features"],
   ["診療案内", "#guide"],
-  ["医師紹介", "#visit"],
-  ["施設案内", "#care"],
-  ["お知らせ", "#news"],
+  ["アクセス", "#access"],
 ];
 
 const features = [
@@ -78,147 +80,189 @@ const accessItems = [
   },
 ];
 
+const HERO_VARIANT = "current";
+
+function CurrentHero() {
+  return (
+    <section className="hero-section" id="about">
+      <div className="hero-background" aria-hidden="true" />
+      <div className="hero-overlay" aria-hidden="true" />
+      
+      <div className="scroll-indicator">
+        <span className="scroll-text">SCROLL</span>
+        <div className="scroll-line" />
+      </div>
+
+      <div className="hero-inner">
+        <div className="hero-content">
+          <div className="hero-message">
+            <h1>
+              <span className="line">Health,</span>
+              <span className="line">Dignity,</span>
+              <span className="line">Peace of Mind.</span>
+            </h1>
+            <p className="hero-subcopy">
+              <span className="line">医療と介護で、人生に寄り添う。</span>
+              <span className="line">安心がめぐる、上質な毎日を。</span>
+            </p>
+          </div>
+
+          <div className="hero-facility-card">
+            <div className="card-icon-wrap">
+              <ClinicLogoIcon />
+            </div>
+            <div className="card-text-wrap">
+              <span className="card-label">介護老人保健施設 桜山の郷 併設</span>
+              <p className="card-desc">医療・介護・リハビリが連携する安心のサポート体制</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CollageHero() {
+  return (
+    <section className="collage-hero-section" id="about">
+      <div className="collage-hero-inner">
+        <div className="collage-hero-images" aria-label="クロヤナギ医院の外観と施設写真">
+          <figure className="collage-photo-card collage-photo-card-small">
+            <img src="/photo/clinic.png" alt="クロヤナギ医院の外観" />
+          </figure>
+          <figure className="collage-photo-card collage-photo-card-main">
+            <img src="/photo/hero_fv.jpg" alt="クロヤナギ医院とみっかび東介護老人保健施設の外観" />
+          </figure>
+          <figure className="collage-photo-card collage-photo-card-tall">
+            <img src="/photo/facility_lounge.jpg" alt="落ち着いた施設内ラウンジ" />
+          </figure>
+        </div>
+
+        <div className="collage-hero-copy">
+          <div className="collage-hero-arc" aria-hidden="true" />
+          <p className="collage-hero-kicker">浜松市浜名区三ヶ日町の内科クリニック</p>
+          <h1>
+            <span>皆さまの</span>
+            <span>健康に寄り添う</span>
+            <span>地域のかかりつけ医</span>
+          </h1>
+          <p className="collage-hero-lead">
+            内科診療を中心に、日々の健康相談から
+            予防・診断・治療まで、地域の皆さまの
+            すこやかな毎日を支える医療を目指しています。
+          </p>
+          <div className="collage-hero-actions">
+            <a className="collage-primary-button" href="#guide">
+              <span>診療案内を見る</span>
+              <ArrowIcon />
+            </a>
+            <a className="collage-text-link" href="#access">
+              <span>アクセスを見る</span>
+              <ArrowIcon />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function ClinicHomePage() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <main className="page-shell" id="home">
-      <div className="leaf leaf-top-left" aria-hidden="true" />
-      <div className="leaf leaf-hero-left" aria-hidden="true" />
-      <div className="leaf leaf-bottom-right" aria-hidden="true" />
-
-      <header className="site-header">
+      <header className={`site-header ${isScrolled ? "is-scrolled" : ""}`}>
         <div className="site-header-inner">
           <div className="brand-block">
-            <TreeMark />
+            <ClinicLogoIcon />
             <div>
               <p className="brand-subtitle">医療法人社団 早友会</p>
               <p className="brand-title">クロヤナギ医院</p>
             </div>
           </div>
 
-          <div className="header-side">
-            <nav className="site-nav" aria-label="主要メニュー">
-              {navLinks.map(([label, href], index) => (
-                <a key={label} href={href} className={index === 0 ? "is-active" : ""}>
-                  {label}
-                </a>
-              ))}
-            </nav>
+          <nav className="site-nav" aria-label="主要メニュー">
+            {navLinks.map(([label, href]) => (
+              <a key={label} href={href}>
+                {label}
+              </a>
+            ))}
+            <a href="#guide">診療時間</a>
+          </nav>
 
-            <div className="header-contact">
-              <span>お電話でのお問い合わせ</span>
-              <a href="tel:0535241000">053-524-1000</a>
-              <small>ご予約・お問い合わせ</small>
-            </div>
+          <div className="header-actions">
+            <a href="#" className="web-reserve-button">
+              <div className="reserve-icon-wrap">
+                <CalendarIcon />
+              </div>
+              <div className="reserve-text-wrap">
+                <span className="reserve-label">WEB予約</span>
+                <span className="reserve-note">24時間受付</span>
+              </div>
+            </a>
           </div>
         </div>
       </header>
 
-      <section className="hero-section" id="about">
-        <div className="hero-overlay" aria-hidden="true" />
-        <div className="hero-inner">
-          <div className="hero-copy">
-            <p className="hero-kicker">
-              <PinIcon />
-              浜松市浜名区三ヶ日町の内科クリニック
-            </p>
-            <h1>
-              <span className="hero-line">地域に寄り添う、</span>
-              <span className="hero-line">安心の医療と介護連携</span>
-            </h1>
-            <p>
-              内科診療を中心に、皆さまの健康を支えます。
-              <br />
-              隣接する「みっかび東介護老人保健施設」との
-              <br />
-              連携により、医療と介護がつながる安心を
-              <br />
-              お届けします。
-            </p>
-            <div className="hero-actions">
-              <a className="primary-hero-button" href="#guide">
-                <ClipboardPlusIcon />
-                <span>
-                  診療案内を見る
-                  <small>診療科目・診療時間</small>
-                </span>
-                <ArrowIcon />
-              </a>
-              <a className="secondary-hero-button" href="#access">
-                <PinIcon />
-                <span>
-                  アクセスを見る
-                  <small>所在地・交通案内</small>
-                </span>
-                <ArrowIcon />
-              </a>
-            </div>
+      <CurrentHero />
+
+
+      <section className="news-section" id="news">
+        <div className="news-inner">
+          <div className="news-title-block">
+            <h2 className="news-title">お知らせ</h2>
+            <p className="news-subtitle-en serif">News</p>
           </div>
-          <div className="hero-support-card">
-            <div className="hero-support-icon">
-              <HeartCareIcon />
+
+          <div className="news-list-block">
+            <div className="news-list">
+              {newsItems.slice(0, 3).map((item, idx) => (
+                <article className="news-row" key={idx}>
+                  <time className="news-date">{item.date}</time>
+                  <span className="news-tag">{item.tag}</span>
+                  <p className="news-item-title">{item.title}</p>
+                </article>
+              ))}
             </div>
-            <div className="hero-support-copy">
-              <p>医療と介護の連携で</p>
-              <span>切れ目のないサポートを</span>
-              <strong>隣接する みっかび東介護老人保健施設</strong>
-              <small>詳しくはこちら</small>
-            </div>
-            <a className="hero-support-link" href="#care" aria-label="みっかび東介護老人保健施設へ">
-              <ArrowIcon />
+            
+            <a href="#news-archive" className="news-view-all">
+              <span>VIEW ALL</span>
+              <ThinArrowIcon />
             </a>
           </div>
         </div>
       </section>
 
-      <div className="feature-strip-wrap">
-        <section className="feature-strip">
-          {features.map(({ title, text, icon: Icon }) => (
-            <article className="feature-item" key={title}>
-              <Icon />
-              <div>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </div>
-              <a href="#guide" className="feature-link" aria-label={`${title}を見る`}>
-                <ArrowIcon />
-              </a>
-            </article>
-          ))}
-        </section>
-      </div>
-
-      <section className="news-section" id="news">
-        <div className="news-grid-container">
-          <div className="news-header-side">
-            <div className="news-logo">
-              <NewsSymbolIcon />
-            </div>
-            <h2 className="serif">お知らせ</h2>
-            <p className="news-subtitle">医院からのお知らせや休診情報を掲載しています。</p>
+      <section className="about-section" id="about">
+        <div className="about-inner">
+          <div className="about-content">
+            <span className="about-label">About</span>
+            <h2 className="about-title">
+              地域の皆さまの<br />
+              かかりつけ医として
+            </h2>
+            <p className="about-text">
+              クロヤナギ医院は、内科を中心に幅広い<br />
+              診療を行うとともに、併設の介護老人保健施設<br />
+              「桜山の郷」や地域の医療機関と連携し、<br />
+              地域の皆さまの健康と安心を支えます。
+            </p>
+            <a href="#about-detail" className="about-button">
+              当院について
+              <ThinArrowIcon />
+            </a>
           </div>
-
-          <div className="news-list-side">
-            <div className="news-list">
-              {newsItems.map((item, idx) => (
-                <article className="news-row" key={idx}>
-                  <time className="news-row-date">{item.date}</time>
-                  <span className="news-row-tag">{item.tag}</span>
-                  <p className="news-row-title">{item.title}</p>
-                  <div className="news-row-arrow">
-                    <ThinArrowIcon />
-                  </div>
-                </article>
-              ))}
-            </div>
-            
-            <div className="news-action-area">
-              <a href="#news-archive" className="news-more-link">
-                <span>お知らせ一覧</span>
-                <div className="news-more-circle">
-                  <ArrowIcon />
-                </div>
-              </a>
-            </div>
+          <div className="about-image-wrap">
+            <img src="/photo/about_doctor_abstract.png" alt="患者に寄り添う医師の手元" />
           </div>
         </div>
       </section>
@@ -354,81 +398,58 @@ export default function ClinicHomePage() {
       </section>
 
       <section className="access-section" id="access">
-        <div className="section-header">
-          <div className="header-icon">
-            <PinIcon />
+        <div className="access-heading-row">
+          <div className="access-title-block">
+            <span className="access-leaf-mark" aria-hidden="true" />
+            <h2>アクセス</h2>
+            <p>ACCESS</p>
           </div>
-          <h2 className="serif">アクセス</h2>
-          <p className="header-subtitle">所在地や交通案内をご確認いただけます。</p>
-        </div>
-
-        <div className="access-card">
-          <div className="access-info">
-            <div className="access-details">
-              <div className="access-detail-item">
-                <div className="detail-icon"><PinIcon /></div>
-                <div className="detail-content">
-                  <p>〒431-1404 静岡県浜松市浜名区三ヶ日町宇志532-1</p>
-                </div>
-              </div>
-              
-              <div className="access-detail-item">
-                <div className="detail-icon"><PhoneIcon /></div>
-                <div className="detail-content">
-                  <p>TEL 053-526-1112</p>
-                </div>
-              </div>
-              
-              <div className="access-detail-item">
-                <div className="detail-icon"><CarIcon /></div>
-                <div className="detail-content">
-                  <p>東名高速「三ヶ日IC」から車で約5分</p>
-                </div>
-              </div>
-              
-              <div className="access-detail-item">
-                <div className="detail-icon"><TrainIcon /></div>
-                <div className="detail-content">
-                  <p>天竜浜名湖鉄道「三ヶ日駅」から車で約5分</p>
-                </div>
-              </div>
-              
-              <div className="access-detail-item">
-                <div className="detail-icon"><ParkingIcon /></div>
-                <div className="detail-content">
-                  <p>駐車場完備</p>
-                </div>
-              </div>
-            </div>
-
-            <a 
-              href="https://www.google.com/maps/dir/?api=1&destination=34.802377,137.561334" 
-              className="google-maps-button"
+          <div className="access-address-block">
+            <p>〒431-1404 静岡県浜松市浜名区三ヶ日町宇志34-1</p>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=静岡県浜松市浜名区三ヶ日町宇志34-1"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Googleマップを見る
-              <ArrowIcon />
+              Googleマップで見る
+              <span aria-hidden="true">↗</span>
             </a>
           </div>
+          <a className="access-detail-button" href="#access">
+            詳しくみる
+            <ArrowIcon />
+          </a>
+        </div>
 
-          <div className="access-map-wrapper">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3276.272370746808!2d137.5577882!3d34.7990888!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601b2efa972e1a71%3A0x92e441ec73c353e0!2z44CSNDMxLTE0MDQg6Z2Z5bKh55yM5rWc5p2-5biC5rWc5ZCN5Yy65LiJ44O25pel55S65a6H5b-X77yV77yT77yS!5e0!3m2!1sja!2sjp!4v1776946819289!5m2!1sja!2sjp"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="クロヤナギ医院の地図"
-            ></iframe>
-          </div>
+        <div className="access-guide-card">
+          <article className="access-guide-item">
+            <div className="access-guide-icon">
+              <CarIcon />
+            </div>
+            <div className="access-guide-copy">
+              <h3>お車でお越しの方</h3>
+              <p>東名高速「三ヶ日IC」より車で約5分</p>
+              <p>医院前に駐車場をご用意しています。</p>
+            </div>
+          </article>
+
+          <article className="access-guide-item">
+            <div className="access-guide-icon">
+              <BusIcon />
+            </div>
+            <div className="access-guide-copy">
+              <h3>公共交通機関でお越しの方</h3>
+              <ul>
+                <li>天竜浜名湖鉄道「三ヶ日駅」より徒歩約5分</li>
+                <li>遠鉄バス「宇志」停留所より徒歩約3分</li>
+              </ul>
+            </div>
+          </article>
         </div>
       </section>
 
       {/* 介護施設セクション */}
-      <section className="care-section">
+      <section className="care-section" id="care">
         <div className="care-layout">
           <div className="care-image">
             <img src="/photo/facility_courtyard.jpg" alt="みっかび東 施設外観" />
@@ -455,37 +476,167 @@ export default function ClinicHomePage() {
       </section>
 
       <footer className="site-footer">
-        <div className="footer-brand">
-          <TreeMark />
-          <div>
-            <p className="brand-subtitle">医療法人社団 早友会</p>
-            <p className="brand-title">クロヤナギ医院</p>
-          </div>
-        </div>
+        <div className="footer-white-area">
+          <div className="footer-top">
+            <div className="footer-col brand-col">
+              <div className="footer-brand">
+                <div className="brand-text">
+                  <p className="brand-subtitle">医療法人社団 早友会</p>
+                  <p className="brand-title">クロヤナギ医院</p>
+                </div>
+              </div>
+              <p className="footer-description">地域の皆さまと歩む、信頼のかかりつけ医</p>
+            </div>
 
-        <div className="footer-center">
-          <div className="footer-links">
-            {navLinks.map(([label, href]) => (
-              <a key={label} href={href}>
-                {label}
+            <div className="footer-col nav-col">
+              <nav className="footer-nav" aria-label="フッターメニュー">
+                <div className="nav-group">
+                  {navLinks.slice(0, 4).map(([label, href]) => (
+                    <a key={label} href={href}>
+                      <ChevronRightIcon />
+                      {label}
+                    </a>
+                  ))}
+                </div>
+                <div className="nav-group">
+                  {navLinks.slice(4).map(([label, href]) => (
+                    <a key={label} href={href}>
+                      <ChevronRightIcon />
+                      {label}
+                    </a>
+                  ))}
+                  <a href="#access">
+                    <ChevronRightIcon />
+                    アクセス
+                  </a>
+                </div>
+              </nav>
+            </div>
+
+            <div className="footer-col contact-col">
+              <div className="footer-address">
+                <PinIcon />
+                <span>〒431-1404 静岡県浜松市浜名区三ヶ日町宇志34-1</span>
+              </div>
+              <a href="tel:053-525-1113" className="footer-phone">
+                <PhoneIcon />
+                <span>053-525-1113</span>
               </a>
-            ))}
+              <div className="footer-reserve-actions">
+                <a href="#contact" className="footer-reserve-button primary">
+                  <CalendarIcon />
+                  WEB予約
+                  <span aria-hidden="true">↗</span>
+                </a>
+                <a href="#contact" className="footer-reserve-button secondary">
+                  LINE予約
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
           </div>
-          <div className="footer-links secondary">
-            <a href="#home">採用情報</a>
-            <a href="/privacy">プライバシーポリシー</a>
-            <a href="#home">サイトマップ</a>
+
+          <div className="footer-info-grid">
+            <div className="footer-hours-card">
+              <table className="footer-hours-table">
+                <thead>
+                  <tr>
+                    <th>
+                      <span className="footer-hours-heading">
+                        <ClockIcon />
+                        診療時間
+                      </span>
+                    </th>
+                    <th>月</th>
+                    <th>火</th>
+                    <th>水</th>
+                    <th>木</th>
+                    <th>金</th>
+                    <th>土</th>
+                    <th>日・祝</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>9:00 - 12:30</th>
+                    <td>○</td>
+                    <td>○</td>
+                    <td>○</td>
+                    <td>○</td>
+                    <td>○</td>
+                    <td>○</td>
+                    <td>−</td>
+                  </tr>
+                  <tr>
+                    <th>14:30 - 18:00</th>
+                    <td>○</td>
+                    <td>○</td>
+                    <td>○</td>
+                    <td>−</td>
+                    <td>○</td>
+                    <td>−</td>
+                    <td>−</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p className="footer-hours-note">※木曜・土曜の午後、日曜・祝日は休診です。</p>
+            </div>
+
+            <div className="footer-map-card">
+              <iframe
+                title="クロヤナギ医院 Googleマップ"
+                src="https://www.google.com/maps?q=静岡県浜松市浜名区三ヶ日町宇志34-1&output=embed"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+              <a href="https://www.google.com/maps/search/?api=1&query=静岡県浜松市浜名区三ヶ日町宇志34-1" className="map-link" target="_blank" rel="noreferrer">
+                Googleマップで見る
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
           </div>
-          <p className="copyright">© 医療法人社団 早友会 クロヤナギ医院</p>
         </div>
 
-        <div className="footer-contact">
-          <p>〒431-1404</p>
-          <p>浜松市浜名区三ヶ日町宇志34-1</p>
-          <a href="tel:0535241000">053-524-1000</a>
+        <div className="footer-bottom-strip">
+          <div className="footer-bottom-inner">
+            <div className="footer-message">
+              <span className="footer-shield"><HeartCareIcon /></span>
+              <div className="brand-text">
+                <p>地域の健康を支え、</p>
+                <p>安心と信頼の医療を提供します。</p>
+              </div>
+            </div>
+            <nav className="footer-legal" aria-label="フッター下部メニュー">
+              <a href="/privacy">プライバシーポリシー</a>
+              <a href="#home">サイトマップ</a>
+            </nav>
+            <p className="copyright">© 2025 医療法人社団 早友会 クロヤナギ医院</p>
+          </div>
         </div>
       </footer>
+
     </main>
+  );
+}
+
+function ClinicLogoIcon() {
+  return (
+    <svg viewBox="0 0 64 64" className="clinic-logo-icon" aria-hidden="true">
+      <circle cx="32" cy="32" r="30" fill="none" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M32 12v40M12 32h40" strokeWidth="1" opacity="0.3" />
+      <path d="M22 22l20 20M42 22L22 42" strokeWidth="1" opacity="0.3" />
+      <path d="M32 18c-8 0-14 6-14 14s6 14 14 14 14-6 14-14-6-14-14-14Z" strokeWidth="2" />
+      <path d="M32 24v16M24 32h16" strokeWidth="2" />
+    </svg>
+  );
+}
+
+function FacilitySymbolIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-4h6v4M8 12h2M14 12h2M11 7h2" />
+      <path d="M7 16h2M15 16h2" />
+    </svg>
   );
 }
 
@@ -515,14 +666,6 @@ function ClockIcon() {
   );
 }
 
-function CalendarIcon() {
-  return (
-    <svg viewBox="0 0 64 64" aria-hidden="true">
-      <path d="M14 18h36v32H14z" />
-      <path d="M14 26h36M22 12v12M42 12v12M24 35h6M34 35h6M24 44h6" />
-    </svg>
-  );
-}
 
 function BellIcon() {
   return (
@@ -602,6 +745,17 @@ function TrainIcon() {
   );
 }
 
+function BusIcon() {
+  return (
+    <svg viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M18 10h28c5 0 8 3 8 8v24c0 5-4 9-9 9H19c-5 0-9-4-9-9V18c0-5 3-8 8-8Zm0 10h28M17 35h8m14 0h8M22 51v5m20-5v5" />
+      <circle cx="23" cy="43" r="3" />
+      <circle cx="41" cy="43" r="3" />
+      <path d="M10 26H6v14h4M54 26h4v14h-4" />
+    </svg>
+  );
+}
+
 function PinIcon() {
   return (
     <svg viewBox="0 0 64 64" aria-hidden="true">
@@ -612,8 +766,8 @@ function PinIcon() {
 
 function PhoneIcon() {
   return (
-    <svg viewBox="0 0 64 64" aria-hidden="true">
-      <path d="M12 12c0 24 16 40 40 40h4v-8l-8-4-4 4c-8-4-12-8-16-16l4-4-4-8h-8v4Z" />
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3.09 5.18 2 2 0 0 1 5.08 3h3a2 2 0 0 1 2 1.72c.12.9.32 1.77.6 2.61a2 2 0 0 1-.45 2.11L9 10.69a16 16 0 0 0 4.31 4.31l1.25-1.23a2 2 0 0 1 2.11-.45c.84.28 1.72.48 2.61.6A2 2 0 0 1 22 16.92Z" />
     </svg>
   );
 }
@@ -668,6 +822,25 @@ function HeartPeopleIcon() {
       <circle cx="9" cy="7" r="4" />
       <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
       <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    </svg>
+  );
+}
+
+function ChevronRightIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M9 18l6-6-6-6" />
+    </svg>
+  );
+}
+
+function CalendarIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+      <line x1="16" y1="2" x2="16" y2="6" />
+      <line x1="8" y1="2" x2="8" y2="6" />
+      <line x1="3" y1="10" x2="21" y2="10" />
     </svg>
   );
 }

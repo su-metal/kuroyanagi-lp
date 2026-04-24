@@ -9,15 +9,15 @@ const execFile = promisify(execFileCallback);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const clinicRoot = path.resolve(__dirname, "..");
-const nextDir = path.join(clinicRoot, ".next");
+const nextDevDir = path.join(clinicRoot, ".next-dev");
 const nextBin = path.join(clinicRoot, "node_modules", "next", "dist", "bin", "next");
 const targetPort = 3000;
 
 async function removeNextCache() {
   for (let attempt = 0; attempt < 5; attempt += 1) {
     try {
-      await rm(nextDir, { recursive: true, force: true, maxRetries: 5, retryDelay: 200 });
-      console.log("Removed .next cache before dev startup.");
+      await rm(nextDevDir, { recursive: true, force: true, maxRetries: 5, retryDelay: 200 });
+      console.log("Removed .next-dev cache before dev startup.");
       return;
     } catch (error) {
       if (attempt === 4) throw error;
@@ -25,7 +25,7 @@ async function removeNextCache() {
     }
   }
 
-  console.log("Removed .next cache before dev startup.");
+  console.log("Removed .next-dev cache before dev startup.");
 }
 
 async function getWindowsPidByPort(port) {

@@ -1,0 +1,508 @@
+:root {
+  --bg: #f6fbfa;
+  --surface: #ffffff;
+  --surface-soft: #eaf6f4;
+  --line: #d6e7e4;
+  --text: #17343f;
+  --muted: #5f7780;
+  --navy: #0b3b52;
+  --accent: #2b9c8f;
+  --warm: #d9965b;
+  --shadow: 0 24px 70px rgba(23, 52, 63, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, system-ui, sans-serif;
+  line-height: 1.75;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  width: min(1180px, calc(100% - 40px));
+  margin: 18px auto 0;
+  padding: 14px 18px;
+  border: 1px solid rgba(214, 231, 228, 0.9);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 18px 50px rgba(23, 52, 63, 0.08);
+  backdrop-filter: blur(16px);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-width: max-content;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: #fff;
+  font-family: Georgia, serif;
+  font-size: 21px;
+}
+
+.brand strong,
+.brand small {
+  display: block;
+}
+
+.brand strong {
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.brand small {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0;
+}
+
+.header-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.header-nav a:hover {
+  color: var(--accent);
+}
+
+.phone-link {
+  min-width: max-content;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--surface-soft);
+  color: var(--navy);
+  font-weight: 700;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(420px, 1.08fr);
+  align-items: center;
+  gap: 54px;
+  width: min(1180px, calc(100% - 40px));
+  min-height: calc(100vh - 98px);
+  margin: 0 auto;
+  padding: 74px 0 50px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.hero h1,
+.section h2,
+.access-section h2 {
+  margin: 0;
+  color: var(--navy);
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.hero h1 {
+  max-width: 620px;
+  font-size: clamp(38px, 5vw, 68px);
+}
+
+.lead {
+  max-width: 560px;
+  margin: 26px 0 0;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 34px;
+}
+
+.primary-button,
+.secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.primary-button {
+  background: var(--navy);
+  color: #fff;
+}
+
+.secondary-button {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--navy);
+}
+
+.hero-media {
+  position: relative;
+  min-height: 540px;
+}
+
+.hero-main-photo,
+.hero-sub-photo,
+.hero-info-card {
+  position: absolute;
+  border: 8px solid #fff;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.hero-main-photo {
+  inset: 24px 0 auto auto;
+  width: 82%;
+  height: 410px;
+  object-fit: cover;
+}
+
+.hero-sub-photo {
+  left: 0;
+  bottom: 58px;
+  width: 46%;
+  height: 230px;
+  object-fit: cover;
+}
+
+.hero-info-card {
+  right: 26px;
+  bottom: 34px;
+  width: min(270px, 58%);
+  padding: 18px;
+  background: #fff;
+}
+
+.hero-info-card span,
+.quick-info span {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.hero-info-card strong,
+.hero-info-card small {
+  display: block;
+}
+
+.hero-info-card strong {
+  margin-top: 6px;
+  color: var(--navy);
+  font-size: 20px;
+}
+
+.hero-info-card small {
+  color: var(--muted);
+}
+
+.quick-info,
+.section,
+.split-section,
+.access-section,
+.site-footer {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.quick-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 0 0 78px;
+}
+
+.quick-info article,
+.department-card,
+.schedule-card,
+.notice-panel {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: 0 18px 45px rgba(23, 52, 63, 0.06);
+}
+
+.quick-info article {
+  padding: 24px;
+}
+
+.quick-info strong {
+  display: block;
+  margin-top: 8px;
+  color: var(--navy);
+  font-size: 19px;
+}
+
+.quick-info p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.section {
+  padding: 74px 0;
+}
+
+.section-heading {
+  margin-bottom: 28px;
+}
+
+.section h2,
+.access-section h2 {
+  font-size: clamp(30px, 3vw, 42px);
+}
+
+.department-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+
+.department-card {
+  min-height: 118px;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  color: var(--navy);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.schedule-section {
+  padding-top: 48px;
+}
+
+.schedule-card {
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+th,
+td {
+  padding: 16px;
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+
+thead th {
+  background: var(--surface-soft);
+  color: var(--navy);
+}
+
+.schedule-card p {
+  margin: 0;
+  padding: 18px 22px 22px;
+  color: var(--muted);
+}
+
+.split-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.88fr) minmax(320px, 0.62fr);
+  gap: 44px;
+  align-items: start;
+  padding: 74px 0;
+}
+
+.split-section h2 {
+  margin: 0 0 16px;
+  color: var(--navy);
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: clamp(30px, 3vw, 42px);
+  line-height: 1.25;
+}
+
+.split-section p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.notice-panel {
+  padding: 24px;
+}
+
+.notice-panel h3 {
+  margin: 0 0 12px;
+  color: var(--navy);
+}
+
+.notice-panel a {
+  display: grid;
+  gap: 2px;
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+
+.notice-panel time {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.access-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 80px;
+  padding: 38px;
+  border-radius: 8px;
+  background: var(--surface-soft);
+}
+
+.access-section p {
+  margin: 12px 0 0;
+  color: var(--muted);
+}
+
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 30px 0 44px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+}
+
+.site-footer strong,
+.site-footer a {
+  color: var(--navy);
+  font-weight: 700;
+}
+
+.site-footer p {
+  margin: 6px 0 0;
+}
+
+@media (max-width: 920px) {
+  .site-header,
+  .hero,
+  .quick-info,
+  .section,
+  .split-section,
+  .access-section,
+  .site-footer {
+    width: min(100% - 28px, 720px);
+  }
+
+  .site-header {
+    position: static;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header-nav {
+    justify-content: flex-start;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding-top: 54px;
+  }
+
+  .hero-media {
+    min-height: 430px;
+  }
+
+  .quick-info,
+  .department-grid,
+  .split-section {
+    grid-template-columns: 1fr;
+  }
+
+  .department-card {
+    min-height: 92px;
+  }
+
+  .access-section,
+  .site-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero h1 {
+    font-size: 34px;
+  }
+
+  .hero-media {
+    min-height: 360px;
+  }
+
+  .hero-main-photo {
+    width: 100%;
+    height: 280px;
+  }
+
+  .hero-sub-photo {
+    display: none;
+  }
+
+  .hero-info-card {
+    right: 14px;
+    bottom: 10px;
+    width: calc(100% - 28px);
+  }
+
+  .quick-info {
+    padding-bottom: 48px;
+  }
+
+  th,
+  td {
+    padding: 12px 8px;
+    font-size: 14px;
+  }
+}
