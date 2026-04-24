@@ -471,7 +471,7 @@ svg {
   margin-top: -42px;
   margin-bottom: 0;
   padding-bottom: 120px;
-  background: #f8fbff;
+  background: transparent;
 }
 
 .feature-strip {
@@ -539,9 +539,8 @@ svg {
 }
 
 .medical-guide-section {
-  margin-bottom: 26px;
   padding: 160px clamp(18px, 3.2vw, 36px);
-  background: #ffffff;
+  background: #eef5fd;
   border-radius: 0;
 }
 
@@ -930,14 +929,14 @@ svg {
 
 .medical-guide-section {
   padding: 160px 0;
-  background: #fff;
+  background: #eef5fd;
   position: relative;
   overflow: hidden;
 }
 
 .news-section {
   padding: clamp(60px, 4vw, 120px) 0;
-  background: linear-gradient(180deg, #f8fbff 0%, #ffffff 150px);
+  background: #fff;
   position: relative;
 }
 
