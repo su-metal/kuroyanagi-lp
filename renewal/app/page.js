@@ -1,171 +1,195 @@
-const navItems = ["診療案内", "診療時間", "初めての方へ", "アクセス"];
+"use client";
 
-const departments = ["内科", "小児科", "消化器内科", "予防接種", "健康診断"];
-
-const notices = [
-  { date: "2026.04.01", text: "ゴールデンウィーク期間の診療について" },
-  { date: "2026.03.15", text: "発熱症状がある方へのお願い" },
-  { date: "2026.02.20", text: "健康診断の受付時間を更新しました" },
-];
-
-const schedule = [
-  ["月", "9:00-12:00", "15:00-18:00"],
-  ["火", "9:00-12:00", "15:00-18:00"],
-  ["水", "9:00-12:00", "休診"],
-  ["木", "9:00-12:00", "15:00-18:00"],
-  ["金", "9:00-12:00", "15:00-18:00"],
-  ["土", "9:00-12:00", "休診"],
-];
+import Head from "next/head";
+import { useState } from "react";
 
 export default function Home() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <main>
-      <header className="site-header">
-        <a className="brand" href="#top" aria-label="クロヤナギ医院 トップへ">
-          <span className="brand-mark">K</span>
-          <span>
-            <strong>クロヤナギ医院</strong>
-            <small>Kuroyanagi Clinic</small>
-          </span>
-        </a>
-        <nav className="header-nav" aria-label="主要ナビゲーション">
-          {navItems.map((item) => (
-            <a key={item} href={`#${item}`}>
-              {item}
-            </a>
-          ))}
+    <div className="wrapper">
+      <Head>
+        <title>クロヤナギ医院 | 内科・小児科・呼吸器内科</title>
+      </Head>
+
+      {/* --- HEADER --- */}
+      <header className="header">
+        {/* Main Header (Top Bar) */}
+        <div className="header-main">
+          <div className="container header-main-inner">
+            <div className="logo">
+              <a href="/">
+                <div className="logo-flex">
+                  <div className="logo-mark">
+                    <img src="/photo/assets/01_action/08_当院について.png" alt="" style={{ height: "48px" }} />
+                  </div>
+                  <div className="logo-text">
+                    <span className="logo-sub">医療法人社団 早友会</span>
+                    <span className="logo-main">クロヤナギ医院</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            {/* PC Actions */}
+            <div className="pc-actions hidden-mobile">
+              <a href="#" className="header-card blue">
+                <div className="icon">
+                  <img src="/photo/assets/01_action/01_予約.png" alt="" />
+                </div>
+                <div className="info">
+                  <span className="value">ご予約はこちら</span>
+                </div>
+              </a>
+              <a href="#" className="header-card blue">
+                <div className="icon">
+                  <img src="/photo/assets/01_action/02_みっかび東.png" alt="" />
+                </div>
+                <div className="info">
+                  <span className="value">みっかび東</span>
+                  <span className="label">介護老人保健施設</span>
+                </div>
+              </a>
+              <a href="tel:0535251113" className="header-card tel-card">
+                <div className="tel-top">
+                  <div className="icon tel-icon">
+                    <img src="/photo/assets/01_action/03_電話.png" alt="" />
+                  </div>
+                  <span className="tel-value">053-525-1113</span>
+                </div>
+                <span className="tel-hours">受付時間 8:30〜17:30（木・土午後、日祝休診）</span>
+              </a>
+            </div>
+
+            {/* Mobile Hamburger */}
+            <button 
+              className="hamburger show-mobile" 
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="メニュー"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </div>
+
+        {/* Navigation Bar */}
+        <nav className="pc-nav hidden-mobile">
+          <div className="container">
+            <ul className="nav-list">
+              <li><a href="#">当院について</a></li>
+              <li><a href="#">当院の特長</a></li>
+              <li><a href="#">診療案内</a></li>
+              <li><a href="#">アクセス</a></li>
+              <li><a href="#">お知らせ</a></li>
+            </ul>
+          </div>
         </nav>
-        <a className="phone-link" href="tel:0530000000">
-          053-000-0000
-        </a>
       </header>
 
-      <section className="hero" id="top">
-        <div className="hero-copy">
-          <p className="eyebrow">浜松市三ヶ日町の地域医療</p>
-          <h1>いつもの暮らしに寄り添う、身近なかかりつけ医。</h1>
-          <p className="lead">
-            内科・小児科を中心に、日々の体調不良から予防接種、健康診断まで幅広くご相談いただけます。
-          </p>
-          <div className="hero-actions">
-            <a className="primary-button" href="#診療時間">
-              診療時間を見る
-            </a>
-            <a className="secondary-button" href="#アクセス">
-              アクセスを見る
-            </a>
+      {/* --- HERO --- */}
+      <section className="hero">
+        <div className="container hero-container">
+          <div className="hero-layout">
+
+            {/* Left: Main Photo + Schedule Overlay */}
+            <div className="hero-photo-wrap">
+              {/* Photo with custom border-radius */}
+              <div className="hero-photo-container">
+                <img src="/photo/clinic.png" alt="クロヤナギ医院 外観" className="hero-photo" />
+              </div>
+
+              {/* Bottom-left landscape illustration overlaying the photo */}
+              <div className="hero-deco-landscape">
+                <img src="/photo/assets/06_landscapes/04_街並みと橋.png" alt="" />
+              </div>
+
+              {/* Schedule card overlaying the bottom-right of the photo */}
+              <div className="hero-schedule-overlay">
+                <div className="schedule-card">
+                  <div className="schedule-table-wrapper">
+                    <table className="schedule-table">
+                      <thead>
+                        <tr>
+                          <th>診療受付時間</th>
+                          <th>月</th>
+                          <th>火</th>
+                          <th>水</th>
+                          <th>木</th>
+                          <th>金</th>
+                          <th>土</th>
+                          <th>日祝</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td className="time-slot">8:30-12:00</td>
+                          <td>●</td>
+                          <td>●</td>
+                          <td>●</td>
+                          <td>●</td>
+                          <td>●</td>
+                          <td>●</td>
+                          <td className="closed">／</td>
+                        </tr>
+                        <tr>
+                          <td className="time-slot">14:30-17:30</td>
+                          <td>●</td>
+                          <td>●</td>
+                          <td>●</td>
+                          <td className="closed">／</td>
+                          <td>●</td>
+                          <td>●</td>
+                          <td className="closed">／</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div className="schedule-footer">
+                    <p>※ 予約優先</p>
+                    <p>※ 初診の方は診療時間が終了する30分前までにご来院ください</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Catchcopy + Family Illustration */}
+            <div className="hero-copy-area">
+              {/* Bird deco top-right */}
+              <div className="deco-bird deco-bird-top">
+                <img src="/photo/assets/07_ashirai/06_鳥.png" alt="" />
+              </div>
+
+              {/* Vertical staircase text */}
+              <div className="copy-vertical-wrapper">
+                <h2 className="v-text staircase-text">
+                  <span className="step-1">地域の皆さまの</span>
+                  <span className="step-2">健康を支え、</span>
+                  <span className="step-3">安心の毎日を。</span>
+                </h2>
+              </div>
+
+              {/* Bird deco bottom-left */}
+              <div className="deco-bird deco-bird-bottom">
+                <img src="/photo/assets/07_ashirai/06_鳥.png" alt="" />
+              </div>
+
+              {/* Hill silhouette behind family */}
+              <div className="hero-right-deco">
+                <img src="/photo/assets/07_ashirai/11_丘シルエット.png" alt="" className="ashirai-hill" />
+              </div>
+
+              {/* Family illustration */}
+              <div className="deco-family">
+                <img src="/photo/assets/05_persons/08_家族グループ.png" alt="ご家族" />
+              </div>
+            </div>
+
           </div>
         </div>
-        <div className="hero-media" aria-label="医院の写真">
-          <img className="hero-main-photo" src="/photo/hero_fv.jpg" alt="クロヤナギ医院の外観" />
-          <img className="hero-sub-photo" src="/photo/access_entrance.jpg" alt="医院入口" />
-          <div className="hero-info-card">
-            <span>本日の受付</span>
-            <strong>午前 9:00-12:00</strong>
-            <small>午後 15:00-18:00</small>
-          </div>
-        </div>
       </section>
 
-      <section className="quick-info" aria-label="医院基本情報">
-        <article>
-          <span>診療科目</span>
-          <strong>内科・小児科</strong>
-          <p>体調不良、生活習慣病、予防接種など</p>
-        </article>
-        <article>
-          <span>休診日</span>
-          <strong>水曜午後・土曜午後・日曜祝日</strong>
-          <p>急な変更はお知らせをご確認ください</p>
-        </article>
-        <article>
-          <span>所在地</span>
-          <strong>浜松市浜名区三ヶ日町</strong>
-          <p>駐車場をご利用いただけます</p>
-        </article>
-      </section>
-
-      <section className="section" id="診療案内">
-        <div className="section-heading">
-          <p className="eyebrow">Medical Services</p>
-          <h2>診療案内</h2>
-        </div>
-        <div className="department-grid">
-          {departments.map((department) => (
-            <article className="department-card" key={department}>
-              <span>{department}</span>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section schedule-section" id="診療時間">
-        <div className="section-heading">
-          <p className="eyebrow">Hours</p>
-          <h2>診療時間</h2>
-        </div>
-        <div className="schedule-card">
-          <table>
-            <thead>
-              <tr>
-                <th>曜日</th>
-                <th>午前</th>
-                <th>午後</th>
-              </tr>
-            </thead>
-            <tbody>
-              {schedule.map(([day, morning, afternoon]) => (
-                <tr key={day}>
-                  <th>{day}</th>
-                  <td>{morning}</td>
-                  <td>{afternoon}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <p>受付終了時間は診療終了の15分前です。急な変更はお知らせでご案内します。</p>
-        </div>
-      </section>
-
-      <section className="section split-section" id="初めての方へ">
-        <div>
-          <p className="eyebrow">First Visit</p>
-          <h2>初めての方へ</h2>
-          <p>
-            保険証またはマイナンバーカード、お薬手帳、紹介状をお持ちの方は受付でご提示ください。
-            発熱や感染症が疑われる症状がある場合は、来院前にお電話ください。
-          </p>
-        </div>
-        <div className="notice-panel">
-          <h3>お知らせ</h3>
-          {notices.map((notice) => (
-            <a href="#top" key={notice.text}>
-              <time>{notice.date}</time>
-              <span>{notice.text}</span>
-            </a>
-          ))}
-        </div>
-      </section>
-
-      <section className="access-section" id="アクセス">
-        <div>
-          <p className="eyebrow">Access</p>
-          <h2>アクセス</h2>
-          <p>〒000-0000 静岡県浜松市浜名区三ヶ日町</p>
-          <p>お車でお越しの方は、医院敷地内の駐車場をご利用ください。</p>
-        </div>
-        <a className="primary-button" href="https://www.google.com/maps" target="_blank" rel="noreferrer">
-          Google マップで見る
-        </a>
-      </section>
-
-      <footer className="site-footer">
-        <div>
-          <strong>クロヤナギ医院</strong>
-          <p>地域の皆さまの毎日に寄り添う医療を目指します。</p>
-        </div>
-        <a href="tel:0530000000">053-000-0000</a>
-      </footer>
-    </main>
+    </div>
   );
 }
