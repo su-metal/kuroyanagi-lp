@@ -274,7 +274,7 @@ ul {
 /* Bottom-left landscape illustration overlaying the photo */
 .hero-deco-landscape {
   position: absolute;
-  bottom: 111px;
+  bottom: 122px;
   left: -20px;
   width: 50%;
   z-index: 5;
@@ -379,7 +379,7 @@ ul {
 .deco-bird-top {
   position: absolute;
   top: 30%;
-  right: 30px;
+  right: -40px;
   width: 44px;
   transform: scaleX(-1);
   opacity: 0.75;
@@ -388,8 +388,8 @@ ul {
 
 .deco-bird-bottom {
   position: absolute;
-  top: 45%;
-  right: 90px;
+  top: 40%;
+  right: 120px;
   width: 34px;
   opacity: 0.65;
   z-index: 3;
@@ -398,7 +398,7 @@ ul {
 /* Vertical staircase catchcopy */
 .copy-vertical-wrapper {
   position: absolute;
-  bottom: 480px; /* 写真の高さに合わせて底辺から調整 */
+  bottom: 500px; /* 写真の高さに合わせて底辺から調整 */
   right: 34px;
   display: flex;
   align-items: flex-start;
@@ -410,7 +410,7 @@ ul {
 .v-text {
   writing-mode: vertical-rl;
   letter-spacing: 0.18em;
-  line-height: 1.35;
+  line-height: 1.1;
   font-family: var(--font-serif);
   white-space: nowrap;
   font-size: 2.2rem;
@@ -434,8 +434,8 @@ ul {
 /* Hill silhouette decoration */
 .hero-right-deco {
   position: absolute;
-  bottom: 80px;
-  right: -20px;
+  bottom: 340px;
+  right: -10px;
   width: 80%;
   z-index: 0;
   pointer-events: none;
@@ -450,7 +450,7 @@ ul {
 /* Family illustration */
 .deco-family {
   position: absolute;
-  bottom: 240px; /* 写真の底辺付近（160px + 余裕）に配置 */
+  bottom: 340px; /* 写真の底辺付近（160px + 余裕）に配置 */
   right: 26px;
   width: 132px;
   z-index: 2;
