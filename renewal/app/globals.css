@@ -605,6 +605,7 @@ ul {
     position: relative;
     top: auto;
     right: auto;
+    bottom: auto;
   }
   .v-text { font-size: 1.75rem; }
   .staircase-text .step-2 { margin-top: 2rem; }
@@ -645,12 +646,18 @@ ul {
 
 @media (max-width: 768px) {
   .logo-main { font-size: 1.3rem; }
-  .v-text { font-size: 1.6rem; }
+  .v-text { font-size: 1.55rem; }
   .schedule-table { font-size: 0.75rem; }
   .schedule-card { padding: 16px 14px; }
   .hero-copy-area {
-    flex-direction: column;
-    align-items: center;
+    min-height: 330px;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
     gap: 20px;
+  }
+
+  .copy-vertical-wrapper {
+    margin-top: 10px;
   }
 }
