@@ -232,8 +232,8 @@ ul {
   --hero-landscape-width: 600px;
   --hero-landscape-top: 450px;
   --hero-schedule-top: 515px;
-  --hero-family-top: 330px;
-  --hero-hill-top: 430px;
+  --hero-family-top: 370px;
+  --hero-hill-top: 450px;
   --hero-bottom-offset: 72px;
   --hero-header-height: 152px;
   padding: 20px 0 0;
@@ -457,7 +457,7 @@ ul {
 .ashirai-hill {
   width: 100%;
   height: auto;
-  opacity: 0.4;
+  opacity: 0.5;
 }
 
 /* Family illustration */
@@ -535,24 +535,24 @@ ul {
   }
 
   .v-text {
-    font-size: clamp(1.9rem, 2.1vw, 2.35rem);
+    font-size: 2.2rem; 
   }
 
   .hero-right-deco {
     top: var(--hero-hill-top);
-    right: clamp(48px, 7vw, 132px);
+    right: clamp(48px, 3vw, 132px);
     bottom: auto;
     width: clamp(170px, 15vw, 250px);
   }
 
   .deco-family {
     top: var(--hero-family-top);
-    right: clamp(62px, 7vw, 140px);
+    right: clamp(62px,5vw, 140px);
     bottom: auto;
   }
 
   .deco-bird-top {
-    top: 230px;
+    top: 320px;
     right: clamp(20px, 3.5vw, 58px);
   }
 
