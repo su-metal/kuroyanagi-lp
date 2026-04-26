@@ -494,6 +494,60 @@ export default function Home() {
 
         </div>
       </section>
+
+      {/* Access Section */}
+      <section className="access-section">
+        <div className="section-container">
+          <div className="access-header">
+            <h2>アクセス</h2>
+            <div className="access-dots">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+          <div className="access-content">
+            <div className="access-info">
+              <div className="access-method">
+                <div className="access-method-icon">
+                  <img src="/photo/assets/access/01_電車.png" alt="電車" />
+                </div>
+                <div className="access-method-text">
+                  <h6>電車でお越しの方</h6>
+                  <p>天竜浜名湖鉄道「三ヶ日駅」より<br/>徒歩約20分（東へ約910m）</p>
+                </div>
+              </div>
+              <div className="access-method">
+                <div className="access-method-icon">
+                  <img src="/photo/assets/access/02_バス.png" alt="バス" />
+                </div>
+                <div className="access-method-text">
+                  <h6>バスでお越しの方</h6>
+                  <p>遠州鉄道バス 聖隷三方原病院経由 三ヶ日行き<br/>「宇志バス停」より北方徒歩5分</p>
+                </div>
+              </div>
+              <div className="access-method">
+                <div className="access-method-icon">
+                  <img src="/photo/assets/access/03_車.png" alt="車" />
+                </div>
+                <div className="access-method-text">
+                  <h6>お車でお越しの方</h6>
+                  <p>駐車場をご用意しております。<br/>（台数・利用条件はお問い合わせください）</p>
+                </div>
+              </div>
+            </div>
+            <div className="access-map">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21807.205815202164!2d137.55273239146715!3d34.79978991325786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601b2efb69d1f481%3A0xff7102d5b326d22f!2z44G_44Gj44GL44Gz5p2x5LuL6K236ICB5Lq65L-d5YGl5pa96Kit!5e1!3m2!1sja!2sjp!4v1777211323976!5m2!1sja!2sjp" 
+                width="600" 
+                height="450" 
+                style={{border: 0}} 
+                allowFullScreen="" 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

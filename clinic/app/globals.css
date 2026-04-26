@@ -1593,6 +1593,116 @@ ul {
   margin-bottom: 80px; /* Added margin since container margin is reduced */
 }
 
+/* 5. Access Section */
+.access-section {
+  padding: 80px 0 120px;
+  background-color: #ffffff; /* White background to match the rest cleanly */
+}
+
+.access-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.access-header h2 {
+  font-size: 2.25rem;
+  color: var(--primary-blue);
+  font-family: var(--font-round);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.access-dots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.access-dots span {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #c9d8ee; /* light blue */
+}
+
+.access-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 60px;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+.access-info {
+  flex: 0 0 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+}
+
+.access-method {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.access-method-icon {
+  width: 80px;
+  height: 80px;
+  background-color: #f4f8ff; /* very light blue background */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.access-method-icon img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.access-method-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 8px;
+}
+
+.access-method-text h6 {
+  font-size: 1.15rem;
+  color: var(--primary-blue);
+  font-weight: 700;
+  margin-bottom: 12px;
+  font-family: var(--font-round);
+}
+
+.access-method-text p {
+  font-size: 0.95rem;
+  color: #4a5568;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.access-map {
+  flex: 1;
+  min-height: 450px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 50, 100, 0.08);
+}
+
+.access-map iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 450px;
+  display: block;
+}
+
 /* Responsive */
 @media (max-width: 1200px) {
   .service-intro-header { flex-direction: column; align-items: center; text-align: center; }
@@ -1618,6 +1728,11 @@ ul {
   }
   .access-item:first-child { padding-top: 0; }
   .access-item:last-child { border-bottom: none; padding-bottom: 0; }
+  
+  .access-content { flex-direction: column; gap: 40px; }
+  .access-info { flex: none; width: 100%; }
+  .access-map { flex: none; width: 100%; height: 400px; min-height: 400px; }
+  .access-map iframe { min-height: 400px; }
 }
 
 @media (max-width: 768px) {
@@ -1634,4 +1749,8 @@ ul {
   .surgery-highlight-card { padding: 40px 20px; }
   .accessibility-header h4 { font-size: 1.8rem; }
   .access-item { flex-direction: column; align-items: center; text-align: center; gap: 16px; }
+  
+  .access-section { padding: 60px 20px; }
+  .access-method { flex-direction: column; align-items: center; text-align: center; }
+  .access-method-text { padding-top: 0; }
 }
