@@ -2,7 +2,13 @@
   "permissions": {
     "allow": [
       "Bash(npm run *)",
-      "mcp__Claude_Preview__preview_start"
+      "mcp__Claude_Preview__preview_start",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "mcp__Claude_in_Chrome__navigate",
+      "mcp__Claude_in_Chrome__read_page",
+      "mcp__Claude_in_Chrome__computer",
+      "Bash(mv \"F:/App_dev/kawabe_metaAD_mikkabi/deploy/kuroyanagi-lp/clinic\" \"F:/App_dev/kawabe_metaAD_mikkabi/deploy/kuroyanagi-lp/clinic_old\")",
+      "Bash(mv \"F:/App_dev/kawabe_metaAD_mikkabi/deploy/kuroyanagi-lp/renewal\" \"F:/App_dev/kawabe_metaAD_mikkabi/deploy/kuroyanagi-lp/clinic\")"
     ]
   }
 }
