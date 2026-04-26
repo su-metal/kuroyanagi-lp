@@ -35,8 +35,12 @@ body {
   overflow-x: hidden;
 }
 
-h1, h2, h3, .serif {
+h1, h3, .serif {
   font-family: var(--font-serif);
+}
+
+h2 {
+  font-family: var(--font-round);
 }
 
 a {
@@ -55,6 +59,12 @@ ul {
 
 .container {
   max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.container-narrow {
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 40px;
 }
@@ -411,7 +421,7 @@ ul {
 /* Vertical staircase catchcopy */
 .copy-vertical-wrapper {
   position: absolute;
-  bottom: 500px; /* 写真の高さに合わせて底辺から調整 */
+  bottom: 500px; /* 蜀咏悄縺ｮ鬮倥＆縺ｫ蜷医ｏ縺帙※蠎戊ｾｺ縺九ｉ隱ｿ謨ｴ */
   right: 34px;
   display: flex;
   align-items: flex-start;
@@ -463,7 +473,7 @@ ul {
 /* Family illustration */
 .deco-family {
   position: absolute;
-  bottom: 340px; /* 写真の底辺付近（160px + 余裕）に配置 */
+  bottom: 340px; /* 蜀咏悄縺ｮ蠎戊ｾｺ莉倩ｿ托ｼ・60px + 菴呵｣包ｼ峨↓驟咲ｽｮ */
   right: 26px;
   width: 132px;
   z-index: 2;
@@ -691,7 +701,7 @@ ul {
 
 .news-jp-title {
   font-size: 2.6rem;
-  font-family: var(--font-serif);
+  font-family: var(--font-round);
   color: var(--text-color);
   margin-bottom: 16px;
   line-height: 1.4;
@@ -926,4 +936,642 @@ ul {
     right: 60px;
     width: 80px;
   }
+}
+
+/* --- SERVICE SECTION (V3 - REFINED DESIGN) --- */
+.service-section-v3 {
+  padding: 20px 0 120px;
+  background-color: #f4f9ff;
+  position: relative;
+  margin-top: 500px; /* Increased to accommodate the much deeper arch */
+}
+
+.service-curve-top {
+  position: absolute;
+  top: -400px; /* Half of height to show the arch */
+  left: -8%;
+  width: 120%;
+  height: 900px;
+  background-color: #f4f9ff;
+  border-radius: 50% 50% 0 0;
+  z-index: 1;
+}
+
+.curve-illust-wrap {
+  position: absolute;
+  top: -280px; /* Adjusted to sit on the sloping part of the arch */
+  right: 10%;
+  width: 420px; /* Slightly smaller for side placement */
+  z-index: 5;
+}
+
+.illust-doctor-family {
+  width: 100%;
+  height: auto;
+}
+
+.service-intro-header-centered {
+  text-align: center;
+  margin-bottom: 80px;
+  position: relative;
+  z-index: 10;
+  margin-top: -360px; /* Pulling up to be right under the illustration */
+}
+
+.sub-title-en {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #6a9bd1;
+  margin-bottom: 12px;
+  letter-spacing: 0.1em;
+}
+
+.section-title-jp {
+  font-size: 2.8rem;
+  color: var(--primary-blue);
+  font-family: var(--font-round);
+  margin: 0 auto 32px;
+  line-height: 1.2;
+  display: inline-block;
+}
+
+.section-title-jp span {
+  color: #6a9bd1;
+}
+
+.section-description {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.8;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.section-description {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+}
+
+.header-illustration {
+  position: relative;
+  width: 400px;
+}
+
+.illust-doctor-family {
+  width: 100%;
+  height: auto;
+}
+
+/* 2. Main Features List */
+.main-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 140px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  position: relative;
+}
+
+.feature-surgery {
+  flex-direction: row-reverse;
+}
+
+/* Surgery Highlight Card */
+.surgery-highlight-card {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  background-color: #f4f9fc;
+  border-radius: 60px;
+  padding: 40px 80px;
+  margin-top: 60px;
+  position: relative;
+}
+
+.surgery-highlight-card .feature-content {
+  flex: 1;
+}
+
+.surgery-highlight-card .feature-image-wrap {
+  flex: 1.4;
+  position: relative;
+}
+
+.landscape-photo {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 30px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  display: block;
+}
+
+.title-row {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  margin-bottom: 8px;
+}
+
+.title-underline {
+  width: 50px;
+  height: 3px;
+  background-color: var(--primary-blue);
+  margin-bottom: 24px;
+}
+
+/* Pill Button Reverse (Arrow on Left) */
+.pill-btn-reverse {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  padding: 8px 32px 8px 8px;
+  border: 1px solid #dce8f2;
+  border-radius: 50px;
+  background: #fff;
+  color: var(--primary-blue);
+  font-weight: 700;
+  transition: 0.3s;
+}
+
+.pill-btn-reverse .arrow-circle {
+  width: 48px;
+  height: 48px;
+  background-color: transparent;
+  border: 1px solid #dce8f2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-blue);
+  transition: 0.3s;
+}
+
+.pill-btn-reverse:hover {
+  background-color: var(--primary-blue);
+  color: #fff;
+  border-color: var(--primary-blue);
+}
+
+.pill-btn-reverse:hover .arrow-circle {
+  background-color: #fff;
+  border-color: #fff;
+}
+
+.deco-dots-right {
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100px;
+  z-index: 1; /* Keep dots visible but behind something if needed, or in front like sample */
+  pointer-events: none;
+}
+
+.deco-dots-right img {
+  width: 100%;
+  opacity: 0.3;
+}
+
+.feature-image {
+  flex: 1.1;
+  position: relative;
+}
+
+.rounded-photo {
+  width: 100%;
+  height: auto;
+  border-radius: 80px 20px 80px 20px; /* Asymmetrical rounding like sample */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  display: block;
+}
+
+.feature-content {
+  flex: 1;
+}
+
+.title-area {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 0px;
+}
+
+.icon-bg-circle {
+  width: 56px;
+  height: 56px;
+  background-color: #eef5fb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon-bg-circle img {
+  width: 32px;
+  height: 32px;
+}
+
+.title-text-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-title-jp {
+  font-size: 2.2rem;
+  color: var(--primary-blue);
+  font-family: var(--font-serif);
+  line-height: 1.2;
+}
+
+.feature-title-en {
+  font-size: 0.9rem;
+  color: #6a9bd1;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.feature-desc {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: #555;
+  margin-bottom: 40px;
+}
+
+.pill-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 240px;
+  padding: 12px 12px 12px 28px;
+  border: 1px solid var(--primary-blue);
+  border-radius: 50px;
+  color: var(--primary-blue);
+  font-weight: 700;
+  font-size: 1.05rem;
+  transition: 0.3s;
+  background: #fff;
+}
+
+.pill-btn:hover {
+  background-color: var(--primary-blue);
+  color: #fff;
+}
+
+.pill-btn .arrow-circle {
+  width: 36px;
+  height: 36px;
+  background-color: var(--primary-blue);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: 0.3s;
+}
+
+.pill-btn:hover .arrow-circle {
+  background-color: #fff;
+  color: var(--primary-blue);
+}
+
+/* ---------------------------------------------------------
+   DEPARTMENT SECTION (診療のご案内)
+--------------------------------------------------------- */
+.department-section {
+  padding: 80px 0;
+  background-color: #fff;
+}
+
+.section-title-wrap-center {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.dept-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.dept-item {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dept-icon-circle {
+  width: 120px;
+  height: 120px;
+  background-color: #f0f7ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 25px rgba(0, 100, 200, 0.05);
+}
+
+.dept-item:hover .dept-icon-circle {
+  transform: translateY(-5px) scale(1.08);
+  background-color: #e6f1ff;
+  box-shadow: 0 15px 35px rgba(0, 100, 200, 0.1);
+}
+
+.dept-icon-circle img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.dept-item-title {
+  font-size: 1.05rem;
+  color: #333;
+  font-family: var(--font-round);
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0;
+  word-break: keep-all;
+}
+
+@media (max-width: 1024px) {
+  .dept-grid { grid-template-columns: repeat(3, 1fr); gap: 40px 20px; }
+}
+
+@media (max-width: 640px) {
+  .dept-grid { grid-template-columns: repeat(2, 1fr); gap: 30px 10px; }
+  .dept-icon-circle { width: 100px; height: 100px; margin-bottom: 12px; }
+  .dept-icon-circle img { width: 54px; height: 54px; }
+  .dept-item-title { font-size: 1rem; }
+}
+
+/* 3. Other Services Area */
+.other-services-area {
+  margin-top: 100px; /* Added some top margin since header is gone */
+  margin-bottom: 120px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.service-card-v3:hover .small-btn-circle {
+  background-color: var(--primary-blue);
+  color: #fff;
+}
+
+/* Service Card Modern (Image + Floating Icon) */
+.service-card-modern {
+  background: #fff;
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 50, 100, 0.04);
+  border: 1px solid #f0f5fa;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.service-card-modern:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 50px rgba(0, 50, 100, 0.08);
+  border-color: rgba(26, 74, 141, 0.1);
+}
+
+.card-image-part {
+  position: relative;
+  width: 100%;
+  padding-top: 62.5%; /* 16:10 Aspect Ratio (10/16 = 0.625) */
+  height: 0;
+  overflow: visible; /* To allow floating icon to overlap border */
+}
+
+.card-image-part img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 32px 32px 0 0;
+}
+
+.card-icon-floating {
+  position: absolute;
+  bottom: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.card-icon-floating .icon-inner {
+  width: 64px;
+  height: 64px;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 50, 100, 0.1);
+  border: 2px solid #e1ecf7;
+}
+
+.card-icon-floating img {
+  width: 32px;
+  height: 32px;
+}
+
+.card-body-part {
+  padding: 40px 24px 32px; /* Reduced top padding from 56px to 40px, bottom from 40px to 32px */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.service-title-jp {
+  font-size: 1.5rem;
+  color: var(--primary-blue);
+  font-family: var(--font-round);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.service-title-en {
+  display: block;
+  font-size: 0.85rem;
+  color: #8ea9cc;
+  font-family: var(--font-sans);
+  text-transform: capitalize;
+  margin-bottom: 16px; /* Reduced from 24px to 16px */
+  letter-spacing: 0.05em;
+}
+
+.service-description {
+  font-size: 0.95rem; /* Slightly smaller font */
+  line-height: 1.6; /* Tighter line height */
+  color: #667085;
+  margin-bottom: 20px; /* Reduced from 32px to 20px */
+  max-width: 240px;
+  /* Line clamp to 2 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 3.2em; /* Ensure consistent height for 2 lines */
+}
+
+.card-action-btn {
+  margin-top: auto;
+}
+
+.arrow-circle-small {
+  width: 44px;
+  height: 44px;
+  border: 1px solid #e1ecf7;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-blue);
+  transition: all 0.3s ease;
+}
+
+.service-card-modern:hover .arrow-circle-small {
+  background-color: var(--primary-blue);
+  border-color: var(--primary-blue);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+/* 4. Accessibility Box */
+.accessibility-container {
+  background-color: #f4f9fc;
+  border-radius: 40px;
+  padding: 80px 60px;
+  margin-bottom: 80px;
+}
+
+.accessibility-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.header-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #6a9bd1;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.header-label img {
+  width: 20px;
+  height: auto;
+}
+
+.accessibility-header h4 {
+  font-size: 2rem;
+  color: var(--primary-blue);
+  font-family: var(--font-serif);
+}
+
+.accessibility-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+.access-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.access-icon-wrap {
+  width: 64px;
+  height: 64px;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+.access-icon-wrap img {
+  width: 32px;
+  height: 32px;
+}
+
+.access-text h6 {
+  font-size: 1.1rem;
+  color: var(--primary-blue);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.access-text p {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.service-footer-note {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #999;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .service-intro-header { flex-direction: column; align-items: center; text-align: center; }
+  .header-illustration { width: 100%; max-width: 400px; margin-top: 40px; }
+  .feature-item { flex-direction: column; gap: 40px; }
+  .surgery-highlight-card { flex-direction: column; gap: 40px; padding: 60px 40px; border-radius: 40px; text-align: center; }
+  .title-row { justify-content: center; }
+  .title-underline { margin: 0 auto 24px; }
+  .accessibility-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 1024px) {
+  .service-section-v3 { padding-top: 140px; }
+  .service-curve-top { top: -80px; height: 160px; }
+  .curve-illust-wrap { width: 280px; top: -100px; }
+  .section-title-jp { font-size: 2.2rem; }
+}
+
+@media (max-width: 768px) {
+  .service-section-v3 { padding-top: 120px; }
+  .service-curve-top { top: -60px; height: 120px; }
+  .curve-illust-wrap { width: 220px; top: -80px; }
+  .section-title-jp { font-size: 1.8rem; }
+  .section-description { font-size: 1rem; padding: 0 20px; }
+  .feature-title-jp { font-size: 1.8rem; }
+  .services-grid { grid-template-columns: 1fr; }
+  .accessibility-grid { grid-template-columns: 1fr; }
+  .accessibility-container { padding: 60px 20px; }
+  .pill-btn { min-width: 100%; }
+  .pill-btn-reverse { min-width: 100%; justify-content: center; }
+  .surgery-highlight-card { padding: 40px 20px; }
 }
