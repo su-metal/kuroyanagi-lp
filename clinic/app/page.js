@@ -182,7 +182,7 @@ export default function Home() {
 
               {/* Family illustration */}
               <div className="deco-family">
-                <img src="/photo/assets/05_persons/08_家族シルエット.png" alt="ご家族" />
+                <img src="/photo/assets/05_persons/08_家族グループ.png" alt="ご家族" />
               </div>
             </div>
 
@@ -256,9 +256,6 @@ export default function Home() {
         </div>
 
         {/* Background Decorations */}
-        <div className="news-deco news-deco-left">
-          <img src="/photo/assets/06_landscapes/04_街並みと橋.png" alt="" />
-        </div>
         <div className="news-deco news-deco-right">
           <img src="/photo/assets/06_landscapes/03_街並みの風景.png" alt="" />
         </div>
@@ -363,9 +360,12 @@ export default function Home() {
             <div className="surgery-highlight-card">
               <div className="feature-content">
                 <div className="title-area">
+                  <div className="icon-bg-circle">
+                    <img src="/photo/assets/assets_new/01_整形外科.png" alt="" />
+                  </div>
                   <div className="title-text-group">
                     <div className="title-row">
-                      <h3 className="feature-title-jp">外科手術</h3>
+                      <h3 className="feature-title-jp">呼吸器内科</h3>
                       <span className="feature-title-en">Operation</span>
                     </div>
                     <div className="title-underline"></div>
@@ -404,11 +404,7 @@ export default function Home() {
                   <h5 className="service-title-jp">胃腸科（消化器科）</h5>
                   <span className="service-title-en">Gastroenterology</span>
                   <p className="service-description">胃痛・腹痛・便通異常など、食道から胃、大腸までの消化管疾患を診療します。</p>
-                  <div className="card-action-btn">
-                    <div className="arrow-circle-small">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </div>
-                  </div>
+
                 </div>
               </div>
 
@@ -427,11 +423,7 @@ export default function Home() {
                   <h5 className="service-title-jp">予防医療・検診</h5>
                   <span className="service-title-en">Preventive Medicine</span>
                   <p className="service-description">予防接種や各種検診を通じて、病気の予防と早期発見に努めています。</p>
-                  <div className="card-action-btn">
-                    <div className="arrow-circle-small">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </div>
-                  </div>
+
                 </div>
               </div>
 
@@ -449,11 +441,7 @@ export default function Home() {
                   <h5 className="service-title-jp">リハビリテーション</h5>
                   <span className="service-title-en">Rehabilitation</span>
                   <p className="service-description">運動機能の回復や維持を目的に、個別に合わせたリハビリテーションを行います。</p>
-                  <div className="card-action-btn">
-                    <div className="arrow-circle-small">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </div>
-                  </div>
+
                 </div>
               </div>
             </div>
@@ -472,38 +460,38 @@ export default function Home() {
             <div className="accessibility-grid">
               <div className="access-item">
                 <div className="access-icon-wrap">
-                  <img src="/photo/assets/03_medical/08_バリアフリー.png" alt="" />
+                  <img src="/photo/assets/03_medical/08_バリアフリー.png" alt="車椅子対応の入り口" />
                 </div>
                 <div className="access-text">
                   <h6>車椅子対応の入り口</h6>
-                  <p>段差のない入口で安心してご来院いただけます。</p>
+                  <p>スロープを設置しており、車椅子でもスムーズにご来院いただけます。</p>
                 </div>
               </div>
               <div className="access-item">
                 <div className="access-icon-wrap">
-                  <img src="/photo/assets/03_medical/09_駐車場.png" alt="" />
+                  <img src="/photo/assets/03_medical/09_駐車場.png" alt="車椅子対応の駐車場" />
                 </div>
                 <div className="access-text">
                   <h6>車椅子対応の駐車場</h6>
-                  <p>専用スペースを確保し、スムーズにご利用いただけます。</p>
+                  <p>車椅子専用の駐車スペースを完備しております。</p>
                 </div>
               </div>
               <div className="access-item">
                 <div className="access-icon-wrap">
-                  <img src="/photo/assets/04_other/08_サポート.png" alt="" />
+                  <img src="/photo/assets/04_other/08_サポート.png" alt="車椅子対応のトイレ" />
                 </div>
                 <div className="access-text">
                   <h6>車椅子対応のトイレ</h6>
-                  <p>広く使いやすい多目的トイレを設置しています。</p>
+                  <p>車椅子の方やベビーカーの方も安心してご利用いただけるバリアフリートイレです。</p>
                 </div>
               </div>
               <div className="access-item">
                 <div className="access-icon-wrap">
-                  <img src="/photo/assets/04_other/09_連携協力.png" alt="" />
+                  <img src="/photo/assets/04_other/09_連携協力.png" alt="多言語への対応" />
                 </div>
                 <div className="access-text">
                   <h6>多言語への対応</h6>
-                  <p>言葉の壁を感じることなく、安心して受診いただけます。</p>
+                  <p>言葉の壁を感じることなく、安心して受診いただけるよう配慮しております。</p>
                 </div>
               </div>
             </div>
