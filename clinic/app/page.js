@@ -189,6 +189,85 @@ export default function Home() {
           </div>
         </div>
       </section>
+      
+      {/* --- NEWS --- */}
+      <section className="news-section">
+        <div className="container">
+          <div className="news-inner">
+            
+            {/* Left Column */}
+            <div className="news-title-area">
+              <span className="news-en-title">News</span>
+              <h2 className="news-jp-title">当院からの<br />お知らせ</h2>
+              <div className="news-title-line"></div>
+              <p className="news-desc">
+                クロヤナギ医院から皆さまへの<br />
+                お知らせや、診療に関する情報を<br />
+                お届けします。
+              </p>
+              <a href="#" className="news-btn-pc">
+                お知らせ一覧を見る
+                <img src="/photo/assets/02_navi/01_矢印右.png" alt="" style={{ height: '14px', filter: 'brightness(0) invert(1)' }} />
+              </a>
+            </div>
+
+            {/* Right Column */}
+            <div className="news-list-area">
+              {[
+                {
+                  date: "2026.04.21",
+                  tag: "お知らせ",
+                  title: "GW臨時休診のお知らせ",
+                  isPickup: true,
+                },
+                {
+                  date: "2026.04.21",
+                  tag: "コラム・トリミング・グルーミング",
+                  title: "涙やけケア 〜動物病院併設だからこそできるサポート〜",
+                  isPickup: false,
+                },
+                {
+                  date: "2026.04.05",
+                  tag: "コラム・エキゾチック",
+                  title: "よく見てあげよう！ハムスターの病気のサイン",
+                  isPickup: false,
+                }
+              ].map((item, index) => (
+                <div className="news-card" key={index}>
+                  {item.isPickup && <div className="pickup-ribbon"></div>}
+                  <span className="news-date">{item.date}</span>
+                  <span className="news-tag">{item.tag}</span>
+                  <h3 className="news-card-title">{item.title}</h3>
+                </div>
+              ))}
+
+              {/* Mobile/Footer Link */}
+              <div className="news-footer-link-wrap">
+                <a href="#" className="news-footer-link">
+                  <div className="news-footer-arrow">
+                    <img src="/photo/assets/02_navi/01_矢印右.png" alt="" />
+                  </div>
+                  <span>お知らせ一覧を見る</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        {/* Background Decorations */}
+        <div className="news-deco news-deco-left">
+          <img src="/photo/assets/06_landscapes/04_街並みと橋.png" alt="" />
+        </div>
+        <div className="news-deco news-deco-right">
+          <img src="/photo/assets/06_landscapes/03_街並みの風景.png" alt="" />
+        </div>
+        <div className="news-deco news-deco-birds">
+          <img src="/photo/assets/07_ashirai/06_鳥.png" alt="" />
+        </div>
+      </section>
+
+
 
     </div>
   );

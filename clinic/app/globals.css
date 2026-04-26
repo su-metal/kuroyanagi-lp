@@ -661,3 +661,269 @@ ul {
     margin-top: 10px;
   }
 }
+/* --- NEWS --- */
+.news-section {
+  padding: 100px 0 160px;
+  background-color: #f9fbfd; /* Very light blue/gray background */
+  position: relative;
+  overflow: hidden;
+}
+
+.news-inner {
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+  position: relative;
+  z-index: 10;
+}
+
+.news-title-area {
+  flex: 0 0 340px;
+}
+
+.news-en-title {
+  font-size: 1.1rem;
+  color: #6a9bd1;
+  font-weight: 700;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.news-jp-title {
+  font-size: 2.6rem;
+  font-family: var(--font-serif);
+  color: var(--text-color);
+  margin-bottom: 16px;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+}
+
+.news-title-line {
+  width: 48px;
+  height: 2px;
+  background-color: #6a9bd1;
+  margin-bottom: 30px;
+}
+
+.news-desc {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 48px;
+  line-height: 1.8;
+}
+
+.news-btn-pc {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #6a9bd1;
+  color: #fff;
+  padding: 14px 34px;
+  border-radius: 8px;
+  font-weight: 700;
+  transition: 0.3s;
+  box-shadow: 0 4px 12px rgba(106, 155, 209, 0.3);
+}
+
+.news-btn-pc:hover {
+  background-color: var(--primary-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(106, 155, 209, 0.4);
+}
+
+.news-list-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.news-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 32px 48px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  box-shadow: 0 10px 40px rgba(0, 50, 100, 0.04);
+  position: relative;
+  transition: 0.3s;
+}
+
+.news-card:hover {
+  transform: translateX(12px);
+  box-shadow: 0 15px 50px rgba(0, 50, 100, 0.07);
+}
+
+.news-date {
+  color: #6a9bd1;
+  font-weight: 700;
+  font-size: 1.15rem;
+  min-width: 110px;
+  font-family: var(--font-sans);
+}
+
+.news-tag {
+  background-color: #6a9bd1;
+  color: #fff;
+  font-size: 0.72rem;
+  padding: 5px 18px;
+  border-radius: 20px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.news-card-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #333;
+  flex: 1;
+  line-height: 1.5;
+}
+
+/* Pick up Ribbon */
+.pickup-ribbon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 90px;
+  height: 90px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.pickup-ribbon::before {
+  content: "Pick up";
+  position: absolute;
+  top: 18px;
+  right: -28px;
+  width: 130px;
+  height: 32px;
+  background-color: #ff8c42;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(45deg);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  letter-spacing: 0.05em;
+}
+
+/* Footer Link */
+.news-footer-link-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.news-footer-link {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  color: var(--primary-blue);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.news-footer-arrow {
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--primary-blue);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.news-footer-arrow img {
+  width: 20px;
+  height: auto;
+}
+
+.news-footer-link:hover .news-footer-arrow {
+  background-color: var(--primary-blue);
+}
+
+.news-footer-link:hover .news-footer-arrow img {
+  filter: brightness(0) invert(1);
+}
+
+/* Background Decorations */
+.news-deco {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.news-deco-left {
+  bottom: 0;
+  left: 0;
+  width: 480px;
+}
+
+.news-deco-right {
+  bottom: 0;
+  right: 0;
+  width: 420px;
+}
+
+.news-deco-birds {
+  bottom: 140px;
+  right: 120px;
+  width: 120px;
+}
+
+.news-deco img {
+  width: 100%;
+  height: auto;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .news-section {
+    padding: 80px 0 120px;
+  }
+  .news-inner {
+    flex-direction: column;
+    gap: 48px;
+  }
+  .news-title-area {
+    flex: none;
+    width: 100%;
+  }
+  .news-jp-title {
+    font-size: 2rem;
+  }
+  .news-btn-pc {
+    display: none;
+  }
+  .news-card {
+    padding: 24px 30px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .news-date {
+    font-size: 1rem;
+    min-width: auto;
+  }
+  .news-card-title {
+    font-size: 1rem;
+  }
+  .news-deco-left {
+    width: 320px;
+    left: -40px;
+  }
+  .news-deco-right {
+    width: 280px;
+    right: -20px;
+  }
+  .news-deco-birds {
+    bottom: 100px;
+    right: 60px;
+    width: 80px;
+  }
+}
