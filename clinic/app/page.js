@@ -495,6 +495,21 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Wave Divider */}
+      <div className="wave-divider-wrapper">
+        <svg
+          viewBox="0 0 1440 100"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+          className="wave-divider-svg"
+        >
+          <path
+            d="M0,0 L0,50 C200,100 400,100 720,60 C1040,20 1240,20 1440,50 L1440,0 Z"
+            fill="#f4f9ff"
+          />
+        </svg>
+      </div>
+
       {/* Access Section */}
       <section className="access-section">
         <div className="section-container">
