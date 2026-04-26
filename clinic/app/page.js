@@ -447,16 +447,16 @@ export default function Home() {
             </div>
           </div>
 
-          {/* 4. Accessibility Box */}
-          <div className="accessibility-container">
-            <div className="accessibility-header">
-              <div className="header-label">
-                <img src="/photo/assets/04_other/07_安心安全.png" alt="" />
-                <span>Accessibility</span>
-              </div>
-              <h4>安心・快適にご利用いただくために</h4>
+          {/* 4. Accessibility Section */}
+          <div className="accessibility-header">
+            <div className="header-label">
+              <img src="/photo/assets/04_other/07_安心安全.png" alt="" />
+              <span>Accessibility</span>
             </div>
-            
+            <h4>安心・快適にご利用いただくために</h4>
+          </div>
+
+          <div className="accessibility-container">
             <div className="accessibility-grid">
               <div className="access-item">
                 <div className="access-icon-wrap">
@@ -483,15 +483,6 @@ export default function Home() {
                 <div className="access-text">
                   <h6>車椅子対応のトイレ</h6>
                   <p>車椅子の方やベビーカーの方も安心してご利用いただけるバリアフリートイレです。</p>
-                </div>
-              </div>
-              <div className="access-item">
-                <div className="access-icon-wrap">
-                  <img src="/photo/assets/04_other/09_連携協力.png" alt="多言語への対応" />
-                </div>
-                <div className="access-text">
-                  <h6>多言語への対応</h6>
-                  <p>言葉の壁を感じることなく、安心して受診いただけるよう配慮しております。</p>
                 </div>
               </div>
             </div>
