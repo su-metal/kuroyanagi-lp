@@ -185,80 +185,6 @@ export default function Home() {
         </div>
       </section>
       
-      {/* --- NEWS --- */}
-      <section className="news-section">
-        <div className="container">
-          <div className="news-inner">
-            
-            {/* Left Column */}
-            <div className="news-title-area">
-              <span className="news-en-title">News</span>
-              <h2 className="news-jp-title">当院からの<br />お知らせ</h2>
-              <div className="news-title-line"></div>
-              <p className="news-desc">
-                クロヤナギ医院から皆さまへの<br />
-                お知らせや、診療に関する情報を<br />
-                お届けします。
-              </p>
-              <a href="#" className="news-btn-pc">
-                お知らせ一覧を見る
-                <img src="/photo/assets/02_navi/01_矢印右.png" alt="" style={{ height: '14px', filter: 'brightness(0) invert(1)' }} />
-              </a>
-            </div>
-
-            {/* Right Column */}
-            <div className="news-list-area">
-              {[
-                {
-                  date: "2026.04.21",
-                  tag: "お知らせ",
-                  title: "GW臨時休診のお知らせ",
-                  isPickup: true,
-                },
-                {
-                  date: "2026.04.21",
-                  tag: "コラム・トリミング・グルーミング",
-                  title: "涙やけケア 〜動物病院併設だからこそできるサポート〜",
-                  isPickup: false,
-                },
-                {
-                  date: "2026.04.05",
-                  tag: "コラム・エキゾチック",
-                  title: "よく見てあげよう！ハムスターの病気のサイン",
-                  isPickup: false,
-                }
-              ].map((item, index) => (
-                <div className="news-card" key={index}>
-                  {item.isPickup && <div className="pickup-ribbon"></div>}
-                  <span className="news-date">{item.date}</span>
-                  <span className="news-tag">{item.tag}</span>
-                  <h3 className="news-card-title">{item.title}</h3>
-                </div>
-              ))}
-
-              {/* Mobile/Footer Link */}
-              <div className="news-footer-link-wrap">
-                <a href="#" className="news-footer-link">
-                  <div className="news-footer-arrow">
-                    <img src="/photo/assets/02_navi/01_矢印右.png" alt="" />
-                  </div>
-                  <span>お知らせ一覧を見る</span>
-                </a>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        {/* Background Decorations */}
-        <div className="news-deco news-deco-right">
-          <img src="/photo/assets/06_landscapes/03_街並みの風景.png" alt="" />
-        </div>
-        <div className="news-deco news-deco-birds">
-          <img src="/photo/assets/07_ashirai/06_鳥.png" alt="" />
-        </div>
-      </section>
-
       {/* --- ABOUT --- */}
       <section className="about-section">
         <div className="about-deco about-deco-cloud about-deco-cloud-left" aria-hidden="true"></div>
@@ -378,234 +304,122 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- DEPARTMENT SECTION (診療のご案内) --- */}
-      <section className="department-section">
-        <div className="container-narrow">
-          <div className="section-title-wrap-center">
-            <h2 className="section-title-round">診療のご案内</h2>
-          </div>
-
-          <div className="dept-grid">
-            {[
-              {
-                title: "内科",
-                icon: "/photo/assets/03_medical/01_内科.png"
-              },
-              {
-                title: "呼吸器内科（呼吸器科）",
-                icon: "/photo/assets/03_medical/05_呼吸器内科.png"
-              },
-              {
-                title: "胃腸科（消化器科）",
-                icon: "/photo/assets/03_medical/06_消化器内科.png"
-              },
-              {
-                title: "整形外科",
-                icon: "/photo/assets/assets_new/01_整形外科.png"
-              },
-              {
-                title: "リハビリテーション科",
-                icon: "/photo/assets/assets_new/02_リハビリテーション科.png"
-              },
-              {
-                title: "婦人科",
-                icon: "/photo/assets/assets_new/03_婦人科.png"
-              }
-            ].map((dept, index) => (
-              <div className="dept-item" key={index}>
-                <div className="dept-icon-circle">
-                  <img src={dept.icon} alt="" />
-                </div>
-                <h3 className="dept-item-title">{dept.title}</h3>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* --- SERVICE --- */}
-      <section id="service" className="service-section-v3">
-        {/* Curved boundary decoration */}
-        <div className="service-curve-top"></div>
-
-        <div className="container-narrow">
-          {/* 1. Introduction Header (Centered) */}
-          <div className="service-intro-header-centered">
-            <div className="curve-illust-wrap">
-              <img src="/photo/assets/assets_new/01_診察シーン.png" alt="診察の様子" className="illust-doctor-family" />
+      {/* --- MEDICAL GUIDE --- */}
+      <section id="service" className="medical-guide-section">
+        <div className="container medical-guide-inner">
+          <div className="medical-guide-main">
+            <div className="medical-guide-heading">
+              <span className="medical-guide-en">Service</span>
+              <h2 className="medical-guide-title">診療案内</h2>
+              <p className="medical-guide-lead">
+                地域の皆さまの健康を支えるため、幅広い診療とサービスに対応しています。
+              </p>
             </div>
-            <span className="sub-title-en">Service</span>
-            <h2 className="section-title-jp">当院の<span>診療・サービス</span></h2>
-            <p className="section-description">
-              地域の皆さまの健康を支えるため、<br className="pc-only" />
-              幅広い診療とサービスを提供しています。<br className="pc-only" />
-              お気軽にご相談ください。
+
+            <div className="medical-guide-grid">
+              {[
+                { title: "内科", icon: "/photo/assets/03_medical/01_内科.png" },
+                { title: "呼吸器内科", icon: "/photo/assets/03_medical/05_呼吸器内科.png" },
+                { title: "胃腸科（消化器科）", icon: "/photo/assets/03_medical/06_消化器内科.png" },
+                { title: "整形外科", icon: "/photo/assets/assets_new/01_整形外科.png" },
+                { title: "リハビリテーション科", icon: "/photo/assets/assets_new/02_リハビリテーション科.png" },
+                { title: "婦人科", icon: "/photo/assets/assets_new/03_婦人科.png" },
+                { title: "予防医療・検診", icon: "/photo/assets/03_medical/02_予防接種.png" },
+                { title: "バリアフリー対応", icon: "/photo/assets/03_medical/08_バリアフリー.png" }
+              ].map((item) => (
+                <a href="#" className="medical-guide-card" key={item.title}>
+                  <span className="medical-guide-icon">
+                    <img src={item.icon} alt="" />
+                  </span>
+                  <span className="medical-guide-card-title">{item.title}</span>
+                  <span className="medical-guide-arrow" aria-hidden="true">→</span>
+                </a>
+              ))}
+            </div>
+
+            <p className="medical-guide-note">
+              ※ 診療科目は変更となる場合があります。詳細は医院までお問い合わせください。
             </p>
           </div>
 
-          {/* 2. Main Features */}
-          <div className="main-features-list">
-            {/* Feature 1: General Treatment */}
-            <div className="feature-item feature-general">
-              <div className="feature-image">
-                <img src="/photo/assets/assets_new/02_病院外観.png" alt="一般診療" className="rounded-photo" />
-              </div>
-              <div className="feature-content">
-                <div className="title-area">
-                  <div className="icon-bg-circle">
-                    <img src="/photo/assets/assets_new/05_聴診器.png" alt="" />
-                  </div>
-                  <div className="title-text-group">
-                    <span className="feature-title-en">Medical Treatment</span>
-                    <h3 className="feature-title-jp">一般診療</h3>
-                  </div>
+          <aside className="medical-guide-copy" aria-label="診療案内のメッセージ">
+            <span className="medical-guide-copy-label">診療案内</span>
+            <p>どんなことでも<br />まずはご相談ください。</p>
+          </aside>
+        </div>
+      </section>
+
+      {/* --- NEWS --- */}
+      <section className="news-section">
+        <div className="container">
+          <div className="news-inner">
+            
+            {/* Left Column */}
+            <div className="news-title-area">
+              <span className="news-en-title">News</span>
+              <h2 className="news-jp-title">当院からの<br />お知らせ</h2>
+              <div className="news-title-line"></div>
+              <p className="news-desc">
+                クロヤナギ医院から皆さまへの<br />
+                お知らせや、診療に関する情報を<br />
+                お届けします。
+              </p>
+              <a href="#" className="news-btn-pc">
+                お知らせ一覧を見る
+                <img src="/photo/assets/02_navi/01_矢印右.png" alt="" style={{ height: '14px', filter: 'brightness(0) invert(1)' }} />
+              </a>
+            </div>
+
+            {/* Right Column */}
+            <div className="news-list-area">
+              {[
+                {
+                  date: "2026.04.21",
+                  tag: "お知らせ",
+                  title: "GW臨時休診のお知らせ",
+                  isPickup: true,
+                },
+                {
+                  date: "2026.04.21",
+                  tag: "コラム・トリミング・グルーミング",
+                  title: "涙やけケア 〜動物病院併設だからこそできるサポート〜",
+                  isPickup: false,
+                },
+                {
+                  date: "2026.04.05",
+                  tag: "コラム・エキゾチック",
+                  title: "よく見てあげよう！ハムスターの病気のサイン",
+                  isPickup: false,
+                }
+              ].map((item, index) => (
+                <div className="news-card" key={index}>
+                  {item.isPickup && <div className="pickup-ribbon"></div>}
+                  <span className="news-date">{item.date}</span>
+                  <span className="news-tag">{item.tag}</span>
+                  <h3 className="news-card-title">{item.title}</h3>
                 </div>
-                <p className="feature-desc">風邪や発熱、生活習慣病など、内科全般の診療を行います。早期発見・早期治療に取り組むことが大切です。</p>
-                <a href="#" className="pill-btn">
-                  <span>一般診療について</span>
-                  <div className="arrow-circle">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              ))}
+
+              {/* Mobile/Footer Link */}
+              <div className="news-footer-link-wrap">
+                <a href="#" className="news-footer-link">
+                  <div className="news-footer-arrow">
+                    <img src="/photo/assets/02_navi/01_矢印右.png" alt="" />
                   </div>
+                  <span>お知らせ一覧を見る</span>
                 </a>
               </div>
             </div>
 
-            {/* Feature 2: Surgery (Highlighted Card) */}
-            <div className="surgery-highlight-card">
-              <div className="feature-content">
-                <div className="title-area">
-                  <div className="icon-bg-circle">
-                    <img src="/photo/assets/assets_new/01_整形外科.png" alt="" />
-                  </div>
-                  <div className="title-text-group">
-                    <div className="title-row">
-                      <h3 className="feature-title-jp">呼吸器内科</h3>
-                      <span className="feature-title-en">Operation</span>
-                    </div>
-                    <div className="title-underline"></div>
-                  </div>
-                </div>
-                <p className="feature-desc">胃がん、大腸がん、肝臓・胆道・膵臓疾患、痔核・脱肛などの外科手術から、切り傷・火傷などの一般外科まで幅広く対応しています。</p>
-                <a href="#" className="pill-btn-reverse">
-                  <div className="arrow-circle">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                  </div>
-                  <span>外科手術について</span>
-                </a>
-              </div>
-              <div className="feature-image-wrap">
-                <img src="/photo/assets/assets_new/03_動物診察.png" alt="外科手術" className="landscape-photo" />
-                <div className="deco-dots-right">
-                  <img src="/photo/assets/07_ashirai/08_ドット丸.png" alt="" />
-                </div>
-              </div>
-            </div>
           </div>
+        </div>
 
-          <div className="other-services-area">
-            <div className="services-grid">
-              {/* Service: Gastroenterology (Moved) */}
-              <div className="service-card-modern">
-                <div className="card-image-part">
-                  <img src="/photo/assets/assets_new/02_病院外観.png" alt="胃腸科・消化器科" />
-                  <div className="card-icon-floating">
-                    <div className="icon-inner">
-                      <img src="/photo/assets/03_medical/06_消化器内科.png" alt="" />
-                    </div>
-                  </div>
-                </div>
-                <div className="card-body-part">
-                  <h5 className="service-title-jp">胃腸科（消化器科）</h5>
-                  <span className="service-title-en">Gastroenterology</span>
-                  <p className="service-description">胃痛・腹痛・便通異常など、食道から胃、大腸までの消化管疾患を診療します。</p>
-
-                </div>
-              </div>
-
-
-              {/* Service 2: Preventive */}
-              <div className="service-card-modern">
-                <div className="card-image-part">
-                  <img src="/photo/assets/assets_new/01_診察シーン.png" alt="予防医療" />
-                  <div className="card-icon-floating">
-                    <div className="icon-inner">
-                      <img src="/photo/assets/03_medical/02_予防接種.png" alt="" />
-                    </div>
-                  </div>
-                </div>
-                <div className="card-body-part">
-                  <h5 className="service-title-jp">予防医療・検診</h5>
-                  <span className="service-title-en">Preventive Medicine</span>
-                  <p className="service-description">予防接種や各種検診を通じて、病気の予防と早期発見に努めています。</p>
-
-                </div>
-              </div>
-
-              {/* Service 3: Rehab */}
-              <div className="service-card-modern">
-                <div className="card-image-part">
-                  <img src="/photo/assets/assets_new/02_病院外観.png" alt="リハビリテーション" />
-                  <div className="card-icon-floating">
-                    <div className="icon-inner">
-                      <img src="/photo/assets/assets_new/02_リハビリテーション科.png" alt="" />
-                    </div>
-                  </div>
-                </div>
-                <div className="card-body-part">
-                  <h5 className="service-title-jp">リハビリテーション</h5>
-                  <span className="service-title-en">Rehabilitation</span>
-                  <p className="service-description">運動機能の回復や維持を目的に、個別に合わせたリハビリテーションを行います。</p>
-
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* 4. Accessibility Section */}
-          <div className="accessibility-header">
-            <div className="header-label">
-              <img src="/photo/assets/04_other/07_安心安全.png" alt="" />
-              <span>Accessibility</span>
-            </div>
-            <h4>安心・快適にご利用いただくために</h4>
-          </div>
-
-          <div className="accessibility-container">
-            <div className="accessibility-grid">
-              <div className="access-item">
-                <div className="access-icon-wrap">
-                  <img src="/photo/assets/03_medical/08_バリアフリー.png" alt="車椅子対応の入り口" />
-                </div>
-                <div className="access-text">
-                  <h6>車椅子対応の入り口</h6>
-                  <p>スロープを設置しており、車椅子でもスムーズにご来院いただけます。</p>
-                </div>
-              </div>
-              <div className="access-item">
-                <div className="access-icon-wrap">
-                  <img src="/photo/assets/03_medical/09_駐車場.png" alt="車椅子対応の駐車場" />
-                </div>
-                <div className="access-text">
-                  <h6>車椅子対応の駐車場</h6>
-                  <p>車椅子専用の駐車スペースを完備しております。</p>
-                </div>
-              </div>
-              <div className="access-item">
-                <div className="access-icon-wrap">
-                  <img src="/photo/assets/04_other/08_サポート.png" alt="車椅子対応のトイレ" />
-                </div>
-                <div className="access-text">
-                  <h6>車椅子対応のトイレ</h6>
-                  <p>車椅子の方やベビーカーの方も安心してご利用いただけるバリアフリートイレです。</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <p className="service-footer-note">
-            ※ 診療科目は変更となる場合があります。詳細は医院までお問い合わせください。
-          </p>
-
+        {/* Background Decorations */}
+        <div className="news-deco news-deco-right">
+          <img src="/photo/assets/06_landscapes/03_街並みの風景.png" alt="" />
+        </div>
+        <div className="news-deco news-deco-birds">
+          <img src="/photo/assets/07_ashirai/06_鳥.png" alt="" />
         </div>
       </section>
 

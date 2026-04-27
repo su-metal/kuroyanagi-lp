@@ -1497,7 +1497,7 @@ ul {
   right: 0;
   bottom: 0px;
   height: 900px;
-  opacity: 0.3;
+  opacity: 0.1;
   overflow: hidden;
   pointer-events: none;
 }
@@ -1876,6 +1876,229 @@ ul {
 /* ---------------------------------------------------------
    DEPARTMENT SECTION (診療のご案内)
 --------------------------------------------------------- */
+.medical-guide-section {
+  position: relative;
+  overflow: hidden;
+  padding: 120px 0 140px;
+  background:
+    radial-gradient(circle, rgba(89, 147, 210, 0.11) 1px, transparent 1px),
+    linear-gradient(180deg, #f8fbff 0%, #eef6ff 100%);
+  background-size: 24px 24px, auto;
+}
+
+.medical-guide-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 82% 20%, rgba(255, 255, 255, 0.86) 0 22%, rgba(255, 255, 255, 0) 48%);
+  pointer-events: none;
+}
+
+.medical-guide-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 170px;
+  gap: 64px;
+  align-items: center;
+}
+
+.medical-guide-main {
+  min-width: 0;
+}
+
+.medical-guide-heading {
+  margin-bottom: 42px;
+  text-align: left;
+}
+
+.medical-guide-en {
+  display: inline-block;
+  color: #004098;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+
+.medical-guide-title {
+  color: var(--text-color);
+  font-family: var(--font-round);
+  font-size: clamp(2rem, 3.2vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+  margin: 0 0 18px;
+}
+
+.medical-guide-lead {
+  color: #40556d;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.9;
+  margin: 0;
+}
+
+.medical-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.medical-guide-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 230px;
+  padding: 28px 22px 44px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(0, 64, 152, 0.2);
+  border-radius: 24px;
+  box-shadow: 0 18px 40px rgba(31, 83, 135, 0.08);
+  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+}
+
+.medical-guide-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 64, 152, 0.42);
+  box-shadow: 0 24px 52px rgba(31, 83, 135, 0.13);
+}
+
+.medical-guide-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 108px;
+  height: 108px;
+  margin-bottom: 28px;
+  border-radius: 50%;
+  background: #f0f7ff;
+}
+
+.medical-guide-icon img {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+}
+
+.medical-guide-card-title {
+  color: #26384d;
+  font-family: var(--font-round);
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.5;
+  text-align: center;
+  word-break: keep-all;
+}
+
+.medical-guide-arrow {
+  position: absolute;
+  right: 24px;
+  bottom: 22px;
+  color: #004098;
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.medical-guide-note {
+  color: #6d7f93;
+  font-size: 0.86rem;
+  line-height: 1.7;
+  margin: 28px 0 0;
+}
+
+.medical-guide-copy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  color: var(--text-color);
+}
+
+.medical-guide-copy-label {
+  color: #004098;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  line-height: 1.6;
+  writing-mode: vertical-rl;
+}
+
+.medical-guide-copy p {
+  margin: 0;
+  font-family: var(--font-round);
+  font-size: clamp(1.7rem, 2.4vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.75;
+  letter-spacing: 0.08em;
+  writing-mode: vertical-rl;
+}
+
+@media (max-width: 1100px) {
+  .medical-guide-inner {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+  .medical-guide-copy {
+    order: -1;
+    justify-content: flex-start;
+    gap: 18px;
+  }
+  .medical-guide-copy-label,
+  .medical-guide-copy p {
+    writing-mode: horizontal-tb;
+  }
+  .medical-guide-copy p {
+    font-size: 1.75rem;
+    line-height: 1.6;
+  }
+  .medical-guide-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .medical-guide-section {
+    padding: 82px 0 96px;
+  }
+  .medical-guide-heading {
+    margin-bottom: 30px;
+  }
+  .medical-guide-lead {
+    font-size: 0.95rem;
+  }
+  .medical-guide-grid {
+    gap: 14px;
+  }
+  .medical-guide-card {
+    min-height: 172px;
+    padding: 22px 14px 34px;
+    border-radius: 18px;
+  }
+  .medical-guide-icon {
+    width: 78px;
+    height: 78px;
+    margin-bottom: 18px;
+  }
+  .medical-guide-icon img {
+    width: 44px;
+    height: 44px;
+  }
+  .medical-guide-card-title {
+    font-size: 0.92rem;
+  }
+  .medical-guide-arrow {
+    right: 16px;
+    bottom: 14px;
+    font-size: 1.35rem;
+  }
+}
+
 .department-section {
   padding: 80px 0 0px;
   background-color: #fff;
