@@ -3,7 +3,7 @@
 :root {
   --primary-blue: #004098;
   --primary-green: #009c9c;
-  --accent-color: #ff6600;
+  --accent-color: #004098;
   --text-color: #333333;
   --bg-soft-gray: #f4f7f7;
   --white: #ffffff;
@@ -868,7 +868,7 @@ ul {
   right: -28px;
   width: 130px;
   height: 32px;
-  background-color: #ff8c42;
+  background-color: #004098;
   color: #fff;
   font-size: 0.75rem;
   font-weight: 700;
@@ -1718,215 +1718,355 @@ ul {
 }
 
 /* ---------------------------------------------------------
-   FEATURES SECTION (4つの特長)
+   FEATURES SECTION (Redesigned)
 --------------------------------------------------------- */
-.features-section {
-  position: relative;
-  padding: 200px 0 200px;
-  background: #eef6ff;
-  overflow: hidden;
-}
-
-.features-bg-text {
-  position: absolute;
-  top: 40px;
-  left: -20px;
-  font-size: clamp(60px, 8vw, 120px);
-  font-weight: 900;
-  letter-spacing: 0.05em;
-  color: rgba(0, 64, 152, 0.08);
-  white-space: nowrap;
-  pointer-events: none;
-  user-select: none;
-  line-height: 1;
-}
-
-.features-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, rgba(0, 64, 152, 0.08) 1px, transparent 1px);
-  background-size: 24px 24px;
-  pointer-events: none;
-  z-index: 0;
-}
-
 .about-wave-bottom {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  line-height: 0;
-  background: transparent;
-  z-index: 2;
-}
-.about-wave-bottom svg {
-  display: block;
-  width: 100%;
   height: 120px;
+  z-index: 5;
+  pointer-events: none;
 }
 
-.about-wave-bottom path {
-  fill: #eef6ff;
+.features-section {
+  position: relative;
+  padding: 120px 0 160px;
+  background-color: #fcf9f5; /* 優しいベージュ系背景 */
+  overflow-x: hidden;
 }
 
+.features-wave-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  z-index: 5;
+  transform: translateY(-99%);
+  pointer-events: none;
+}
+
+/* Background Large Text (Watermark) */
+.features-bg-text-large {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.03;
+}
+
+.bg-text-inner {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  line-height: 1;
+}
+
+.bg-text-inner span {
+  font-size: 20vw;
+  font-weight: 900;
+  color: var(--primary-blue);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Header Area: Centered */
+.features-header-center {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 100px;
+  position: relative;
+  z-index: 5;
+}
+
+.features-label {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.features-label .en {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--primary-blue);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.features-main-title {
+  font-size: 3.2rem;
+  color: var(--primary-blue);
+  line-height: 1.3;
+  margin-bottom: 32px;
+  font-family: var(--font-round);
+}
+
+.features-main-title .text {
+  position: relative;
+  display: inline-block;
+}
+
+.features-main-title .text::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  background: rgba(0, 64, 152, 0.15);
+  z-index: -1;
+}
+
+.features-description {
+  font-size: 1.1rem;
+  line-height: 2;
+  color: #555;
+  font-weight: 500;
+}
+
+/* Modern Grid */
+.features-modern-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px 24px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Modern Card */
+.feature-modern-card {
+  position: relative;
+  height: 520px;
+  border-radius: 40px;
+  overflow: visible; /* To allow badge to overflow top */
+  background: #fff;
+  transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.5s ease;
+  cursor: pointer;
+}
+
+.feature-modern-card:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 30px 60px rgba(0, 64, 152, 0.15);
+}
+
+.fm-card-img {
+  position: absolute;
+  inset: 0;
+  border-radius: 40px;
+  overflow: hidden;
+}
+
+.fm-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.feature-modern-card:hover .fm-card-img img {
+  transform: scale(1.1);
+}
+
+/* Badge (Number + Icon) */
+.fm-card-badge {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90px;
+  height: 90px;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  box-shadow: 0 8px 20px rgba(0, 64, 152, 0.1);
+  border: 4px solid var(--primary-blue);
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.feature-modern-card:hover .fm-card-badge {
+  transform: translate(-50%, -60%) scale(1.1);
+  box-shadow: 0 15px 30px rgba(0, 64, 152, 0.2);
+}
+
+.fm-number {
+  font-size: 0.8rem;
+  font-weight: 900;
+  color: var(--primary-blue);
+  margin-top: 2px;
+  line-height: 1;
+}
+
+.fm-icon {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+}
+
+
+/* Labels Stack */
+.fm-label-stack {
+  position: absolute;
+  top: 80px;
+  left: -10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  z-index: 15;
+}
+
+.fm-label {
+  background: #fff;
+  color: var(--primary-blue);
+  padding: 8px 18px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 0 20px 20px 0;
+  font-family: var(--font-round);
+}
+
+.fm-label.highlight {
+  background: var(--primary-blue);
+  color: #fff;
+}
+
+/* Bottom Content */
+.fm-card-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 32px;
+  background: linear-gradient(to top, rgba(0, 40, 100, 0.9) 0%, rgba(0, 40, 100, 0.4) 30%, transparent 60%);
+  border-radius: 40px;
+}
+
+.fm-text {
+  color: #fff;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  opacity: 0.9;
+}
+
+.fm-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  transition: color 0.3s ease;
+}
+
+.fm-link span:first-child {
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.fm-arrow {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.fm-link:hover .fm-arrow {
+  transform: translateX(8px);
+}
+
+/* Arch Decoration */
 .features-arch-bottom {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   line-height: 0;
-  background: #ffffff;
+  z-index: 2;
 }
 
 .features-arch-bottom svg {
   display: block;
   width: 100%;
-  height: 80px;
+  height: 100px;
 }
 
 .features-arch-bottom path {
-  fill: #eef6ff;
+  fill: #fff; /* Match next section background if needed */
 }
 
-.features-header {
-  margin-bottom: 60px;
-}
-
-.features-en-label {
-  display: block;
-  font-size: 0.95rem;
-  color: rgba(0, 64, 152, 0.72);
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  margin-bottom: 8px;
-}
-
-.features-title {
-  font-size: 2.2rem;
-  font-family: var(--font-round);
-  color: var(--text-color);
-  line-height: 1.4;
-}
-
-.features-title span {
-  color: #004098;
-}
-
-.features-cards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  align-items: start;
-}
-
-.feature-card {
-  border-radius: 20px;
-  overflow: visible;
-  position: relative;
-  height: 380px;
-  box-shadow: 0 8px 30px rgba(0, 64, 152, 0.12);
-}
-
-.feature-card > .feature-card-img {
-  border-radius: 20px;
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
-}
-
-.feature-card:nth-child(even) {
-  margin-top: 48px;
-  height: 320px;
-}
-
-.feature-card-num {
-  position: absolute;
-  top: -28px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: #004098;
-  color: #ffffff;
-  font-size: 1.1rem;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.feature-card-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.feature-card-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 24px 20px 20px;
-  background: linear-gradient(to top, rgba(0, 30, 80, 0.88) 0%, rgba(0, 30, 80, 0.4) 60%, transparent 100%);
-  border-radius: 0 0 20px 20px;
-}
-
-.feature-card-title {
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 700;
-  line-height: 1.6;
-  margin-bottom: 12px;
-}
-
-.feature-card-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.78rem;
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.65);
-  padding: 5px 14px;
-  border-radius: 20px;
-  transition: background 0.2s;
-}
-
-.feature-card-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
+/* --- Responsive --- */
+@media (max-width: 1280px) {
+  .features-modern-grid {
+    gap: 40px 20px;
+  }
+  .feature-modern-card {
+    height: 480px;
+  }
+  .fm-label {
+    font-size: 1rem;
+    padding: 6px 14px;
+  }
 }
 
 @media (max-width: 1024px) {
-  .features-cards {
+  .features-modern-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+    gap: 60px 30px;
   }
-  .feature-card:nth-child(even) {
-    margin-top: 0;
-    height: 380px;
-  }
-  .feature-card {
-    height: 380px;
+  .features-main-title {
+    font-size: 2.6rem;
   }
 }
 
-@media (max-width: 600px) {
-  .features-cards {
+@media (max-width: 640px) {
+  .features-section {
+    padding: 80px 0 100px;
+  }
+  .features-header-center {
+    margin-bottom: 80px;
+  }
+  .features-main-title {
+    font-size: 2rem;
+  }
+  .features-modern-grid {
     grid-template-columns: 1fr;
+    max-width: 400px;
+    gap: 70px 0;
   }
-  .feature-card,
-  .feature-card:nth-child(even) {
-    height: 300px;
-    margin-top: 0;
+  .feature-modern-card {
+    height: 450px;
   }
-  .features-title {
-    font-size: 1.7rem;
+  .bg-text-inner span {
+    font-size: 30vw;
+  }
+  .fm-card-badge {
+    width: 80px;
+    height: 80px;
+    border-width: 4px;
+  }
+  .fm-icon {
+    width: 32px;
+    height: 32px;
   }
 }
+
 
 /* ---------------------------------------------------------
    DEPARTMENT SECTION (診療のご案内)

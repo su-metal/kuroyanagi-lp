@@ -233,68 +233,148 @@ export default function Home() {
         {/* 下境界：FEATURESへつなぐ波 */}
         <div className="about-wave-bottom" aria-hidden="true">
           <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,60 C200,100 400,100 720,50 C1040,0 1240,0 1440,40 L1440,120 L0,120 Z" fill="#eef6ff" />
+            <path d="M0,60 C200,100 400,100 720,50 C1040,0 1240,0 1440,40 L1440,120 L0,120 Z" fill="#fcf9f5" />
           </svg>
         </div>
       </section>
 
       {/* --- FEATURES --- */}
       <section id="features" className="features-section">
-        <div className="features-bg-text" aria-hidden="true">KUROYANAGI CLINIC.</div>
-        <div className="container">
-          <div className="features-header">
-            <span className="features-en-label">Feature</span>
-            <h2 className="features-title">
-              クロヤナギ医院の<span>4つの特長</span>
-            </h2>
+        {/* Top decoration (Wave) */}
+        <div className="features-wave-top" aria-hidden="true">
+          <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,100 C240,0 480,0 720,50 C960,100 1200,100 1440,50 L1440,100 L0,100 Z" fill="#fcf9f5" />
+          </svg>
+        </div>
+
+        {/* Background watermark text */}
+        <div className="features-bg-text-large" aria-hidden="true">
+          <div className="bg-text-inner">
+            <span>KUROYANAGI</span>
+            <span>CLINIC.</span>
           </div>
-          <div className="features-cards">
-            <div className="feature-card">
-              <span className="feature-card-num">01</span>
-              <div className="feature-card-img">
-                <img src="/photo/assets/features/feature_01.png" alt="地域に根ざした総合診療" />
+        </div>
+
+        <div className="container">
+          {/* Section Header: Centered */}
+          <div className="features-header-center">
+            <div className="features-label">
+              <span className="en">FEATURE</span>
+            </div>
+            <h2 className="features-main-title">
+              クロヤナギ医院の<br />
+              <span className="text">4つの特長</span>
+            </h2>
+            <p className="features-description">
+              地域に根ざした医療を大切にし、患者さま一人ひとりに寄り添う診療を心がけています。
+            </p>
+          </div>
+
+          {/* 4-Column Feature Grid */}
+          <div className="features-modern-grid">
+            {/* Feature 01 */}
+            <div className="feature-modern-card">
+              <div className="fm-card-img">
+                <img src="/photo/doctor.png" alt="地域に根ざした総合診療" />
               </div>
-              <div className="feature-card-overlay">
-                <p className="feature-card-title">地域に根ざした<br />総合診療</p>
-                <a href="#" className="feature-card-btn">詳しく見る →</a>
+              <div className="fm-card-badge">
+                <span className="fm-number">01</span>
+                <img src="/photo/assets/icon_01_stethoscope.png" alt="" className="fm-icon" />
+              </div>
+              <div className="fm-card-content">
+                <div className="fm-label-stack">
+                  <span className="fm-label">地域に根ざした</span>
+                  <span className="fm-label highlight">総合診療</span>
+                </div>
+                <div className="fm-bottom">
+                  <p className="fm-text">かかりつけ医として、幅広いお悩みに対応します。</p>
+                  <a href="#" className="fm-link">
+                    <span>View All</span>
+                    <span className="fm-arrow">→</span>
+                  </a>
+                </div>
               </div>
             </div>
-            <div className="feature-card">
-              <span className="feature-card-num">02</span>
-              <div className="feature-card-img">
-                <img src="/photo/assets/features/feature_02.png" alt="専門的な検査と手術対応" />
+
+            {/* Feature 02 */}
+            <div className="feature-modern-card">
+              <div className="fm-card-img">
+                <img src="/photo/assets/assets_new/01_診察シーン_01.png" alt="専門的な検査と手術対応" />
               </div>
-              <div className="feature-card-overlay">
-                <p className="feature-card-title">専門的な検査と<br />手術対応</p>
-                <a href="#" className="feature-card-btn">詳しく見る →</a>
+              <div className="fm-card-badge">
+                <span className="fm-number">02</span>
+                <img src="/photo/assets/icon_04_syringe.png" alt="" className="fm-icon" />
+              </div>
+              <div className="fm-card-content">
+                <div className="fm-label-stack">
+                  <span className="fm-label">専門的な検査と</span>
+                  <span className="fm-label highlight">手術対応</span>
+                </div>
+                <div className="fm-bottom">
+                  <p className="fm-text">精度の高い検査・治療で、安心の医療を提供します。</p>
+                  <a href="#" className="fm-link">
+                    <span>View All</span>
+                    <span className="fm-arrow">→</span>
+                  </a>
+                </div>
               </div>
             </div>
-            <div className="feature-card">
-              <span className="feature-card-num">03</span>
-              <div className="feature-card-img">
-                <img src="/photo/assets/features/feature_03.png" alt="予防医療と健康管理" />
+
+            {/* Feature 03 */}
+            <div className="feature-modern-card">
+              <div className="fm-card-img">
+                <img src="/photo/clinic.png" alt="予防医療と健康管理" />
               </div>
-              <div className="feature-card-overlay">
-                <p className="feature-card-title">予防医療と<br />健康管理</p>
-                <a href="#" className="feature-card-btn">詳しく見る →</a>
+              <div className="fm-card-badge">
+                <span className="fm-number">03</span>
+                <img src="/photo/assets/icon_02_heartbeat.png" alt="" className="fm-icon" />
+              </div>
+              <div className="fm-card-content">
+                <div className="fm-label-stack">
+                  <span className="fm-label">予防医療と</span>
+                  <span className="fm-label highlight">健康管理</span>
+                </div>
+                <div className="fm-bottom">
+                  <p className="fm-text">病気の予防と早期発見で、健やかな毎日をサポートします。</p>
+                  <a href="#" className="fm-link">
+                    <span>View All</span>
+                    <span className="fm-arrow">→</span>
+                  </a>
+                </div>
               </div>
             </div>
-            <div className="feature-card">
-              <span className="feature-card-num">04</span>
-              <div className="feature-card-img">
-                <img src="/photo/assets/features/feature_04.png" alt="安心・快適な診療環境" />
+
+            {/* Feature 04 */}
+            <div className="feature-modern-card">
+              <div className="fm-card-img">
+                <img src="/photo/access_entrance.jpg" alt="安心・快適な診療環境" />
               </div>
-              <div className="feature-card-overlay">
-                <p className="feature-card-title">安心・快適な<br />診療環境</p>
-                <a href="#" className="feature-card-btn">詳しく見る →</a>
+              <div className="fm-card-badge">
+                <span className="fm-number">04</span>
+                <img src="/photo/assets/icon_06_chat.png" alt="" className="fm-icon" />
+              </div>
+              <div className="fm-card-content">
+                <div className="fm-label-stack">
+                  <span className="fm-label">安心・快適な</span>
+                  <span className="fm-label highlight">診療環境</span>
+                </div>
+                <div className="fm-bottom">
+                  <p className="fm-text">清潔で落ち着ける空間で、リラックスして受診いただけます。</p>
+                  <a href="#" className="fm-link">
+                    <span>View All</span>
+                    <span className="fm-arrow">→</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        {/* 下境界：半円アーチ */}
+
+
+        {/* Bottom decoration */}
         <div className="features-arch-bottom" aria-hidden="true">
           <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,0 L0,80 Q720,20 1440,80 L1440,0 Z" fill="#eef6ff" />
+            <path d="M0,0 L0,80 Q720,20 1440,80 L1440,0 Z" fill="#fcf9f5" />
           </svg>
         </div>
       </section>
