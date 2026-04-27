@@ -264,6 +264,61 @@ export default function Home() {
         </div>
       </section>
 
+      {/* --- FEATURES --- */}
+      <section id="features" className="features-section">
+        <div className="features-bg-text" aria-hidden="true">KUROYANAGI CLINIC.</div>
+        <div className="container">
+          <div className="features-header">
+            <span className="features-en-label">Feature</span>
+            <h2 className="features-title">
+              クロヤナギ医院の<span>4つの特長</span>
+            </h2>
+          </div>
+          <div className="features-cards">
+            <div className="feature-card">
+              <span className="feature-card-num">01</span>
+              <div className="feature-card-img">
+                <img src="/photo/assets/features/icon_01_stethoscope.png" alt="地域に根ざした総合診療" />
+              </div>
+              <div className="feature-card-overlay">
+                <p className="feature-card-title">地域に根ざした<br />総合診療</p>
+                <a href="#" className="feature-card-btn">詳しく見る →</a>
+              </div>
+            </div>
+            <div className="feature-card">
+              <span className="feature-card-num">02</span>
+              <div className="feature-card-img">
+                <img src="/photo/assets/features/icon_02_heartbeat.png" alt="専門的な検査と手術対応" />
+              </div>
+              <div className="feature-card-overlay">
+                <p className="feature-card-title">専門的な検査と<br />手術対応</p>
+                <a href="#" className="feature-card-btn">詳しく見る →</a>
+              </div>
+            </div>
+            <div className="feature-card">
+              <span className="feature-card-num">03</span>
+              <div className="feature-card-img">
+                <img src="/photo/assets/features/icon_03_clipboard.png" alt="予防医療と健康管理" />
+              </div>
+              <div className="feature-card-overlay">
+                <p className="feature-card-title">予防医療と<br />健康管理</p>
+                <a href="#" className="feature-card-btn">詳しく見る →</a>
+              </div>
+            </div>
+            <div className="feature-card">
+              <span className="feature-card-num">04</span>
+              <div className="feature-card-img">
+                <img src="/photo/assets/features/icon_04_syringe.png" alt="安心・快適な診療環境" />
+              </div>
+              <div className="feature-card-overlay">
+                <p className="feature-card-title">安心・快適な<br />診療環境</p>
+                <a href="#" className="feature-card-btn">詳しく見る →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* --- DEPARTMENT SECTION (診療のご案内) --- */}
       <section className="department-section">
         <div className="container-narrow">
@@ -505,7 +560,7 @@ export default function Home() {
         >
           <path
             d="M0,0 L0,50 C200,100 400,100 720,60 C1040,20 1240,20 1440,50 L1440,0 Z"
-            fill="#f4f9ff"
+            fill="#e8f0fb"
           />
         </svg>
       </div>

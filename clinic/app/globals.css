@@ -678,9 +678,14 @@ ul {
   }
 }
 /* --- NEWS --- */
+.news-section .container {
+  padding-left: clamp(24px, 6vw, 100px);
+  padding-right: clamp(24px, 6vw, 100px);
+}
+
 .news-section {
   padding: 100px 0 160px;
-  background-color: #f9fbfd; /* Very light blue/gray background */
+  background-color: #eaf3fb;
   position: relative;
   overflow: hidden;
 }
@@ -947,7 +952,7 @@ ul {
 /* --- SERVICE SECTION (V3 - REFINED DESIGN) --- */
 .service-section-v3 {
   padding: 20px 0 120px;
-  background-color: #f4f9ff;
+  background-color: #e8f0fb;
   position: relative;
   margin-top: 500px; /* Increased to accommodate the much deeper arch */
 }
@@ -962,7 +967,7 @@ ul {
   left: -8%;
   width: 120%;
   height: 900px;
-  background-color: #f4f9ff;
+  background-color: #e8f0fb;
   border-radius: 50% 50% 0 0;
   z-index: 0;
 }
@@ -1061,7 +1066,7 @@ ul {
   display: flex;
   align-items: center;
   gap: 60px;
-  background-color: #f4f9fc;
+  background-color: transparent;
   border-radius: 60px;
   padding: 0px 0px;
   margin-top: 60px;
@@ -1260,6 +1265,169 @@ ul {
 .pill-btn:hover .arrow-circle {
   background-color: #fff;
   color: var(--primary-blue);
+}
+
+/* ---------------------------------------------------------
+   FEATURES SECTION (4つの特長)
+--------------------------------------------------------- */
+.features-section {
+  position: relative;
+  padding: 100px 0 140px;
+  background: linear-gradient(160deg, #e8f0fb 0%, #ffffff 60%);
+  overflow: hidden;
+}
+
+.features-bg-text {
+  position: absolute;
+  top: 40px;
+  left: -20px;
+  font-size: clamp(60px, 8vw, 120px);
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  color: rgba(0, 64, 152, 0.05);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+
+.features-header {
+  margin-bottom: 60px;
+}
+
+.features-en-label {
+  display: block;
+  font-size: 0.95rem;
+  color: #004098;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+}
+
+.features-title {
+  font-size: 2.2rem;
+  font-family: var(--font-round);
+  color: var(--text-color);
+  line-height: 1.4;
+}
+
+.features-title span {
+  color: #004098;
+}
+
+.features-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.feature-card {
+  border-radius: 20px;
+  overflow: visible;
+  position: relative;
+  height: 380px;
+  box-shadow: 0 8px 30px rgba(0, 64, 152, 0.12);
+}
+
+.feature-card > .feature-card-img {
+  border-radius: 20px;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.feature-card:nth-child(even) {
+  margin-top: 48px;
+  height: 320px;
+}
+
+.feature-card-num {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #004098;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  box-shadow: 0 4px 12px rgba(0, 64, 152, 0.35);
+}
+
+.feature-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.feature-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 20px 20px;
+  background: linear-gradient(to top, rgba(0, 30, 80, 0.88) 0%, rgba(0, 30, 80, 0.4) 60%, transparent 100%);
+  border-radius: 0 0 20px 20px;
+}
+
+.feature-card-title {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.feature-card-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  padding: 5px 14px;
+  border-radius: 20px;
+  transition: background 0.2s;
+}
+
+.feature-card-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 1024px) {
+  .features-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .feature-card:nth-child(even) {
+    margin-top: 0;
+    height: 380px;
+  }
+  .feature-card {
+    height: 380px;
+  }
+}
+
+@media (max-width: 600px) {
+  .features-cards {
+    grid-template-columns: 1fr;
+  }
+  .feature-card,
+  .feature-card:nth-child(even) {
+    height: 300px;
+    margin-top: 0;
+  }
+  .features-title {
+    font-size: 1.7rem;
+  }
 }
 
 /* ---------------------------------------------------------
