@@ -1,6 +1,5 @@
 "use client";
 
-import Head from "next/head";
 import { useState } from "react";
 
 export default function Home() {
@@ -8,9 +7,6 @@ export default function Home() {
 
   return (
     <div className="wrapper">
-      <Head>
-        <title>クロヤナギ医院 | 内科・小児科・呼吸器内科</title>
-      </Head>
 
       {/* --- HEADER --- */}
       <header className="header">
@@ -19,44 +15,44 @@ export default function Home() {
           <div className="container header-main-inner">
             <div className="logo">
               <a href="/">
-                <div className="logo-flex">
-                  <div className="logo-mark">
+                <span className="logo-flex">
+                  <span className="logo-mark">
                     <img src="/photo/assets/01_action/08_当院について.png" alt="" style={{ height: "48px" }} />
-                  </div>
-                  <div className="logo-text">
+                  </span>
+                  <span className="logo-text">
                     <span className="logo-sub">医療法人社団 早友会</span>
                     <span className="logo-main">クロヤナギ医院</span>
-                  </div>
-                </div>
+                  </span>
+                </span>
               </a>
             </div>
 
             {/* PC Actions */}
             <div className="pc-actions hidden-mobile">
               <a href="#" className="header-card blue">
-                <div className="icon">
+                <span className="icon">
                   <img src="/photo/assets/01_action/01_予約.png" alt="" />
-                </div>
-                <div className="info">
+                </span>
+                <span className="info">
                   <span className="value">ご予約はこちら</span>
-                </div>
+                </span>
               </a>
               <a href="#" className="header-card blue">
-                <div className="icon">
+                <span className="icon">
                   <img src="/photo/assets/01_action/02_みっかび東.png" alt="" />
-                </div>
-                <div className="info">
+                </span>
+                <span className="info">
                   <span className="value">みっかび東</span>
                   <span className="label">介護老人保健施設</span>
-                </div>
+                </span>
               </a>
               <a href="tel:0535251113" className="header-card tel-card">
-                <div className="tel-top">
-                  <div className="icon tel-icon">
+                <span className="tel-top">
+                  <span className="icon tel-icon">
                     <img src="/photo/assets/01_action/03_電話.png" alt="" />
-                  </div>
+                  </span>
                   <span className="tel-value">053-525-1113</span>
-                </div>
+                </span>
                 <span className="tel-hours">受付時間 8:30〜17:30（木・土午後、日祝休診）</span>
               </a>
             </div>
@@ -233,7 +229,6 @@ export default function Home() {
             <p>どんな些細なことでも気になることがあれば、</p>
             <p>お気軽にご相談ください。</p>
           </div>
-          <a href="#" className="about-btn">当院について →</a>
         </div>
         {/* 下境界：FEATURESへつなぐ波 */}
         <div className="about-wave-bottom" aria-hidden="true">
@@ -299,7 +294,7 @@ export default function Home() {
         {/* 下境界：半円アーチ */}
         <div className="features-arch-bottom" aria-hidden="true">
           <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,0 L0,80 Q720,20 1440,80 L1440,0 Z" fill="#f7fbff" />
+            <path d="M0,0 L0,80 Q720,20 1440,80 L1440,0 Z" fill="#eef6ff" />
           </svg>
         </div>
       </section>
@@ -403,9 +398,9 @@ export default function Home() {
               {/* Mobile/Footer Link */}
               <div className="news-footer-link-wrap">
                 <a href="#" className="news-footer-link">
-                  <div className="news-footer-arrow">
+                  <span className="news-footer-arrow">
                     <img src="/photo/assets/02_navi/01_矢印右.png" alt="" />
-                  </div>
+                  </span>
                   <span>お知らせ一覧を見る</span>
                 </a>
               </div>
@@ -433,7 +428,7 @@ export default function Home() {
         >
           <path
             d="M0,0 L0,50 C200,100 400,100 720,60 C1040,20 1240,20 1440,50 L1440,0 Z"
-            fill="#e8f0fb"
+            fill="#eef6ff"
           />
         </svg>
       </div>
