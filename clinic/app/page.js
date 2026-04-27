@@ -100,11 +100,6 @@ export default function Home() {
                 <img src="/photo/clinic.png" alt="クロヤナギ医院 外観" className="hero-photo" />
               </div>
 
-              {/* Bottom-left landscape illustration overlaying the photo */}
-              <div className="hero-deco-landscape">
-                <img src="/photo/assets/06_landscapes/04_街並みと橋.png" alt="" />
-              </div>
-
               {/* Schedule card overlaying the bottom-right of the photo */}
               <div className="hero-schedule-overlay">
                 <div className="schedule-card">
@@ -261,6 +256,125 @@ export default function Home() {
         </div>
         <div className="news-deco news-deco-birds">
           <img src="/photo/assets/07_ashirai/06_鳥.png" alt="" />
+        </div>
+      </section>
+
+      {/* --- ABOUT --- */}
+      <section className="about-section">
+        <div className="about-deco about-deco-cloud about-deco-cloud-left" aria-hidden="true"></div>
+        <div className="about-deco about-deco-cloud about-deco-cloud-top" aria-hidden="true"></div>
+        <div className="about-deco about-deco-cloud about-deco-cloud-right" aria-hidden="true"></div>
+        <img
+          src="/photo/assets/07_ashirai/06_鳥.png"
+          alt=""
+          className="about-deco about-birds"
+        />
+
+        <div className="about-photo about-photo-left-top">
+          <img src="/photo/clinic_01%20(2).png" alt="クロヤナギ医院の外観" />
+        </div>
+        <div className="about-photo about-photo-left-bottom">
+          <img src="/photo/assets/features/feature_02.png" alt="院内で検査を行う医師" />
+        </div>
+        <div className="about-photo about-photo-right-top">
+          <img src="/photo/assets/features/feature_01.png" alt="診察室で相談する患者さまと医師" />
+        </div>
+        <div className="about-photo about-photo-right-middle">
+          <img src="/photo/assets/features/feature_04.png" alt="明るい院内の待合スペース" />
+        </div>
+        <div className="about-photo about-photo-right-bottom">
+          <img src="/photo/assets/features/feature_01.png" alt="患者さまに説明する医師" />
+        </div>
+
+        <div className="about-landscape" aria-hidden="true">
+          <img src="/photo/about.png" alt="" />
+        </div>
+
+        <div className="container about-content">
+          <p className="about-label">ABOUT</p>
+          <div className="about-dots" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <h2 className="about-title">
+            地域に寄り添い、<br />
+            皆さまの<span>健康を守り続けて。</span>
+          </h2>
+          <div className="about-desc">
+            <p>クロヤナギ医院は、地域の皆さまに長く信頼していただける</p>
+            <p>かかりつけ医を目指しています。</p>
+            <p>内科・外科・小児科を中心に、</p>
+            <p>予防医療から専門的な検査・治療まで幅広く対応します。</p>
+            <p>どんな些細なことでも気になることがあれば、</p>
+            <p>お気軽にご相談ください。</p>
+          </div>
+          <a href="#" className="about-btn">当院について →</a>
+        </div>
+      </section>
+
+      {/* --- FEATURES --- */}
+      <section id="features" className="features-section">
+        {/* 上境界：波形 */}
+        <div className="features-wave-top" aria-hidden="true">
+          <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,0 C360,60 1080,0 1440,40 L1440,0 L0,0 Z" fill="#eaf3fb" />
+          </svg>
+        </div>
+        <div className="features-bg-text" aria-hidden="true">KUROYANAGI CLINIC.</div>
+        <div className="container">
+          <div className="features-header">
+            <span className="features-en-label">Feature</span>
+            <h2 className="features-title">
+              クロヤナギ医院の<span>4つの特長</span>
+            </h2>
+          </div>
+          <div className="features-cards">
+            <div className="feature-card">
+              <span className="feature-card-num">01</span>
+              <div className="feature-card-img">
+                <img src="/photo/assets/features/feature_01.png" alt="地域に根ざした総合診療" />
+              </div>
+              <div className="feature-card-overlay">
+                <p className="feature-card-title">地域に根ざした<br />総合診療</p>
+                <a href="#" className="feature-card-btn">詳しく見る →</a>
+              </div>
+            </div>
+            <div className="feature-card">
+              <span className="feature-card-num">02</span>
+              <div className="feature-card-img">
+                <img src="/photo/assets/features/feature_02.png" alt="専門的な検査と手術対応" />
+              </div>
+              <div className="feature-card-overlay">
+                <p className="feature-card-title">専門的な検査と<br />手術対応</p>
+                <a href="#" className="feature-card-btn">詳しく見る →</a>
+              </div>
+            </div>
+            <div className="feature-card">
+              <span className="feature-card-num">03</span>
+              <div className="feature-card-img">
+                <img src="/photo/assets/features/feature_03.png" alt="予防医療と健康管理" />
+              </div>
+              <div className="feature-card-overlay">
+                <p className="feature-card-title">予防医療と<br />健康管理</p>
+                <a href="#" className="feature-card-btn">詳しく見る →</a>
+              </div>
+            </div>
+            <div className="feature-card">
+              <span className="feature-card-num">04</span>
+              <div className="feature-card-img">
+                <img src="/photo/assets/features/feature_04.png" alt="安心・快適な診療環境" />
+              </div>
+              <div className="feature-card-overlay">
+                <p className="feature-card-title">安心・快適な<br />診療環境</p>
+                <a href="#" className="feature-card-btn">詳しく見る →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* 下境界：半円アーチ */}
+        <div className="features-arch-bottom" aria-hidden="true">
+          <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,0 L0,80 Q720,20 1440,80 L1440,0 Z" fill="#004098" />
+          </svg>
         </div>
       </section>
 
@@ -447,16 +561,16 @@ export default function Home() {
             </div>
           </div>
 
-          {/* 4. Accessibility Box */}
-          <div className="accessibility-container">
-            <div className="accessibility-header">
-              <div className="header-label">
-                <img src="/photo/assets/04_other/07_安心安全.png" alt="" />
-                <span>Accessibility</span>
-              </div>
-              <h4>安心・快適にご利用いただくために</h4>
+          {/* 4. Accessibility Section */}
+          <div className="accessibility-header">
+            <div className="header-label">
+              <img src="/photo/assets/04_other/07_安心安全.png" alt="" />
+              <span>Accessibility</span>
             </div>
-            
+            <h4>安心・快適にご利用いただくために</h4>
+          </div>
+
+          <div className="accessibility-container">
             <div className="accessibility-grid">
               <div className="access-item">
                 <div className="access-icon-wrap">
@@ -485,15 +599,6 @@ export default function Home() {
                   <p>車椅子の方やベビーカーの方も安心してご利用いただけるバリアフリートイレです。</p>
                 </div>
               </div>
-              <div className="access-item">
-                <div className="access-icon-wrap">
-                  <img src="/photo/assets/04_other/09_連携協力.png" alt="多言語への対応" />
-                </div>
-                <div className="access-text">
-                  <h6>多言語への対応</h6>
-                  <p>言葉の壁を感じることなく、安心して受診いただけるよう配慮しております。</p>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -501,6 +606,75 @@ export default function Home() {
             ※ 診療科目は変更となる場合があります。詳細は医院までお問い合わせください。
           </p>
 
+        </div>
+      </section>
+
+      {/* Wave Divider */}
+      <div className="wave-divider-wrapper">
+        <svg
+          viewBox="0 0 1440 100"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+          className="wave-divider-svg"
+        >
+          <path
+            d="M0,0 L0,50 C200,100 400,100 720,60 C1040,20 1240,20 1440,50 L1440,0 Z"
+            fill="#e8f0fb"
+          />
+        </svg>
+      </div>
+
+      {/* Access Section */}
+      <section className="access-section">
+        <div className="section-container">
+          <div className="access-header">
+            <h2>アクセス</h2>
+            <div className="access-dots">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+          <div className="access-content">
+            <div className="access-info">
+              <div className="access-method">
+                <div className="access-method-icon">
+                  <img src="/photo/assets/access/01_電車.png" alt="電車" />
+                </div>
+                <div className="access-method-text">
+                  <h6>電車でお越しの方</h6>
+                  <p>天竜浜名湖鉄道「三ヶ日駅」より<br/>徒歩約20分（東へ約910m）</p>
+                </div>
+              </div>
+              <div className="access-method">
+                <div className="access-method-icon">
+                  <img src="/photo/assets/access/02_バス.png" alt="バス" />
+                </div>
+                <div className="access-method-text">
+                  <h6>バスでお越しの方</h6>
+                  <p>遠州鉄道バス 聖隷三方原病院経由 三ヶ日行き<br/>「宇志バス停」より北方徒歩5分</p>
+                </div>
+              </div>
+              <div className="access-method">
+                <div className="access-method-icon">
+                  <img src="/photo/assets/access/03_車.png" alt="車" />
+                </div>
+                <div className="access-method-text">
+                  <h6>お車でお越しの方</h6>
+                  <p>駐車場をご用意しております。<br/>（台数・利用条件はお問い合わせください）</p>
+                </div>
+              </div>
+            </div>
+            <div className="access-map">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21807.205815202164!2d137.55273239146715!3d34.79978991325786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601b2efb69d1f481%3A0xff7102d5b326d22f!2z44G_44Gj44GL44Gz5p2x5LuL6K236ICB5Lq65L-d5YGl5pa96Kit!5e1!3m2!1sja!2sjp!4v1777211323976!5m2!1sja!2sjp" 
+                width="600" 
+                height="450" 
+                style={{border: 0}} 
+                allowFullScreen="" 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
         </div>
       </section>
     </div>
