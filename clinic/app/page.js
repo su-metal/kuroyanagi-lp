@@ -187,6 +187,12 @@ export default function Home() {
       
       {/* --- NEWS --- */}
       <section className="news-section">
+        {/* 上境界：波形（Hero白→News水色） */}
+        <div className="news-wave-top" aria-hidden="true">
+          <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,0 C360,60 1080,0 1440,40 L1440,0 L0,0 Z" fill="#ffffff" />
+          </svg>
+        </div>
         <div className="container">
           <div className="news-inner">
             
@@ -261,6 +267,12 @@ export default function Home() {
 
       {/* --- ABOUT --- */}
       <section className="about-section">
+        {/* 上境界：アーチ（News水色→About） */}
+        <div className="about-wave-top" aria-hidden="true">
+          <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,0 L0,80 Q720,20 1440,80 L1440,0 Z" fill="#eaf3fb" />
+          </svg>
+        </div>
         <div className="about-deco about-deco-cloud about-deco-cloud-left" aria-hidden="true"></div>
         <div className="about-deco about-deco-cloud about-deco-cloud-top" aria-hidden="true"></div>
         <div className="about-deco about-deco-cloud about-deco-cloud-right" aria-hidden="true"></div>
@@ -309,16 +321,16 @@ export default function Home() {
           </div>
           <a href="#" className="about-btn">当院について →</a>
         </div>
+        {/* 下境界：濃い青の波 */}
+        <div className="about-wave-bottom" aria-hidden="true">
+          <svg viewBox="0 0 1440 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,70 C360,0 1080,110 1440,30 L1440,110 L0,110 Z" fill="#004098" />
+          </svg>
+        </div>
       </section>
 
       {/* --- FEATURES --- */}
       <section id="features" className="features-section">
-        {/* 上境界：波形 */}
-        <div className="features-wave-top" aria-hidden="true">
-          <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,0 C360,60 1080,0 1440,40 L1440,0 L0,0 Z" fill="#eaf3fb" />
-          </svg>
-        </div>
         <div className="features-bg-text" aria-hidden="true">KUROYANAGI CLINIC.</div>
         <div className="container">
           <div className="features-header">
