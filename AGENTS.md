@@ -9,10 +9,11 @@
 ## 現在のリポジトリ構成
 
 - ルートには既存の静的サイト (`index.html`、`contact.php`、`privacy.html`、`thanks.html`) と共有画像素材 (`photo/`) がある。
-- `clinic/` は作りかけの Next.js 版クロヤナギ医院サイトとして残す。
-- `renewal/` は、既存サイトを壊さずゼロベースで作り直す新しいクロヤナギ医院サイトの作業領域として扱う。
-- `renewal/` のFVは、PC幅では写真フレーム、診療受付時間カード、縦書きコピー、左下イラストをviewport各辺基準で配置する。
-- ルートの `requirements_definition.md`、`requirements.md`、`design.md`、`tasklist.md` は、現在の `renewal/` 新規構築方針を管理する。
+- `clinic_old/` は作りかけの Next.js 版クロヤナギ医院サイトとして残す。
+- `clinic/` は、既存サイトを壊さずゼロベースで作り直す新しいクロヤナギ医院サイトの作業領域として扱う。
+- `clinic/` のFVは、PC幅では写真フレーム、診療受付時間カード、縦書きコピー、左下イラストをviewport各辺基準で配置する。
+- Cloudflare Workers へのデプロイは、ルートの `wrangler.jsonc` で `clinic/out` を静的アセットとして指定する。
+- ルートの `requirements_definition.md`、`requirements.md`、`design.md`、`tasklist.md` は、現在の `clinic/` 新規構築方針を管理する。
 
 ## ステアリングファイル運用ルール
 
@@ -59,7 +60,10 @@
 
 ## 運用ポリシー
 
-- 要件整理、仕様確認、実装判断が必要な作業では、まず `requirements_definition.md` の有無を確認し、存在しない場合は必要に応じて新規作成する。
+- `AGENTS.md` は、プロジェクトの現状を表す北極星ドキュメントとして扱う。
+- 機能追加、仕様変更、運用方針変更が発生した場合、Codex は必要に応じて `AGENTS.md` を更新し、記述を最新状態に保つ。
+- 要件整理、仕様確認、実装判断が必要な作業では、まず `requirements_definition.md` を参照する。
+- `requirements_definition.md` が存在しない場合は、必要に応じて新規作成する。
 - `AGENTS.md` と `requirements_definition.md` に差分が生じた場合は、両方を同時に更新して整合を保つ。
 - 作業単位で詳細な変更要件が必要な場合は `requirements.md` を作成または更新する。
 - 実装前に設計の明文化が必要な場合は `design.md` を作成または更新する。
@@ -71,4 +75,4 @@
 - リポジトリの構造や仕様の前提を変える変更では、コード修正だけでなく `AGENTS.md` 更新要否も確認する。
 - 大きな機能追加や画面改修では、必要に応じて `requirements.md`、`design.md`、`tasklist.md` を追加する。
 - 実装内容とドキュメントの整合を崩さないことを優先する。
-- `renewal/` の作業では、既存ルートサイトと `clinic/` を参照対象として扱い、完成前に置き換えたり削除したりしない。
+- `clinic/` の作業では、既存ルートサイトと `clinic_old/` を参照対象として扱い、完成前に置き換えたり削除したりしない。
