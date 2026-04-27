@@ -63,6 +63,12 @@ ul {
   padding: 0 80px;
 }
 
+.container-wide {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
 .container-narrow {
   max-width: 1200px;
   margin: 0 auto;
@@ -1843,10 +1849,12 @@ ul {
 .feature-modern-card {
   position: relative;
   height: 520px;
-  border-radius: 40px;
+  border: 12px solid #fff;
+  border-radius: 52px;
   overflow: visible; /* To allow badge to overflow top */
   background: #fff;
   transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.5s ease;
+  box-shadow: 0 15px 35px rgba(0, 40, 100, 0.08);
   cursor: pointer;
 }
 
@@ -1876,7 +1884,7 @@ ul {
 /* Badge (Number + Icon) */
 .fm-card-badge {
   position: absolute;
-  top: 0;
+  top: -12px;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90px;
@@ -1915,24 +1923,23 @@ ul {
 
 /* Labels Stack */
 .fm-label-stack {
-  position: absolute;
-  top: 80px;
-  left: -10px;
+  position: relative;
+  margin-bottom: 24px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 6px;
+  gap: 8px;
   z-index: 15;
 }
 
 .fm-label {
   background: #fff;
   color: var(--primary-blue);
-  padding: 8px 18px;
-  font-size: 1.15rem;
+  padding: 6px 18px;
+  font-size: 1.1rem;
   font-weight: 700;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
-  border-radius: 0 20px 20px 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
   font-family: var(--font-round);
 }
 
@@ -1949,7 +1956,7 @@ ul {
   flex-direction: column;
   justify-content: flex-end;
   padding: 32px;
-  background: linear-gradient(to top, rgba(0, 40, 100, 0.9) 0%, rgba(0, 40, 100, 0.4) 30%, transparent 60%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 10%, transparent 60%);
   border-radius: 40px;
 }
 
@@ -1961,33 +1968,12 @@ ul {
   opacity: 0.9;
 }
 
-.fm-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.fm-divider {
   width: 100%;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 0.9rem;
   padding-top: 16px;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-  transition: color 0.3s ease;
 }
 
-.fm-link span:first-child {
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.fm-arrow {
-  font-size: 1.2rem;
-  transition: transform 0.3s ease;
-}
-
-.fm-link:hover .fm-arrow {
-  transform: translateX(8px);
-}
 
 /* Arch Decoration */
 .features-arch-bottom {
@@ -2052,11 +2038,18 @@ ul {
   }
   .feature-modern-card {
     height: 450px;
+    border-width: 8px;
+    border-radius: 40px;
+  }
+  .fm-card-img,
+  .fm-card-content {
+    border-radius: 32px;
   }
   .bg-text-inner span {
     font-size: 30vw;
   }
   .fm-card-badge {
+    top: -8px;
     width: 80px;
     height: 80px;
     border-width: 4px;

@@ -254,8 +254,7 @@ export default function Home() {
             <span>CLINIC.</span>
           </div>
         </div>
-
-        <div className="container">
+        <div className="container-wide">
           {/* Section Header: Centered */}
           <div className="features-header-center">
             <div className="features-label">
@@ -288,10 +287,7 @@ export default function Home() {
                 </div>
                 <div className="fm-bottom">
                   <p className="fm-text">かかりつけ医として、幅広いお悩みに対応します。</p>
-                  <a href="#" className="fm-link">
-                    <span>View All</span>
-                    <span className="fm-arrow">→</span>
-                  </a>
+                  <div className="fm-divider"></div>
                 </div>
               </div>
             </div>
@@ -299,7 +295,7 @@ export default function Home() {
             {/* Feature 02 */}
             <div className="feature-modern-card">
               <div className="fm-card-img">
-                <img src="/photo/assets/assets_new/01_診察シーン_01.png" alt="専門的な検査と手術対応" />
+                <img src="/photo/assets/assets_new/02_病院外観.png" alt="専門的な検査と手術対応" />
               </div>
               <div className="fm-card-badge">
                 <span className="fm-number">02</span>
@@ -312,10 +308,7 @@ export default function Home() {
                 </div>
                 <div className="fm-bottom">
                   <p className="fm-text">精度の高い検査・治療で、安心の医療を提供します。</p>
-                  <a href="#" className="fm-link">
-                    <span>View All</span>
-                    <span className="fm-arrow">→</span>
-                  </a>
+                  <div className="fm-divider"></div>
                 </div>
               </div>
             </div>
@@ -323,7 +316,7 @@ export default function Home() {
             {/* Feature 03 */}
             <div className="feature-modern-card">
               <div className="fm-card-img">
-                <img src="/photo/clinic.png" alt="予防医療と健康管理" />
+                <img src="/photo//assets/health.png" alt="予防医療と健康管理" />
               </div>
               <div className="fm-card-badge">
                 <span className="fm-number">03</span>
@@ -336,10 +329,7 @@ export default function Home() {
                 </div>
                 <div className="fm-bottom">
                   <p className="fm-text">病気の予防と早期発見で、健やかな毎日をサポートします。</p>
-                  <a href="#" className="fm-link">
-                    <span>View All</span>
-                    <span className="fm-arrow">→</span>
-                  </a>
+                  <div className="fm-divider"></div>
                 </div>
               </div>
             </div>
@@ -347,7 +337,7 @@ export default function Home() {
             {/* Feature 04 */}
             <div className="feature-modern-card">
               <div className="fm-card-img">
-                <img src="/photo/access_entrance.jpg" alt="安心・快適な診療環境" />
+                <img src="/photo/assets/modern_clinic_reception_interior.png" alt="安心・快適な診療環境" />
               </div>
               <div className="fm-card-badge">
                 <span className="fm-number">04</span>
@@ -360,10 +350,7 @@ export default function Home() {
                 </div>
                 <div className="fm-bottom">
                   <p className="fm-text">清潔で落ち着ける空間で、リラックスして受診いただけます。</p>
-                  <a href="#" className="fm-link">
-                    <span>View All</span>
-                    <span className="fm-arrow">→</span>
-                  </a>
+                  <div className="fm-divider"></div>
                 </div>
               </div>
             </div>
