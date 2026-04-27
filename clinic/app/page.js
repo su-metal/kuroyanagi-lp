@@ -189,8 +189,8 @@ export default function Home() {
       <section className="news-section">
         {/* 上境界：波形（Hero白→News水色） */}
         <div className="news-wave-top" aria-hidden="true">
-          <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,0 C360,60 1080,0 1440,40 L1440,0 L0,0 Z" fill="#ffffff" />
+          <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,0 L0,50 C200,100 400,100 720,60 C1040,20 1240,20 1440,50 L1440,0 Z" fill="#ffffff" />
           </svg>
         </div>
         <div className="container">
@@ -269,8 +269,8 @@ export default function Home() {
       <section className="about-section">
         {/* 上境界：アーチ（News水色→About） */}
         <div className="about-wave-top" aria-hidden="true">
-          <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,0 L0,80 Q720,20 1440,80 L1440,0 Z" fill="#eaf3fb" />
+          <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,0 L0,40 C200,0 400,0 720,50 C1040,100 1240,100 1440,55 L1440,0 Z" fill="#eaf3fb" />
           </svg>
         </div>
         <div className="about-deco about-deco-cloud about-deco-cloud-left" aria-hidden="true"></div>
@@ -323,8 +323,8 @@ export default function Home() {
         </div>
         {/* 下境界：濃い青の波 */}
         <div className="about-wave-bottom" aria-hidden="true">
-          <svg viewBox="0 0 1440 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,70 C360,0 1080,110 1440,30 L1440,110 L0,110 Z" fill="#004098" />
+          <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,60 C200,100 400,100 720,50 C1040,0 1240,0 1440,40 L1440,120 L0,120 Z" fill="#004098" />
           </svg>
         </div>
       </section>

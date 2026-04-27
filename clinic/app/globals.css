@@ -684,7 +684,7 @@ ul {
 }
 
 .news-section {
-  padding: 170px 0 160px;
+  padding: 200px 0 160px;
   background-color: #eaf3fb;
   position: relative;
   overflow: hidden;
@@ -701,7 +701,7 @@ ul {
 .news-wave-top svg {
   display: block;
   width: 100%;
-  height: 70px;
+  height: 100px;
 }
 
 .news-inner {
@@ -1296,7 +1296,7 @@ ul {
 .about-wave-top svg {
   display: block;
   width: 100%;
-  height: 80px;
+  height: 100px;
 }
 
 .about-section {
@@ -1743,7 +1743,7 @@ ul {
 .about-wave-bottom svg {
   display: block;
   width: 100%;
-  height: 110px;
+  height: 120px;
 }
 
 .features-arch-bottom {
