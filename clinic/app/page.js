@@ -100,11 +100,6 @@ export default function Home() {
                 <img src="/photo/clinic.png" alt="クロヤナギ医院 外観" className="hero-photo" />
               </div>
 
-              {/* Bottom-left landscape illustration overlaying the photo */}
-              <div className="hero-deco-landscape">
-                <img src="/photo/assets/06_landscapes/04_街並みと橋.png" alt="" />
-              </div>
-
               {/* Schedule card overlaying the bottom-right of the photo */}
               <div className="hero-schedule-overlay">
                 <div className="schedule-card">
@@ -266,20 +261,52 @@ export default function Home() {
 
       {/* --- ABOUT --- */}
       <section className="about-section">
-        <div className="about-bg">
-          <img src="/photo/clinic_01.png" alt="" className="about-bg-img" />
-          <div className="about-bg-overlay"></div>
+        <div className="about-deco about-deco-cloud about-deco-cloud-left" aria-hidden="true"></div>
+        <div className="about-deco about-deco-cloud about-deco-cloud-top" aria-hidden="true"></div>
+        <div className="about-deco about-deco-cloud about-deco-cloud-right" aria-hidden="true"></div>
+        <img
+          src="/photo/assets/07_ashirai/06_鳥.png"
+          alt=""
+          className="about-deco about-birds"
+        />
+
+        <div className="about-photo about-photo-left-top">
+          <img src="/photo/clinic_01%20(2).png" alt="クロヤナギ医院の外観" />
         </div>
+        <div className="about-photo about-photo-left-bottom">
+          <img src="/photo/assets/features/feature_02.png" alt="院内で検査を行う医師" />
+        </div>
+        <div className="about-photo about-photo-right-top">
+          <img src="/photo/assets/features/feature_01.png" alt="診察室で相談する患者さまと医師" />
+        </div>
+        <div className="about-photo about-photo-right-middle">
+          <img src="/photo/assets/features/feature_04.png" alt="明るい院内の待合スペース" />
+        </div>
+        <div className="about-photo about-photo-right-bottom">
+          <img src="/photo/assets/features/feature_01.png" alt="患者さまに説明する医師" />
+        </div>
+
+        <div className="about-landscape" aria-hidden="true">
+          <img src="/photo/about.png" alt="" />
+        </div>
+
         <div className="container about-content">
-          <p className="about-label"><span className="about-dots">••</span> ABOUT</p>
+          <p className="about-label">ABOUT</p>
+          <div className="about-dots" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
           <h2 className="about-title">
             地域に寄り添い、<br />
-            <span>皆さまの健康を</span>守り続けて。
+            皆さまの<span>健康を守り続けて。</span>
           </h2>
-          <p className="about-desc">
-            クロヤナギ医院は、地域の皆さまに長く信頼していただけるかかりつけ医を目指しています。
-            内科・外科・小児科を中心に、予防医療から専門的な検査・治療まで幅広く対応します。
-          </p>
+          <div className="about-desc">
+            <p>クロヤナギ医院は、地域の皆さまに長く信頼していただける</p>
+            <p>かかりつけ医を目指しています。</p>
+            <p>内科・外科・小児科を中心に、</p>
+            <p>予防医療から専門的な検査・治療まで幅広く対応します。</p>
+            <p>どんな些細なことでも気になることがあれば、</p>
+            <p>お気軽にご相談ください。</p>
+          </div>
           <a href="#" className="about-btn">当院について →</a>
         </div>
       </section>
