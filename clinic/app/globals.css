@@ -1272,8 +1272,8 @@ ul {
 --------------------------------------------------------- */
 .features-section {
   position: relative;
-  padding: 100px 0 140px;
-  background: linear-gradient(160deg, #e8f0fb 0%, #ffffff 60%);
+  padding: 140px 0 160px;
+  background: #004098;
   overflow: hidden;
 }
 
@@ -1284,11 +1284,41 @@ ul {
   font-size: clamp(60px, 8vw, 120px);
   font-weight: 900;
   letter-spacing: 0.05em;
-  color: rgba(0, 64, 152, 0.05);
+  color: rgba(255, 255, 255, 0.07);
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
   line-height: 1;
+}
+
+.features-wave-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  line-height: 0;
+  background: #004098;
+}
+
+.features-wave-top svg {
+  display: block;
+  width: 100%;
+  height: 70px;
+}
+
+.features-arch-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  line-height: 0;
+  background: #ffffff;
+}
+
+.features-arch-bottom svg {
+  display: block;
+  width: 100%;
+  height: 80px;
 }
 
 .features-header {
@@ -1298,7 +1328,7 @@ ul {
 .features-en-label {
   display: block;
   font-size: 0.95rem;
-  color: #004098;
+  color: rgba(255, 255, 255, 0.8);
   font-weight: 700;
   letter-spacing: 0.12em;
   margin-bottom: 8px;
@@ -1307,12 +1337,12 @@ ul {
 .features-title {
   font-size: 2.2rem;
   font-family: var(--font-round);
-  color: var(--text-color);
+  color: #ffffff;
   line-height: 1.4;
 }
 
 .features-title span {
-  color: #004098;
+  color: #ffffff;
 }
 
 .features-cards {
