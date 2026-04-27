@@ -1676,7 +1676,9 @@ ul {
 .features-section {
   position: relative;
   padding: 200px 0 200px;
-  background: #004098;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.86) 0 18%, rgba(255, 255, 255, 0) 44%),
+    linear-gradient(180deg, #eef6ff 0%, #e7f2ff 55%, #f7fbff 100%);
   overflow: hidden;
 }
 
@@ -1687,7 +1689,7 @@ ul {
   font-size: clamp(60px, 8vw, 120px);
   font-weight: 900;
   letter-spacing: 0.05em;
-  color: rgba(255, 255, 255, 0.07);
+  color: rgba(0, 64, 152, 0.08);
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
@@ -1698,7 +1700,7 @@ ul {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.18) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(0, 64, 152, 0.1) 1px, transparent 1px);
   background-size: 24px 24px;
   pointer-events: none;
   z-index: 0;
@@ -1719,6 +1721,10 @@ ul {
   height: 120px;
 }
 
+.about-wave-bottom path {
+  fill: #eef6ff;
+}
+
 .features-arch-bottom {
   position: absolute;
   bottom: 0;
@@ -1734,6 +1740,10 @@ ul {
   height: 80px;
 }
 
+.features-arch-bottom path {
+  fill: #f7fbff;
+}
+
 .features-header {
   margin-bottom: 60px;
 }
@@ -1741,7 +1751,7 @@ ul {
 .features-en-label {
   display: block;
   font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(0, 64, 152, 0.72);
   font-weight: 700;
   letter-spacing: 0.12em;
   margin-bottom: 8px;
@@ -1750,12 +1760,12 @@ ul {
 .features-title {
   font-size: 2.2rem;
   font-family: var(--font-round);
-  color: #ffffff;
+  color: var(--text-color);
   line-height: 1.4;
 }
 
 .features-title span {
-  color: #ffffff;
+  color: #004098;
 }
 
 .features-cards {
@@ -1793,8 +1803,8 @@ ul {
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background: #ffffff;
-  color: #004098;
+  background: #004098;
+  color: #ffffff;
   font-size: 1.1rem;
   font-weight: 700;
   display: flex;
