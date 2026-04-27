@@ -8,7 +8,10 @@
       "mcp__Claude_in_Chrome__read_page",
       "mcp__Claude_in_Chrome__computer",
       "Bash(mv \"F:/App_dev/kawabe_metaAD_mikkabi/deploy/kuroyanagi-lp/clinic\" \"F:/App_dev/kawabe_metaAD_mikkabi/deploy/kuroyanagi-lp/clinic_old\")",
-      "Bash(mv \"F:/App_dev/kawabe_metaAD_mikkabi/deploy/kuroyanagi-lp/renewal\" \"F:/App_dev/kawabe_metaAD_mikkabi/deploy/kuroyanagi-lp/clinic\")"
+      "Bash(mv \"F:/App_dev/kawabe_metaAD_mikkabi/deploy/kuroyanagi-lp/renewal\" \"F:/App_dev/kawabe_metaAD_mikkabi/deploy/kuroyanagi-lp/clinic\")",
+      "Bash(powershell -Command \"\\(Get-Item 'F:\\\\App_dev\\\\kawabe_metaAD_mikkabi\\\\deploy\\\\kuroyanagi-lp\\\\clinic\\\\app\\\\page.js'\\).LastWriteTime = Get-Date\")",
+      "Bash(node -e ' *)",
+      "Bash(curl -s http://localhost:3002/)"
     ]
   }
 }
