@@ -264,6 +264,26 @@ export default function Home() {
         </div>
       </section>
 
+      {/* --- ABOUT --- */}
+      <section className="about-section">
+        <div className="about-bg">
+          <img src="/photo/clinic_01.png" alt="" className="about-bg-img" />
+          <div className="about-bg-overlay"></div>
+        </div>
+        <div className="container about-content">
+          <p className="about-label"><span className="about-dots">••</span> ABOUT</p>
+          <h2 className="about-title">
+            地域に寄り添い、<br />
+            <span>皆さまの健康を</span>守り続けて。
+          </h2>
+          <p className="about-desc">
+            クロヤナギ医院は、地域の皆さまに長く信頼していただけるかかりつけ医を目指しています。
+            内科・外科・小児科を中心に、予防医療から専門的な検査・治療まで幅広く対応します。
+          </p>
+          <a href="#" className="about-btn">当院について →</a>
+        </div>
+      </section>
+
       {/* --- FEATURES --- */}
       <section id="features" className="features-section">
         {/* 上境界：波形 */}
@@ -284,7 +304,7 @@ export default function Home() {
             <div className="feature-card">
               <span className="feature-card-num">01</span>
               <div className="feature-card-img">
-                <img src="/photo/assets/features/icon_01_stethoscope.png" alt="地域に根ざした総合診療" />
+                <img src="/photo/assets/features/feature_01.png" alt="地域に根ざした総合診療" />
               </div>
               <div className="feature-card-overlay">
                 <p className="feature-card-title">地域に根ざした<br />総合診療</p>
@@ -294,7 +314,7 @@ export default function Home() {
             <div className="feature-card">
               <span className="feature-card-num">02</span>
               <div className="feature-card-img">
-                <img src="/photo/assets/features/icon_02_heartbeat.png" alt="専門的な検査と手術対応" />
+                <img src="/photo/assets/features/feature_02.png" alt="専門的な検査と手術対応" />
               </div>
               <div className="feature-card-overlay">
                 <p className="feature-card-title">専門的な検査と<br />手術対応</p>
@@ -304,7 +324,7 @@ export default function Home() {
             <div className="feature-card">
               <span className="feature-card-num">03</span>
               <div className="feature-card-img">
-                <img src="/photo/assets/features/icon_03_clipboard.png" alt="予防医療と健康管理" />
+                <img src="/photo/assets/features/feature_03.png" alt="予防医療と健康管理" />
               </div>
               <div className="feature-card-overlay">
                 <p className="feature-card-title">予防医療と<br />健康管理</p>
@@ -314,7 +334,7 @@ export default function Home() {
             <div className="feature-card">
               <span className="feature-card-num">04</span>
               <div className="feature-card-img">
-                <img src="/photo/assets/features/icon_04_syringe.png" alt="安心・快適な診療環境" />
+                <img src="/photo/assets/features/feature_04.png" alt="安心・快適な診療環境" />
               </div>
               <div className="feature-card-overlay">
                 <p className="feature-card-title">安心・快適な<br />診療環境</p>
