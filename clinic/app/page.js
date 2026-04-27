@@ -235,10 +235,10 @@ export default function Home() {
           </div>
           <a href="#" className="about-btn">当院について →</a>
         </div>
-        {/* 下境界：濃い青の波 */}
+        {/* 下境界：FEATURESへつなぐ波 */}
         <div className="about-wave-bottom" aria-hidden="true">
           <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,60 C200,100 400,100 720,50 C1040,0 1240,0 1440,40 L1440,120 L0,120 Z" fill="#004098" />
+            <path d="M0,60 C200,100 400,100 720,50 C1040,0 1240,0 1440,40 L1440,120 L0,120 Z" fill="#eef6ff" />
           </svg>
         </div>
       </section>
@@ -299,7 +299,7 @@ export default function Home() {
         {/* 下境界：半円アーチ */}
         <div className="features-arch-bottom" aria-hidden="true">
           <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,0 L0,80 Q720,20 1440,80 L1440,0 Z" fill="#004098" />
+            <path d="M0,0 L0,80 Q720,20 1440,80 L1440,0 Z" fill="#f7fbff" />
           </svg>
         </div>
       </section>
