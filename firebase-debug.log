@@ -112,3 +112,9 @@
 [debug] [2026-04-27T23:15:36.279Z] > authorizing via signed-in user (tossy104104@gmail.com)
 [debug] [2026-04-27T23:15:36.280Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
 [debug] [2026-04-27T23:15:36.281Z] > authorizing via signed-in user (tossy104104@gmail.com)
+[debug] [2026-04-28T02:39:39.669Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-04-28T02:39:39.671Z] > authorizing via signed-in user (tossy104104@gmail.com)
+[debug] [2026-04-28T02:39:39.798Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-04-28T02:39:39.798Z] > authorizing via signed-in user (tossy104104@gmail.com)
+[debug] [2026-04-28T02:39:39.799Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-04-28T02:39:39.799Z] > authorizing via signed-in user (tossy104104@gmail.com)
