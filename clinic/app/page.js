@@ -4,6 +4,14 @@ import { useState } from "react";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const facilityImages = [
+    { src: "/photo/clinic_02.png", alt: "診察室", variant: "vertical" },
+    { src: "/photo/assets/modern_clinic_reception_interior.png", alt: "待合室", variant: "wide" },
+    { src: "/photo/img3.jpg", alt: "医療設備", variant: "vertical" },
+    { src: "/photo/clinic_03.png", alt: "院内設備", variant: "wide" },
+    { src: "/photo/access_entrance.jpg", alt: "医院入口", variant: "vertical" },
+    { src: "/photo/clinic_011.png", alt: "診療環境", variant: "wide" },
+  ];
 
   return (
     <div className="wrapper">
@@ -424,15 +432,15 @@ export default function Home() {
                 <img src="/photo/assets/07_ashirai/06_鳥.png" alt="" />
               </div>
               <div className="facility-image-grid">
-                <div className="facility-img-item vertical">
-                  <img src="/photo/clinic_02.png" alt="診察室" />
-                </div>
-                <div className="facility-img-item wide">
-                  <img src="/photo/assets/modern_clinic_reception_interior.png" alt="待合室" />
-                </div>
-                <div className="facility-img-item vertical">
-                  <img src="/photo/img3.jpg" alt="設備" />
-                </div>
+                {[0, 1].map((setIndex) => (
+                  <div className="facility-image-set" aria-hidden={setIndex === 1} key={setIndex}>
+                    {facilityImages.map((image) => (
+                      <div className={`facility-img-item ${image.variant}`} key={`${setIndex}-${image.src}`}>
+                        <img src={image.src} alt={setIndex === 0 ? image.alt : ""} />
+                      </div>
+                    ))}
+                  </div>
+                ))}
               </div>
             </div>
 
