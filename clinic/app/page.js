@@ -278,9 +278,9 @@ export default function Home() {
               {/* Top Row: 4 Items */}
               <div className="f-top-grid">
                 {[
-                  { img: "/photo/assets/features/feature_01.png", icon: "/photo/assets/features/icon_02_heartbeat.png", title: "丁寧なカウンセリング", text: "患者さまのお悩みやご希望を丁寧に伺い、最適な治療をご提案します。" },
-                  { img: "/photo/assets/features/feature_02.png", icon: "/photo/assets/features/icon_03_clipboard.png", title: "最新の医療設備", text: "正確な診断と安全な治療のために、最新の医療機器を導入しています。" },
-                  { img: "/photo/assets/features/feature_03.png", icon: "/photo/assets/features/icon_01_stethoscope.png", title: "経験豊富な医師が担当", text: "専門性の高い医師が、豊富な経験に基づいた質の高い医療を提供します。" },
+                  { img: "/photo/assets/features/feature_01.png", icon: "/photo/assets/03_medical/01_内科.png", title: "丁寧なカウンセリング", text: "患者さまのお悩みやご希望を丁寧に伺い、最適な治療をご提案します。" },
+                  { img: "/photo/assets/features/feature_02.png", icon: "/photo/assets/03_medical/03_検査.png", title: "最新の医療設備", text: "正確な診断と安全な治療のために、最新の医療機器を導入しています。" },
+                  { img: "/photo/assets/features/feature_03.png", icon: "/photo/assets/03_medical/04_循環器内科.png", title: "経験豊富な医師が担当", text: "専門性の高い医師が、豊富な経験に基づいた質の高い医療を提供します。" },
                   { img: "/photo/assets/features/feature_04.png", icon: "/photo/assets/03_medical/08_バリアフリー.png", title: "通いやすい診療体制", text: "平日夜間や土曜診療にも対応。ご都合に合わせて通いやすい体制を整えています。" },
                 ].map((item, idx) => (
                   <div className="f-top-item" key={idx}>
