@@ -1908,6 +1908,34 @@ ul {
   filter: saturate(1.05) brightness(1.08);
 }
 
+.about-wave-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  line-height: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.about-wave-bottom svg {
+  display: block;
+  width: 100%;
+  height: 100px;
+}
+
+@media (max-width: 1024px) {
+  .about-wave-bottom svg {
+    height: 70px;
+  }
+}
+
+@media (max-width: 640px) {
+  .about-wave-bottom svg {
+    height: 50px;
+  }
+}
+
 @media (max-width: 1200px) {
   .about-section {
     min-height: 880px;
@@ -2056,9 +2084,9 @@ ul {
 --------------------------------------------------------- */
 .features-new-section {
   position: relative;
-  padding: 240px 0;
+  padding: 200px 0 300px;
   background:
-    radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.9) 0 18%, rgba(255, 255, 255, 0) 46%),
+    /* radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.9) 0 18%, rgba(255, 255, 255, 0) 46%), */
     linear-gradient(180deg, #f4f9fd 0%, #eef6fb 100%);
 }
 
@@ -2360,7 +2388,7 @@ ul {
 
 @media (max-width: 640px) {
   .features-new-section {
-    padding: 80px 0;
+    padding: 60px 0 80px;
   }
   .features-white-card {
     padding: 50px 24px;
