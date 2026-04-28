@@ -241,7 +241,7 @@ export default function Home() {
         {/* 下境界：FEATURESへつなぐ波 */}
         <div className="about-wave-bottom" aria-hidden="true">
           <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,60 C200,100 400,100 720,50 C1040,0 1240,0 1440,40 L1440,120 L0,120 Z" fill="#fcf9f5" />
+            <path d="M0,60 C200,100 400,100 720,50 C1040,0 1240,0 1440,40 L1440,120 L0,120 Z" fill="#fff" />
           </svg>
         </div>
       </section>
@@ -251,7 +251,7 @@ export default function Home() {
         {/* Top decoration (Wave) */}
         <div className="features-wave-top" aria-hidden="true">
           <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,100 C240,0 480,0 720,50 C960,100 1200,100 1440,50 L1440,100 L0,100 Z" fill="#fcf9f5" />
+            <path d="M0,100 C240,0 480,0 720,50 C960,100 1200,100 1440,50 L1440,100 L0,100 Z" fill="#fff" />
           </svg>
         </div>
 
@@ -441,6 +441,17 @@ export default function Home() {
                     ))}
                   </div>
                 ))}
+              </div>
+              <div className="facility-mobile-collage" aria-label="施設紹介の写真">
+                <div className="facility-mobile-photo main">
+                  <img src="/photo/assets/modern_clinic_reception_interior.png" alt="待合室" />
+                </div>
+                <div className="facility-mobile-photo">
+                  <img src="/photo/doctor.png" alt="診療風景" />
+                </div>
+                <div className="facility-mobile-photo">
+                  <img src="/photo/img3.jpg" alt="医療設備" />
+                </div>
               </div>
             </div>
 

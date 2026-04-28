@@ -269,8 +269,8 @@ ul {
   --hero-landscape-width: 600px;
   --hero-landscape-top: 450px;
   --hero-schedule-bottom: clamp(20px, 1vh, 72px);
-  --hero-family-top: 350px;
-  --hero-hill-top: 450px;
+  --hero-family-top: 450px;
+  --hero-hill-top: 550px;
   --hero-bottom-offset: 72px;
   --hero-header-height: 152px;
   padding: 20px 0 0;
@@ -732,7 +732,7 @@ ul {
 }
 /* --- FACILITY --- */
 .facility-section {
-  padding: 120px 0;
+  padding: 80px 0;
   position: relative;
   overflow: hidden;
   background: #eef6ff;
@@ -752,7 +752,7 @@ ul {
   right: 0;
   width: 50%;
   background-color: #fcf9f5;
-  border-radius: 300px 0 0 300px;
+  border-radius: 200px 0 0 200px;
   z-index: 1;
 }
 
@@ -803,6 +803,10 @@ ul {
   width: max-content;
   animation: facility-scroll 38s linear infinite;
   will-change: transform;
+}
+
+.facility-mobile-collage {
+  display: none;
 }
 
 .facility-image-set {
@@ -971,14 +975,86 @@ ul {
 }
 
 @media (max-width: 768px) {
+  .facility-section {
+    padding: 0 0 80px;
+    background: #fff;
+  }
+
+  .facility-section .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .facility-bg-shape,
+  .facility-deco-cat {
+    display: none;
+  }
+
+  .facility-layout {
+    gap: 0;
+  }
+
+  .facility-images-area {
+    border-radius: 0;
+    overflow: hidden;
+  }
+
+  .facility-mobile-collage {
+    display: none;
+  }
+
+  .facility-image-grid {
+    display: flex;
+    align-items: stretch;
+    height: clamp(280px, 78vw, 360px);
+    animation-duration: 32s;
+  }
+
+  .facility-image-set {
+    align-items: stretch;
+  }
+
+  .facility-content {
+    padding: 48px 26px 0;
+    margin-left: 0;
+  }
+
+  .facility-en-label {
+    font-size: 0.82rem;
+    margin-bottom: 6px;
+  }
+
+  .facility-title {
+    font-size: 1.8rem;
+    margin-bottom: 42px;
+  }
+
+  .facility-lead {
+    font-size: 1.25rem;
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+
+  .facility-desc {
+    max-width: none;
+    font-size: 0.95rem;
+    line-height: 1.9;
+    margin-bottom: 30px;
+  }
+
+  .facility-btn {
+    padding: 14px 20px 14px 24px;
+    gap: 16px;
+  }
+
   .facility-img-item.vertical {
-    width: 130px;
-    height: 180px;
+    width: 48vw;
+    height: 100%;
   }
   
   .facility-img-item.wide {
-    width: 190px;
-    height: 150px;
+    width: 78vw;
+    height: 100%;
   }
 }
 
@@ -1991,7 +2067,7 @@ ul {
 .features-section {
   position: relative;
   padding: 120px 0 160px;
-  background-color: #fcf9f5; /* 優しいベージュ系背景 */
+  background-color: #fff; /* 優しいベージュ系背景 */
   overflow-x: hidden;
 }
 
