@@ -277,89 +277,57 @@ export default function Home() {
             </p>
           </div>
 
-          {/* 4-Column Feature Grid */}
+          {/* 4-Feature Speech Cards */}
           <div className="features-modern-grid">
             {/* Feature 01 */}
-            <div className="feature-modern-card">
-              <div className="fm-card-img">
-                <img src="/photo/doctor.png" alt="地域に根ざした総合診療" />
-              </div>
-              <div className="fm-card-badge">
-                <span className="fm-number">01</span>
-                <img src="/photo/assets/icon_01_stethoscope.png" alt="" className="fm-icon" />
-              </div>
+            <div className="feature-modern-card tone-blue">
+              <div className="fm-number-tab">01</div>
               <div className="fm-card-content">
-                <div className="fm-label-stack">
-                  <span className="fm-label">地域に根ざした</span>
-                  <span className="fm-label highlight">総合診療</span>
-                </div>
-                <div className="fm-bottom">
-                  <p className="fm-text">かかりつけ医として、幅広いお悩みに対応します。</p>
-                  <div className="fm-divider"></div>
-                </div>
+                <p className="fm-kicker">かかりつけ医として幅広く対応</p>
+                <h3 className="fm-card-title">地域に根ざした<br />総合診療</h3>
+                <p className="fm-text">風邪や生活習慣病まで、幅広い症状に対応。かかりつけ医として、皆さまの健康をトータルにサポートします。</p>
+              </div>
+              <div className="fm-portrait">
+                <img src="/photo/doctor.png" alt="地域に根ざした総合診療" />
               </div>
             </div>
 
             {/* Feature 02 */}
-            <div className="feature-modern-card">
-              <div className="fm-card-img">
-                <img src="/photo/assets/assets_new/02_病院外観.png" alt="専門的な検査と手術対応" />
-              </div>
-              <div className="fm-card-badge">
-                <span className="fm-number">02</span>
-                <img src="/photo/assets/icon_04_syringe.png" alt="" className="fm-icon" />
-              </div>
+            <div className="feature-modern-card tone-blue">
+              <div className="fm-number-tab">02</div>
               <div className="fm-card-content">
-                <div className="fm-label-stack">
-                  <span className="fm-label">専門的な検査と</span>
-                  <span className="fm-label highlight">手術対応</span>
-                </div>
-                <div className="fm-bottom">
-                  <p className="fm-text">精度の高い検査・治療で、安心の医療を提供します。</p>
-                  <div className="fm-divider"></div>
-                </div>
+                <p className="fm-kicker">検査から治療まで院内対応</p>
+                <h3 className="fm-card-title">専門的な検査と<br />手術対応</h3>
+                <p className="fm-text">精度の高い検査機器を備え、専門性の高い診断・治療を提供。必要に応じて手術にも対応します。</p>
+              </div>
+              <div className="fm-portrait">
+                <img src="/photo/assets/assets_new/02_病院外観.png" alt="専門的な検査と手術対応" />
               </div>
             </div>
 
             {/* Feature 03 */}
-            <div className="feature-modern-card">
-              <div className="fm-card-img">
-                <img src="/photo//assets/health.png" alt="予防医療と健康管理" />
-              </div>
-              <div className="fm-card-badge">
-                <span className="fm-number">03</span>
-                <img src="/photo/assets/icon_02_heartbeat.png" alt="" className="fm-icon" />
-              </div>
+            <div className="feature-modern-card tone-blue">
+              <div className="fm-number-tab">03</div>
               <div className="fm-card-content">
-                <div className="fm-label-stack">
-                  <span className="fm-label">予防医療と</span>
-                  <span className="fm-label highlight">健康管理</span>
-                </div>
-                <div className="fm-bottom">
-                  <p className="fm-text">病気の予防と早期発見で、健やかな毎日をサポートします。</p>
-                  <div className="fm-divider"></div>
-                </div>
+                <p className="fm-kicker">早期発見と予防をサポート</p>
+                <h3 className="fm-card-title">予防医療と<br />健康管理</h3>
+                <p className="fm-text">健診や予防接種、生活習慣のアドバイスなど、病気の予防と早期発見に力を入れています。</p>
+              </div>
+              <div className="fm-portrait">
+                <img src="/photo/assets/health.png" alt="予防医療と健康管理" />
               </div>
             </div>
 
             {/* Feature 04 */}
-            <div className="feature-modern-card">
-              <div className="fm-card-img">
-                <img src="/photo/assets/modern_clinic_reception_interior.png" alt="安心・快適な診療環境" />
-              </div>
-              <div className="fm-card-badge">
-                <span className="fm-number">04</span>
-                <img src="/photo/assets/icon_06_chat.png" alt="" className="fm-icon" />
-              </div>
+            <div className="feature-modern-card tone-blue">
+              <div className="fm-number-tab">04</div>
               <div className="fm-card-content">
-                <div className="fm-label-stack">
-                  <span className="fm-label">安心・快適な</span>
-                  <span className="fm-label highlight">診療環境</span>
-                </div>
-                <div className="fm-bottom">
-                  <p className="fm-text">清潔で落ち着ける空間で、リラックスして受診いただけます。</p>
-                  <div className="fm-divider"></div>
-                </div>
+                <p className="fm-kicker">清潔で落ち着ける院内環境</p>
+                <h3 className="fm-card-title">安心・快適な<br />診療環境</h3>
+                <p className="fm-text">清潔で落ち着いた空間づくりを心がけ、どなたでも安心して受診できる環境を整えています。</p>
+              </div>
+              <div className="fm-portrait">
+                <img src="/photo/assets/modern_clinic_reception_interior.png" alt="安心・快適な診療環境" />
               </div>
             </div>
           </div>
