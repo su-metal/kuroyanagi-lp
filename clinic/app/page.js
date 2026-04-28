@@ -529,52 +529,51 @@ export default function Home() {
       {/* Access Section */}
       <section className="access-section">
         <div className="section-container">
-          <div className="access-header">
-            <h2>アクセス</h2>
-            <div className="access-dots">
-              <span></span><span></span><span></span>
+          <div className="access-heading-row">
+            <div className="access-title-block">
+              <span className="access-en">ACCESS</span>
+              <h2>アクセス</h2>
             </div>
+            <div className="access-address-block">
+              <p>〒431-1404 静岡県浜松市浜名区三ヶ日町宇志34-1</p>
+              <a href="https://www.google.com/maps/search/?api=1&query=%E9%9D%99%E5%B2%A1%E7%9C%8C%E6%B5%9C%E6%9D%BE%E5%B8%82%E6%B5%9C%E5%90%8D%E5%8C%BA%E4%B8%89%E3%83%B6%E6%97%A5%E7%94%BA%E5%AE%87%E5%BF%9734-1" target="_blank" rel="noreferrer">
+                Googleマップで見る
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+            <a href="#" className="access-detail-btn">
+              <span>詳しくみる</span>
+              <span aria-hidden="true">→</span>
+            </a>
           </div>
-          <div className="access-content">
-            <div className="access-info">
-              <div className="access-method">
-                <div className="access-method-icon">
-                  <img src="/photo/assets/access/01_電車.png" alt="電車" />
-                </div>
-                <div className="access-method-text">
-                  <h6>電車でお越しの方</h6>
-                  <p>天竜浜名湖鉄道「三ヶ日駅」より<br/>徒歩約20分（東へ約910m）</p>
-                </div>
+
+          <div className="access-method-card">
+            <div className="access-method">
+              <div className="access-method-icon">
+                <img src="/photo/assets/access/01_電車.png" alt="" />
               </div>
-              <div className="access-method">
-                <div className="access-method-icon">
-                  <img src="/photo/assets/access/02_バス.png" alt="バス" />
-                </div>
-                <div className="access-method-text">
-                  <h6>バスでお越しの方</h6>
-                  <p>遠州鉄道バス 聖隷三方原病院経由 三ヶ日行き<br/>「宇志バス停」より北方徒歩5分</p>
-                </div>
-              </div>
-              <div className="access-method">
-                <div className="access-method-icon">
-                  <img src="/photo/assets/access/03_車.png" alt="車" />
-                </div>
-                <div className="access-method-text">
-                  <h6>お車でお越しの方</h6>
-                  <p>駐車場をご用意しております。<br/>（台数・利用条件はお問い合わせください）</p>
-                </div>
+              <div className="access-method-text">
+                <h6>電車でお越しの方</h6>
+                <p>天竜浜名湖鉄道「三ヶ日駅」より<br />徒歩約20分（東へ約910m）</p>
               </div>
             </div>
-            <div className="access-map">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21807.205815202164!2d137.55273239146715!3d34.79978991325786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601b2efb69d1f481%3A0xff7102d5b326d22f!2z44G_44Gj44GL44Gz5p2x5LuL6K236ICB5Lq65L-d5YGl5pa96Kit!5e1!3m2!1sja!2sjp!4v1777211323976!5m2!1sja!2sjp" 
-                width="600" 
-                height="450" 
-                style={{border: 0}} 
-                allowFullScreen="" 
-                loading="lazy" 
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
+            <div className="access-method">
+              <div className="access-method-icon">
+                <img src="/photo/assets/access/02_バス.png" alt="" />
+              </div>
+              <div className="access-method-text">
+                <h6>バスでお越しの方</h6>
+                <p>遠州鉄道バス 聖隷三方原病院経由 三ヶ日行き<br />「宇志バス停」より北方徒歩5分</p>
+              </div>
+            </div>
+            <div className="access-method">
+              <div className="access-method-icon">
+                <img src="/photo/assets/access/03_車.png" alt="" />
+              </div>
+              <div className="access-method-text">
+                <h6>お車でお越しの方</h6>
+                <p>駐車場をご用意しております。<br />（台数・利用条件はお問い合わせください）</p>
+              </div>
             </div>
           </div>
         </div>
