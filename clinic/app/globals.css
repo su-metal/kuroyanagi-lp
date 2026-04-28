@@ -2056,7 +2056,7 @@ ul {
 --------------------------------------------------------- */
 .features-new-section {
   position: relative;
-  padding: 120px 0;
+  padding: 240px 0;
   background:
     radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.9) 0 18%, rgba(255, 255, 255, 0) 46%),
     linear-gradient(180deg, #f4f9fd 0%, #eef6fb 100%);
