@@ -190,7 +190,7 @@ export default function Home() {
       </section>
       
       {/* --- ABOUT --- */}
-      <section className="about-section">
+      <section id="about" className="about-section">
         <div className="about-deco about-deco-cloud about-deco-cloud-left" aria-hidden="true"></div>
         <div className="about-deco about-deco-cloud about-deco-cloud-top" aria-hidden="true"></div>
         <div className="about-deco about-deco-cloud about-deco-cloud-right" aria-hidden="true"></div>
@@ -372,7 +372,7 @@ export default function Home() {
         </div>
       </section>
       {/* --- FACILITY --- */}
-      <section className="facility-section">
+      <section id="facility" className="facility-section">
         {/* Background shape */}
         <div className="facility-bg-shape" aria-hidden="true"></div>
 
@@ -527,7 +527,7 @@ export default function Home() {
       </div>
 
       {/* Access Section */}
-      <section className="access-section">
+      <section id="access" className="access-section">
         <div className="section-container">
           <div className="access-heading-row">
             <div className="access-title-block">
@@ -578,6 +578,141 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="site-footer">
+        <div className="footer-container">
+          <div className="footer-upper">
+            <div className="footer-info">
+              <a href="/" className="footer-logo" aria-label="クロヤナギ医院 トップへ">
+                <span className="footer-logo-mark">
+                  <img src="/photo/assets/01_action/08_当院について.png" alt="" />
+                </span>
+                <span className="footer-logo-text">
+                  <span className="footer-logo-sub">医療法人社団 早友会</span>
+                  <span className="footer-logo-main">クロヤナギ医院</span>
+                  <span className="footer-logo-en">KUROYANAGI CLINIC</span>
+                </span>
+              </a>
+
+              <div className="footer-contact">
+                <p>〒431-1404</p>
+                <p>静岡県浜松市浜名区三ヶ日町宇志34-1</p>
+                <a href="tel:0535251113" className="footer-contact-line">
+                  <span>TEL</span>
+                  <strong>053-525-1113</strong>
+                </a>
+                <p className="footer-contact-line footer-fax">
+                  <span>FAX</span>
+                  <strong>053-525-1114</strong>
+                </p>
+              </div>
+
+              <div className="footer-schedule-wrap">
+                <table className="footer-schedule-table">
+                  <thead>
+                    <tr>
+                      <th>診療受付時間</th>
+                      <th>月</th>
+                      <th>火</th>
+                      <th>水</th>
+                      <th>木</th>
+                      <th>金</th>
+                      <th>土</th>
+                      <th>日祝</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>8:30-12:00</th>
+                      <td>●</td>
+                      <td>●</td>
+                      <td>●</td>
+                      <td>●</td>
+                      <td>●</td>
+                      <td>●</td>
+                      <td>－</td>
+                    </tr>
+                    <tr>
+                      <th>14:30-17:30</th>
+                      <td>●</td>
+                      <td>●</td>
+                      <td>●</td>
+                      <td>－</td>
+                      <td>●</td>
+                      <td>●</td>
+                      <td>－</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <ul className="footer-notes">
+                <li>※ 予約優先</li>
+                <li>※ 木曜午後、日曜、祝日は休診となります</li>
+                <li>※ 初診の方は診療時間が終了する30分前までにご来院ください</li>
+              </ul>
+            </div>
+
+            <div className="footer-action-area">
+              <div className="footer-cta-row">
+                <a href="tel:0535251113" className="footer-cta footer-cta-primary">
+                  <span className="footer-cta-icon">
+                    <img src="/photo/assets/01_action/03_電話.png" alt="" />
+                  </span>
+                  <span>053-525-1113</span>
+                </a>
+                <a href="#" className="footer-cta footer-cta-outline">
+                  <span className="footer-cta-icon">
+                    <img src="/photo/assets/01_action/01_予約.png" alt="" />
+                  </span>
+                  <span>web予約</span>
+                </a>
+              </div>
+
+              <div className="footer-map">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21807.205815202164!2d137.55273239146715!3d34.79978991325786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601b2efb69d1f481%3A0xff7102d5b326d22f!2z44G_44Gj44GL44Gz5p2x5LuL6K236ICB5Lq65L-d5YGl5pa96Kit!5e1!3m2!1sja!2sjp!4v1777211323976!5m2!1sja!2sjp"
+                  width="600"
+                  height="320"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="クロヤナギ医院 Google Map"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+
+          <nav className="footer-nav" aria-label="フッターナビゲーション">
+            {[
+              { label: "ホーム", href: "/" },
+              { label: "当院について", href: "#about" },
+              { label: "当院の特徴", href: "#features" },
+              { label: "診療案内", href: "#service" },
+              { label: "施設・機器紹介", href: "#facility" },
+              { label: "アクセス", href: "#access" },
+              { label: "よくある質問", href: "#" },
+              { label: "お知らせ", href: "#" },
+            ].map((item) => (
+              <a href={item.href} className="footer-nav-link" key={item.label}>
+                <span>{item.label}</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            ))}
+          </nav>
+
+          <div className="footer-bottom">
+            <div className="footer-policy-links">
+              <a href="#">プライバシーポリシー</a>
+              <span aria-hidden="true">|</span>
+              <a href="#">サイトマップ</a>
+            </div>
+            <p>© KUROYANAGI CLINIC All Rights Reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
