@@ -4,6 +4,14 @@ import { useState } from "react";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const facilityImages = [
+    { src: "/photo/clinic_02.png", alt: "診察室", variant: "vertical" },
+    { src: "/photo/assets/modern_clinic_reception_interior.png", alt: "待合室", variant: "wide" },
+    { src: "/photo/img3.jpg", alt: "医療設備", variant: "vertical" },
+    { src: "/photo/clinic_03.png", alt: "院内設備", variant: "wide" },
+    { src: "/photo/access_entrance.jpg", alt: "医院入口", variant: "vertical" },
+    { src: "/photo/clinic_011.png", alt: "診療環境", variant: "wide" },
+  ];
 
   return (
     <div className="wrapper">
@@ -182,7 +190,7 @@ export default function Home() {
       </section>
       
       {/* --- ABOUT --- */}
-      <section className="about-section">
+      <section id="about" className="about-section">
         <div className="about-deco about-deco-cloud about-deco-cloud-left" aria-hidden="true"></div>
         <div className="about-deco about-deco-cloud about-deco-cloud-top" aria-hidden="true"></div>
         <div className="about-deco about-deco-cloud about-deco-cloud-right" aria-hidden="true"></div>
@@ -232,137 +240,90 @@ export default function Home() {
         </div>
         {/* 下境界：FEATURESへつなぐ波 */}
         <div className="about-wave-bottom" aria-hidden="true">
-          <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,60 C200,100 400,100 720,50 C1040,0 1240,0 1440,40 L1440,120 L0,120 Z" fill="#fcf9f5" />
+          <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,0 Q720,100 1440,0 L1440,100 L0,100 Z" fill="#f4f9fd" />
           </svg>
         </div>
       </section>
 
       {/* --- FEATURES --- */}
-      <section id="features" className="features-section">
-        {/* Top decoration (Wave) */}
-        <div className="features-wave-top" aria-hidden="true">
-          <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,100 C240,0 480,0 720,50 C960,100 1200,100 1440,50 L1440,100 L0,100 Z" fill="#fcf9f5" />
-          </svg>
-        </div>
-
-        {/* Background watermark text */}
-        <div className="features-bg-text-large" aria-hidden="true">
-          <div className="bg-text-inner">
-            <span>KUROYANAGI</span>
-            <span>CLINIC.</span>
-          </div>
-        </div>
-        <div className="container-wide">
-          {/* Section Header: Centered */}
-          <div className="features-header-center">
-            <div className="features-label">
-              <span className="en">FEATURE</span>
+      <section id="features" className="features-new-section">
+        <div className="container">
+          <div className="features-white-card">
+            
+            {/* Floating Decorations (PC Only) */}
+            <div className="features-deco features-deco-left hidden-mobile">
+              <div className="f-deco-bubble">安心して通える理由は？</div>
+              <div className="f-deco-person">
+                <img src="/photo/assets/features/feature_05.png" alt="" />
+              </div>
             </div>
-            <h2 className="features-main-title">
-              クロヤナギ医院の<br />
-              <span className="text">4つの特長</span>
-            </h2>
-            <p className="features-description">
-              地域に根ざした医療を大切にし、患者さま一人ひとりに寄り添う診療を心がけています。
-            </p>
-          </div>
-
-          {/* 4-Column Feature Grid */}
-          <div className="features-modern-grid">
-            {/* Feature 01 */}
-            <div className="feature-modern-card">
-              <div className="fm-card-img">
-                <img src="/photo/doctor.png" alt="地域に根ざした総合診療" />
-              </div>
-              <div className="fm-card-badge">
-                <span className="fm-number">01</span>
-                <img src="/photo/assets/icon_01_stethoscope.png" alt="" className="fm-icon" />
-              </div>
-              <div className="fm-card-content">
-                <div className="fm-label-stack">
-                  <span className="fm-label">地域に根ざした</span>
-                  <span className="fm-label highlight">総合診療</span>
-                </div>
-                <div className="fm-bottom">
-                  <p className="fm-text">かかりつけ医として、幅広いお悩みに対応します。</p>
-                  <div className="fm-divider"></div>
-                </div>
+            <div className="features-deco features-deco-right hidden-mobile">
+              <div className="f-deco-bubble">私たちが大切にしていること</div>
+              <div className="f-deco-person">
+                <img src="/photo/assets/features/feature_06.png" alt="" />
               </div>
             </div>
 
-            {/* Feature 02 */}
-            <div className="feature-modern-card">
-              <div className="fm-card-img">
-                <img src="/photo/assets/assets_new/02_病院外観.png" alt="専門的な検査と手術対応" />
+            <div className="features-card-inner">
+              {/* Header */}
+              <div className="f-header">
+                <h2 className="f-title">当クリニックの特徴</h2>
+                <p className="f-lead">
+                  患者さま一人ひとりに寄り添い、安心して通える医療を<br className="hidden-mobile" />
+                  提供するための取り組みを行っています。
+                </p>
               </div>
-              <div className="fm-card-badge">
-                <span className="fm-number">02</span>
-                <img src="/photo/assets/icon_04_syringe.png" alt="" className="fm-icon" />
-              </div>
-              <div className="fm-card-content">
-                <div className="fm-label-stack">
-                  <span className="fm-label">専門的な検査と</span>
-                  <span className="fm-label highlight">手術対応</span>
-                </div>
-                <div className="fm-bottom">
-                  <p className="fm-text">精度の高い検査・治療で、安心の医療を提供します。</p>
-                  <div className="fm-divider"></div>
-                </div>
-              </div>
-            </div>
 
-            {/* Feature 03 */}
-            <div className="feature-modern-card">
-              <div className="fm-card-img">
-                <img src="/photo//assets/health.png" alt="予防医療と健康管理" />
+              {/* Top Row: 4 Items */}
+              <div className="f-top-grid">
+                {[
+                  { img: "/photo/assets/features/feature_01.png", icon: "/photo/assets/features/icon_02_heartbeat.png", title: "丁寧なカウンセリング", text: "患者さまのお悩みやご希望を丁寧に伺い、最適な治療をご提案します。" },
+                  { img: "/photo/assets/features/feature_02.png", icon: "/photo/assets/features/icon_03_clipboard.png", title: "最新の医療設備", text: "正確な診断と安全な治療のために、最新の医療機器を導入しています。" },
+                  { img: "/photo/assets/features/feature_03.png", icon: "/photo/assets/features/icon_01_stethoscope.png", title: "経験豊富な医師が担当", text: "専門性の高い医師が、豊富な経験に基づいた質の高い医療を提供します。" },
+                  { img: "/photo/assets/features/feature_04.png", icon: "/photo/assets/03_medical/08_バリアフリー.png", title: "通いやすい診療体制", text: "平日夜間や土曜診療にも対応。ご都合に合わせて通いやすい体制を整えています。" },
+                ].map((item, idx) => (
+                  <div className="f-top-item" key={idx}>
+                    <div className="f-item-img-wrap">
+                      <img src={item.img} alt={item.title} className="f-item-img" />
+                      <div className="f-item-icon">
+                        <img src={item.icon} alt="" />
+                      </div>
+                    </div>
+                    <h3 className="f-item-title">{item.title}</h3>
+                    <p className="f-item-text">{item.text}</p>
+                  </div>
+                ))}
               </div>
-              <div className="fm-card-badge">
-                <span className="fm-number">03</span>
-                <img src="/photo/assets/icon_02_heartbeat.png" alt="" className="fm-icon" />
-              </div>
-              <div className="fm-card-content">
-                <div className="fm-label-stack">
-                  <span className="fm-label">予防医療と</span>
-                  <span className="fm-label highlight">健康管理</span>
-                </div>
-                <div className="fm-bottom">
-                  <p className="fm-text">病気の予防と早期発見で、健やかな毎日をサポートします。</p>
-                  <div className="fm-divider"></div>
-                </div>
-              </div>
-            </div>
 
-            {/* Feature 04 */}
-            <div className="feature-modern-card">
-              <div className="fm-card-img">
-                <img src="/photo/assets/modern_clinic_reception_interior.png" alt="安心・快適な診療環境" />
+              {/* Divider */}
+              <div className="f-divider">
+                <span className="f-divider-text">こんな方におすすめです</span>
               </div>
-              <div className="fm-card-badge">
-                <span className="fm-number">04</span>
-                <img src="/photo/assets/icon_06_chat.png" alt="" className="fm-icon" />
+
+              {/* Bottom Row: 4 Items */}
+              <div className="f-bottom-grid">
+                {[
+                  { icon: "/photo/assets/03_medical/01_内科.png", text: "体調の変化や不調が気になる方" },
+                  { icon: "/photo/assets/03_medical/02_予防接種.png", text: "健康診断の結果を相談したい方" },
+                  { icon: "/photo/assets/03_medical/05_呼吸器内科.png", text: "お子さまの健康について相談したい方" },
+                  { icon: "/photo/assets/03_medical/06_消化器内科.png", text: "かかりつけ医をお探しの方" },
+                ].map((item, idx) => (
+                  <div className="f-bottom-item" key={idx}>
+                    <div className="f-bottom-icon">
+                      <img src={item.icon} alt="" />
+                    </div>
+                    <p className="f-bottom-text">{item.text}</p>
+                  </div>
+                ))}
               </div>
-              <div className="fm-card-content">
-                <div className="fm-label-stack">
-                  <span className="fm-label">安心・快適な</span>
-                  <span className="fm-label highlight">診療環境</span>
-                </div>
-                <div className="fm-bottom">
-                  <p className="fm-text">清潔で落ち着ける空間で、リラックスして受診いただけます。</p>
-                  <div className="fm-divider"></div>
-                </div>
-              </div>
+
+              {/* Footer Note */}
+              <p className="f-note">
+                ※診療内容や診療時間など、詳細は各ページをご確認ください。
+              </p>
             </div>
           </div>
-        </div>
-
-
-        {/* Bottom decoration */}
-        <div className="features-arch-bottom" aria-hidden="true">
-          <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,0 L0,80 Q720,20 1440,80 L1440,0 Z" fill="#fcf9f5" />
-          </svg>
         </div>
       </section>
 
@@ -405,9 +366,74 @@ export default function Home() {
           </div>
 
           <aside className="medical-guide-copy" aria-label="診療案内のメッセージ">
-            <span className="medical-guide-copy-label">診療案内</span>
+            {/* <span className="medical-guide-copy-label">診療案内</span> */}
             <p>どんなことでも<br />まずはご相談ください。</p>
           </aside>
+        </div>
+      </section>
+      {/* --- FACILITY --- */}
+      <section id="facility" className="facility-section">
+        {/* Background shape */}
+        <div className="facility-bg-shape" aria-hidden="true"></div>
+
+        <div className="container">
+          <div className="facility-layout">
+            
+            {/* Left: Images */}
+            <div className="facility-images-area">
+              <div className="facility-deco-cat" aria-hidden="true">
+                <img src="/photo/assets/07_ashirai/06_鳥.png" alt="" />
+              </div>
+              <div className="facility-image-grid">
+                {[0, 1].map((setIndex) => (
+                  <div className="facility-image-set" aria-hidden={setIndex === 1} key={setIndex}>
+                    {facilityImages.map((image) => (
+                      <div className={`facility-img-item ${image.variant}`} key={`${setIndex}-${image.src}`}>
+                        <img src={image.src} alt={setIndex === 0 ? image.alt : ""} />
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+              <div className="facility-mobile-collage" aria-label="施設紹介の写真">
+                <div className="facility-mobile-photo main">
+                  <img src="/photo/assets/modern_clinic_reception_interior.png" alt="待合室" />
+                </div>
+                <div className="facility-mobile-photo">
+                  <img src="/photo/doctor.png" alt="診療風景" />
+                </div>
+                <div className="facility-mobile-photo">
+                  <img src="/photo/img3.jpg" alt="医療設備" />
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Content */}
+            <div className="facility-content">
+              <span className="facility-en-label">FACILITY</span>
+              <h2 className="facility-title">施設紹介</h2>
+              
+              <div className="facility-text-group">
+                <h3 className="facility-lead">
+                  最新の設備・機器を揃えた<br />
+                  快適で安心できる診療環境
+                </h3>
+                <p className="facility-desc">
+                  皆さまに安心して受診していただけるよう、清潔で開放感のある空間づくりを心がけています。
+                  最新の医療機器を導入し、精密な診断と適切な治療を行える環境を整えております。
+                  お気軽にご来院ください。
+                </p>
+              </div>
+
+              <a href="#" className="facility-btn">
+                <span>施設紹介を見る</span>
+                <span className="btn-arrow">
+                  <img src="/photo/assets/02_navi/01_矢印右.png" alt="" />
+                </span>
+              </a>
+            </div>
+
+          </div>
         </div>
       </section>
 
@@ -501,58 +527,192 @@ export default function Home() {
       </div>
 
       {/* Access Section */}
-      <section className="access-section">
+      <section id="access" className="access-section">
         <div className="section-container">
-          <div className="access-header">
-            <h2>アクセス</h2>
-            <div className="access-dots">
-              <span></span><span></span><span></span>
+          <div className="access-heading-row">
+            <div className="access-title-block">
+              <span className="access-en">ACCESS</span>
+              <h2>アクセス</h2>
             </div>
+            <div className="access-address-block">
+              <p>〒431-1404 静岡県浜松市浜名区三ヶ日町宇志34-1</p>
+              <a href="https://www.google.com/maps/search/?api=1&query=%E9%9D%99%E5%B2%A1%E7%9C%8C%E6%B5%9C%E6%9D%BE%E5%B8%82%E6%B5%9C%E5%90%8D%E5%8C%BA%E4%B8%89%E3%83%B6%E6%97%A5%E7%94%BA%E5%AE%87%E5%BF%9734-1" target="_blank" rel="noreferrer">
+                Googleマップで見る
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+            <a href="#" className="access-detail-btn">
+              <span>詳しくみる</span>
+              <span aria-hidden="true">→</span>
+            </a>
           </div>
-          <div className="access-content">
-            <div className="access-info">
-              <div className="access-method">
-                <div className="access-method-icon">
-                  <img src="/photo/assets/access/01_電車.png" alt="電車" />
-                </div>
-                <div className="access-method-text">
-                  <h6>電車でお越しの方</h6>
-                  <p>天竜浜名湖鉄道「三ヶ日駅」より<br/>徒歩約20分（東へ約910m）</p>
-                </div>
+
+          <div className="access-method-card">
+            <div className="access-method">
+              <div className="access-method-icon">
+                <img src="/photo/assets/access/01_電車.png" alt="" />
               </div>
-              <div className="access-method">
-                <div className="access-method-icon">
-                  <img src="/photo/assets/access/02_バス.png" alt="バス" />
-                </div>
-                <div className="access-method-text">
-                  <h6>バスでお越しの方</h6>
-                  <p>遠州鉄道バス 聖隷三方原病院経由 三ヶ日行き<br/>「宇志バス停」より北方徒歩5分</p>
-                </div>
-              </div>
-              <div className="access-method">
-                <div className="access-method-icon">
-                  <img src="/photo/assets/access/03_車.png" alt="車" />
-                </div>
-                <div className="access-method-text">
-                  <h6>お車でお越しの方</h6>
-                  <p>駐車場をご用意しております。<br/>（台数・利用条件はお問い合わせください）</p>
-                </div>
+              <div className="access-method-text">
+                <h6>電車でお越しの方</h6>
+                <p>天竜浜名湖鉄道「三ヶ日駅」より<br />徒歩約20分（東へ約910m）</p>
               </div>
             </div>
-            <div className="access-map">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21807.205815202164!2d137.55273239146715!3d34.79978991325786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601b2efb69d1f481%3A0xff7102d5b326d22f!2z44G_44Gj44GL44Gz5p2x5LuL6K236ICB5Lq65L-d5YGl5pa96Kit!5e1!3m2!1sja!2sjp!4v1777211323976!5m2!1sja!2sjp" 
-                width="600" 
-                height="450" 
-                style={{border: 0}} 
-                allowFullScreen="" 
-                loading="lazy" 
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
+            <div className="access-method">
+              <div className="access-method-icon">
+                <img src="/photo/assets/access/02_バス.png" alt="" />
+              </div>
+              <div className="access-method-text">
+                <h6>バスでお越しの方</h6>
+                <p>遠州鉄道バス 聖隷三方原病院経由 三ヶ日行き<br />「宇志バス停」より北方徒歩5分</p>
+              </div>
+            </div>
+            <div className="access-method">
+              <div className="access-method-icon">
+                <img src="/photo/assets/access/03_車.png" alt="" />
+              </div>
+              <div className="access-method-text">
+                <h6>お車でお越しの方</h6>
+                <p>駐車場をご用意しております。<br />（台数・利用条件はお問い合わせください）</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="site-footer">
+        <div className="footer-container">
+          <div className="footer-upper">
+            <div className="footer-info">
+              <a href="/" className="footer-logo" aria-label="クロヤナギ医院 トップへ">
+                <span className="footer-logo-mark">
+                  <img src="/photo/assets/01_action/08_当院について.png" alt="" />
+                </span>
+                <span className="footer-logo-text">
+                  <span className="footer-logo-sub">医療法人社団 早友会</span>
+                  <span className="footer-logo-main">クロヤナギ医院</span>
+                  <span className="footer-logo-en">KUROYANAGI CLINIC</span>
+                </span>
+              </a>
+
+              <div className="footer-contact">
+                <p>〒431-1404</p>
+                <p>静岡県浜松市浜名区三ヶ日町宇志34-1</p>
+                <a href="tel:0535251113" className="footer-contact-line">
+                  <span>TEL</span>
+                  <strong>053-525-1113</strong>
+                </a>
+                <p className="footer-contact-line footer-fax">
+                  <span>FAX</span>
+                  <strong>053-525-1114</strong>
+                </p>
+              </div>
+
+              <div className="footer-schedule-wrap">
+                <table className="footer-schedule-table">
+                  <thead>
+                    <tr>
+                      <th>診療受付時間</th>
+                      <th>月</th>
+                      <th>火</th>
+                      <th>水</th>
+                      <th>木</th>
+                      <th>金</th>
+                      <th>土</th>
+                      <th>日祝</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>8:30-12:00</th>
+                      <td>●</td>
+                      <td>●</td>
+                      <td>●</td>
+                      <td>●</td>
+                      <td>●</td>
+                      <td>●</td>
+                      <td>－</td>
+                    </tr>
+                    <tr>
+                      <th>14:30-17:30</th>
+                      <td>●</td>
+                      <td>●</td>
+                      <td>●</td>
+                      <td>－</td>
+                      <td>●</td>
+                      <td>●</td>
+                      <td>－</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <ul className="footer-notes">
+                <li>※ 予約優先</li>
+                <li>※ 木曜午後、日曜、祝日は休診となります</li>
+                <li>※ 初診の方は診療時間が終了する30分前までにご来院ください</li>
+              </ul>
+            </div>
+
+            <div className="footer-action-area">
+              <div className="footer-cta-row">
+                <a href="tel:0535251113" className="footer-cta footer-cta-primary">
+                  <span className="footer-cta-icon">
+                    <img src="/photo/assets/01_action/03_電話.png" alt="" />
+                  </span>
+                  <span>053-525-1113</span>
+                </a>
+                <a href="#" className="footer-cta footer-cta-outline">
+                  <span className="footer-cta-icon">
+                    <img src="/photo/assets/01_action/01_予約.png" alt="" />
+                  </span>
+                  <span>web予約</span>
+                </a>
+              </div>
+
+              <div className="footer-map">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21807.205815202164!2d137.55273239146715!3d34.79978991325786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601b2efb69d1f481%3A0xff7102d5b326d22f!2z44G_44Gj44GL44Gz5p2x5LuL6K236ICB5Lq65L-d5YGl5pa96Kit!5e1!3m2!1sja!2sjp!4v1777211323976!5m2!1sja!2sjp"
+                  width="600"
+                  height="320"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="クロヤナギ医院 Google Map"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+
+          <nav className="footer-nav" aria-label="フッターナビゲーション">
+            {[
+              { label: "ホーム", href: "/" },
+              { label: "当院について", href: "#about" },
+              { label: "当院の特徴", href: "#features" },
+              { label: "診療案内", href: "#service" },
+              { label: "施設・機器紹介", href: "#facility" },
+              { label: "アクセス", href: "#access" },
+              { label: "よくある質問", href: "#" },
+              { label: "お知らせ", href: "#" },
+            ].map((item) => (
+              <a href={item.href} className="footer-nav-link" key={item.label}>
+                <span>{item.label}</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            ))}
+          </nav>
+
+          <div className="footer-bottom">
+            <div className="footer-policy-links">
+              <a href="#">プライバシーポリシー</a>
+              <span aria-hidden="true">|</span>
+              <a href="#">サイトマップ</a>
+            </div>
+            <p>© KUROYANAGI CLINIC All Rights Reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
