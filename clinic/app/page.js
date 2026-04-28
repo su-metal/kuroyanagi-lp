@@ -405,9 +405,63 @@ export default function Home() {
           </div>
 
           <aside className="medical-guide-copy" aria-label="診療案内のメッセージ">
-            <span className="medical-guide-copy-label">診療案内</span>
+            {/* <span className="medical-guide-copy-label">診療案内</span> */}
             <p>どんなことでも<br />まずはご相談ください。</p>
           </aside>
+        </div>
+      </section>
+      {/* --- FACILITY --- */}
+      <section className="facility-section">
+        {/* Background shape */}
+        <div className="facility-bg-shape" aria-hidden="true"></div>
+
+        <div className="container">
+          <div className="facility-layout">
+            
+            {/* Left: Images */}
+            <div className="facility-images-area">
+              <div className="facility-deco-cat" aria-hidden="true">
+                <img src="/photo/assets/07_ashirai/06_鳥.png" alt="" />
+              </div>
+              <div className="facility-image-grid">
+                <div className="facility-img-item vertical">
+                  <img src="/photo/clinic_02.png" alt="診察室" />
+                </div>
+                <div className="facility-img-item wide">
+                  <img src="/photo/assets/modern_clinic_reception_interior.png" alt="待合室" />
+                </div>
+                <div className="facility-img-item vertical">
+                  <img src="/photo/img3.jpg" alt="設備" />
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Content */}
+            <div className="facility-content">
+              <span className="facility-en-label">FACILITY</span>
+              <h2 className="facility-title">施設紹介</h2>
+              
+              <div className="facility-text-group">
+                <h3 className="facility-lead">
+                  最新の設備・機器を揃えた<br />
+                  快適で安心できる診療環境
+                </h3>
+                <p className="facility-desc">
+                  皆さまに安心して受診していただけるよう、清潔で開放感のある空間づくりを心がけています。
+                  最新の医療機器を導入し、精密な診断と適切な治療を行える環境を整えております。
+                  お気軽にご来院ください。
+                </p>
+              </div>
+
+              <a href="#" className="facility-btn">
+                <span>施設紹介を見る</span>
+                <span className="btn-arrow">
+                  <img src="/photo/assets/02_navi/01_矢印右.png" alt="" />
+                </span>
+              </a>
+            </div>
+
+          </div>
         </div>
       </section>
 
