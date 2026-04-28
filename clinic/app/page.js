@@ -329,6 +329,11 @@ export default function Home() {
 
       {/* --- MEDICAL GUIDE --- */}
       <section id="service" className="medical-guide-section">
+        <div className="medical-guide-arch-top" aria-hidden="true">
+          <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,80 Q720,0 1440,80 L1440,0 L0,0 Z" fill="#eef6fb" />
+          </svg>
+        </div>
         <div className="container medical-guide-inner">
           <div className="medical-guide-main">
             <div className="medical-guide-heading">
