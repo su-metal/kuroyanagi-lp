@@ -247,7 +247,37 @@ export default function Home() {
       </section>
 
       {/* --- FEATURES --- */}
-      <section id="features" className="features-new-section">
+      <section id="features" className="features-simple-section">
+        <div className="features-simple-photo">
+          <img src="/photo/assets/modern_clinic_reception_interior.png" alt="クロヤナギ医院の院内" />
+        </div>
+        <div className="features-simple-content">
+          <p className="features-simple-kicker">FEATURE</p>
+          <h2 className="features-simple-title">当クリニックの特徴</h2>
+          <p className="features-simple-copy">
+            地域の皆さまに寄り添い、<br />
+            日々の不調から専門的な相談まで<br />
+            安心して頼れる医院へ
+          </p>
+          <p className="features-simple-lead">
+            内科を中心に、予防医療や検査、日々の健康相談まで幅広く対応しています。
+            患者さま一人ひとりの不安に耳を傾け、必要な医療へ丁寧につなげます。
+          </p>
+          <div className="features-simple-points" aria-label="当クリニックの特徴">
+            {[
+              "丁寧なカウンセリング",
+              "検査・予防医療に対応",
+              "経験に基づく診療",
+              "通いやすい診療体制",
+            ].map((item) => (
+              <span key={item}>{item}</span>
+            ))}
+          </div>
+          <a href="#service" className="features-simple-button">診療案内を見る</a>
+        </div>
+      </section>
+
+      <section className="features-new-section features-legacy-section" aria-hidden="true">
         <div className="container">
           <div className="features-white-card">
             
