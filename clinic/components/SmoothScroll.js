@@ -17,6 +17,8 @@ export default function SmoothScroll({ children }) {
       infinite: false,
     });
 
+    window.lenis = lenis;
+
     // アニメーションフレームでの更新ループ
     function raf(time) {
       lenis.raf(time);

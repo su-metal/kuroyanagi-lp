@@ -42,6 +42,7 @@ export default function Home() {
     currentHeight: 100,
   });
   const [aboutActiveScale, setAboutActiveScale] = useState(0);
+  const [aboutTextProgress, setAboutTextProgress] = useState(0);
   const facilityImages = [
     { src: "/photo/clinic_02.png", alt: "診察室", variant: "vertical" },
     { src: "/photo/assets/modern_clinic_reception_interior.png", alt: "待合室", variant: "wide" },
@@ -184,14 +185,29 @@ export default function Home() {
       if (!aboutSectionRef.current) return;
 
       const rect = aboutSectionRef.current.getBoundingClientRect();
+      const sectionHeight = rect.height;
       const viewportHeight = window.innerHeight;
 
-      // セクションが画面内に入ってから中央付近に来るまでの進捗を計算
-      const start = viewportHeight;
-      const end = 0;
-      const progress = clamp((viewportHeight - rect.top) / viewportHeight, 0, 1);
-      
-      setAboutActiveScale(progress);
+      // セクションが上端に張り付いてからのスクロール距離
+      const stickyDist = sectionHeight - viewportHeight;
+      const scrollOffset = clamp(-rect.top, 0, stickyDist);
+      const progress = scrollOffset / stickyDist;
+
+      // 3フェーズに分割
+      // Phase 1 (0% - 40%): 円の拡大
+      // Phase 2 (40% - 80%): テキストの浮上
+      // Phase 3 (80% - 100%): 保持（タメ）
+      if (progress <= 0.4) {
+        setAboutActiveScale(progress / 0.4);
+        setAboutTextProgress(0);
+      } else if (progress <= 0.8) {
+        setAboutActiveScale(1);
+        const textProg = (progress - 0.4) / 0.4;
+        setAboutTextProgress(textProg);
+      } else {
+        setAboutActiveScale(1);
+        setAboutTextProgress(1);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -199,6 +215,8 @@ export default function Home() {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // スクロールロック用のuseEffectは削除
 
   return (
     <div className="wrapper">
@@ -378,16 +396,16 @@ export default function Home() {
       <section 
         id="about" 
         ref={aboutSectionRef} 
-        className="about-section" 
-        style={{
-          ...aboutRevealStyle,
-          "--about-circle-scale": aboutActiveScale
-        }}
+        className="about-section"
       >
-        <div className="about-reveal-wrapper">
+        <div className="about-reveal-wrapper" style={{
+          '--about-circle-scale': aboutActiveScale,
+          '--about-content-opacity': aboutTextProgress,
+          '--about-content-y': `${(1 - aboutTextProgress) * 50}px`
+        }}>
           <div className="about-reveal-circle"></div>
 
-          <div className="container about-content about-content-editorial" style={{ display: 'none' }}>
+          <div className="container about-content about-content-editorial">
             <h2 className="about-title">
               三ヶ日の陽光と、豊かな自然とともに。<br />
               皆さまの<span>健やかな毎日を見守る。</span>

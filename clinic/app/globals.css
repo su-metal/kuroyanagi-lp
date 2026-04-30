@@ -1920,7 +1920,7 @@ ul {
 
 .about-section {
   position: relative;
-  min-height: 100vh;
+  min-height: 400vh; /* 400vhに増やして「タメ」を確保 */
   padding: 0;
   overflow: visible;
   background: #fff !important;
@@ -1996,6 +1996,18 @@ ul {
   margin-right: auto;
   padding-left: 0;
   padding-right: 0;
+  /* スクロール連動は親の .about-content が持つ変数 (--about-content-opacity, --about-content-y) で制御されます */
+  will-change: opacity, transform;
+  pointer-events: auto;
+  z-index: 10;
+  position: relative;
+}
+
+/* 青背景の上で見やすくするための白文字設定（デフォルト） */
+.about-content-editorial .about-title,
+.about-content-editorial .about-title span,
+.about-content-editorial .about-desc {
+  color: #fff;
 }
 
 .about-label {
