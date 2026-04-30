@@ -355,52 +355,20 @@ export default function Home() {
       {/* --- ABOUT --- */}
       <section id="about" ref={aboutSectionRef} className="about-section" style={aboutRevealStyle}>
         <div className="about-stage" aria-hidden="true">
-          <div className="about-arc-label">
-            <span className="about-arc-dot"></span>
-            <span>A</span>
-            <span>B</span>
-            <span>O</span>
-            <span>U</span>
-            <span>T</span>
-          </div>
-          <img
-            src="/photo/assets/07_ashirai/10_波線.png"
-            alt=""
-            className="about-stage-wave"
-          />
-          <div className="about-semicircle">
-            <svg className="about-landscape-line" viewBox="0 0 1240 270" preserveAspectRatio="none">
-              <path className="about-mountain-line" d="M0 112 L58 94 L110 104 L170 70 L224 122 L300 82 L360 106 L430 74 L506 108 L582 86 L650 112 L730 80 L812 112 L900 82 L990 108 L1060 92 L1134 118 L1240 92" />
-              <path d="M0 184 H1240" />
-              <path d="M28 184 V158 H64 V184 M48 158 V146 H82 V184 M126 184 V150 H174 V184 M144 164 H158 M210 184 V142 H260 V184 M226 160 H244 M310 184 V152 H360 V184 M328 166 H344" />
-              <path d="M488 184 V132 H568 V184 M504 150 H552 M504 166 H552 M528 132 V118 H548 V132" />
-              <path d="M692 184 V146 H740 V184 M710 162 H724 M806 184 V152 H862 V184 M826 168 H842 M940 184 V144 H990 V184 M958 164 H974 M1062 184 V152 H1118 V184 M1082 168 H1098" />
-              <path d="M392 184 C398 166 424 166 430 184 M878 184 C884 164 912 164 918 184 M1154 184 C1160 166 1186 166 1192 184" />
-              <path d="M82 206 H210 M288 210 H356 M432 204 H520 M610 212 H690 M786 206 H918 M1010 212 H1128" />
-            </svg>
-            <div className="about-photo-medallion">
-              <img src="/photo/clinic_01%20(2).png" alt="" />
-            </div>
-            <div className="about-message-badge">
-              <span>このまちの</span>
-              <span>笑顔のそばに、</span>
-              <span>これからも。</span>
-            </div>
-          </div>
+          <div className="about-semicircle"></div>
         </div>
 
         <div className="container about-content about-content-editorial">
           <h2 className="about-title">
-            地域に寄り添い、<br />
-            皆さまの<span>健康を守り続けて。</span>
+            三ヶ日の陽光と、豊かな自然とともに。<br />
+            皆さまの<span>健やかな毎日を見守る。</span>
           </h2>
           <div className="about-desc">
-            <p>クロヤナギ医院は、地域の皆さまに長く信頼していただける</p>
-            <p>かかりつけ医を目指しています。</p>
-            <p>内科・外科・小児科を中心に、</p>
-            <p>予防医療から専門的な検査・治療まで幅広く対応します。</p>
-            <p>どんな些細なことでも気になることがあれば、</p>
-            <p>お気軽にご相談ください。</p>
+            <p>穏やかな浜名湖の風と、あたたかな日差しが降り注ぐ三ヶ日町。</p>
+            <p>私たちはこの街で、お子さまからご年配の方まで、</p>
+            <p>ご家族全員が安心して相談できる「地域の陽だまり」を目指しています。</p>
+            <p>内科・小児科を中心とした温かい診療を通じて、</p>
+            <p>皆さまの健やかな毎日を、真摯に支え続けてまいります。</p>
           </div>
         </div>
         {/* 下境界：FEATURESへつなぐ波 */}
