@@ -52,9 +52,9 @@ export default function Home() {
   const waveProgress = smoothStep(aboutWaveState.progress);
   const waveHeight = Math.round(interpolate(aboutWaveState.coverHeight, aboutWaveState.currentHeight, waveProgress));
   const waveDepth = Math.round(interpolate(0, 100, waveProgress));
-  const waveFill = interpolateColor("ffffff", "f4f9fd", waveProgress);
-  const waveBlur = `${interpolate(8, 0, waveProgress).toFixed(1)}px`;
-  const waveFeatherOpacity = interpolate(0.42, 0, waveProgress).toFixed(3);
+  const waveFill = interpolateColor("fbf9f6", "f4f9fd", waveProgress);
+  const waveBlur = "0px";
+  const waveFeatherOpacity = "0";
   const waveTopOpacity = interpolate(0.72, 1, waveProgress).toFixed(3);
   const waveUpperOpacity = interpolate(0.92, 1, waveProgress).toFixed(3);
   const waveMiddleOpacity = interpolate(1, 1, waveProgress).toFixed(3);
@@ -243,18 +243,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Navigation Bar */}
-        <nav className="pc-nav hidden-mobile">
-          <div className="container">
-            <ul className="nav-list">
-              <li><a href="#">当院について</a></li>
-              <li><a href="#">当院の特長</a></li>
-              <li><a href="#">診療案内</a></li>
-              <li><a href="#">アクセス</a></li>
-              <li><a href="#">お知らせ</a></li>
-            </ul>
-          </div>
-        </nav>
       </header>
 
       {/* --- HERO --- */}
@@ -267,6 +255,15 @@ export default function Home() {
               {/* Photo with custom border-radius */}
               <div className="hero-photo-container">
                 <img src="/photo/clinic.png" alt="クロヤナギ医院 外観" className="hero-photo" />
+              </div>
+
+              {/* Vertical staircase text (Moved here to overlap the photo) */}
+              <div className="copy-vertical-wrapper">
+                <h2 className="v-text staircase-text">
+                  <span className="step-1 line-band">地域の皆さまの</span>
+                  <span className="step-2 line-band">健康を支え、</span>
+                  <span className="step-3 line-band">安心の毎日を。</span>
+                </h2>
               </div>
 
               {/* Schedule card overlaying the bottom-right of the photo */}
@@ -318,20 +315,11 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right: Catchcopy + Family Illustration */}
+            {/* Right: Illustration Area */}
             <div className="hero-copy-area">
               {/* Bird deco top-right */}
               <div className="deco-bird deco-bird-top">
                 <img src="/photo/assets/07_ashirai/06_鳥.png" alt="" />
-              </div>
-
-              {/* Vertical staircase text */}
-              <div className="copy-vertical-wrapper">
-                <h2 className="v-text staircase-text">
-                  <span className="step-1">地域の皆さまの</span>
-                  <span className="step-2">健康を支え、</span>
-                  <span className="step-3">安心の毎日を。</span>
-                </h2>
               </div>
 
               {/* Bird deco bottom-left */}
@@ -344,11 +332,21 @@ export default function Home() {
                 <img src="/photo/assets/07_ashirai/11_丘シルエット.png" alt="" className="ashirai-hill" />
               </div>
 
-              {/* Family illustration */}
               <div className="deco-family">
                 <img src="/photo/assets/05_persons/08_家族グループ.png" alt="ご家族" />
               </div>
             </div>
+
+            {/* New Horizontal Nav Buttons (PC only) - Moved to bottom */}
+            <nav className="hero-quick-nav hidden-mobile">
+              <ul className="quick-nav-list">
+                <li><a href="#about" className="quick-nav-btn">当院について</a></li>
+                <li><a href="#features" className="quick-nav-btn">当院の特長</a></li>
+                <li><a href="#service" className="quick-nav-btn">診療案内</a></li>
+                <li><a href="#access" className="quick-nav-btn">アクセス</a></li>
+                <li><a href="#news" className="quick-nav-btn">お知らせ</a></li>
+              </ul>
+            </nav>
 
           </div>
         </div>
@@ -356,55 +354,42 @@ export default function Home() {
 
       {/* --- ABOUT --- */}
       <section id="about" ref={aboutSectionRef} className="about-section" style={aboutRevealStyle}>
-        <img
-          src="/photo/assets/07_ashirai/06_鳥.png"
-          alt=""
-          className="about-deco about-birds"
-        />
-        <img
-          src="/photo/assets/07_ashirai/10_波線.png"
-          alt=""
-          className="about-deco about-wave-line about-wave-line-1"
-          aria-hidden="true"
-        />
-        <img
-          src="/photo/assets/07_ashirai/10_波線.png"
-          alt=""
-          className="about-deco about-wave-line about-wave-line-2"
-          aria-hidden="true"
-        />
-        <img
-          src="/photo/assets/07_ashirai/10_波線.png"
-          alt=""
-          className="about-deco about-wave-line about-wave-line-3"
-          aria-hidden="true"
-        />
-
-        <div className="about-photo about-photo-left-top">
-          <img src="/photo/clinic_01%20(2).png" alt="クロヤナギ医院の外観" />
-        </div>
-        <div className="about-photo about-photo-left-bottom">
-          <img src="/photo/assets/features/feature_02.png" alt="院内で検査を行う医師" />
-        </div>
-        <div className="about-photo about-photo-right-top">
-          <img src="/photo/assets/features/feature_01.png" alt="診察室で相談する患者さまと医師" />
-        </div>
-        <div className="about-photo about-photo-right-middle">
-          <img src="/photo/assets/features/feature_04.png" alt="明るい院内の待合スペース" />
-        </div>
-        <div className="about-photo about-photo-right-bottom">
-          <img src="/photo/assets/features/feature_01.png" alt="患者さまに説明する医師" />
-        </div>
-
-        <div className="about-landscape" aria-hidden="true">
-          <img src="/photo/about.png" alt="" />
-        </div>
-
-        <div className="container about-content">
-          <p className="about-label">ABOUT</p>
-          <div className="about-dots" aria-hidden="true">
-            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        <div className="about-stage" aria-hidden="true">
+          <div className="about-arc-label">
+            <span className="about-arc-dot"></span>
+            <span>A</span>
+            <span>B</span>
+            <span>O</span>
+            <span>U</span>
+            <span>T</span>
           </div>
+          <img
+            src="/photo/assets/07_ashirai/10_波線.png"
+            alt=""
+            className="about-stage-wave"
+          />
+          <div className="about-semicircle">
+            <svg className="about-landscape-line" viewBox="0 0 1240 270" preserveAspectRatio="none">
+              <path className="about-mountain-line" d="M0 112 L58 94 L110 104 L170 70 L224 122 L300 82 L360 106 L430 74 L506 108 L582 86 L650 112 L730 80 L812 112 L900 82 L990 108 L1060 92 L1134 118 L1240 92" />
+              <path d="M0 184 H1240" />
+              <path d="M28 184 V158 H64 V184 M48 158 V146 H82 V184 M126 184 V150 H174 V184 M144 164 H158 M210 184 V142 H260 V184 M226 160 H244 M310 184 V152 H360 V184 M328 166 H344" />
+              <path d="M488 184 V132 H568 V184 M504 150 H552 M504 166 H552 M528 132 V118 H548 V132" />
+              <path d="M692 184 V146 H740 V184 M710 162 H724 M806 184 V152 H862 V184 M826 168 H842 M940 184 V144 H990 V184 M958 164 H974 M1062 184 V152 H1118 V184 M1082 168 H1098" />
+              <path d="M392 184 C398 166 424 166 430 184 M878 184 C884 164 912 164 918 184 M1154 184 C1160 166 1186 166 1192 184" />
+              <path d="M82 206 H210 M288 210 H356 M432 204 H520 M610 212 H690 M786 206 H918 M1010 212 H1128" />
+            </svg>
+            <div className="about-photo-medallion">
+              <img src="/photo/clinic_01%20(2).png" alt="" />
+            </div>
+            <div className="about-message-badge">
+              <span>このまちの</span>
+              <span>笑顔のそばに、</span>
+              <span>これからも。</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="container about-content about-content-editorial">
           <h2 className="about-title">
             地域に寄り添い、<br />
             皆さまの<span>健康を守り続けて。</span>
@@ -442,13 +427,6 @@ export default function Home() {
           </svg>
         </div>
       </section>
-
-      <img
-        src="/photo/assets/05_persons/family.png"
-        alt=""
-        className="about-family-fixed"
-        aria-hidden="true"
-      />
 
       {/* --- FEATURES --- */}
       <section id="features" className="features-simple-section">
