@@ -41,6 +41,7 @@ export default function Home() {
     coverHeight: 1200,
     currentHeight: 100,
   });
+  const [aboutActiveScale, setAboutActiveScale] = useState(0);
   const facilityImages = [
     { src: "/photo/clinic_02.png", alt: "診察室", variant: "vertical" },
     { src: "/photo/assets/modern_clinic_reception_interior.png", alt: "待合室", variant: "wide" },
@@ -176,6 +177,27 @@ export default function Home() {
       window.removeEventListener("scroll", requestTriggerCheck);
       window.removeEventListener("resize", requestTriggerCheck);
     };
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!aboutSectionRef.current) return;
+
+      const rect = aboutSectionRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+
+      // セクションが画面内に入ってから中央付近に来るまでの進捗を計算
+      const start = viewportHeight;
+      const end = 0;
+      const progress = clamp((viewportHeight - rect.top) / viewportHeight, 0, 1);
+      
+      setAboutActiveScale(progress);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -353,24 +375,34 @@ export default function Home() {
       </section>
 
       {/* --- ABOUT --- */}
-      <section id="about" ref={aboutSectionRef} className="about-section" style={aboutRevealStyle}>
-        <div className="about-stage" aria-hidden="true">
-          <div className="about-semicircle"></div>
-        </div>
+      <section 
+        id="about" 
+        ref={aboutSectionRef} 
+        className="about-section" 
+        style={{
+          ...aboutRevealStyle,
+          "--about-circle-scale": aboutActiveScale
+        }}
+      >
+        <div className="about-reveal-wrapper">
+          <div className="about-reveal-circle"></div>
 
-        <div className="container about-content about-content-editorial">
-          <h2 className="about-title">
-            三ヶ日の陽光と、豊かな自然とともに。<br />
-            皆さまの<span>健やかな毎日を見守る。</span>
-          </h2>
-          <div className="about-desc">
-            <p>穏やかな浜名湖の風と、あたたかな日差しが降り注ぐ三ヶ日町。</p>
-            <p>私たちはこの街で、お子さまからご年配の方まで、</p>
-            <p>ご家族全員が安心して相談できる「地域の陽だまり」を目指しています。</p>
-            <p>内科・小児科を中心とした温かい診療を通じて、</p>
-            <p>皆さまの健やかな毎日を、真摯に支え続けてまいります。</p>
+          <div className="container about-content about-content-editorial" style={{ display: 'none' }}>
+            <h2 className="about-title">
+              三ヶ日の陽光と、豊かな自然とともに。<br />
+              皆さまの<span>健やかな毎日を見守る。</span>
+            </h2>
+            <div className="about-desc">
+              <p>穏やかな浜名湖の風と、あたたかな日差しが降り注ぐ三ヶ日町。</p>
+              <p>私たちはこの街で、お子さまからご年配の方まで、</p>
+              <p>ご家族全員が安心して相談できる「地域の陽だまり」を目指しています。</p>
+              <p>内科・小児科を中心とした温かい診療を通じて、</p>
+              <p>皆さまの健やかな毎日を、真摯に支え続けてまいります。</p>
+            </div>
           </div>
         </div>
+
+        {/* 下境界：FEATURESへつなぐ波 */}
         {/* 下境界：FEATURESへつなぐ波 */}
         <div
           ref={aboutWaveRef}
