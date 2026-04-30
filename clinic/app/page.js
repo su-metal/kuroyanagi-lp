@@ -1,9 +1,46 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+const interpolate = (start, end, progress) => start + (end - start) * progress;
+
+const smoothStep = (progress) => progress * progress * (3 - 2 * progress);
+
+const interpolateColor = (start, end, progress) => {
+  const startRgb = start.match(/\w\w/g).map((value) => parseInt(value, 16));
+  const endRgb = end.match(/\w\w/g).map((value) => parseInt(value, 16));
+  const rgb = startRgb.map((value, index) => Math.round(interpolate(value, endRgb[index], progress)));
+
+  return `#${rgb.map((value) => value.toString(16).padStart(2, "0")).join("")}`;
+};
+
+const getAboutWaveSettings = () => {
+  if (typeof window === "undefined") {
+    return { currentHeight: 100 };
+  }
+
+  if (window.innerWidth <= 640) {
+    return { currentHeight: 50 };
+  }
+
+  if (window.innerWidth <= 1024) {
+    return { currentHeight: 70 };
+  }
+
+  return { currentHeight: 100 };
+};
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const aboutSectionRef = useRef(null);
+  const aboutWaveRef = useRef(null);
+  const [aboutWaveState, setAboutWaveState] = useState({
+    progress: 0,
+    coverHeight: 1200,
+    currentHeight: 100,
+  });
   const facilityImages = [
     { src: "/photo/clinic_02.png", alt: "診察室", variant: "vertical" },
     { src: "/photo/assets/modern_clinic_reception_interior.png", alt: "待合室", variant: "wide" },
@@ -12,6 +49,134 @@ export default function Home() {
     { src: "/photo/access_entrance.jpg", alt: "医院入口", variant: "vertical" },
     { src: "/photo/clinic_011.png", alt: "診療環境", variant: "wide" },
   ];
+  const waveProgress = smoothStep(aboutWaveState.progress);
+  const waveHeight = Math.round(interpolate(aboutWaveState.coverHeight, aboutWaveState.currentHeight, waveProgress));
+  const waveDepth = Math.round(interpolate(0, 100, waveProgress));
+  const waveFill = interpolateColor("ffffff", "f4f9fd", waveProgress);
+  const waveBlur = `${interpolate(8, 0, waveProgress).toFixed(1)}px`;
+  const waveFeatherOpacity = interpolate(0.42, 0, waveProgress).toFixed(3);
+  const waveTopOpacity = interpolate(0.72, 1, waveProgress).toFixed(3);
+  const waveUpperOpacity = interpolate(0.92, 1, waveProgress).toFixed(3);
+  const waveMiddleOpacity = interpolate(1, 1, waveProgress).toFixed(3);
+  const aboutWavePath = `M0,0 Q720,${waveDepth} 1440,0 L1440,100 L0,100 Z`;
+  const contentRevealProgress = smoothStep(clamp(aboutWaveState.progress, 0, 1));
+  const decorRevealProgress = smoothStep(clamp((aboutWaveState.progress - 0.14) / 0.86, 0, 1));
+  const landscapeRevealProgress = smoothStep(clamp((aboutWaveState.progress - 0.08) / 0.92, 0, 1));
+  const aboutRevealStyle = {
+    "--about-content-opacity": interpolate(0.72, 1, contentRevealProgress).toFixed(3),
+    "--about-content-y": `${interpolate(58, 0, contentRevealProgress).toFixed(1)}px`,
+    "--about-decor-opacity": interpolate(0.68, 1, decorRevealProgress).toFixed(3),
+    "--about-decor-y": `${interpolate(70, 0, decorRevealProgress).toFixed(1)}px`,
+    "--about-landscape-opacity": interpolate(0.18, 0.3, landscapeRevealProgress).toFixed(3),
+    "--about-landscape-y": `${interpolate(52, 0, landscapeRevealProgress).toFixed(1)}px`,
+  };
+
+  useEffect(() => {
+    let checkFrameId = null;
+    let animationFrameId = null;
+    let hasTriggeredReveal = false;
+    const revealDuration = 900;
+
+    const getWaveMetrics = () => {
+      const settings = getAboutWaveSettings();
+      const aboutSection = aboutSectionRef.current;
+
+      if (!aboutSection) {
+        return {
+          aboutSection: null,
+          coverHeight: 1200,
+          currentHeight: settings.currentHeight,
+          rect: null,
+          viewportHeight: window.innerHeight || document.documentElement.clientHeight,
+        };
+      }
+
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+      return {
+        aboutSection,
+        coverHeight: Math.max(aboutSection.offsetHeight, viewportHeight * 1.12),
+        currentHeight: settings.currentHeight,
+        rect: aboutSection.getBoundingClientRect(),
+        viewportHeight,
+      };
+    };
+
+    const updateWaveDimensions = (metrics) => {
+      setAboutWaveState((previous) => {
+        const next = {
+          ...previous,
+          coverHeight: metrics.coverHeight,
+          currentHeight: metrics.currentHeight,
+        };
+
+        if (
+          Math.abs(previous.coverHeight - next.coverHeight) < 1 &&
+          previous.currentHeight === next.currentHeight
+        ) {
+          return previous;
+        }
+
+        return next;
+      });
+    };
+
+    const animateReveal = (startedAt) => {
+      const elapsed = performance.now() - startedAt;
+      const progress = clamp(elapsed / revealDuration, 0, 1);
+
+      setAboutWaveState((previous) => {
+        if (Math.abs(previous.progress - progress) < 0.005) {
+          return previous;
+        }
+
+        return {
+          ...previous,
+          progress,
+        };
+      });
+
+      if (progress < 1) {
+        animationFrameId = window.requestAnimationFrame(() => animateReveal(startedAt));
+      }
+    };
+
+    const checkRevealTrigger = () => {
+      checkFrameId = null;
+      const metrics = getWaveMetrics();
+      updateWaveDimensions(metrics);
+
+      if (!metrics.aboutSection || hasTriggeredReveal) {
+        return;
+      }
+
+      const triggerLine = metrics.viewportHeight * 0.42;
+      if (metrics.rect.top <= triggerLine) {
+        hasTriggeredReveal = true;
+        animationFrameId = window.requestAnimationFrame(() => animateReveal(performance.now()));
+      }
+    };
+
+    const requestTriggerCheck = () => {
+      if (checkFrameId === null) {
+        checkFrameId = window.requestAnimationFrame(checkRevealTrigger);
+      }
+    };
+
+    requestTriggerCheck();
+    window.addEventListener("scroll", requestTriggerCheck, { passive: true });
+    window.addEventListener("resize", requestTriggerCheck);
+
+    return () => {
+      if (checkFrameId !== null) {
+        window.cancelAnimationFrame(checkFrameId);
+      }
+      if (animationFrameId !== null) {
+        window.cancelAnimationFrame(animationFrameId);
+      }
+      window.removeEventListener("scroll", requestTriggerCheck);
+      window.removeEventListener("resize", requestTriggerCheck);
+    };
+  }, []);
 
   return (
     <div className="wrapper">
@@ -190,7 +355,7 @@ export default function Home() {
       </section>
 
       {/* --- ABOUT --- */}
-      <section id="about" className="about-section">
+      <section id="about" ref={aboutSectionRef} className="about-section" style={aboutRevealStyle}>
         <img
           src="/photo/assets/07_ashirai/06_鳥.png"
           alt=""
@@ -254,9 +419,26 @@ export default function Home() {
           </div>
         </div>
         {/* 下境界：FEATURESへつなぐ波 */}
-        <div className="about-wave-bottom" aria-hidden="true">
+        <div
+          ref={aboutWaveRef}
+          className="about-wave-bottom"
+          style={{
+            "--about-wave-height": `${waveHeight}px`,
+            "--about-wave-blur": waveBlur,
+            "--about-wave-feather-opacity": waveFeatherOpacity,
+          }}
+          aria-hidden="true"
+        >
           <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,0 Q720,100 1440,0 L1440,100 L0,100 Z" fill="#f4f9fd" />
+            <defs>
+              <linearGradient id="aboutWaveRevealGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor={waveFill} stopOpacity={waveTopOpacity} />
+                <stop offset="24%" stopColor={waveFill} stopOpacity={waveUpperOpacity} />
+                <stop offset="58%" stopColor={waveFill} stopOpacity={waveMiddleOpacity} />
+                <stop offset="100%" stopColor={waveFill} stopOpacity="1" />
+              </linearGradient>
+            </defs>
+            <path d={aboutWavePath} fill="url(#aboutWaveRevealGradient)" />
           </svg>
         </div>
       </section>
