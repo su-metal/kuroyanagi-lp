@@ -42,6 +42,11 @@
 - **ScheduleCard**:
   - PC幅ではviewport右下から固定オフセットで配置。角丸、シャドウ、清潔なテーブルスタイル。
 
+### Brand Marquee
+- FEATUREセクション内の背面装飾として、`FEATURE / 当クリニックの特徴` に少しかかる位置へ `KUROYANAGI CLINIC` の大きな英字タイポを右から左へ無限スクロールさせる。
+- 背景はFEATUREセクションと一体化させ、文字は白で情報セクションを邪魔しない背面タイポとして扱う。
+- `prefers-reduced-motion` が有効な環境ではアニメーションを停止し、静止したブランド帯として表示する。
+
 ### Feature Section (New 4-Column Design)
 - **Layout**: 従来の左右分割から、中央揃えのタイトル + 4カラムの横並びカードレイアウトへ変更。
 - **Card Design**:

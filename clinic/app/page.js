@@ -188,16 +188,31 @@ export default function Home() {
           </div>
         </div>
       </section>
-      
+
       {/* --- ABOUT --- */}
       <section id="about" className="about-section">
-        <div className="about-deco about-deco-cloud about-deco-cloud-left" aria-hidden="true"></div>
-        <div className="about-deco about-deco-cloud about-deco-cloud-top" aria-hidden="true"></div>
-        <div className="about-deco about-deco-cloud about-deco-cloud-right" aria-hidden="true"></div>
         <img
           src="/photo/assets/07_ashirai/06_鳥.png"
           alt=""
           className="about-deco about-birds"
+        />
+        <img
+          src="/photo/assets/07_ashirai/10_波線.png"
+          alt=""
+          className="about-deco about-wave-line about-wave-line-1"
+          aria-hidden="true"
+        />
+        <img
+          src="/photo/assets/07_ashirai/10_波線.png"
+          alt=""
+          className="about-deco about-wave-line about-wave-line-2"
+          aria-hidden="true"
+        />
+        <img
+          src="/photo/assets/07_ashirai/10_波線.png"
+          alt=""
+          className="about-deco about-wave-line about-wave-line-3"
+          aria-hidden="true"
         />
 
         <div className="about-photo about-photo-left-top">
@@ -246,8 +261,23 @@ export default function Home() {
         </div>
       </section>
 
+      <img
+        src="/photo/assets/05_persons/family.png"
+        alt=""
+        className="about-family-fixed"
+        aria-hidden="true"
+      />
+
       {/* --- FEATURES --- */}
       <section id="features" className="features-simple-section">
+        <div className="brand-marquee" aria-label="KUROYANAGI CLINIC">
+          <div className="brand-marquee-track" aria-hidden="true">
+            <span>KUROYANAGI CLINIC.</span>
+            <span>KUROYANAGI CLINIC.</span>
+            <span>KUROYANAGI CLINIC.</span>
+            <span>KUROYANAGI CLINIC.</span>
+          </div>
+        </div>
         <div className="features-simple-photo">
           <img src="/photo/assets/modern_clinic_reception_interior.png" alt="クロヤナギ医院の院内" />
         </div>
@@ -524,14 +554,14 @@ export default function Home() {
               ))}
 
               {/* Mobile/Footer Link */}
-              <div className="news-footer-link-wrap">
+              {/* <div className="news-footer-link-wrap">
                 <a href="#" className="news-footer-link">
                   <span className="news-footer-arrow">
                     <img src="/photo/assets/02_navi/01_矢印右.png" alt="" />
                   </span>
                   <span>お知らせ一覧を見る</span>
                 </a>
-              </div>
+              </div> */}
             </div>
 
           </div>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&family=Zen+Maru+Gothic:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&family=Zen+Maru+Gothic:wght@500;700&display=swap');
 
 :root {
   --primary-blue: #004098;
@@ -14,6 +14,10 @@
   --font-round: "Zen Maru Gothic", sans-serif;
 
   --container-width: 1440px;
+}
+
+.wrapper {
+  position: relative;
 }
 
 * {
@@ -349,6 +353,54 @@ ul {
   object-fit: cover;
 }
 
+/* --- BRAND MARQUEE --- */
+.brand-marquee {
+  position: absolute;
+  top: clamp(42px, 5.2vw, 78px);
+  left: 0;
+  right: 0;
+  z-index: 0;
+  overflow: hidden;
+  padding: 0;
+  pointer-events: none;
+}
+
+.brand-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: clamp(28px, 4vw, 56px);
+  animation: brandMarquee 56s linear infinite;
+  will-change: transform;
+}
+
+.brand-marquee-track span {
+  flex: 0 0 auto;
+  color: rgba(255, 255, 255, 0.92);
+  font-family: "Montserrat", var(--font-sans);
+  font-size: clamp(3rem, 7.6vw, 7rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  line-height: 0.9;
+  white-space: nowrap;
+}
+
+@keyframes brandMarquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - clamp(18px, 2.5vw, 36px)));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-marquee-track {
+    animation: none;
+    transform: translateX(-12%);
+  }
+}
+
 /* Bottom-left landscape illustration overlaying the photo */
 .hero-deco-landscape {
   position: absolute;
@@ -483,7 +535,7 @@ ul {
 .copy-vertical-wrapper {
   position: absolute;
   bottom: 500px;
-  /* 蜀咏悄縺ｮ鬮倥＆縺ｫ蜷医ｏ縺帙※蠎戊ｾｺ縺九ｉ隱ｿ謨ｴ */
+  /* 陷蜥乗ｄ邵ｺ・ｮ鬯ｮ蛟･・・ｸｺ・ｫ陷ｷ蛹ｻ・冗ｸｺ蟶吮ｻ陟取・・ｾ・ｺ邵ｺ荵晢ｽ蛾坡・ｿ隰ｨ・ｴ */
   right: 34px;
   display: flex;
   align-items: flex-start;
@@ -544,7 +596,7 @@ ul {
 .deco-family {
   position: absolute;
   bottom: 340px;
-  /* 蜀咏悄縺ｮ蠎戊ｾｺ莉倩ｿ托ｼ・60px + 菴呵｣包ｼ峨↓驟咲ｽｮ */
+  /* 陷蜥乗ｄ邵ｺ・ｮ陟取・・ｾ・ｺ闔牙ｩ・ｿ謇假ｽｼ繝ｻ60px + 闖ｴ蜻ｵ・｣蛹・ｽｼ蟲ｨ竊馴ｩ溷調・ｽ・ｮ */
   right: 26px;
   width: 160px;
   z-index: 2;
@@ -560,7 +612,7 @@ ul {
   .hero {
     height: calc(100vh - 152px);
     min-height: 600px;
-    /* 最小高さを少し下げて、溢れにくくする */
+    /* 譛蟆城ｫ倥＆繧貞ｰ代＠荳九￡縺ｦ縲∵ｺ｢繧後↓縺上￥縺吶ｋ */
     overflow: hidden;
   }
 
@@ -902,7 +954,7 @@ ul {
   display: flex;
   align-items: center;
   width: max-content;
-  animation: facility-scroll 38s linear infinite;
+  animation: facility-scroll 80s linear infinite;
   will-change: transform;
 }
 
@@ -1108,7 +1160,7 @@ ul {
     display: flex;
     align-items: stretch;
     height: clamp(280px, 78vw, 360px);
-    animation-duration: 32s;
+    animation-duration: 60s;
   }
 
   .facility-image-set {
@@ -1929,64 +1981,77 @@ ul {
   z-index: 1;
   pointer-events: none;
 }
-
-.about-deco-cloud {
-  width: 88px;
-  height: 34px;
-  border: 2px solid #8db5ef;
-  border-radius: 999px;
-  opacity: 0.95;
-}
-
-.about-deco-cloud::before,
-.about-deco-cloud::after {
-  content: "";
-  position: absolute;
-  background: inherit;
-  border: inherit;
-  border-bottom: 0;
-  border-radius: 999px 999px 0 0;
-}
-
-.about-deco-cloud::before {
-  width: 42px;
-  height: 30px;
-  left: 18px;
-  top: -20px;
-}
-
-.about-deco-cloud::after {
-  width: 34px;
-  height: 24px;
-  right: 16px;
-  top: -12px;
-}
-
-.about-deco-cloud-left {
-  top: 150px;
-  left: 6.3vw;
-  background: rgba(255, 255, 255, 0);
-}
-
-.about-deco-cloud-top {
-  top: 112px;
-  left: 63vw;
-  border-color: transparent;
-  background: linear-gradient(180deg, #c7ddfb 0%, #b2d0f4 100%);
-  opacity: 0.85;
-}
-
-.about-deco-cloud-right {
-  right: 6.5vw;
-  bottom: 290px;
-  background: rgba(255, 255, 255, 0);
-}
-
 .about-birds {
   top: 245px;
   right: 4.2vw;
   width: 90px;
   opacity: 0.86;
+}
+
+.about-wave-line {
+  width: clamp(80px, 8vw, 130px);
+  opacity: 0.7;
+  z-index: 1;
+}
+
+.about-wave-line-1 {
+  top: 180px;
+  left: 15vw;
+  transform: rotate(-12deg);
+}
+
+.about-wave-line-2 {
+  bottom: 240px;
+  right: 18vw;
+  transform: rotate(8deg);
+}
+
+.about-wave-line-3 {
+  top: 550px;
+  left: 8vw;
+  transform: rotate(15deg);
+}
+
+@media (max-width: 1024px) {
+  .about-wave-line {
+    width: 80px;
+    opacity: 0.5;
+  }
+  .about-wave-line-1 {
+    top: 120px;
+    left: 10vw;
+  }
+  .about-wave-line-2 {
+    bottom: 150px;
+    right: 5vw;
+  }
+  .about-wave-line-3 {
+    display: none;
+  }
+}
+
+.about-family-fixed {
+  position: absolute;
+  /* Position it relative to the end of the ABOUT section */
+  /* This is tricky since it's in the flow. But if it's absolute, 
+     we can use top: some_value if we know the height, or just use it in flow.
+  */
+  /* Actually, if it's absolute and the wrapper is relative, 
+     we can use a more stable way.
+  */
+  left: max(20px, calc(50% - 720px + 10px));
+  width: clamp(160px, 14vw, 240px);
+  z-index: 100;
+  transform: translateY(-70%);
+  pointer-events: none;
+  filter: drop-shadow(0 10px 20px rgba(0, 50, 100, 0.1));
+}
+
+@media (max-width: 1024px) {
+  .about-family-fixed {
+    width: 140px;
+    left: 10px;
+  }
 }
 
 .about-landscape {
@@ -2234,6 +2299,8 @@ ul {
 }
 
 .features-simple-photo {
+  position: relative;
+  z-index: 1;
   width: 100%;
   aspect-ratio: 1.48 / 1;
   border-radius: 0 72px 72px 0;
@@ -2249,6 +2316,8 @@ ul {
 }
 
 .features-simple-content {
+  position: relative;
+  z-index: 1;
   max-width: 640px;
   color: #27384c;
 }
@@ -2772,7 +2841,7 @@ ul {
 
 
 /* ---------------------------------------------------------
-   DEPARTMENT SECTION (診療のご案内)
+   DEPARTMENT SECTION (險ｺ逋ゅ・縺疲｡亥・)
 --------------------------------------------------------- */
 .medical-guide-section {
   position: relative;
