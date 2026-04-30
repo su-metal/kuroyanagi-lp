@@ -188,16 +188,31 @@ export default function Home() {
           </div>
         </div>
       </section>
-      
+
       {/* --- ABOUT --- */}
       <section id="about" className="about-section">
-        <div className="about-deco about-deco-cloud about-deco-cloud-left" aria-hidden="true"></div>
-        <div className="about-deco about-deco-cloud about-deco-cloud-top" aria-hidden="true"></div>
-        <div className="about-deco about-deco-cloud about-deco-cloud-right" aria-hidden="true"></div>
         <img
           src="/photo/assets/07_ashirai/06_鳥.png"
           alt=""
           className="about-deco about-birds"
+        />
+        <img
+          src="/photo/assets/07_ashirai/10_波線.png"
+          alt=""
+          className="about-deco about-wave-line about-wave-line-1"
+          aria-hidden="true"
+        />
+        <img
+          src="/photo/assets/07_ashirai/10_波線.png"
+          alt=""
+          className="about-deco about-wave-line about-wave-line-2"
+          aria-hidden="true"
+        />
+        <img
+          src="/photo/assets/07_ashirai/10_波線.png"
+          alt=""
+          className="about-deco about-wave-line about-wave-line-3"
+          aria-hidden="true"
         />
 
         <div className="about-photo about-photo-left-top">
@@ -246,8 +261,53 @@ export default function Home() {
         </div>
       </section>
 
+      <img
+        src="/photo/assets/05_persons/family.png"
+        alt=""
+        className="about-family-fixed"
+        aria-hidden="true"
+      />
+
       {/* --- FEATURES --- */}
-      <section id="features" className="features-new-section">
+      <section id="features" className="features-simple-section">
+        <div className="brand-marquee" aria-label="KUROYANAGI CLINIC">
+          <div className="brand-marquee-track" aria-hidden="true">
+            <span>KUROYANAGI CLINIC.</span>
+            <span>KUROYANAGI CLINIC.</span>
+            <span>KUROYANAGI CLINIC.</span>
+            <span>KUROYANAGI CLINIC.</span>
+          </div>
+        </div>
+        <div className="features-simple-photo">
+          <img src="/photo/assets/modern_clinic_reception_interior.png" alt="クロヤナギ医院の院内" />
+        </div>
+        <div className="features-simple-content">
+          <p className="features-simple-kicker">FEATURE</p>
+          <h2 className="features-simple-title">当クリニックの特徴</h2>
+          <p className="features-simple-copy">
+            地域の皆さまに寄り添い、<br />
+            日々の不調から専門的な相談まで<br />
+            安心して頼れる医院へ
+          </p>
+          <p className="features-simple-lead">
+            内科を中心に、予防医療や検査、日々の健康相談まで幅広く対応しています。
+            患者さま一人ひとりの不安に耳を傾け、必要な医療へ丁寧につなげます。
+          </p>
+          <div className="features-simple-points" aria-label="当クリニックの特徴">
+            {[
+              "丁寧なカウンセリング",
+              "検査・予防医療に対応",
+              "経験に基づく診療",
+              "通いやすい診療体制",
+            ].map((item) => (
+              <span key={item}>{item}</span>
+            ))}
+          </div>
+          <a href="#service" className="features-simple-button">診療案内を見る</a>
+        </div>
+      </section>
+
+      <section className="features-new-section features-legacy-section" aria-hidden="true">
         <div className="container">
           <div className="features-white-card">
             
@@ -278,9 +338,9 @@ export default function Home() {
               {/* Top Row: 4 Items */}
               <div className="f-top-grid">
                 {[
-                  { img: "/photo/assets/features/feature_01.png", icon: "/photo/assets/features/icon_02_heartbeat.png", title: "丁寧なカウンセリング", text: "患者さまのお悩みやご希望を丁寧に伺い、最適な治療をご提案します。" },
-                  { img: "/photo/assets/features/feature_02.png", icon: "/photo/assets/features/icon_03_clipboard.png", title: "最新の医療設備", text: "正確な診断と安全な治療のために、最新の医療機器を導入しています。" },
-                  { img: "/photo/assets/features/feature_03.png", icon: "/photo/assets/features/icon_01_stethoscope.png", title: "経験豊富な医師が担当", text: "専門性の高い医師が、豊富な経験に基づいた質の高い医療を提供します。" },
+                  { img: "/photo/assets/features/feature_01.png", icon: "/photo/assets/03_medical/01_内科.png", title: "丁寧なカウンセリング", text: "患者さまのお悩みやご希望を丁寧に伺い、最適な治療をご提案します。" },
+                  { img: "/photo/assets/features/feature_02.png", icon: "/photo/assets/03_medical/03_検査.png", title: "最新の医療設備", text: "正確な診断と安全な治療のために、最新の医療機器を導入しています。" },
+                  { img: "/photo/assets/features/feature_03.png", icon: "/photo/assets/03_medical/04_循環器内科.png", title: "経験豊富な医師が担当", text: "専門性の高い医師が、豊富な経験に基づいた質の高い医療を提供します。" },
                   { img: "/photo/assets/features/feature_04.png", icon: "/photo/assets/03_medical/08_バリアフリー.png", title: "通いやすい診療体制", text: "平日夜間や土曜診療にも対応。ご都合に合わせて通いやすい体制を整えています。" },
                 ].map((item, idx) => (
                   <div className="f-top-item" key={idx}>
@@ -329,6 +389,11 @@ export default function Home() {
 
       {/* --- MEDICAL GUIDE --- */}
       <section id="service" className="medical-guide-section">
+        <div className="medical-guide-arch-top" aria-hidden="true">
+          <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,80 Q720,0 1440,80 L1440,0 L0,0 Z" fill="#eef6fb" />
+          </svg>
+        </div>
         <div className="container medical-guide-inner">
           <div className="medical-guide-main">
             <div className="medical-guide-heading">
@@ -489,14 +554,14 @@ export default function Home() {
               ))}
 
               {/* Mobile/Footer Link */}
-              <div className="news-footer-link-wrap">
+              {/* <div className="news-footer-link-wrap">
                 <a href="#" className="news-footer-link">
                   <span className="news-footer-arrow">
                     <img src="/photo/assets/02_navi/01_矢印右.png" alt="" />
                   </span>
                   <span>お知らせ一覧を見る</span>
                 </a>
-              </div>
+              </div> */}
             </div>
 
           </div>
