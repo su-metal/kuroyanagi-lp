@@ -41,6 +41,16 @@ export default function Home() {
     coverHeight: 1200,
     currentHeight: 100,
   });
+  const [aboutActiveScale, setAboutActiveScale] = useState(0);
+  const [aboutTextProgress, setAboutTextProgress] = useState(0);
+  const [aboutPhotosProgress, setAboutPhotosProgress] = useState(0); // 写真用
+  const [isMedicalVisible, setIsMedicalVisible] = useState(false);
+
+  const newsSectionRef = useRef(null);
+  const medicalSectionRef = useRef(null);
+  const featuresSectionRef = useRef(null);
+  const [isFeaturesVisible, setIsFeaturesVisible] = useState(false);
+  
   const facilityImages = [
     { src: "/photo/clinic_02.png", alt: "診察室", variant: "vertical" },
     { src: "/photo/assets/modern_clinic_reception_interior.png", alt: "待合室", variant: "wide" },
@@ -52,9 +62,9 @@ export default function Home() {
   const waveProgress = smoothStep(aboutWaveState.progress);
   const waveHeight = Math.round(interpolate(aboutWaveState.coverHeight, aboutWaveState.currentHeight, waveProgress));
   const waveDepth = Math.round(interpolate(0, 100, waveProgress));
-  const waveFill = interpolateColor("ffffff", "f4f9fd", waveProgress);
-  const waveBlur = `${interpolate(8, 0, waveProgress).toFixed(1)}px`;
-  const waveFeatherOpacity = interpolate(0.42, 0, waveProgress).toFixed(3);
+  const waveFill = interpolateColor("fbf9f6", "f4f9fd", waveProgress);
+  const waveBlur = "0px";
+  const waveFeatherOpacity = "0";
   const waveTopOpacity = interpolate(0.72, 1, waveProgress).toFixed(3);
   const waveUpperOpacity = interpolate(0.92, 1, waveProgress).toFixed(3);
   const waveMiddleOpacity = interpolate(1, 1, waveProgress).toFixed(3);
@@ -178,6 +188,65 @@ export default function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    const medicalObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsMedicalVisible(true);
+        }
+      },
+      { threshold: 0.6, rootMargin: '0px 0px -100px 0px' }
+    );
+    if (medicalSectionRef.current) medicalObserver.observe(medicalSectionRef.current);
+
+    const featuresObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsFeaturesVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    if (featuresSectionRef.current) featuresObserver.observe(featuresSectionRef.current);
+    
+    const handleScroll = () => {
+      if (!aboutSectionRef.current) return;
+
+      const rect = aboutSectionRef.current.getBoundingClientRect();
+      const sectionHeight = rect.height;
+      const viewportHeight = window.innerHeight;
+
+      // セクションが上端に張り付いてからのスクロール距離
+      const stickyDist = sectionHeight - viewportHeight;
+      const scrollOffset = clamp(-rect.top, 0, stickyDist);
+      const progress = scrollOffset / stickyDist;
+
+      // 3フェーズに分割
+      // Phase 1 (0% - 40%): 円の拡大
+      // Phase 2 (40% - 80%): テキストの浮上
+      // Phase 3 (80% - 100%): 保持（タメ）
+      if (progress <= 0.4) {
+        setAboutActiveScale(progress / 0.4);
+        setAboutTextProgress(0);
+        setAboutPhotosProgress(0);
+      } else {
+        setAboutActiveScale(1);
+        // テキストと写真を同時に開始（0.4〜0.7）
+        const animProg = Math.min(1, Math.max(0, (progress - 0.4) / 0.3));
+        setAboutTextProgress(animProg);
+        setAboutPhotosProgress(animProg);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      medicalObserver.disconnect();
+    };
+  }, []);
+
   return (
     <div className="wrapper">
 
@@ -243,18 +312,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Navigation Bar */}
-        <nav className="pc-nav hidden-mobile">
-          <div className="container">
-            <ul className="nav-list">
-              <li><a href="#">当院について</a></li>
-              <li><a href="#">当院の特長</a></li>
-              <li><a href="#">診療案内</a></li>
-              <li><a href="#">アクセス</a></li>
-              <li><a href="#">お知らせ</a></li>
-            </ul>
-          </div>
-        </nav>
       </header>
 
       {/* --- HERO --- */}
@@ -267,6 +324,15 @@ export default function Home() {
               {/* Photo with custom border-radius */}
               <div className="hero-photo-container">
                 <img src="/photo/clinic.png" alt="クロヤナギ医院 外観" className="hero-photo" />
+              </div>
+
+              {/* Vertical staircase text (Moved here to overlap the photo) */}
+              <div className="copy-vertical-wrapper">
+                <h2 className="v-text staircase-text">
+                  <span className="step-1 line-band">地域の皆さまの</span>
+                  <span className="step-2 line-band">健康を支え、</span>
+                  <span className="step-3 line-band">安心の毎日を。</span>
+                </h2>
               </div>
 
               {/* Schedule card overlaying the bottom-right of the photo */}
@@ -318,20 +384,11 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right: Catchcopy + Family Illustration */}
+            {/* Right: Illustration Area */}
             <div className="hero-copy-area">
               {/* Bird deco top-right */}
               <div className="deco-bird deco-bird-top">
                 <img src="/photo/assets/07_ashirai/06_鳥.png" alt="" />
-              </div>
-
-              {/* Vertical staircase text */}
-              <div className="copy-vertical-wrapper">
-                <h2 className="v-text staircase-text">
-                  <span className="step-1">地域の皆さまの</span>
-                  <span className="step-2">健康を支え、</span>
-                  <span className="step-3">安心の毎日を。</span>
-                </h2>
               </div>
 
               {/* Bird deco bottom-left */}
@@ -344,80 +401,92 @@ export default function Home() {
                 <img src="/photo/assets/07_ashirai/11_丘シルエット.png" alt="" className="ashirai-hill" />
               </div>
 
-              {/* Family illustration */}
               <div className="deco-family">
                 <img src="/photo/assets/05_persons/08_家族グループ.png" alt="ご家族" />
               </div>
             </div>
+
+            {/* New Horizontal Nav Buttons (PC only) - Moved to bottom */}
+            <nav className="hero-quick-nav hidden-mobile">
+              <ul className="quick-nav-list">
+                <li><a href="#about" className="quick-nav-btn">当院について</a></li>
+                <li><a href="#features" className="quick-nav-btn">当院の特長</a></li>
+                <li><a href="#service" className="quick-nav-btn">診療案内</a></li>
+                <li><a href="#access" className="quick-nav-btn">アクセス</a></li>
+                <li><a href="#news" className="quick-nav-btn">お知らせ</a></li>
+              </ul>
+            </nav>
 
           </div>
         </div>
       </section>
 
       {/* --- ABOUT --- */}
-      <section id="about" ref={aboutSectionRef} className="about-section" style={aboutRevealStyle}>
-        <img
-          src="/photo/assets/07_ashirai/06_鳥.png"
-          alt=""
-          className="about-deco about-birds"
-        />
-        <img
-          src="/photo/assets/07_ashirai/10_波線.png"
-          alt=""
-          className="about-deco about-wave-line about-wave-line-1"
-          aria-hidden="true"
-        />
-        <img
-          src="/photo/assets/07_ashirai/10_波線.png"
-          alt=""
-          className="about-deco about-wave-line about-wave-line-2"
-          aria-hidden="true"
-        />
-        <img
-          src="/photo/assets/07_ashirai/10_波線.png"
-          alt=""
-          className="about-deco about-wave-line about-wave-line-3"
-          aria-hidden="true"
-        />
-
-        <div className="about-photo about-photo-left-top">
-          <img src="/photo/clinic_01%20(2).png" alt="クロヤナギ医院の外観" />
-        </div>
-        <div className="about-photo about-photo-left-bottom">
-          <img src="/photo/assets/features/feature_02.png" alt="院内で検査を行う医師" />
-        </div>
-        <div className="about-photo about-photo-right-top">
-          <img src="/photo/assets/features/feature_01.png" alt="診察室で相談する患者さまと医師" />
-        </div>
-        <div className="about-photo about-photo-right-middle">
-          <img src="/photo/assets/features/feature_04.png" alt="明るい院内の待合スペース" />
-        </div>
-        <div className="about-photo about-photo-right-bottom">
-          <img src="/photo/assets/features/feature_01.png" alt="患者さまに説明する医師" />
-        </div>
-
-        <div className="about-landscape" aria-hidden="true">
-          <img src="/photo/about.png" alt="" />
-        </div>
-
-        <div className="container about-content">
-          <p className="about-label">ABOUT</p>
-          <div className="about-dots" aria-hidden="true">
-            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      <section id="about" className="about-section" ref={aboutSectionRef}>
+        <div className="about-reveal-wrapper">
+          <div className="about-reveal-circle" style={{ '--about-circle-scale': aboutActiveScale }}></div>
+          
+          {/* フォトフレーム演出 */}
+          <div className="about-photos-container" style={{ '--about-photos-progress': aboutPhotosProgress }}>
+            <div className="about-photo-frame photo-1">
+              <img src="/photo/assets/06_landscapes/01_川と橋の風景.png" alt="" />
+            </div>
+            <div className="about-photo-frame photo-2">
+              <img src="/photo/assets/06_landscapes/02_山と木の風景.png" alt="" />
+            </div>
+            <div className="about-photo-frame photo-3">
+              <img src="/photo/assets/06_landscapes/03_街並みの風景.png" alt="" />
+            </div>
+            <div className="about-photo-frame photo-4">
+              <img src="/photo/assets/06_landscapes/04_街並みと橋_01.png" alt="" />
+            </div>
+            <div className="about-photo-frame photo-5">
+              <img src="/photo/assets/06_landscapes/04_街並みと橋_02.png" alt="" />
+            </div>
+            <div className="about-photo-frame photo-6">
+              <img src="/photo/assets/06_landscapes/04_街並みと橋_0000.png" alt="" />
+            </div>
           </div>
-          <h2 className="about-title">
-            地域に寄り添い、<br />
-            皆さまの<span>健康を守り続けて。</span>
-          </h2>
-          <div className="about-desc">
-            <p>クロヤナギ医院は、地域の皆さまに長く信頼していただける</p>
-            <p>かかりつけ医を目指しています。</p>
-            <p>内科・外科・小児科を中心に、</p>
-            <p>予防医療から専門的な検査・治療まで幅広く対応します。</p>
-            <p>どんな些細なことでも気になることがあれば、</p>
-            <p>お気軽にご相談ください。</p>
+
+          <div className="container about-content" style={{ 
+            opacity: aboutTextProgress, 
+            transform: `translateY(${(1 - aboutTextProgress) * 50}px)` 
+          }}>
+            <div className="about-content-editorial">
+              <div className="about-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <p className="about-label">ABOUT</p>
+              <h2 className="about-title">
+                <span className="about-title-line">三ヶ日の地に根ざして</span>
+                <span className="about-title-line">心安らぐ医療を届けたい</span>
+              </h2>
+              <div className="about-desc">
+                <p>
+                  クロヤナギ医院は、この三ヶ日の街で長年、<br />
+                  地域の皆さまの健康を見守り続けてきました。
+                </p>
+                <p>
+                  お一人おひとりの不安に寄り添い、<br />
+                  丁寧な対話を通じて最適な医療を提供すること。<br />
+                  それが私たちの変わらぬ想いです。
+                </p>
+                <p>
+                  ちょっとした体調の変化から、専門的なご相談まで。<br />
+                  どうぞお気軽にご来院ください。
+                </p>
+              </div>
+              <div className="about-btn-wrap" style={{ marginTop: '48px' }}>
+                <a href="#features" className="about-btn">
+                  当院について
+                </a>
+              </div>
+            </div>
           </div>
         </div>
+
         {/* 下境界：FEATURESへつなぐ波 */}
         <div
           ref={aboutWaveRef}
@@ -443,13 +512,6 @@ export default function Home() {
         </div>
       </section>
 
-      <img
-        src="/photo/assets/05_persons/family.png"
-        alt=""
-        className="about-family-fixed"
-        aria-hidden="true"
-      />
-
       {/* --- FEATURES --- */}
       <section id="features" className="features-simple-section">
         <div className="brand-marquee" aria-label="KUROYANAGI CLINIC">
@@ -460,7 +522,10 @@ export default function Home() {
             <span>KUROYANAGI CLINIC.</span>
           </div>
         </div>
-        <div className="features-simple-photo">
+        <div 
+          className={`features-simple-photo ${isFeaturesVisible ? 'is-revealed' : ''}`}
+          ref={featuresSectionRef}
+        >
           <img src="/photo/assets/modern_clinic_reception_interior.png" alt="クロヤナギ医院の院内" />
         </div>
         <div className="features-simple-content">
@@ -570,7 +635,7 @@ export default function Home() {
       </section>
 
       {/* --- MEDICAL GUIDE --- */}
-      <section id="service" className="medical-guide-section">
+      <section id="service" className={`medical-guide-section ${isMedicalVisible ? 'is-visible' : ''}`} ref={medicalSectionRef}>
         <div className="medical-guide-arch-top" aria-hidden="true">
           <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0,80 Q720,0 1440,80 L1440,0 L0,0 Z" fill="#eef6fb" />
