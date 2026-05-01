@@ -48,6 +48,8 @@ export default function Home() {
 
   const newsSectionRef = useRef(null);
   const medicalSectionRef = useRef(null);
+  const featuresSectionRef = useRef(null);
+  const [isFeaturesVisible, setIsFeaturesVisible] = useState(false);
   
   const facilityImages = [
     { src: "/photo/clinic_02.png", alt: "診察室", variant: "vertical" },
@@ -196,6 +198,16 @@ export default function Home() {
       { threshold: 0.6, rootMargin: '0px 0px -100px 0px' }
     );
     if (medicalSectionRef.current) medicalObserver.observe(medicalSectionRef.current);
+
+    const featuresObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsFeaturesVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    if (featuresSectionRef.current) featuresObserver.observe(featuresSectionRef.current);
     
     const handleScroll = () => {
       if (!aboutSectionRef.current) return;
@@ -510,7 +522,10 @@ export default function Home() {
             <span>KUROYANAGI CLINIC.</span>
           </div>
         </div>
-        <div className="features-simple-photo">
+        <div 
+          className={`features-simple-photo ${isFeaturesVisible ? 'is-revealed' : ''}`}
+          ref={featuresSectionRef}
+        >
           <img src="/photo/assets/modern_clinic_reception_interior.png" alt="クロヤナギ医院の院内" />
         </div>
         <div className="features-simple-content">
