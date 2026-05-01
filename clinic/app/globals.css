@@ -2045,8 +2045,17 @@ ul {
   max-width: none;
 }
 
-.about-title span {
-  color: #004e98;
+.about-title-line {
+  display: inline-block;
+  white-space: nowrap;
+  color: inherit; /* 親の白文字設定を引き継ぐ */
+}
+
+@media (max-width: 640px) {
+  .about-title-line {
+    display: block;
+    white-space: normal;
+  }
 }
 
 .about-desc {
@@ -2089,6 +2098,69 @@ ul {
 .about-photo {
   display: none;
 }
+
+/* フォトフレーム演出 */
+.about-photos-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: var(--about-photos-progress, 0);
+  transition: opacity 0.4s ease;
+}
+
+.about-photo-frame {
+  position: absolute;
+  background: #fff;
+  padding: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(60px) rotate(var(--photo-rotate, 0deg));
+  transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), 
+              transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: opacity, transform;
+}
+
+/* スクロール進捗に応じたアニメーション適用 */
+.about-photos-container[style*="--about-photos-progress"] .about-photo-frame {
+  /* 進捗が0より大きい場合に、個別の遅延を持って出現 */
+  opacity: var(--about-photos-progress);
+  transform: translateY(calc(60px * (1 - var(--about-photos-progress)))) rotate(var(--photo-rotate, 0deg));
+}
+
+.about-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* PC配置 */
+@media (min-width: 1025px) {
+  .photo-1 { width: 220px; height: 160px; top: 10%; left: 8%; --photo-rotate: -5deg; transition-delay: 0.1s; }
+  .photo-2 { width: 200px; height: 260px; top: 15%; right: 10%; --photo-rotate: 4deg; transition-delay: 0.3s; }
+  .photo-3 { width: 240px; height: 180px; bottom: 15%; left: 12%; --photo-rotate: 3deg; transition-delay: 0.2s; }
+  .photo-4 { width: 180px; height: 220px; bottom: 10%; right: 15%; --photo-rotate: -6deg; transition-delay: 0.4s; }
+  .photo-5 { width: 140px; height: 140px; top: 40%; left: 5%; --photo-rotate: 8deg; transition-delay: 0.5s; }
+  .photo-6 { width: 160px; height: 160px; top: 45%; right: 5%; --photo-rotate: -3deg; transition-delay: 0.6s; }
+}
+
+/* モバイル配置 */
+@media (max-width: 1024px) {
+  .about-photo-frame {
+    padding: 6px;
+    width: 120px !important;
+    height: 90px !important;
+  }
+  .photo-1 { top: 5%; left: 5%; --photo-rotate: -4deg; }
+  .photo-2 { top: 8%; right: 5%; --photo-rotate: 3deg; }
+  .photo-3 { bottom: 10%; left: 5%; --photo-rotate: 2deg; }
+  .photo-4 { bottom: 12%; right: 5%; --photo-rotate: -5deg; }
+  .photo-5, .photo-6 { display: none; }
+}
+
 
 .about-deco {
   position: absolute;
@@ -2902,8 +2974,29 @@ ul {
   border: 1px solid rgba(0, 64, 152, 0.2);
   border-radius: 24px;
   box-shadow: 0 18px 40px rgba(31, 83, 135, 0.08);
-  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+  /* アニメーション用初期状態 */
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), 
+              transform 1.2s cubic-bezier(0.22, 1, 0.36, 1), 
+              border-color 0.28s ease, 
+              box-shadow 0.3s ease;
 }
+
+.medical-guide-section.is-visible .medical-guide-card {
+  opacity: 1 !important;
+  transform: translateY(0);
+}
+
+/* Staggered Delay */
+.medical-guide-card:nth-child(1) { transition-delay: 0.1s; }
+.medical-guide-card:nth-child(2) { transition-delay: 0.2s; }
+.medical-guide-card:nth-child(3) { transition-delay: 0.3s; }
+.medical-guide-card:nth-child(4) { transition-delay: 0.4s; }
+.medical-guide-card:nth-child(5) { transition-delay: 0.5s; }
+.medical-guide-card:nth-child(6) { transition-delay: 0.6s; }
+.medical-guide-card:nth-child(7) { transition-delay: 0.7s; }
+.medical-guide-card:nth-child(8) { transition-delay: 0.8s; }
 
 .medical-guide-card:hover {
   transform: translateY(-6px);

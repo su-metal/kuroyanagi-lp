@@ -43,6 +43,12 @@ export default function Home() {
   });
   const [aboutActiveScale, setAboutActiveScale] = useState(0);
   const [aboutTextProgress, setAboutTextProgress] = useState(0);
+  const [aboutPhotosProgress, setAboutPhotosProgress] = useState(0); // 写真用
+  const [isMedicalVisible, setIsMedicalVisible] = useState(false);
+
+  const newsSectionRef = useRef(null);
+  const medicalSectionRef = useRef(null);
+  
   const facilityImages = [
     { src: "/photo/clinic_02.png", alt: "診察室", variant: "vertical" },
     { src: "/photo/assets/modern_clinic_reception_interior.png", alt: "待合室", variant: "wide" },
@@ -181,6 +187,16 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    const medicalObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsMedicalVisible(true);
+        }
+      },
+      { threshold: 0.6, rootMargin: '0px 0px -100px 0px' }
+    );
+    if (medicalSectionRef.current) medicalObserver.observe(medicalSectionRef.current);
+    
     const handleScroll = () => {
       if (!aboutSectionRef.current) return;
 
@@ -200,23 +216,24 @@ export default function Home() {
       if (progress <= 0.4) {
         setAboutActiveScale(progress / 0.4);
         setAboutTextProgress(0);
-      } else if (progress <= 0.8) {
-        setAboutActiveScale(1);
-        const textProg = (progress - 0.4) / 0.4;
-        setAboutTextProgress(textProg);
+        setAboutPhotosProgress(0);
       } else {
         setAboutActiveScale(1);
-        setAboutTextProgress(1);
+        // テキストと写真を同時に開始（0.4〜0.7）
+        const animProg = Math.min(1, Math.max(0, (progress - 0.4) / 0.3));
+        setAboutTextProgress(animProg);
+        setAboutPhotosProgress(animProg);
       }
     };
 
     window.addEventListener("scroll", handleScroll);
     handleScroll();
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      medicalObserver.disconnect();
+    };
   }, []);
-
-  // スクロールロック用のuseEffectは削除
 
   return (
     <div className="wrapper">
@@ -393,34 +410,71 @@ export default function Home() {
       </section>
 
       {/* --- ABOUT --- */}
-      <section 
-        id="about" 
-        ref={aboutSectionRef} 
-        className="about-section"
-      >
-        <div className="about-reveal-wrapper" style={{
-          '--about-circle-scale': aboutActiveScale,
-          '--about-content-opacity': aboutTextProgress,
-          '--about-content-y': `${(1 - aboutTextProgress) * 50}px`
-        }}>
-          <div className="about-reveal-circle"></div>
+      <section id="about" className="about-section" ref={aboutSectionRef}>
+        <div className="about-reveal-wrapper">
+          <div className="about-reveal-circle" style={{ '--about-circle-scale': aboutActiveScale }}></div>
+          
+          {/* フォトフレーム演出 */}
+          <div className="about-photos-container" style={{ '--about-photos-progress': aboutPhotosProgress }}>
+            <div className="about-photo-frame photo-1">
+              <img src="/photo/assets/06_landscapes/01_川と橋の風景.png" alt="" />
+            </div>
+            <div className="about-photo-frame photo-2">
+              <img src="/photo/assets/06_landscapes/02_山と木の風景.png" alt="" />
+            </div>
+            <div className="about-photo-frame photo-3">
+              <img src="/photo/assets/06_landscapes/03_街並みの風景.png" alt="" />
+            </div>
+            <div className="about-photo-frame photo-4">
+              <img src="/photo/assets/06_landscapes/04_街並みと橋_01.png" alt="" />
+            </div>
+            <div className="about-photo-frame photo-5">
+              <img src="/photo/assets/06_landscapes/04_街並みと橋_02.png" alt="" />
+            </div>
+            <div className="about-photo-frame photo-6">
+              <img src="/photo/assets/06_landscapes/04_街並みと橋_0000.png" alt="" />
+            </div>
+          </div>
 
-          <div className="container about-content about-content-editorial">
-            <h2 className="about-title">
-              三ヶ日の陽光と、豊かな自然とともに。<br />
-              皆さまの<span>健やかな毎日を見守る。</span>
-            </h2>
-            <div className="about-desc">
-              <p>穏やかな浜名湖の風と、あたたかな日差しが降り注ぐ三ヶ日町。</p>
-              <p>私たちはこの街で、お子さまからご年配の方まで、</p>
-              <p>ご家族全員が安心して相談できる「地域の陽だまり」を目指しています。</p>
-              <p>内科・小児科を中心とした温かい診療を通じて、</p>
-              <p>皆さまの健やかな毎日を、真摯に支え続けてまいります。</p>
+          <div className="container about-content" style={{ 
+            opacity: aboutTextProgress, 
+            transform: `translateY(${(1 - aboutTextProgress) * 50}px)` 
+          }}>
+            <div className="about-content-editorial">
+              <div className="about-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <p className="about-label">ABOUT</p>
+              <h2 className="about-title">
+                <span className="about-title-line">三ヶ日の地に根ざして</span>
+                <span className="about-title-line">心安らぐ医療を届けたい</span>
+              </h2>
+              <div className="about-desc">
+                <p>
+                  クロヤナギ医院は、この三ヶ日の街で長年、<br />
+                  地域の皆さまの健康を見守り続けてきました。
+                </p>
+                <p>
+                  お一人おひとりの不安に寄り添い、<br />
+                  丁寧な対話を通じて最適な医療を提供すること。<br />
+                  それが私たちの変わらぬ想いです。
+                </p>
+                <p>
+                  ちょっとした体調の変化から、専門的なご相談まで。<br />
+                  どうぞお気軽にご来院ください。
+                </p>
+              </div>
+              <div className="about-btn-wrap" style={{ marginTop: '48px' }}>
+                <a href="#features" className="about-btn">
+                  当院について
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* 下境界：FEATURESへつなぐ波 */}
         {/* 下境界：FEATURESへつなぐ波 */}
         <div
           ref={aboutWaveRef}
@@ -566,7 +620,7 @@ export default function Home() {
       </section>
 
       {/* --- MEDICAL GUIDE --- */}
-      <section id="service" className="medical-guide-section">
+      <section id="service" className={`medical-guide-section ${isMedicalVisible ? 'is-visible' : ''}`} ref={medicalSectionRef}>
         <div className="medical-guide-arch-top" aria-hidden="true">
           <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0,80 Q720,0 1440,80 L1440,0 L0,0 Z" fill="#eef6fb" />
