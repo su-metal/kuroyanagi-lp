@@ -161,6 +161,17 @@ ul {
   .show-mobile {
     display: flex !important;
   }
+
+  .header-main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background: transparent !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+  }
 }
 
 /* Header UI Elements */
@@ -2383,24 +2394,85 @@ ul {
 
 @media (max-width: 1024px) {
   .hero-editorial {
-    min-height: auto;
-    padding: 28px 0 38px;
+    min-height: 100svh;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
   }
 
   .hero-editorial-shell {
-    width: min(720px, calc(100% - 36px));
-    min-height: auto;
+    width: 100%;
+    max-width: none;
+    min-height: 100svh;
     padding: 0;
+    margin: 0;
+    flex: 1;
   }
 
   .hero-editorial-stage {
-    min-height: 0;
+    min-height: 100svh;
+    height: 100%;
   }
 
   .hero-editorial-main-photo {
     width: 100%;
-    height: clamp(400px, 64vh, 600px);
-    border-radius: 34px;
+    height: 100svh;
+    border-radius: 0;
+    margin: 0;
+    box-shadow: none;
+  }
+
+  /* モバイル版の縦書きキャッチコピー調整 */
+  .hero-editorial-catch {
+    top: max(110px, 15vh);
+    left: 20px;
+  }
+
+  .hero-editorial-catch h2 {
+    font-size: 1.8rem;
+    letter-spacing: 0.2em;
+  }
+
+  .hero-editorial-catch .catch-line:nth-child(2) {
+    margin-top: 1.5rem;
+  }
+
+  .hero-editorial-catch .catch-line:nth-child(3) {
+    margin-top: 3rem;
+  }
+
+  /* モバイル版の診療受付時間カード調整 */
+  .hero-editorial-schedule {
+    right: 18px;
+    bottom: 18px;
+    left: 18px;
+  }
+
+  .editorial-schedule-card {
+    width: 100%;
+    max-width: none;
+    padding: 16px;
+    border-radius: 20px;
+  }
+
+  .editorial-schedule-table th:first-child {
+    font-size: 0.8rem;
+    width: 35%;
+  }
+
+  .editorial-schedule-table .time-slot {
+    font-size: 0.85rem;
+    padding-right: 8px;
+  }
+
+  .editorial-schedule-table td {
+    font-size: 0.85rem;
+  }
+
+  .schedule-footer {
+    margin-top: 12px;
+    font-size: 0.7rem;
   }
 
   .hero-editorial-side-copy,
@@ -2411,38 +2483,94 @@ ul {
   .hero-editorial-bottom {
     position: relative;
     bottom: auto;
-    margin-top: 22px;
+    margin-top: 28px;
     flex-direction: column;
     align-items: stretch;
+    padding: 0;
   }
 
   .hero-editorial-news {
     max-width: none;
     width: 100%;
     justify-content: center;
+    font-size: 0.85rem;
   }
 
   .hero-editorial-actions {
     justify-content: center;
     flex-wrap: wrap;
+    gap: 10px;
   }
 }
 
 @media (max-width: 640px) {
+  .hero-editorial {
+    padding-bottom: 0;
+  }
+
   .hero-editorial-main-photo {
-    height: 480px;
-    border-radius: 28px;
+    height: 100svh;
+    border-radius: 0;
+  }
+
+  .hero-editorial-catch {
+    top: 14vh;
+    left: 18px;
+  }
+
+  .hero-editorial-catch h2 {
+    font-size: 1.55rem;
+    gap: 12px;
+  }
+
+  .hero-editorial-catch .catch-line {
+    padding: 1.2rem 0.4rem;
+    letter-spacing: 0.25em;
+  }
+
+  .hero-editorial-catch .catch-line:nth-child(2) {
+    margin-top: 1.5rem;
+  }
+
+  .hero-editorial-catch .catch-line:nth-child(3) {
+    margin-top: 3rem;
+  }
+
+  .editorial-schedule-table th:first-child {
+    font-size: 0.74rem;
+  }
+
+  .editorial-schedule-table .time-slot {
+    font-size: 0.78rem;
+  }
+
+  .editorial-schedule-table td {
+    font-size: 0.78rem;
+  }
+
+  .hero-editorial-scroll {
+    bottom: clamp(280px, 40vh, 360px); 
+    right: 12px;
+    left: auto;
+    transform: none;
+    opacity: 0.6;
+  }
+
+  .scroll-line {
+    height: 60px;
   }
 
   .hero-editorial-news {
     gap: 10px;
     padding: 13px 18px;
-    font-size: 0.82rem;
+    font-size: 0.8rem;
   }
 
   .hero-editorial-cta {
-    min-width: 132px;
-    padding: 13px 20px;
+    flex: 1;
+    min-width: 120px;
+    padding: 13px 10px;
+    font-size: 0.82rem;
   }
 }
 
@@ -2589,7 +2717,7 @@ ul {
 
 @media (max-width: 640px) {
   .about-title-line {
-    display: block;
+    display: inline;
     white-space: normal;
   }
 }
@@ -2869,7 +2997,7 @@ ul {
 
 @media (max-width: 1024px) {
   .about-section {
-    min-height: auto;
+    min-height: 450vh;
     padding: 100px 0 340px;
   }
 
@@ -2895,22 +3023,25 @@ ul {
   }
 
   .about-content {
-    padding: 0 22px;
-    padding-bottom: 200px;
+    padding: 8vh 22px 200px;
   }
 
   .about-title {
-    font-size: 1.62rem;
-    line-height: 1.65;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    letter-spacing: 0.03em;
+    margin-bottom: 20px;
+  }
+
+  .about-desc {
+    font-size: 0.9rem;
+    line-height: 1.7;
     letter-spacing: 0.03em;
     margin-bottom: 24px;
   }
 
-  .about-desc {
-    font-size: 0.94rem;
-    line-height: 1.9;
-    letter-spacing: 0.03em;
-    margin-bottom: 34px;
+  .about-desc br {
+    display: none;
   }
 
   .about-desc p {
@@ -2920,7 +3051,7 @@ ul {
   .about-desc p::after {
     content: "";
     display: block;
-    height: 8px;
+    height: 6px;
   }
 
   .about-bottom-visual {
@@ -2930,7 +3061,7 @@ ul {
   .about-bottom-visual img {
     width: 170%;
     max-width: none;
-    transform: translateX(-20%);
+    transform: translateX(-50%);
   }
 
   .about-photo {
@@ -3830,6 +3961,12 @@ ul {
     right: 16px;
     bottom: 14px;
     font-size: 1.35rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .medical-guide-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -4982,5 +5119,164 @@ ul {
   .footer-policy-links {
     gap: 18px;
     margin-bottom: 20px;
+  }
+}
+
+/* --- NEWS SECTION BASE & MOBILE --- */
+.news-section {
+  padding: 120px 0;
+  background-color: var(--bg-warm);
+  position: relative;
+  overflow: hidden;
+}
+
+.news-inner {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.news-en-title {
+  display: block;
+  font-family: var(--font-modern);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--accent-orange);
+  letter-spacing: 0.15em;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.news-jp-title {
+  font-size: 2.8rem;
+  line-height: 1.25;
+  color: var(--primary-blue);
+  margin-bottom: 32px;
+}
+
+.news-desc {
+  font-size: 1rem;
+  line-height: 1.9;
+  color: #567;
+  margin-bottom: 48px;
+}
+
+.news-btn-pc {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 32px;
+  background: var(--primary-blue);
+  color: #fff;
+  border-radius: 100px;
+  font-weight: 700;
+  box-shadow: 0 10px 20px rgba(0, 64, 152, 0.15);
+}
+
+.news-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(0, 64, 152, 0.1);
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.news-card:first-child {
+  padding-top: 0;
+}
+
+.news-card:hover {
+  transform: translateX(10px);
+}
+
+.news-date {
+  font-family: var(--font-modern);
+  font-weight: 700;
+  color: #89a;
+  min-width: 100px;
+}
+
+.news-tag {
+  padding: 4px 14px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  background: #fff;
+  border: 1px solid #d9e2ef;
+  color: var(--primary-blue);
+}
+
+.news-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-color);
+  flex: 1;
+}
+
+.news-footer-link-wrap {
+  display: none; /* Desktop hidden */
+}
+
+@media (max-width: 1024px) {
+  .news-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  
+  .news-jp-title {
+    font-size: 2.2rem;
+  }
+  
+  .news-btn-pc {
+    display: none;
+  }
+  
+  .news-footer-link-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  }
+  
+  .news-footer-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 800;
+    color: var(--primary-blue);
+  }
+  
+  .news-footer-arrow {
+    width: 32px;
+    height: 32px;
+    background: var(--primary-blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .news-footer-arrow img {
+    filter: brightness(0) invert(1);
+  }
+}
+
+@media (max-width: 640px) {
+  .news-section {
+    padding: 80px 0;
+  }
+  
+  .news-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 24px 0;
+  }
+  
+  .news-card-title {
+    font-size: 1rem;
+    line-height: 1.6;
   }
 }
