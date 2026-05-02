@@ -32,6 +32,14 @@ const getAboutWaveSettings = () => {
   return { currentHeight: 100 };
 };
 
+const HERO_VARIANT = "editorial"; // "current" に戻すと従来FVへ切り替え
+
+const heroEditorialImages = {
+  main: "/photo/hero-editorial-main.jpg",
+  left: "/photo/hero-editorial-left.jpg",
+  right: "/photo/hero-editorial-right.jpg",
+};
+
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const aboutSectionRef = useRef(null);
@@ -50,6 +58,22 @@ export default function Home() {
   const medicalSectionRef = useRef(null);
   const featuresSectionRef = useRef(null);
   const [isFeaturesVisible, setIsFeaturesVisible] = useState(false);
+
+  // Hero Slider logic: Switch 3 images every 6 seconds
+  const [heroActiveIndex, setHeroActiveIndex] = useState(0);
+  const heroSliderImages = [
+    "/photo/hero-editorial-main.jpg",
+    "/photo/slide-title2.jpg",
+    "/photo/slide-title3.jpg"
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHeroActiveIndex((prev) => (prev + 1) % heroSliderImages.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [heroSliderImages.length]);
+
   
   const facilityImages = [
     { src: "/photo/clinic_02.png", alt: "診察室", variant: "vertical" },
@@ -62,7 +86,7 @@ export default function Home() {
   const waveProgress = smoothStep(aboutWaveState.progress);
   const waveHeight = Math.round(interpolate(aboutWaveState.coverHeight, aboutWaveState.currentHeight, waveProgress));
   const waveDepth = Math.round(interpolate(0, 100, waveProgress));
-  const waveFill = interpolateColor("fbf9f6", "f4f9fd", waveProgress);
+  const waveFill = interpolateColor("fbf9f6", "ffffff", waveProgress);
   const waveBlur = "0px";
   const waveFeatherOpacity = "0";
   const waveTopOpacity = interpolate(0.72, 1, waveProgress).toFixed(3);
@@ -208,7 +232,7 @@ export default function Home() {
       { threshold: 0.3 }
     );
     if (featuresSectionRef.current) featuresObserver.observe(featuresSectionRef.current);
-    
+
     const handleScroll = () => {
       if (!aboutSectionRef.current) return;
 
@@ -315,9 +339,76 @@ export default function Home() {
       </header>
 
       {/* --- HERO --- */}
-      <section className="hero">
-        <div className="container hero-container">
-          <div className="hero-layout">
+      {HERO_VARIANT === "editorial" ? (
+        <section className="hero hero-editorial">
+          <div className="hero-editorial-shell">
+            <div className="hero-editorial-stage">
+              <figure className="hero-editorial-main-photo" aria-label="ヒーロー画像スライダー">
+                {heroSliderImages.map((src, index) => (
+                  <img 
+                    key={src}
+                    src={src} 
+                    alt="診療風景" 
+                    className={index === heroActiveIndex ? "active" : ""}
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      opacity: index === heroActiveIndex ? 1 : 0,
+                      transition: "opacity 1.6s ease-in-out",
+                      zIndex: index === heroActiveIndex ? 2 : 1
+                    }}
+                    onError={(event) => { event.currentTarget.style.display = "none"; }} 
+                  />
+                ))}
+
+                {/* --- Catch Copy Overlay --- */}
+                <div className="hero-editorial-catch">
+                  <h2>
+                    <span className="catch-line">地域の皆さまの</span>
+                    <span className="catch-line">健康を支え、</span>
+                    <span className="catch-line">安心の毎日を。</span>
+                  </h2>
+                </div>
+
+                {/* --- Schedule Card Overlay --- */}
+                <div className="hero-editorial-schedule">
+                  <div className="editorial-schedule-card">
+                    <table className="editorial-schedule-table">
+                      <thead>
+                        <tr>
+                          <th>診療受付時間</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th><th>日祝</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td className="time-slot">午前 8:30 - 12:00</td>
+                          <td>●</td><td>●</td><td>●</td><td>●</td><td>●</td><td>●</td><td className="closed">×</td>
+                        </tr>
+                        <tr>
+                          <td className="time-slot">午後 14:00 - 17:30</td>
+                          <td>●</td><td>●</td><td>●</td><td className="closed">×</td><td>●</td><td className="closed">×</td><td className="closed">×</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <footer className="schedule-footer">
+                      <p>木・土午後、日・祝日は休診です</p>
+                    </footer>
+                  </div>
+                </div>
+              </figure>
+            </div>
+          </div>
+
+          {/* --- Scroll Decoration --- */}
+          <div className="hero-editorial-scroll">
+            <span className="scroll-text">SCROLL</span>
+            <div className="scroll-line"></div>
+          </div>
+        </section>
+      ) : (
+        <section className="hero">
+          <div className="container hero-container">
+            <div className="hero-layout">
 
             {/* Left: Main Photo + Schedule Overlay */}
             <div className="hero-photo-wrap">
@@ -354,31 +445,34 @@ export default function Home() {
                       </thead>
                       <tbody>
                         <tr>
-                          <td className="time-slot">8:30-12:00</td>
+                          <td className="time-slot">
+                            <span className="time-period">午前</span> 8:30 - 12:00
+                          </td>
                           <td>●</td>
                           <td>●</td>
                           <td>●</td>
                           <td>●</td>
                           <td>●</td>
                           <td>●</td>
-                          <td className="closed">／</td>
+                          <td className="closed">×</td>
                         </tr>
                         <tr>
-                          <td className="time-slot">14:30-17:30</td>
+                          <td className="time-slot">
+                            <span className="time-period">午後</span> 14:00 - 17:30
+                          </td>
                           <td>●</td>
                           <td>●</td>
                           <td>●</td>
-                          <td className="closed">／</td>
+                          <td className="closed">×</td>
                           <td>●</td>
-                          <td>●</td>
-                          <td className="closed">／</td>
+                          <td className="closed">×</td>
+                          <td className="closed">×</td>
                         </tr>
                       </tbody>
                     </table>
                   </div>
                   <div className="schedule-footer">
-                    <p>※ 予約優先</p>
-                    <p>※ 初診の方は診療時間が終了する30分前までにご来院ください</p>
+                    <p>木・土午後、日・祝日は休診です</p>
                   </div>
                 </div>
               </div>
@@ -417,13 +511,14 @@ export default function Home() {
               </ul>
             </nav>
 
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* --- ABOUT --- */}
       <section id="about" className="about-section" ref={aboutSectionRef}>
-        <div className="about-reveal-wrapper">
+          <div className="about-reveal-wrapper">
           <div className="about-reveal-circle" style={{ '--about-circle-scale': aboutActiveScale }}></div>
           
           {/* フォトフレーム演出 */}
@@ -453,11 +548,6 @@ export default function Home() {
             transform: `translateY(${(1 - aboutTextProgress) * 50}px)` 
           }}>
             <div className="about-content-editorial">
-              <div className="about-dots">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
               <p className="about-label">ABOUT</p>
               <h2 className="about-title">
                 <span className="about-title-line">三ヶ日の地に根ざして</span>
@@ -478,12 +568,11 @@ export default function Home() {
                   どうぞお気軽にご来院ください。
                 </p>
               </div>
-              <div className="about-btn-wrap" style={{ marginTop: '48px' }}>
-                <a href="#features" className="about-btn">
-                  当院について
-                </a>
-              </div>
             </div>
+          </div>
+
+          <div className="about-bottom-visual" style={{ "--about-bottom-progress": aboutPhotosProgress }} aria-hidden="true">
+            <img src="/photo/assets/about/about-bottom-illustration-foreground.png" alt="" />
           </div>
         </div>
 
@@ -638,7 +727,7 @@ export default function Home() {
       <section id="service" className={`medical-guide-section ${isMedicalVisible ? 'is-visible' : ''}`} ref={medicalSectionRef}>
         <div className="medical-guide-arch-top" aria-hidden="true">
           <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,80 Q720,0 1440,80 L1440,0 L0,0 Z" fill="#eef6fb" />
+            <path d="M0,80 Q720,0 1440,80 L1440,0 L0,0 Z" fill="#ffffff" />
           </svg>
         </div>
         <div className="container medical-guide-inner">
@@ -758,7 +847,7 @@ export default function Home() {
             <div className="news-title-area">
               <span className="news-en-title">News</span>
               <h2 className="news-jp-title">当院からの<br />お知らせ</h2>
-              <div className="news-title-line"></div>
+              {/* <div className="news-title-line"></div> */}
               <p className="news-desc">
                 クロヤナギ医院から皆さまへの<br />
                 お知らせや、診療に関する情報を<br />
