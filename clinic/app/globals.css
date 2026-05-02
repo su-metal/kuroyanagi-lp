@@ -28,6 +28,13 @@
   position: relative;
 }
 
+.header {
+  position: relative;
+  z-index: 1000;
+  background: #fff;
+  isolation: isolate;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -405,10 +412,10 @@ ul {
 /* --- BRAND MARQUEE --- */
 .brand-marquee {
   position: absolute;
-  top: clamp(42px, 5.2vw, 78px);
+  top: clamp(24px, 4.6vw, 72px);
   left: 0;
   right: 0;
-  z-index: 0;
+  z-index: 1;
   overflow: hidden;
   padding: 0;
   pointer-events: none;
@@ -424,10 +431,9 @@ ul {
 
 .brand-marquee-track span {
   flex: 0 0 auto;
-  color: rgba(0, 64, 152, 0.07);
-  /* ブルーに変更（背景として馴染む透明度） */
+  color: rgba(3, 110, 183, 0.075);
   font-family: "Montserrat", var(--font-sans);
-  font-size: clamp(3rem, 7.6vw, 7rem);
+  font-size: clamp(3.6rem, 8.2vw, 7.8rem);
   font-weight: 700;
   letter-spacing: 0.18em;
   line-height: 0.9;
@@ -679,7 +685,7 @@ ul {
 .deco-family {
   position: absolute;
   bottom: 340px;
-  /* 陷蜥乗ｄ邵ｺ・ｮ陟取・・ｾ・ｺ闔牙ｩ・ｿ謇假ｽｼ繝ｻ60px + 闖ｴ蜻ｵ・｣蛹・ｽｼ蟲ｨ竊馴ｩ溷調・ｽ・ｮ */
+  /* 陷蜥乗ａE���E�・�E�陟取・・�E�・�E�闔牙�E�・�E�謁E���E��E�繝ｻ60px + 闖ｴ蜻�E�・�E�蛹・�E��E�蟲�E�竊馴�E�溷調・�E�・�E� */
   right: 26px;
   width: 160px;
   z-index: 2;
@@ -695,7 +701,7 @@ ul {
   .hero {
     height: calc(100svh - var(--hero-header-height));
     min-height: 0;
-    /* 譛蟆城ｫ倥＆繧貞ｰ代＠荳九￡縺ｦ縲∵ｺ｢繧後↓縺上￥縺吶ｋ */
+    /* 譛蟁E���E�倥�E�E��貞ｰ代�E�荳九￡縺�E�縲∵�E��E�繧後�E縺上￥縺吶�E�E*/
     overflow: hidden;
   }
 
@@ -1319,13 +1325,13 @@ ul {
   }
 
   .facility-en-label {
-    font-size: 0.82rem;
-    margin-bottom: 6px;
+    font-size: 1.0rem;
+    margin-bottom: 8px;
   }
 
   .facility-title {
     font-size: 1.8rem;
-    margin-bottom: 42px;
+    margin-bottom: 24px;
   }
 
   .facility-lead {
@@ -1641,6 +1647,28 @@ ul {
     bottom: 100px;
     right: 60px;
     width: 80px;
+  }
+}
+
+@media (max-width: 640px) {
+  .news-section {
+    padding: 60px 0 100px;
+  }
+
+  .news-en-title {
+    font-size: 1.0rem;
+  }
+
+  .news-jp-title {
+    font-size: 1.8rem;
+  }
+
+  .news-card {
+    padding: 20px 24px;
+  }
+
+  .news-card-title {
+    font-size: 0.95rem;
   }
 }
 
@@ -2094,10 +2122,10 @@ ul {
 .hero-editorial-catch h2 {
   display: flex;
   flex-direction: row-reverse;
-  /* 日本語の順序：右から左へ列を並べる */
+  /* 日本語�E頁E��：右から左へ列を並べめE*/
   align-items: flex-start;
   gap: clamp(12px, 2.5vw, 32px);
-  /* 列同士の横の間隔を縮小 */
+  /* 列同士の横の間隔を縮封E*/
 }
 
 .hero-editorial-catch .catch-line {
@@ -2110,13 +2138,13 @@ ul {
   line-height: 1;
   letter-spacing: 0.3em;
   white-space: nowrap;
-  /* 白い帯を追加 */
+  /* 白ぁE��を追加 */
   background: rgba(255, 255, 255, 0.85);
   padding: 1.5rem 0.5rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
-/* 各列の開始位置（高さ）をずらして情緒を出す */
+/* 吁E�Eの開始位置�E�高さ�E�をずらして惁E��を出ぁE*/
 .hero-editorial-catch .catch-line:nth-child(1) {
   margin-top: 0;
 }
@@ -2151,7 +2179,8 @@ ul {
   border-collapse: collapse;
   font-size: clamp(0.68rem, 0.74vw, 0.8rem);
   color: #333;
-  table-layout: fixed; /* 均等割りのために固定レイアウトを採用 */
+  table-layout: fixed;
+  /* 坁E��割り�Eために固定レイアウトを採用 */
 }
 
 .editorial-schedule-table th {
@@ -2160,14 +2189,16 @@ ul {
   color: #999;
   font-weight: 600;
   text-align: center;
-  width: 8.5%; /* 曜日列を均等に */
+  width: 8.5%;
+  /* 曜日列を坁E��に */
 }
 
 .editorial-schedule-table th:first-child {
   text-align: left;
   color: #036eb7;
   font-weight: 800;
-  font-size: 0.95rem; /* 時刻（td）のフォントサイズと統一 */
+  font-size: 0.95rem;
+  /* 時刻�E�Ed�E��Eフォントサイズと統一 */
   width: 40.5%;
 }
 
@@ -2220,7 +2251,7 @@ ul {
   writing-mode: vertical-rl;
   margin-bottom: 12px;
   font-weight: 700;
-  /* テキスト部分に限定して細い帯を適用 */
+  /* チE��スト部刁E��限定して細ぁE��を適用 */
   background: rgba(255, 255, 255, 0.9);
   padding: 1.2rem 0.35rem;
   line-height: 1;
@@ -2423,7 +2454,7 @@ ul {
     box-shadow: none;
   }
 
-  /* モバイル版の縦書きキャッチコピー調整 */
+  /* モバイル版�E縦書きキャチE��コピ�E調整 */
   .hero-editorial-catch {
     top: max(110px, 15vh);
     left: 20px;
@@ -2442,7 +2473,7 @@ ul {
     margin-top: 3rem;
   }
 
-  /* モバイル版の診療受付時間カード調整 */
+  /* モバイル版�E診療受付時間カード調整 */
   .hero-editorial-schedule {
     right: 18px;
     bottom: 18px;
@@ -2549,7 +2580,7 @@ ul {
   }
 
   .hero-editorial-scroll {
-    bottom: clamp(280px, 40vh, 360px); 
+    bottom: clamp(280px, 40vh, 360px);
     right: 12px;
     left: auto;
     transform: none;
@@ -2580,8 +2611,10 @@ ul {
 
 .about-section {
   position: relative;
+  z-index: 0;
+  isolation: isolate;
   min-height: 400vh;
-  /* 400vhに増やして「タメ」を確保 */
+  /* 400vhに増やして「タメ」を確俁E*/
   padding: 0;
   overflow: visible;
   background: #fff !important;
@@ -2614,7 +2647,7 @@ ul {
 
 .about-section::before {
   display: none;
-  /* 元の背景装飾を一旦消去 */
+  /* 允E�E背景裁E��を一旦消去 */
 }
 
 .about-stage {
@@ -2659,14 +2692,14 @@ ul {
   margin-right: auto;
   padding-left: 0;
   padding-right: 0;
-  /* スクロール連動は親の .about-content が持つ変数 (--about-content-opacity, --about-content-y) で制御されます */
+  /* スクロール連動�E親の .about-content が持つ変数 (--about-content-opacity, --about-content-y) で制御されまぁE*/
   will-change: opacity, transform;
   pointer-events: auto;
   z-index: 10;
   position: relative;
 }
 
-/* 青背景の上で見やすくするための白文字設定（デフォルト） */
+/* 青背景の上で見やすくするための白斁E��設定（デフォルト！E*/
 .about-content-editorial .about-title,
 .about-content-editorial .about-title span,
 .about-content-editorial .about-desc {
@@ -2712,7 +2745,7 @@ ul {
   display: inline-block;
   white-space: nowrap;
   color: inherit;
-  /* 親の白文字設定を引き継ぐ */
+  /* 親の白斁E��設定を引き継ぐ */
 }
 
 @media (max-width: 640px) {
@@ -2791,7 +2824,7 @@ ul {
   display: none;
 }
 
-/* フォトフレーム演出 */
+/* フォトフレーム演�E */
 .about-photos-container {
   position: absolute;
   inset: 0;
@@ -2819,7 +2852,7 @@ ul {
 
 /* スクロール進捗に応じたアニメーション適用 */
 .about-photos-container[style*="--about-photos-progress"] .about-photo-frame {
-  /* 進捗が0より大きい場合に、個別の遅延を持って出現 */
+  /* 進捗が0より大きい場合に、個別の遁E��を持って出現 */
   opacity: var(--about-photos-progress);
   transform: translateY(calc(60px * (1 - var(--about-photos-progress)))) rotate(var(--photo-rotate, 0deg));
 }
@@ -2945,7 +2978,7 @@ ul {
 
 .about-wave-bottom {
   position: absolute;
-  bottom: 0;
+  bottom: -5px;
   left: 0;
   width: 100%;
   line-height: 0;
@@ -2970,18 +3003,22 @@ ul {
 .about-wave-bottom svg {
   display: block;
   width: 100%;
-  height: var(--about-wave-height, 100px);
+  height: calc(var(--about-wave-height, 100px) + 5px);
 }
 
 @media (max-width: 1024px) {
+  .about-wave-bottom {
+    z-index: 20;
+  }
+
   .about-wave-bottom svg {
-    height: var(--about-wave-height, 70px);
+    height: max(var(--about-wave-height, 70px), 88px);
   }
 }
 
 @media (max-width: 640px) {
   .about-wave-bottom svg {
-    height: var(--about-wave-height, 50px);
+    height: max(var(--about-wave-height, 50px), 78px);
   }
 }
 
@@ -2998,7 +3035,7 @@ ul {
 @media (max-width: 1024px) {
   .about-section {
     min-height: 450vh;
-    padding: 100px 0 340px;
+    padding: 0;
   }
 
   .about-content {
@@ -3019,7 +3056,7 @@ ul {
 
 @media (max-width: 640px) {
   .about-section {
-    padding: 82px 0 280px;
+    padding: 0;
   }
 
   .about-content {
@@ -3056,6 +3093,7 @@ ul {
 
   .about-bottom-visual {
     height: 250px;
+    bottom: 0;
   }
 
   .about-bottom-visual img {
@@ -3092,7 +3130,7 @@ ul {
 
 .features-simple-photo {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   aspect-ratio: 1.48 / 1;
   border-radius: 0 48px 48px 0;
@@ -3125,7 +3163,7 @@ ul {
 
 .features-simple-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   max-width: 640px;
   color: #27384c;
 }
@@ -3558,7 +3596,16 @@ ul {
 @media (max-width: 640px) {
   .features-simple-section {
     gap: 34px;
-    padding: 64px 22px 76px;
+    padding: 118px 22px 76px;
+  }
+
+  .brand-marquee {
+    top: 28px;
+  }
+
+  .brand-marquee-track span {
+    font-size: clamp(3.2rem, 15vw, 5rem);
+    color: rgba(3, 110, 183, 0.085);
   }
 
   .features-simple-photo {
@@ -3574,7 +3621,7 @@ ul {
   }
 
   .features-simple-copy {
-    font-size: 1.62rem;
+    font-size: 1.3rem;
     line-height: 1.7;
     margin-bottom: 24px;
   }
@@ -3652,20 +3699,6 @@ ul {
   }
 }
 
-
-
-
-
-/* ---------------------------------------------------------
-   DEPARTMENT SECTION (險ｺ逋ゅ・縺疲｡亥・)
---------------------------------------------------------- */
-.medical-guide-section {
-  position: relative;
-  overflow: hidden;
-  padding: 120px 0 140px;
-  background: var(--bg-warm);
-}
-
 .medical-guide-arch-top {
   position: absolute;
   top: 0;
@@ -3694,7 +3727,7 @@ ul {
   }
 }
 
-/* グラデーション装飾を削除 */
+/* グラチE�Eション裁E��を削除 */
 .medical-guide-section::before {
   display: none;
 }
@@ -3707,6 +3740,7 @@ ul {
   gap: 64px;
   align-items: center;
   padding-top: 120px;
+  padding-bottom: 120px;
 }
 
 .medical-guide-main {
@@ -3768,7 +3802,7 @@ ul {
   border: 1px solid rgba(0, 64, 152, 0.2);
   border-radius: 24px;
   box-shadow: 0 18px 40px rgba(31, 83, 135, 0.08);
-  /* アニメーション用初期状態 */
+  /* アニメーション用初期状慁E*/
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1),
@@ -3819,6 +3853,32 @@ ul {
   transform: translateY(-6px);
   border-color: rgba(0, 64, 152, 0.42);
   box-shadow: 0 24px 52px rgba(31, 83, 135, 0.13);
+}
+
+.medical-guide-copy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  color: var(--text-color);
+}
+
+.medical-guide-arch-top svg {
+  display: block;
+  width: 100%;
+  height: 80px;
+}
+
+@media (max-width: 1024px) {
+  .medical-guide-arch-top svg {
+    height: 56px;
+  }
+}
+
+@media (max-width: 640px) {
+  .medical-guide-arch-top svg {
+    height: 38px;
+  }
 }
 
 .medical-guide-icon {
@@ -3924,12 +3984,23 @@ ul {
     padding: 82px 0 96px;
   }
 
+  .medical-guide-en {
+    font-size: 1.0rem;
+    margin-bottom: 8px;
+  }
+
+  .medical-guide-title {
+    font-size: 1.8rem;
+    margin-bottom: 24px;
+  }
+
   .medical-guide-heading {
     margin-bottom: 30px;
   }
 
-  .medical-guide-lead {
-    font-size: 0.95rem;
+  .medical-guide-inner {
+    padding-top: 40px;
+    padding-bottom: 60px;
   }
 
   .medical-guide-grid {
@@ -3940,6 +4011,9 @@ ul {
     min-height: 172px;
     padding: 22px 14px 34px;
     border-radius: 18px;
+    opacity: 1;
+    transform: none;
+    transition: border-color 0.28s ease, box-shadow 0.3s ease;
   }
 
   .medical-guide-icon {
@@ -3966,7 +4040,11 @@ ul {
 
 @media (max-width: 480px) {
   .medical-guide-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .medical-guide-arrow {
+    display: none;
   }
 }
 
@@ -5119,164 +5197,5 @@ ul {
   .footer-policy-links {
     gap: 18px;
     margin-bottom: 20px;
-  }
-}
-
-/* --- NEWS SECTION BASE & MOBILE --- */
-.news-section {
-  padding: 120px 0;
-  background-color: var(--bg-warm);
-  position: relative;
-  overflow: hidden;
-}
-
-.news-inner {
-  display: grid;
-  grid-template-columns: 340px 1fr;
-  gap: 80px;
-  align-items: start;
-}
-
-.news-en-title {
-  display: block;
-  font-family: var(--font-modern);
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: var(--accent-orange);
-  letter-spacing: 0.15em;
-  margin-bottom: 12px;
-  text-transform: uppercase;
-}
-
-.news-jp-title {
-  font-size: 2.8rem;
-  line-height: 1.25;
-  color: var(--primary-blue);
-  margin-bottom: 32px;
-}
-
-.news-desc {
-  font-size: 1rem;
-  line-height: 1.9;
-  color: #567;
-  margin-bottom: 48px;
-}
-
-.news-btn-pc {
-  display: inline-flex;
-  align-items: center;
-  gap: 16px;
-  padding: 16px 32px;
-  background: var(--primary-blue);
-  color: #fff;
-  border-radius: 100px;
-  font-weight: 700;
-  box-shadow: 0 10px 20px rgba(0, 64, 152, 0.15);
-}
-
-.news-card {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  padding: 28px 0;
-  border-bottom: 1px solid rgba(0, 64, 152, 0.1);
-  position: relative;
-  transition: transform 0.3s ease;
-}
-
-.news-card:first-child {
-  padding-top: 0;
-}
-
-.news-card:hover {
-  transform: translateX(10px);
-}
-
-.news-date {
-  font-family: var(--font-modern);
-  font-weight: 700;
-  color: #89a;
-  min-width: 100px;
-}
-
-.news-tag {
-  padding: 4px 14px;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  font-weight: 800;
-  background: #fff;
-  border: 1px solid #d9e2ef;
-  color: var(--primary-blue);
-}
-
-.news-card-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--text-color);
-  flex: 1;
-}
-
-.news-footer-link-wrap {
-  display: none; /* Desktop hidden */
-}
-
-@media (max-width: 1024px) {
-  .news-inner {
-    grid-template-columns: 1fr;
-    gap: 48px;
-  }
-  
-  .news-jp-title {
-    font-size: 2.2rem;
-  }
-  
-  .news-btn-pc {
-    display: none;
-  }
-  
-  .news-footer-link-wrap {
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
-  }
-  
-  .news-footer-link {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-weight: 800;
-    color: var(--primary-blue);
-  }
-  
-  .news-footer-arrow {
-    width: 32px;
-    height: 32px;
-    background: var(--primary-blue);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .news-footer-arrow img {
-    filter: brightness(0) invert(1);
-  }
-}
-
-@media (max-width: 640px) {
-  .news-section {
-    padding: 80px 0;
-  }
-  
-  .news-card {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 24px 0;
-  }
-  
-  .news-card-title {
-    font-size: 1rem;
-    line-height: 1.6;
   }
 }
