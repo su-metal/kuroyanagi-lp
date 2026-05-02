@@ -86,13 +86,14 @@ export default function Home() {
   const waveProgress = smoothStep(aboutWaveState.progress);
   const waveHeight = Math.round(interpolate(aboutWaveState.coverHeight, aboutWaveState.currentHeight, waveProgress));
   const waveDepth = Math.round(interpolate(0, 100, waveProgress));
+  const visibleWaveDepth = Math.max(waveDepth, 72);
   const waveFill = interpolateColor("fbf9f6", "ffffff", waveProgress);
   const waveBlur = "0px";
   const waveFeatherOpacity = "0";
   const waveTopOpacity = interpolate(0.72, 1, waveProgress).toFixed(3);
   const waveUpperOpacity = interpolate(0.92, 1, waveProgress).toFixed(3);
   const waveMiddleOpacity = interpolate(1, 1, waveProgress).toFixed(3);
-  const aboutWavePath = `M0,0 Q720,${waveDepth} 1440,0 L1440,100 L0,100 Z`;
+  const aboutWavePath = `M0,0 Q720,${visibleWaveDepth} 1440,0 L1440,100 L0,100 Z`;
   const contentRevealProgress = smoothStep(clamp(aboutWaveState.progress, 0, 1));
   const decorRevealProgress = smoothStep(clamp((aboutWaveState.progress - 0.14) / 0.86, 0, 1));
   const landscapeRevealProgress = smoothStep(clamp((aboutWaveState.progress - 0.08) / 0.92, 0, 1));

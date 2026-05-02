@@ -2948,7 +2948,7 @@ ul {
 
 .about-wave-bottom {
   position: absolute;
-  bottom: 0;
+  bottom: -5px;
   left: 0;
   width: 100%;
   line-height: 0;
@@ -2973,18 +2973,22 @@ ul {
 .about-wave-bottom svg {
   display: block;
   width: 100%;
-  height: var(--about-wave-height, 100px);
+  height: calc(var(--about-wave-height, 100px) + 5px);
 }
 
 @media (max-width: 1024px) {
+  .about-wave-bottom {
+    z-index: 20;
+  }
+
   .about-wave-bottom svg {
-    height: var(--about-wave-height, 70px);
+    height: max(var(--about-wave-height, 70px), 88px);
   }
 }
 
 @media (max-width: 640px) {
   .about-wave-bottom svg {
-    height: var(--about-wave-height, 50px);
+    height: max(var(--about-wave-height, 50px), 78px);
   }
 }
 
@@ -3001,7 +3005,7 @@ ul {
 @media (max-width: 1024px) {
   .about-section {
     min-height: 450vh;
-    padding: 100px 0 340px;
+    padding: 0;
   }
 
   .about-content {
@@ -3022,7 +3026,7 @@ ul {
 
 @media (max-width: 640px) {
   .about-section {
-    padding: 82px 0 280px;
+    padding: 0;
   }
 
   .about-content {
@@ -3059,6 +3063,7 @@ ul {
 
   .about-bottom-visual {
     height: 250px;
+    bottom: 0;
   }
 
   .about-bottom-visual img {
