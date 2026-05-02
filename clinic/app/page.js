@@ -453,11 +453,6 @@ export default function Home() {
             transform: `translateY(${(1 - aboutTextProgress) * 50}px)` 
           }}>
             <div className="about-content-editorial">
-              <div className="about-dots">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
               <p className="about-label">ABOUT</p>
               <h2 className="about-title">
                 <span className="about-title-line">三ヶ日の地に根ざして</span>
