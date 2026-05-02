@@ -863,21 +863,21 @@ export default function Home() {
             <div className="news-list-area">
               {[
                 {
-                  date: "2026.04.21",
+                  date: "2024.05.01",
                   tag: "お知らせ",
-                  title: "GW臨時休診のお知らせ",
+                  title: "ゴールデンウィーク期間中の休診日のご案内",
                   isPickup: true,
                 },
                 {
-                  date: "2026.04.21",
-                  tag: "コラム・トリミング・グルーミング",
-                  title: "涙やけケア 〜動物病院併設だからこそできるサポート〜",
+                  date: "2024.04.15",
+                  tag: "健康診断",
+                  title: "特定健診・がん検診の予約受付を開始しました",
                   isPickup: false,
                 },
                 {
-                  date: "2026.04.05",
-                  tag: "コラム・エキゾチック",
-                  title: "よく見てあげよう！ハムスターの病気のサイン",
+                  date: "2024.04.01",
+                  tag: "重要",
+                  title: "マイナンバーカードによる健康保険証利用について",
                   isPickup: false,
                 }
               ].map((item, index) => (
@@ -890,14 +890,14 @@ export default function Home() {
               ))}
 
               {/* Mobile/Footer Link */}
-              {/* <div className="news-footer-link-wrap">
+              <div className="news-footer-link-wrap">
                 <a href="#" className="news-footer-link">
                   <span className="news-footer-arrow">
-                    <img src="/photo/assets/02_navi/01_矢印右.png" alt="" />
+                    <img src="/photo/assets/02_navi/01_矢印右.png" alt="" style={{ height: '12px' }} />
                   </span>
                   <span>お知らせ一覧を見る</span>
                 </a>
-              </div> */}
+              </div>
             </div>
 
           </div>
