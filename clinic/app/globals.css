@@ -2151,7 +2151,8 @@ ul {
   border-collapse: collapse;
   font-size: clamp(0.68rem, 0.74vw, 0.8rem);
   color: #333;
-  table-layout: fixed; /* 均等割りのために固定レイアウトを採用 */
+  table-layout: fixed;
+  /* 均等割りのために固定レイアウトを採用 */
 }
 
 .editorial-schedule-table th {
@@ -2160,14 +2161,16 @@ ul {
   color: #999;
   font-weight: 600;
   text-align: center;
-  width: 8.5%; /* 曜日列を均等に */
+  width: 8.5%;
+  /* 曜日列を均等に */
 }
 
 .editorial-schedule-table th:first-child {
   text-align: left;
   color: #036eb7;
   font-weight: 800;
-  font-size: 0.95rem; /* 時刻（td）のフォントサイズと統一 */
+  font-size: 0.95rem;
+  /* 時刻（td）のフォントサイズと統一 */
   width: 40.5%;
 }
 
@@ -2549,7 +2552,7 @@ ul {
   }
 
   .hero-editorial-scroll {
-    bottom: clamp(280px, 40vh, 360px); 
+    bottom: clamp(280px, 40vh, 360px);
     right: 12px;
     left: auto;
     transform: none;
@@ -3574,7 +3577,7 @@ ul {
   }
 
   .features-simple-copy {
-    font-size: 1.62rem;
+    font-size: 1.3rem;
     line-height: 1.7;
     margin-bottom: 24px;
   }
@@ -5217,7 +5220,8 @@ ul {
 }
 
 .news-footer-link-wrap {
-  display: none; /* Desktop hidden */
+  display: none;
+  /* Desktop hidden */
 }
 
 @media (max-width: 1024px) {
@@ -5225,21 +5229,21 @@ ul {
     grid-template-columns: 1fr;
     gap: 48px;
   }
-  
+
   .news-jp-title {
     font-size: 2.2rem;
   }
-  
+
   .news-btn-pc {
     display: none;
   }
-  
+
   .news-footer-link-wrap {
     display: flex;
     justify-content: center;
     margin-top: 40px;
   }
-  
+
   .news-footer-link {
     display: flex;
     align-items: center;
@@ -5247,7 +5251,7 @@ ul {
     font-weight: 800;
     color: var(--primary-blue);
   }
-  
+
   .news-footer-arrow {
     width: 32px;
     height: 32px;
@@ -5257,7 +5261,7 @@ ul {
     align-items: center;
     justify-content: center;
   }
-  
+
   .news-footer-arrow img {
     filter: brightness(0) invert(1);
   }
@@ -5267,14 +5271,14 @@ ul {
   .news-section {
     padding: 80px 0;
   }
-  
+
   .news-card {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
     padding: 24px 0;
   }
-  
+
   .news-card-title {
     font-size: 1rem;
     line-height: 1.6;
