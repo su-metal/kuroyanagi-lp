@@ -413,7 +413,8 @@ ul {
 
 .brand-marquee-track span {
   flex: 0 0 auto;
-  color: rgba(255, 255, 255, 0.92);
+  color: rgba(0, 64, 152, 0.07);
+  /* ブルーに変更（背景として馴染む透明度） */
   font-family: "Montserrat", var(--font-sans);
   font-size: clamp(3rem, 7.6vw, 7rem);
   font-weight: 700;
@@ -459,20 +460,22 @@ ul {
 /* Schedule card overlays bottom-right corner of the photo */
 .hero-schedule-overlay {
   position: absolute;
-  bottom: 120px;
-  right: -330px;
-  width: 430px;
+  bottom: 80px;
+  right: -300px;
+  width: 580px;
   z-index: 10;
 }
 
 .schedule-card {
   background: #fff;
-  padding: 18px 24px;
-  border-radius: 20px;
-  box-shadow: 0 16px 40px rgba(0, 50, 100, 0.14);
+  padding: 40px 45px 50px;
+  border-radius: 40px;
+  box-shadow: 0 20px 60px rgba(0, 50, 100, 0.08);
   border: 1px solid #eef2f8;
   color: var(--primary-blue);
 }
+
+
 
 .schedule-table-wrapper {
   overflow-x: auto;
@@ -486,46 +489,68 @@ ul {
 }
 
 .schedule-table th {
-  padding: 5px 4px;
-  color: var(--primary-blue);
+  padding: 10px 8px 15px;
+  color: #999;
   font-weight: 700;
-  border-bottom: 2px solid rgba(0, 64, 152, 0.22);
+  border-bottom: 1.5px solid #e5eff5;
   text-align: center;
+  font-size: 1.15rem;
 }
 
 .schedule-table th:first-child {
   text-align: left;
   color: var(--primary-blue);
   font-weight: 700;
-  font-size: 0.76rem;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+  padding-left: 0;
+  width: 42%;
 }
 
 .schedule-table td {
-  padding: 7px 4px;
+  padding: 18px 8px;
   text-align: center;
-  border-bottom: 2px solid rgba(0, 64, 152, 0.22);
+  border-bottom: 1.5px solid #e5eff5;
   color: var(--primary-blue);
-  font-size: 0.9rem;
+  font-size: 1.35rem;
   font-weight: 700;
 }
 
 .schedule-table .time-slot {
   font-weight: 700;
   text-align: left;
-  font-size: 0.8rem;
+  font-size: 1.35rem;
   white-space: nowrap;
+  letter-spacing: 0.05em;
+  padding-left: 5px;
+}
+
+.time-period {
+  font-size: 1.1rem;
+  margin-right: 0.3em;
+  display: inline-block;
 }
 
 .schedule-table .closed {
-  color: var(--primary-blue);
+  color: #eee;
+  font-weight: 400;
+  font-size: 1.2rem;
 }
 
 .schedule-footer {
-  margin-top: 10px;
-  font-size: 0.68rem;
-  color: var(--primary-blue);
-  font-weight: 700;
-  line-height: 1.65;
+  margin-top: 40px;
+  font-size: 1rem;
+  color: #999;
+  font-weight: 500;
+  line-height: 1.8;
+  padding-left: 5px;
+}
+
+.schedule-footer p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.2em;
 }
 
 /* =====================
@@ -1008,8 +1033,8 @@ ul {
   bottom: 0;
   right: 0;
   width: 50%;
-  background-color: #fff;
-  border-radius: 200px 0 0 200px;
+  background-color: var(--accent-color);
+  border-radius: 48px 0 0 48px;
   z-index: 1;
 }
 
@@ -1114,60 +1139,65 @@ ul {
 }
 
 .facility-en-label {
-  font-size: 1rem;
-  color: var(--primary-blue);
-  font-weight: 700;
+  color: var(--accent-yellow);
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  margin-bottom: 10px;
   display: block;
-  margin-bottom: 8px;
 }
 
 .facility-title {
+  width: fit-content;
   font-size: 2.6rem;
-  color: var(--primary-blue);
+  color: #fff;
   margin-bottom: 40px;
   line-height: 1.2;
+  padding-bottom: 10px;
+  border-bottom: 3px dotted rgba(255, 255, 255, 0.4);
 }
 
 .facility-lead {
   font-size: 1.4rem;
   font-weight: 700;
-  color: var(--text-color);
+  color: #fff;
   margin-bottom: 24px;
   line-height: 1.5;
 }
 
 .facility-desc {
   font-size: 0.95rem;
-  color: #555;
+  color: #fff;
   line-height: 1.8;
   max-width: 25em;
   margin-bottom: 40px;
+  opacity: 0.95;
 }
 
 .facility-btn {
   display: inline-flex;
   align-items: center;
   gap: 20px;
-  background-color: var(--primary-blue);
-  color: #fff;
+  background-color: #fff;
+  color: var(--primary-blue);
   padding: 16px 32px;
   border-radius: 100px;
   font-weight: 700;
   transition: 0.3s;
-  box-shadow: 0 6px 20px rgba(0, 64, 152, 0.25);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   margin-left: 0;
 }
 
 .facility-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(0, 64, 152, 0.35);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   opacity: 1;
 }
 
 .btn-arrow {
   width: 24px;
   height: 24px;
-  background: #fff;
+  background: var(--primary-blue);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1177,6 +1207,7 @@ ul {
 .btn-arrow img {
   width: 12px;
   height: 12px;
+  filter: brightness(0) invert(1);
 }
 
 @media (max-width: 1024px) {
@@ -1342,20 +1373,24 @@ ul {
 }
 
 .news-en-title {
+  color: var(--accent-yellow);
   font-size: 1.1rem;
-  color: #036eb7;
-  font-weight: 700;
-  margin-bottom: 8px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  margin-bottom: 10px;
   display: block;
 }
 
 .news-jp-title {
+  width: fit-content;
   font-size: 2.6rem;
   font-family: var(--font-modern);
   color: var(--text-color);
   margin-bottom: 16px;
   line-height: 1.4;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
+  padding-bottom: 10px;
+  border-bottom: 3px dotted rgba(0, 64, 152, 0.36);
 }
 
 .news-title-line {
@@ -1927,8 +1962,7 @@ ul {
 .hero-editorial {
   min-height: calc(100svh - var(--hero-header-height, 94px));
   padding: clamp(22px, 3vh, 42px) 0 0;
-  background:
-    linear-gradient(180deg, #deedf1 0%, #deedf1 40%, #fbf9f6 40%, #fbf9f6 100%);
+  background: #ffffff;
   overflow: hidden;
 }
 
@@ -1938,7 +1972,7 @@ ul {
   max-width: none;
   min-height: calc(100svh - var(--hero-header-height, 94px) - clamp(22px, 3vh, 42px));
   margin: 0 auto;
-  padding: 26px 20px 94px;
+  padding: 0 20px 60px;
 }
 
 .hero-editorial-nav {
@@ -2002,15 +2036,14 @@ ul {
 .hero-editorial-main-photo {
   position: relative;
   z-index: 2;
-  width: min(1180px, 94vw);
-  height: clamp(600px, 82vh, 860px);
+  width: calc(100% - clamp(24px, 4.2vw, 48px));
+  max-width: 1540px;
+  height: clamp(540px, 80vh, 880px);
   margin: 0 auto;
-  border-radius: clamp(34px, 4vw, 58px);
+  border-radius: clamp(34px, 4.4vw, 58px);
   overflow: hidden;
-  background:
-    linear-gradient(135deg, rgba(222, 237, 241, 0.96), rgba(251, 249, 246, 0.96)),
-    repeating-linear-gradient(45deg, rgba(3, 110, 183, 0.08) 0 1px, transparent 1px 12px);
-  box-shadow: 0 28px 70px rgba(3, 110, 183, 0.13);
+  background: #fff;
+  box-shadow: 0 32px 80px rgba(3, 110, 183, 0.08);
 }
 
 .hero-editorial-peek img {
@@ -2036,6 +2069,183 @@ ul {
 .hero-editorial-main-photo img.active {
   opacity: 1;
   z-index: 2;
+}
+
+/* --- Hero Editorial Schedule Card --- */
+.hero-editorial-catch {
+  position: absolute;
+  top: clamp(60px, 8vw, 120px);
+  left: clamp(40px, 6vw, 100px);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.hero-editorial-catch h2 {
+  display: flex;
+  flex-direction: row-reverse;
+  /* 日本語の順序：右から左へ列を並べる */
+  align-items: flex-start;
+  gap: clamp(12px, 2.5vw, 32px);
+  /* 列同士の横の間隔を縮小 */
+}
+
+.hero-editorial-catch .catch-line {
+  display: block;
+  writing-mode: vertical-rl;
+  font-family: var(--font-modern);
+  font-weight: 700;
+  color: #036eb7;
+  font-size: clamp(1.6rem, 2.4vw, 2.8rem);
+  line-height: 1;
+  letter-spacing: 0.3em;
+  white-space: nowrap;
+  /* 白い帯を追加 */
+  background: rgba(255, 255, 255, 0.85);
+  padding: 1.5rem 0.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* 各列の開始位置（高さ）をずらして情緒を出す */
+.hero-editorial-catch .catch-line:nth-child(1) {
+  margin-top: 0;
+}
+
+.hero-editorial-catch .catch-line:nth-child(2) {
+  margin-top: 3rem;
+}
+
+.hero-editorial-catch .catch-line:nth-child(3) {
+  margin-top: 6rem;
+}
+
+.hero-editorial-schedule {
+  position: absolute;
+  right: clamp(24px, 4.4vw, 64px);
+  bottom: clamp(24px, 4.4vw, 64px);
+  z-index: 10;
+}
+
+.editorial-schedule-card {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(14px);
+  padding: clamp(14px, 1.8vw, 22px);
+  border-radius: 24px;
+  box-shadow: 0 16px 40px rgba(3, 110, 183, 0.08);
+  width: clamp(400px, 36vw, 520px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.editorial-schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: clamp(0.68rem, 0.74vw, 0.8rem);
+  color: #333;
+  table-layout: fixed; /* 均等割りのために固定レイアウトを採用 */
+}
+
+.editorial-schedule-table th {
+  padding: 8px 0 12px;
+  border-bottom: 1px solid rgba(3, 110, 183, 0.08);
+  color: #999;
+  font-weight: 600;
+  text-align: center;
+  width: 8.5%; /* 曜日列を均等に */
+}
+
+.editorial-schedule-table th:first-child {
+  text-align: left;
+  color: #036eb7;
+  font-weight: 800;
+  font-size: 0.95rem; /* 時刻（td）のフォントサイズと統一 */
+  width: 40.5%;
+}
+
+.editorial-schedule-table .time-slot {
+  text-align: left;
+  color: #036eb7;
+  font-weight: 800;
+  padding: 6px 14px 6px 0;
+  font-family: var(--font-modern);
+  white-space: nowrap;
+}
+
+.editorial-schedule-table td {
+  padding: 6px 0;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #036eb7;
+}
+
+.editorial-schedule-table .closed {
+  color: #e0e0e0;
+}
+
+.schedule-footer {
+  margin-top: 20px;
+  font-size: clamp(0.68rem, 0.74vw, 0.82rem);
+  color: #888;
+  text-align: center;
+  font-weight: 500;
+}
+
+.hero-editorial-scroll {
+  position: absolute;
+  bottom: -20px;
+  /* さらに下方へ */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.scroll-text {
+  font-family: var(--font-modern);
+  font-size: 0.65rem;
+  color: #036eb7;
+  letter-spacing: 0.25em;
+  writing-mode: vertical-rl;
+  margin-bottom: 12px;
+  font-weight: 700;
+  /* テキスト部分に限定して細い帯を適用 */
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1.2rem 0.35rem;
+  line-height: 1;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 80px;
+  background: rgba(3, 110, 183, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-line::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: #036eb7;
+  animation: scrollLineAnim 2.5s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+}
+
+@keyframes scrollLineAnim {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  50% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
 }
 
 .hero-editorial-placeholder {
@@ -2267,7 +2477,7 @@ ul {
   left: 50%;
   width: 150vmax;
   height: 150vmax;
-  background: #08b9dd;
+  background: #147fc3;
   border-radius: 50%;
   transform: translate(-50%, -50%) scale(var(--about-circle-scale, 0));
   pointer-events: none;
@@ -2336,13 +2546,12 @@ ul {
 }
 
 .about-label {
-  color: #036eb7;
-  font-size: 1rem;
+  color: var(--accent-yellow);
+  font-size: 1.1rem;
   font-weight: 800;
-  letter-spacing: 0.38em;
+  letter-spacing: 0.18em;
   line-height: 1;
-  margin-bottom: 0;
-  text-indent: 0.38em;
+  margin-bottom: 10px;
 }
 
 .about-dots {
@@ -2360,12 +2569,13 @@ ul {
 }
 
 .about-title {
+  width: fit-content;
   color: #333;
   font-family: var(--font-modern);
-  font-size: clamp(2rem, 3vw, 2.6rem);
+  font-size: 2.6rem;
   font-weight: 800;
   line-height: 1.7;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   margin-bottom: 32px;
   max-width: none;
 }
@@ -2745,7 +2955,7 @@ ul {
   align-items: center;
   gap: clamp(56px, 7vw, 112px);
   padding: 130px max(48px, calc((100vw - 1440px) / 2 + 48px)) 150px 0;
-  background: linear-gradient(180deg, var(--bg-blue-mid) 0%, var(--bg-blue-soft) 100%);
+  background: #ffffff;
   overflow: hidden;
 }
 
@@ -2790,7 +3000,7 @@ ul {
 }
 
 .features-simple-kicker {
-  color: var(--primary-blue);
+  color: var(--accent-yellow);
   font-size: 0.82rem;
   font-weight: 800;
   letter-spacing: 0.18em;
@@ -2846,11 +3056,21 @@ ul {
   min-height: 42px;
   padding: 0 18px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(0, 64, 152, 0.15);
+  background: #fff;
+  border: 1px solid rgba(0, 64, 152, 0.1);
   color: var(--primary-blue);
   font-size: 0.92rem;
   font-weight: 800;
+}
+
+.features-simple-points span::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-yellow);
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
 .features-simple-button {
@@ -2874,9 +3094,7 @@ ul {
 .features-new-section {
   position: relative;
   padding: 140px 0 190px;
-  background:
-    /* radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.9) 0 18%, rgba(255, 255, 255, 0) 46%), */
-    linear-gradient(180deg, var(--bg-blue-mid) 0%, var(--bg-blue-soft) 100%);
+  background: #ffffff;
 }
 
 .features-white-card {
@@ -3345,12 +3563,9 @@ ul {
   }
 }
 
+/* グラデーション装飾を削除 */
 .medical-guide-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 82% 20%, rgba(255, 255, 255, 0.86) 0 22%, rgba(255, 255, 255, 0) 48%);
-  pointer-events: none;
+  display: none;
 }
 
 .medical-guide-inner {
@@ -3374,22 +3589,25 @@ ul {
 
 .medical-guide-en {
   display: inline-block;
-  color: #036eb7;
-  font-size: 0.9rem;
+  color: var(--accent-yellow);
+  font-size: 1.1rem;
   font-weight: 800;
-  letter-spacing: 0.22em;
-  margin-bottom: 14px;
+  letter-spacing: 0.18em;
+  margin-bottom: 10px;
   text-transform: uppercase;
 }
 
 .medical-guide-title {
+  width: fit-content;
   color: var(--text-color);
   font-family: var(--font-modern);
-  font-size: clamp(2rem, 3.2vw, 2.8rem);
+  font-size: 2.6rem;
   font-weight: 800;
   line-height: 1.35;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   margin: 0 0 18px;
+  padding-bottom: 10px;
+  border-bottom: 3px dotted rgba(0, 64, 152, 0.36);
 }
 
 .medical-guide-lead {
@@ -4043,20 +4261,23 @@ ul {
 
 .access-en {
   display: block;
-  margin-top: 8px;
-  color: #1c2938;
-  font-size: 0.82rem;
+  color: var(--accent-yellow);
+  font-size: 1.1rem;
   font-weight: 800;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
+  margin-bottom: 10px;
 }
 
 .access-title-block h2 {
-  color: var(--primary-blue);
+  width: fit-content;
+  margin: 0 auto 4px;
+  color: var(--text-color);
   font-family: var(--font-modern);
-  font-size: 2.15rem;
+  font-size: 2.6rem;
   line-height: 1.25;
-  margin: 0 0 4px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
+  padding-bottom: 10px;
+  border-bottom: 3px dotted rgba(0, 64, 152, 0.36);
 }
 
 .access-address-block {
