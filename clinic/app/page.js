@@ -32,6 +32,14 @@ const getAboutWaveSettings = () => {
   return { currentHeight: 100 };
 };
 
+const HERO_VARIANT = "editorial"; // "current" に戻すと従来FVへ切り替え
+
+const heroEditorialImages = {
+  main: "/photo/hero-editorial-main.jpg",
+  left: "/photo/hero-editorial-left.jpg",
+  right: "/photo/hero-editorial-right.jpg",
+};
+
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const aboutSectionRef = useRef(null);
@@ -50,6 +58,22 @@ export default function Home() {
   const medicalSectionRef = useRef(null);
   const featuresSectionRef = useRef(null);
   const [isFeaturesVisible, setIsFeaturesVisible] = useState(false);
+
+  // Hero Slider logic: Switch 3 images every 6 seconds
+  const [heroActiveIndex, setHeroActiveIndex] = useState(0);
+  const heroSliderImages = [
+    "/photo/hero-editorial-main.jpg",
+    "/photo/clinic_011.png",
+    "/photo/doctor.png"
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHeroActiveIndex((prev) => (prev + 1) % heroSliderImages.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [heroSliderImages.length]);
+
   
   const facilityImages = [
     { src: "/photo/clinic_02.png", alt: "診察室", variant: "vertical" },
@@ -62,7 +86,7 @@ export default function Home() {
   const waveProgress = smoothStep(aboutWaveState.progress);
   const waveHeight = Math.round(interpolate(aboutWaveState.coverHeight, aboutWaveState.currentHeight, waveProgress));
   const waveDepth = Math.round(interpolate(0, 100, waveProgress));
-  const waveFill = interpolateColor("fbf9f6", "f4f9fd", waveProgress);
+  const waveFill = interpolateColor("fbf9f6", "cfe6ee", waveProgress);
   const waveBlur = "0px";
   const waveFeatherOpacity = "0";
   const waveTopOpacity = interpolate(0.72, 1, waveProgress).toFixed(3);
@@ -315,9 +339,76 @@ export default function Home() {
       </header>
 
       {/* --- HERO --- */}
-      <section className="hero">
-        <div className="container hero-container">
-          <div className="hero-layout">
+      {HERO_VARIANT === "editorial" ? (
+        <section className="hero hero-editorial">
+          <div className="hero-editorial-shell">
+            <nav className="hero-editorial-nav hidden-mobile" aria-label="ファーストビューナビゲーション">
+              {[
+                { label: "トップページ", href: "#" },
+                { label: "当院について", href: "#about" },
+                { label: "当院の特長", href: "#features" },
+                { label: "診療案内", href: "#service" },
+                { label: "お知らせ", href: "#news" },
+                { label: "WEB予約・問診", href: "#" },
+              ].map((item) => (
+                <a href={item.href} key={item.label}>{item.label}</a>
+              ))}
+            </nav>
+
+            <p className="hero-editorial-side-copy side-left">
+              地域の皆さまの健康を<br />そっと支え続けます。
+            </p>
+            <p className="hero-editorial-side-copy side-right">
+              ちょっとした不安も、<br />いつでもご相談ください。
+            </p>
+
+            <div className="hero-editorial-stage">
+              <figure className="hero-editorial-peek peek-left">
+                <img src={heroEditorialImages.left} alt="" onError={(event) => { event.currentTarget.style.display = "none"; }} />
+              </figure>
+
+              <figure className="hero-editorial-main-photo" aria-label="ヒーロー画像スライダー">
+                {heroSliderImages.map((src, index) => (
+                  <img 
+                    key={src}
+                    src={src} 
+                    alt="診療風景" 
+                    className={index === heroActiveIndex ? "active" : ""}
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      opacity: index === heroActiveIndex ? 1 : 0,
+                      transition: "opacity 1.6s ease-in-out",
+                      zIndex: index === heroActiveIndex ? 2 : 1
+                    }}
+                    onError={(event) => { event.currentTarget.style.display = "none"; }} 
+                  />
+                ))}
+                <span className="hero-editorial-placeholder">Hero Slider Active: {heroActiveIndex + 1}</span>
+              </figure>
+
+              <figure className="hero-editorial-peek peek-right">
+                <img src={heroEditorialImages.right} alt="" onError={(event) => { event.currentTarget.style.display = "none"; }} />
+              </figure>
+            </div>
+
+            <div className="hero-editorial-bottom">
+              <a href="#news" className="hero-editorial-news">
+                <time>2026.05.01</time>
+                <span>診療受付時間に関するお知らせ</span>
+              </a>
+              <div className="hero-editorial-actions">
+                <a href="tel:0535251113" className="hero-editorial-call" aria-label="電話する">TEL</a>
+                <a href="#" className="hero-editorial-cta">外来予約</a>
+                <a href="#" className="hero-editorial-cta secondary">事前問診</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : (
+        <section className="hero">
+          <div className="container hero-container">
+            <div className="hero-layout">
 
             {/* Left: Main Photo + Schedule Overlay */}
             <div className="hero-photo-wrap">
@@ -417,13 +508,14 @@ export default function Home() {
               </ul>
             </nav>
 
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* --- ABOUT --- */}
       <section id="about" className="about-section" ref={aboutSectionRef}>
-        <div className="about-reveal-wrapper">
+          <div className="about-reveal-wrapper">
           <div className="about-reveal-circle" style={{ '--about-circle-scale': aboutActiveScale }}></div>
           
           {/* フォトフレーム演出 */}
@@ -632,7 +724,7 @@ export default function Home() {
       <section id="service" className={`medical-guide-section ${isMedicalVisible ? 'is-visible' : ''}`} ref={medicalSectionRef}>
         <div className="medical-guide-arch-top" aria-hidden="true">
           <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,80 Q720,0 1440,80 L1440,0 L0,0 Z" fill="#eef6fb" />
+            <path d="M0,80 Q720,0 1440,80 L1440,0 L0,0 Z" fill="var(--bg-blue-soft)" />
           </svg>
         </div>
         <div className="container medical-guide-inner">
