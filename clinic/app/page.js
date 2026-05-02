@@ -208,7 +208,7 @@ export default function Home() {
       { threshold: 0.3 }
     );
     if (featuresSectionRef.current) featuresObserver.observe(featuresSectionRef.current);
-    
+
     const handleScroll = () => {
       if (!aboutSectionRef.current) return;
 
@@ -478,12 +478,11 @@ export default function Home() {
                   どうぞお気軽にご来院ください。
                 </p>
               </div>
-              <div className="about-btn-wrap" style={{ marginTop: '48px' }}>
-                <a href="#features" className="about-btn">
-                  当院について
-                </a>
-              </div>
             </div>
+          </div>
+
+          <div className="about-bottom-visual" style={{ "--about-bottom-progress": aboutPhotosProgress }} aria-hidden="true">
+            <img src="/photo/assets/about/about-bottom-illustration-foreground.png" alt="" />
           </div>
         </div>
 

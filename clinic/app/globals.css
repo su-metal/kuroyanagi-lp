@@ -3,7 +3,7 @@
 :root {
   --primary-blue: #004e98;
   --primary-green: #009c9c;
-  --accent-color: #147fc3;
+  --accent-color: #004e98;
   --text-color: #333333;
   --bg-soft-gray: #f4f7f7;
   --white: #ffffff;
@@ -111,7 +111,7 @@ ul {
   font-family: var(--font-serif);
   white-space: nowrap;
   font-size: 3.2rem;
-  color: var(--primary-blue);
+  color: var(--accent-color);
 }
 
 .staircase-text {
@@ -207,10 +207,11 @@ ul {
 
 .logo-main {
   font-size: 1.6rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--primary-blue);
-  font-family: var(--font-serif);
+  font-family: var(--font-round);
   line-height: 1.2;
+  letter-spacing: 0.04em;
 }
 
 .pc-actions {
@@ -578,7 +579,7 @@ ul {
   font-family: var(--font-serif);
   white-space: nowrap;
   font-size: 2.2rem;
-  color: var(--primary-blue);
+  color: var(--accent-color);
   font-weight: 700;
 }
 
@@ -1945,7 +1946,7 @@ ul {
   left: 50%;
   width: 150vmax;
   height: 150vmax;
-  background: #147fc3;
+  background: #08b9dd;
   border-radius: 50%;
   transform: translate(-50%, -50%) scale(var(--about-circle-scale, 0));
   pointer-events: none;
@@ -1988,6 +1989,7 @@ ul {
   max-width: 1440px;
   text-align: center;
   opacity: var(--about-content-opacity, 1);
+  padding-bottom: clamp(150px, 18vh, 220px);
   transform: translateY(var(--about-content-y, 0));
   will-change: opacity, transform;
 }
@@ -2098,6 +2100,29 @@ ul {
   transform: translateY(-2px);
 }
 
+.about-bottom-visual {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  height: clamp(260px, 34vh, 390px);
+  overflow: hidden;
+  pointer-events: none;
+  opacity: var(--about-bottom-progress, 0);
+  transform: translateY(calc(42px * (1 - var(--about-bottom-progress, 0))));
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  will-change: opacity, transform;
+}
+
+.about-bottom-visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
 .about-photo {
   display: none;
 }
@@ -2110,6 +2135,8 @@ ul {
   z-index: 2;
   opacity: var(--about-photos-progress, 0);
   transition: opacity 0.4s ease;
+  display: none !important;
+  /* 一旦非表示 */
 }
 
 .about-photo-frame {
@@ -2312,6 +2339,7 @@ ul {
 
   .about-content {
     max-width: 720px;
+    padding-bottom: clamp(180px, 28vh, 280px);
   }
 
   .about-title {
@@ -2332,6 +2360,7 @@ ul {
 
   .about-content {
     padding: 0 22px;
+    padding-bottom: 200px;
   }
 
   .about-title {
@@ -2358,11 +2387,14 @@ ul {
     height: 8px;
   }
 
-  .about-btn {
-    min-width: 198px;
-    min-height: 58px;
-    font-size: 0.98rem;
-    padding: 16px 30px;
+  .about-bottom-visual {
+    height: 250px;
+  }
+
+  .about-bottom-visual img {
+    width: 170%;
+    max-width: none;
+    transform: translateX(-20%);
   }
 
   .about-photo {
