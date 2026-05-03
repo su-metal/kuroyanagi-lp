@@ -3164,7 +3164,7 @@ ul {
 .features-simple-content {
   position: relative;
   z-index: 2;
-  max-width: 640px;
+  max-width: 840px;
   color: #27384c;
 }
 
@@ -3697,6 +3697,13 @@ ul {
     min-height: 72px;
     padding: 16px;
   }
+}
+
+.medical-guide-section {
+  position: relative;
+  padding: 120px 0 120px;
+  background-color: var(--bg-warm);
+  overflow: hidden;
 }
 
 .medical-guide-arch-top {
