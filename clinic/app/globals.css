@@ -1108,6 +1108,10 @@ ul {
   display: none;
 }
 
+.facility-mobile-heading-slider {
+  display: none;
+}
+
 .facility-image-set {
   display: flex;
   align-items: center;
@@ -1302,20 +1306,28 @@ ul {
   .facility-images-area {
     border-radius: 0;
     overflow: hidden;
+    display: none;
   }
 
   .facility-mobile-collage {
     display: none;
   }
 
-  .facility-image-grid {
+  .facility-mobile-heading-slider {
+    display: block;
+    width: calc(100% + 52px);
+    margin: 0 -26px 32px;
+    overflow: hidden;
+  }
+
+  .facility-mobile-heading-slider .facility-image-grid {
     display: flex;
     align-items: stretch;
     height: clamp(280px, 78vw, 360px);
     animation-duration: 60s;
   }
 
-  .facility-image-set {
+  .facility-mobile-heading-slider .facility-image-set {
     align-items: stretch;
   }
 
@@ -1332,12 +1344,15 @@ ul {
   .facility-title {
     font-size: 1.8rem;
     margin-bottom: 24px;
+    color: var(--text-color);
+    border-bottom-color: rgba(0, 64, 152, 0.36);
   }
 
   .facility-lead {
     font-size: 1.25rem;
     line-height: 1.65;
     margin-bottom: 20px;
+    color: #26384d;
   }
 
   .facility-desc {
@@ -1345,6 +1360,7 @@ ul {
     font-size: 0.95rem;
     line-height: 1.9;
     margin-bottom: 30px;
+    color: #40556d;
   }
 
   .facility-btn {
@@ -1352,12 +1368,12 @@ ul {
     gap: 16px;
   }
 
-  .facility-img-item.vertical {
+  .facility-mobile-heading-slider .facility-img-item.vertical {
     width: 48vw;
     height: 100%;
   }
 
-  .facility-img-item.wide {
+  .facility-mobile-heading-slider .facility-img-item.wide {
     width: 78vw;
     height: 100%;
   }
@@ -2632,17 +2648,77 @@ ul {
   z-index: 1;
 }
 
+.about-reveal-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='1440' height='1000' viewBox='0 0 1440 1000' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-70 236C66 280 166 178 292 104C404 38 508 56 574 -28' stroke='rgba(255,255,255,0.45)' stroke-width='1.2' stroke-linecap='round'/%3E%3Cpath d='M1238 566C1222 512 1266 470 1314 470C1320 414 1368 372 1424 382C1448 328 1506 302 1568 324' stroke='rgba(255,255,255,0.34)' stroke-width='1.2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.72;
+  mask-image: linear-gradient(180deg, #000 0%, #000 50%, rgba(0, 0, 0, 0.35) 66%, transparent 82%);
+}
+
+@media (max-width: 640px) {
+  .about-reveal-wrapper::before {
+    background-image: url("data:image/svg+xml,%3Csvg width='390' height='844' viewBox='0 0 390 844' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-86 238C-18 264 26 205 84 166C130 136 172 140 204 106' stroke='rgba(255,255,255,0.34)' stroke-width='1.1' stroke-linecap='round'/%3E%3Cpath d='M334 430C326 396 354 370 384 372C390 338 420 314 456 322' stroke='rgba(255,255,255,0.28)' stroke-width='1.1' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    opacity: 0.7;
+    mask-image: linear-gradient(180deg, #000 0%, #000 54%, rgba(0, 0, 0, 0.2) 66%, transparent 76%);
+  }
+}
+
 .about-reveal-circle {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 150vmax;
   height: 150vmax;
-  background: #147fc3;
+  background:
+    radial-gradient(circle at 50% 72%, rgba(8, 185, 221, 0.38) 0 18%, rgba(8, 185, 221, 0) 46%),
+    linear-gradient(180deg, #147fc3 0%, #118bca 48%, #08b9dd 100%);
   border-radius: 50%;
   transform: translate(-50%, -50%) scale(var(--about-circle-scale, 0));
   pointer-events: none;
   will-change: transform;
+  overflow: hidden;
+}
+
+.about-reveal-circle::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: url("/photo/assets/about/about-sky-texture.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.42;
+  mix-blend-mode: soft-light;
+}
+
+.about-reveal-circle::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image:
+    radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.2) 0 18%, rgba(255, 255, 255, 0) 44%),
+    radial-gradient(circle, rgba(255, 255, 255, 0.36) 0 1px, rgba(255, 255, 255, 0) 1.4px);
+  background-size:
+    100% 100%,
+    24px 24px;
+  background-position:
+    center,
+    0 0;
+  background-repeat:
+    no-repeat,
+    repeat;
+  opacity: 0.52;
+  mask-image: linear-gradient(180deg, #000 0%, #000 39%, rgba(0, 0, 0, 0.22) 58%, transparent 76%);
+  pointer-events: none;
 }
 
 .about-section::before {
@@ -3133,7 +3209,7 @@ ul {
   z-index: 2;
   width: 100%;
   aspect-ratio: 1.48 / 1;
-  border-radius: 0 48px 48px 0;
+  border-radius: 0 32px 32px 0;
   overflow: hidden;
   box-shadow: 0 24px 64px rgba(0, 64, 152, 0.1);
 }
@@ -3164,7 +3240,7 @@ ul {
 .features-simple-content {
   position: relative;
   z-index: 2;
-  max-width: 640px;
+  max-width: 840px;
   color: #27384c;
 }
 
@@ -3697,6 +3773,13 @@ ul {
     min-height: 72px;
     padding: 16px;
   }
+}
+
+.medical-guide-section {
+  position: relative;
+  padding: 120px 0 120px;
+  background-color: var(--bg-warm);
+  overflow: hidden;
 }
 
 .medical-guide-arch-top {
@@ -5072,16 +5155,44 @@ ul {
   }
 
   .access-section {
-    padding: 70px 20px;
+    padding: 64px 18px;
   }
 
   .access-heading-row {
     padding: 0;
-    margin-bottom: 38px;
+    gap: 18px;
+    margin-bottom: 32px;
+  }
+
+  .access-en {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+
+  .access-title-block h2 {
+    font-size: 2.15rem;
+    line-height: 1.25;
+  }
+
+  .access-address-block p {
+    font-size: 0.86rem;
+    line-height: 1.75;
+    letter-spacing: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .access-address-block a {
+    font-size: 0.9rem;
+  }
+
+  .access-detail-btn {
+    width: min(100%, 258px);
+    min-height: 54px;
+    font-size: 0.95rem;
   }
 
   .access-method-card {
-    padding: 28px 22px;
+    padding: 26px 20px;
   }
 
   .access-method {
@@ -5103,6 +5214,15 @@ ul {
 
   .access-method-text {
     padding-top: 0;
+  }
+
+  .access-method-text h6 {
+    font-size: 1rem;
+  }
+
+  .access-method-text p {
+    font-size: 0.88rem;
+    line-height: 1.85;
   }
 
   .site-footer {
