@@ -3194,6 +3194,7 @@ ul {
   .about-bottom-visual img {
     width: 170%;
     max-width: none;
+    bottom: 0;
     transform: translateX(-50%);
   }
 

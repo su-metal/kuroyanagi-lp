@@ -573,7 +573,7 @@ export default function Home() {
           </div>
 
           <div className="about-bottom-visual" style={{ "--about-bottom-progress": aboutPhotosProgress }} aria-hidden="true">
-            <img src="/photo/assets/about/about-bottom-illustration-foreground.png" alt="" />
+            <img src="/photo/assets/about/about-bottom-illustration-foreground-tall.png" alt="" />
           </div>
         </div>
 
