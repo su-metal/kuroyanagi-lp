@@ -814,6 +814,20 @@ export default function Home() {
             <div className="facility-content">
               <span className="facility-en-label">FACILITY</span>
               <h2 className="facility-title">施設紹介</h2>
+
+              <div className="facility-mobile-heading-slider" aria-label="施設紹介の写真">
+                <div className="facility-image-grid">
+                  {[0, 1].map((setIndex) => (
+                    <div className="facility-image-set" aria-hidden={setIndex === 1} key={`mobile-${setIndex}`}>
+                      {facilityImages.map((image) => (
+                        <div className={`facility-img-item ${image.variant}`} key={`mobile-${setIndex}-${image.src}`}>
+                          <img src={image.src} alt={setIndex === 0 ? image.alt : ""} />
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
               
               <div className="facility-text-group">
                 <h3 className="facility-lead">
