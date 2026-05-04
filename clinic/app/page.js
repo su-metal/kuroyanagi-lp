@@ -276,7 +276,7 @@ export default function Home() {
     <div className="wrapper">
 
       {/* --- HEADER --- */}
-      <header className="header">
+      <header className={`header ${isMenuOpen ? "is-menu-open" : ""}`}>
         {/* Main Header (Top Bar) */}
         <div className="header-main">
           <div className="container header-main-inner">
@@ -326,9 +326,11 @@ export default function Home() {
 
             {/* Mobile Hamburger */}
             <button 
-              className="hamburger show-mobile" 
+              className="hamburger show-mobile"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="メニュー"
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
             >
               <span></span>
               <span></span>
@@ -337,6 +339,27 @@ export default function Home() {
           </div>
         </div>
 
+        <div
+          className={`mobile-menu-backdrop ${isMenuOpen ? "is-open" : ""}`}
+          onClick={() => setIsMenuOpen(false)}
+          aria-hidden="true"
+        />
+        <nav
+          id="mobile-menu"
+          className={`mobile-menu ${isMenuOpen ? "is-open" : ""}`}
+          aria-label="モバイルナビゲーション"
+        >
+          <a href="#about" onClick={() => setIsMenuOpen(false)}>当院について</a>
+          <a href="#features" onClick={() => setIsMenuOpen(false)}>当院の特徴</a>
+          <a href="#service" onClick={() => setIsMenuOpen(false)}>診療案内</a>
+          <a href="#facility" onClick={() => setIsMenuOpen(false)}>施設紹介</a>
+          <a href="#news" onClick={() => setIsMenuOpen(false)}>お知らせ</a>
+          <a href="#access" onClick={() => setIsMenuOpen(false)}>アクセス</a>
+          <div className="mobile-menu-actions">
+            <a href="#" onClick={() => setIsMenuOpen(false)}>ご予約はこちら</a>
+            <a href="tel:0535251113" onClick={() => setIsMenuOpen(false)}>053-525-1113</a>
+          </div>
+        </nav>
       </header>
 
       {/* --- HERO --- */}
@@ -573,7 +596,16 @@ export default function Home() {
           </div>
 
           <div className="about-bottom-visual" style={{ "--about-bottom-progress": aboutPhotosProgress }} aria-hidden="true">
-            <img src="/photo/assets/about/about-bottom-illustration-foreground-tall.png" alt="" />
+            <img
+              className="about-bottom-visual-img about-bottom-visual-img--desktop"
+              src="/photo/assets/about/about-bottom-illustration-foreground.png"
+              alt=""
+            />
+            <img
+              className="about-bottom-visual-img about-bottom-visual-img--mobile"
+              src="/photo/assets/about/about-bottom-illustration-foreground-tall.png"
+              alt=""
+            />
           </div>
         </div>
 
