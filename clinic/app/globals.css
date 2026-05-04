@@ -1436,7 +1436,7 @@ ul {
 .news-desc {
   font-size: 0.95rem;
   color: #555;
-  margin-bottom: 48px;
+  margin-bottom: 24px;
   line-height: 1.8;
 }
 
@@ -1511,13 +1511,7 @@ ul {
 
 /* Pick up Ribbon */
 .pickup-ribbon {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 90px;
-  height: 90px;
-  overflow: hidden;
-  pointer-events: none;
+  display: none;
 }
 
 .pickup-ribbon::before {
@@ -1679,12 +1673,37 @@ ul {
     font-size: 1.8rem;
   }
 
+  .news-desc {
+    margin-bottom: 22px;
+  }
+
   .news-card {
-    padding: 20px 24px;
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-content: start;
+    column-gap: 14px;
+    row-gap: 12px;
+    padding: 18px 22px;
+  }
+
+  .news-date {
+    font-size: 0.98rem;
+    line-height: 1;
+    min-width: 0;
+  }
+
+  .news-tag {
+    font-size: 0.68rem;
+    line-height: 1;
+    padding: 7px 14px;
   }
 
   .news-card-title {
+    grid-column: 1 / -1;
     font-size: 0.95rem;
+    line-height: 1.65;
+    margin: 0;
   }
 }
 
