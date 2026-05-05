@@ -294,35 +294,20 @@ export default function Home() {
               </a>
             </div>
 
-            {/* PC Actions */}
-            <div className="pc-actions hidden-mobile">
-              <a href="#" className="header-card blue">
-                <span className="icon">
-                  <img src="/photo/assets/01_action/01_予約.png" alt="" />
-                </span>
-                <span className="info">
-                  <span className="value">ご予約はこちら</span>
-                </span>
-              </a>
-              <a href="#" className="header-card blue">
-                <span className="icon">
-                  <img src="/photo/assets/01_action/02_みっかび東.png" alt="" />
-                </span>
-                <span className="info">
-                  <span className="value">みっかび東</span>
-                  <span className="label">介護老人保健施設</span>
-                </span>
-              </a>
-              <a href="tel:0535251113" className="header-card tel-card">
-                <span className="tel-top">
-                  <span className="icon tel-icon">
-                    <img src="/photo/assets/01_action/03_電話.png" alt="" />
-                  </span>
-                  <span className="tel-value">053-525-1113</span>
-                </span>
-                <span className="tel-hours">受付時間 8:30〜17:30（木・土午後、日祝休診）</span>
-              </a>
-            </div>
+            <nav className="pc-header-nav hidden-mobile" aria-label="グローバルナビゲーション">
+              <a href="#about">私たちについて</a>
+              <a href="#service">診療案内</a>
+              <a href="#facility">医院案内</a>
+              <a href="#news">お知らせ</a>
+              <a href="#">採用情報</a>
+            </nav>
+
+            <a href="#" className="header-reservation-btn hidden-mobile">
+              <span className="reservation-icon" aria-hidden="true">
+                <img src="/photo/assets/01_action/01_予約.png" alt="" />
+              </span>
+              <span>ご予約はこちら</span>
+            </a>
 
             {/* Mobile Hamburger */}
             <button 
@@ -367,66 +352,78 @@ export default function Home() {
         <section className="hero hero-editorial">
           <div className="hero-editorial-shell">
             <div className="hero-editorial-stage">
-              <figure className="hero-editorial-main-photo" aria-label="ヒーロー画像スライダー">
-                {heroSliderImages.map((src, index) => (
-                  <img 
-                    key={src}
-                    src={src} 
-                    alt="診療風景" 
-                    className={index === heroActiveIndex ? "active" : ""}
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      opacity: index === heroActiveIndex ? 1 : 0,
-                      transition: "opacity 1.6s ease-in-out",
-                      zIndex: index === heroActiveIndex ? 2 : 1
-                    }}
-                    onError={(event) => { event.currentTarget.style.display = "none"; }} 
-                  />
-                ))}
+              <div className="hero-editorial-deco deco-dot-large deco-dot-1" aria-hidden="true" />
+              <div className="hero-editorial-deco deco-dot-large deco-dot-2" aria-hidden="true" />
+              <div className="hero-editorial-deco deco-dot-small deco-dot-3" aria-hidden="true" />
+              <div className="hero-editorial-deco deco-dot-small deco-dot-4" aria-hidden="true" />
+              <div className="hero-editorial-deco deco-dot-grid" aria-hidden="true" />
 
-                {/* --- Catch Copy Overlay --- */}
-                <div className="hero-editorial-catch">
-                  <h2>
-                    <span className="catch-line">地域の皆さまの</span>
-                    <span className="catch-line">健康を支え、</span>
-                    <span className="catch-line">安心の毎日を。</span>
-                  </h2>
-                </div>
+              <div className="hero-editorial-catch">
+                <h1>
+                  <span className="catch-line catch-line-primary">地域の皆さまの</span>
+                  <span className="catch-line">健康を支え、</span>
+                  <span className="catch-line">安心の毎日を。</span>
+                </h1>
+              </div>
 
-                {/* --- Schedule Card Overlay --- */}
-                <div className="hero-editorial-schedule">
-                  <div className="editorial-schedule-card">
-                    <table className="editorial-schedule-table">
-                      <thead>
-                        <tr>
-                          <th>診療受付時間</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th><th>日祝</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td className="time-slot">午前 8:30 - 12:00</td>
-                          <td>●</td><td>●</td><td>●</td><td>●</td><td>●</td><td>●</td><td className="closed">×</td>
-                        </tr>
-                        <tr>
-                          <td className="time-slot">午後 14:00 - 17:30</td>
-                          <td>●</td><td>●</td><td>●</td><td className="closed">×</td><td>●</td><td className="closed">×</td><td className="closed">×</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <footer className="schedule-footer">
-                      <p>木・土午後、日・祝日は休診です</p>
-                    </footer>
-                  </div>
+              <figure className="hero-editorial-main-photo" aria-label="クロヤナギ医院の医師">
+                <div className="hero-circle-copy" aria-hidden="true">
+                  <svg viewBox="0 0 520 520">
+                    <defs>
+                      <path id="hero-circle-text-path" d="M 260 12 A 248 248 0 0 0 260 508" />
+                    </defs>
+                    <text>
+                      <textPath href="#hero-circle-text-path" startOffset="8%">
+                        SUPPORT THE LOCAL LIFE. FEEL FREE AND MILD TO YOUR EVERYDAY LIFE.
+                      </textPath>
+                    </text>
+                  </svg>
                 </div>
+                <img
+                  src="/photo/hero-editorial-main.jpg"
+                  alt="クロヤナギ医院の医師"
+                  className="active"
+                  onError={(event) => { event.currentTarget.style.display = "none"; }}
+                />
               </figure>
-            </div>
-          </div>
 
-          {/* --- Scroll Decoration --- */}
-          <div className="hero-editorial-scroll">
-            <span className="scroll-text">SCROLL</span>
-            <div className="scroll-line"></div>
+              <div className="hero-editorial-schedule">
+                <div className="editorial-schedule-card">
+                  <table className="editorial-schedule-table">
+                    <thead>
+                      <tr>
+                        <th>診療受付時間</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th><th>日祝</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="time-slot">午前 8:30 - 12:00</td>
+                        <td>●</td><td>●</td><td>●</td><td>●</td><td>●</td><td>●</td><td className="closed">×</td>
+                      </tr>
+                      <tr>
+                        <td className="time-slot">午後 14:00 - 17:30</td>
+                        <td>●</td><td>●</td><td>●</td><td className="closed">×</td><td>●</td><td className="closed">×</td><td className="closed">×</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <footer className="schedule-footer">
+                    <p>休診日：木・土午後、日・祝日</p>
+                  </footer>
+                </div>
+              </div>
+
+              <div className="hero-editorial-pager" aria-hidden="true">
+                <span className="active"></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+              <div className="hero-editorial-scroll">
+                <span className="scroll-text">SCROLL</span>
+                <div className="scroll-line"></div>
+              </div>
+            </div>
           </div>
         </section>
       ) : (
@@ -756,7 +753,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- MEDICAL GUIDE --- */}
+      {/* --- SERVICE, FACILITY, NEWS SHARED BACKGROUND AREA --- */}
+      <div className="sections-with-bg-arc">
+
+        {/* --- MEDICAL GUIDE --- */}
+
       <section id="service" className={`medical-guide-section ${isMedicalVisible ? 'is-visible' : ''}`} ref={medicalSectionRef}>
         <div className="medical-guide-arch-top" aria-hidden="true">
           <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -809,6 +810,7 @@ export default function Home() {
       <section id="facility" className="facility-section">
         {/* Background shape */}
         <div className="facility-bg-shape" aria-hidden="true"></div>
+        
 
         <div className="container">
           <div className="facility-layout">
@@ -886,7 +888,7 @@ export default function Home() {
       </section>
 
       {/* --- NEWS --- */}
-      <section className="news-section">
+      <section id="news" className="news-section">
         <div className="container">
           <div className="news-inner">
             
@@ -958,6 +960,7 @@ export default function Home() {
           <img src="/photo/assets/07_ashirai/06_鳥.png" alt="" />
         </div>
       </section>
+      </div>
 
       {/* Wave Divider */}
       <div className="wave-divider-wrapper">
