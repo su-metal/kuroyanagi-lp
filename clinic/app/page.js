@@ -357,16 +357,27 @@ export default function Home() {
               <div className="hero-editorial-deco deco-dot-small deco-dot-3" aria-hidden="true" />
               <div className="hero-editorial-deco deco-dot-small deco-dot-4" aria-hidden="true" />
               <div className="hero-editorial-deco deco-dot-grid" aria-hidden="true" />
+              <div className="hero-mobile-wave hero-mobile-wave-1" aria-hidden="true" />
+              <div className="hero-mobile-wave hero-mobile-wave-2" aria-hidden="true" />
+              <div className="hero-mobile-wave hero-mobile-wave-3" aria-hidden="true" />
+              <div className="hero-mobile-wave hero-mobile-wave-4" aria-hidden="true" />
 
               <div className="hero-editorial-catch">
                 <h1>
-                  <span className="catch-line catch-line-primary">地域の皆さまの</span>
-                  <span className="catch-line">健康を支え、</span>
-                  <span className="catch-line">安心の毎日を。</span>
+                  <span className="catch-line catch-line-primary">医療から介護まで、</span>
+                  <span className="catch-line">この場所で。</span>
                 </h1>
               </div>
 
+              {/* Mobile Bird Illustration */}
+              <div className="hero-editorial-bird show-mobile" aria-hidden="true">
+                <img src="/photo/kamome.png" alt="" />
+              </div>
+
               <figure className="hero-editorial-main-photo" aria-label="クロヤナギ医院の医師">
+                {/* Mobile swoosh decoration */}
+                <div className="hero-editorial-swoosh show-mobile" aria-hidden="true" />
+                
                 <div className="hero-circle-copy" aria-hidden="true">
                   <svg viewBox="0 0 520 520">
                     <defs>
@@ -379,12 +390,25 @@ export default function Home() {
                     </text>
                   </svg>
                 </div>
-                <img
-                  src="/photo/hero-editorial-main.jpg"
-                  alt="クロヤナギ医院の医師"
-                  className="active"
-                  onError={(event) => { event.currentTarget.style.display = "none"; }}
-                />
+                <div className="hero-editorial-slider">
+                  {heroSliderImages.map((src, index) => (
+                    <img
+                      key={src}
+                      src={src}
+                      alt={index === 0 ? "クロヤナギ医院の医師" : "クロヤナギ医院のヒーローイメージ"}
+                      className={index === heroActiveIndex ? "active" : ""}
+                      onError={(event) => { event.currentTarget.style.display = "none"; }}
+                    />
+                  ))}
+                </div>
+
+                {/* Mobile Access Badge */}
+                <div className="hero-editorial-badge show-mobile">
+                  <div className="badge-inner">
+                    <span className="badge-place">三ヶ日駅から</span>
+                    <span className="badge-time">徒歩 <span className="time-num">5</span> 分</span>
+                  </div>
+                </div>
               </figure>
 
               <div className="hero-editorial-schedule">
@@ -413,10 +437,16 @@ export default function Home() {
               </div>
 
               <div className="hero-editorial-pager" aria-hidden="true">
-                <span className="active"></span>
-                <span></span>
-                <span></span>
-                <span></span>
+                {heroSliderImages.map((src, index) => (
+                  <span key={src} className={index === heroActiveIndex ? "active" : ""}></span>
+                ))}
+              </div>
+
+              {/* Mobile Hero News */}
+              <div className="hero-editorial-news show-mobile">
+                <span className="news-date">2025.07.08</span>
+                <p className="news-title">地域に根ざした医療を提供してまいります</p>
+                <div className="news-underline"></div>
               </div>
 
               <div className="hero-editorial-scroll">
@@ -441,9 +471,9 @@ export default function Home() {
               {/* Vertical staircase text (Moved here to overlap the photo) */}
               <div className="copy-vertical-wrapper">
                 <h2 className="v-text staircase-text">
-                  <span className="step-1 line-band">地域の皆さまの</span>
-                  <span className="step-2 line-band">健康を支え、</span>
-                  <span className="step-3 line-band">安心の毎日を。</span>
+                  <span className="step-1 line-band">医療から介護まで、</span>
+                  <span className="step-2 line-band">この場所で。</span>
+
                 </h2>
               </div>
 
@@ -979,14 +1009,14 @@ export default function Home() {
 
       {/* Access Section */}
       <section id="access" className="access-section">
-        <div className="section-container">
-          <div className="access-heading-row">
-            <div className="access-title-block">
-              <span className="access-en">ACCESS</span>
-              <h2>アクセス</h2>
-            </div>
-            <div className="access-address-block">
-              <p>〒431-1404 静岡県浜松市浜名区三ヶ日町宇志34-1</p>
+        <div className="container">
+          <div className="section-header">
+            <h2 className="section-title">アクセス</h2>
+            <p className="section-subtitle">Access</p>
+          </div>
+          <div className="access-info">
+            <p className="access-address">〒431-1404<br />静岡県浜松市浜名区三ヶ日町宇志34-1</p>
+            <div className="access-map-link">
               <a href="https://www.google.com/maps/search/?api=1&query=%E9%9D%99%E5%B2%A1%E7%9C%8C%E6%B5%9C%E6%9D%BE%E5%B8%82%E6%B5%9C%E5%90%8D%E5%8C%BA%E4%B8%89%E3%83%B6%E6%97%A5%E7%94%BA%E5%AE%87%E5%BF%9734-1" target="_blank" rel="noreferrer">
                 Googleマップで見る
                 <span aria-hidden="true">↗</span>
@@ -1164,6 +1194,10 @@ export default function Home() {
           </div>
         </div>
       </footer>
+      {/* Mobile Fixed Action Bar */}
+      <div className="mobile-action-bar show-mobile">
+        <a href="#" className="action-btn-main">online reservation</a>
+      </div>
     </div>
   );
 }

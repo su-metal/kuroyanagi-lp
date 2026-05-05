@@ -149,7 +149,7 @@ ul {
 }
 
 .hidden-mobile {
-  display: flex !important;
+  /* Default visibility for PC */
 }
 
 .show-mobile {
@@ -178,6 +178,10 @@ ul {
     background: transparent !important;
     border-bottom: none !important;
     box-shadow: none !important;
+  }
+
+  .header-main-inner {
+    width: 100%;
   }
 }
 
@@ -213,6 +217,7 @@ ul {
 .logo-text {
   display: flex;
   flex-direction: column;
+  white-space: nowrap;
 }
 
 .logo-flex {
@@ -238,6 +243,7 @@ ul {
   font-family: var(--font-modern);
   line-height: 1.2;
   letter-spacing: 0.04em;
+  white-space: nowrap;
 }
 
 .pc-actions {
@@ -310,25 +316,27 @@ ul {
 .hamburger {
   position: relative;
   z-index: 1200;
-  width: 46px;
-  height: 46px;
-  border: 1px solid rgba(3, 110, 183, 0.18);
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.94);
-  box-shadow: 0 10px 28px rgba(0, 50, 100, 0.12);
+  background: #f8b500;
+  /* Mikkabi Yellow */
+  box-shadow: 0 8px 24px rgba(248, 181, 0, 0.3);
+  display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
+  border: none;
 }
 
 .hamburger span {
   display: block;
-  width: 18px;
-  height: 2px;
+  width: 22px;
+  height: 2.5px;
   border-radius: 999px;
-  background: var(--primary-blue);
+  background: #fff;
   transition: transform 0.25s ease, opacity 0.2s ease;
 }
 
@@ -376,6 +384,18 @@ ul {
     pointer-events: auto;
   }
 
+  .mobile-menu-toggle {
+    width: 48px;
+    height: 48px;
+    top: 15px;
+    right: 15px;
+  }
+
+  .mobile-menu-toggle span {
+    width: 24px;
+    height: 2px;
+  }
+
   .mobile-menu {
     position: fixed;
     top: 14px;
@@ -417,9 +437,10 @@ ul {
   }
 
   .mobile-menu>a::after {
-    content: "→";
+    content: "›";
     color: var(--primary-blue);
-    font-size: 0.95rem;
+    font-size: 1.1rem;
+    margin-left: 8px;
   }
 
   .mobile-menu-actions {
@@ -826,7 +847,7 @@ ul {
 .deco-family {
   position: absolute;
   bottom: 340px;
-  /* 陷蜥乗ａE���E�・�E�陟取・・�E�・�E�闔牙�E�・�E�謁E���E��E�繝ｻ60px + 闖ｴ蜻�E�・�E�蛹・�E��E�蟲�E�竊馴�E�溷調・�E�・�E� */
+  /* 髯ｷﾂ陷･荵暦ｽ・・ｽ・ｽ・ｽE・ｽ繝ｻ・ｽE・ｽ髯溷叙繝ｻ繝ｻ・ｽE・ｽ繝ｻ・ｽE・ｽ髣皮甥ﾂ・ｽE・ｽ繝ｻ・ｽE・ｽ隰・・ｽ・ｽ・ｽE・ｽ・ｽE・ｽ郢晢ｽｻ60px + 髣厄ｽｴ陷ｻ・ｽE・ｽ繝ｻ・ｽE・ｽ陋ｹ繝ｻ・ｽE・ｽ・ｽE・ｽ陝ｲ・ｽE・ｽ遶企ｦｴ・ｽE・ｽ貅ｷ隱ｿ繝ｻ・ｽE・ｽ繝ｻ・ｽE・ｽ */
   right: 26px;
   width: 160px;
   z-index: 2;
@@ -842,7 +863,7 @@ ul {
   .hero {
     height: calc(100svh - var(--hero-header-height));
     min-height: 0;
-    /* 譛蟁E���E�倥�E�E��貞ｰ代�E�荳九￡縺�E�縲∵�E��E�繧後�E縺上￥縺吶�E�E*/
+    /* 隴崢陝・・ｽ・ｽ・ｽE・ｽ蛟･・ｽE・ｽE・ｽ・ｽ雋橸ｽｰ莉｣・ｽE・ｽ闕ｳ荵晢ｿ｡邵ｺ・ｽE・ｽ邵ｲ竏ｵ・ｽE・ｽ・ｽE・ｽ郢ｧ蠕鯉ｿｽE邵ｺ荳奇ｿ･邵ｺ蜷ｶ・ｽE・ｽE*/
     overflow: hidden;
   }
 
@@ -1863,7 +1884,7 @@ ul {
   padding: 20px 0 120px;
   background-color: var(--bg-blue-soft);
   position: relative;
-  margin-top: 500px;
+  margin-top: 0;
   /* Increased to accommodate the much deeper arch */
 }
 
@@ -2308,10 +2329,10 @@ ul {
 .hero-editorial-catch h2 {
   display: flex;
   flex-direction: row-reverse;
-  /* 日本語�E頁E��：右から左へ列を並べめE*/
+  /* 譌･譛ｬ隱橸ｿｽE鬆・・ｽ・ｽ・壼承縺九ｉ蟾ｦ縺ｸ蛻励ｒ荳ｦ縺ｹ繧・*/
   align-items: flex-start;
   gap: clamp(12px, 2.5vw, 32px);
-  /* 列同士の横の間隔を縮封E*/
+  /* 蛻怜酔螢ｫ縺ｮ讓ｪ縺ｮ髢馴囈繧堤ｸｮ蟆・*/
 }
 
 .hero-editorial-catch .catch-line {
@@ -2324,13 +2345,13 @@ ul {
   line-height: 1;
   letter-spacing: 0.3em;
   white-space: nowrap;
-  /* 白ぁE��を追加 */
+  /* 逋ｽ縺・・ｽ・ｽ繧定ｿｽ蜉� */
   background: rgba(255, 255, 255, 0.85);
   padding: 1.5rem 0.5rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
-/* 吁E�Eの開始位置�E�高さ�E�をずらして惁E��を出ぁE*/
+/* 蜷・・ｽE縺ｮ髢句ｧ倶ｽ咲ｽｮ・ｽE・ｽ鬮倥＆・ｽE・ｽ繧偵★繧峨＠縺ｦ諠・・ｽ・ｽ繧貞・縺・*/
 .hero-editorial-catch .catch-line:nth-child(1) {
   margin-top: 0;
 }
@@ -2366,7 +2387,7 @@ ul {
   font-size: clamp(0.68rem, 0.74vw, 0.8rem);
   color: #333;
   table-layout: fixed;
-  /* 坁E��割り�Eために固定レイアウトを採用 */
+  /* 蝮・・ｽ・ｽ蜑ｲ繧奇ｿｽE縺溘ａ縺ｫ蝗ｺ螳壹Ξ繧､繧｢繧ｦ繝医ｒ謗｡逕ｨ */
 }
 
 .editorial-schedule-table th {
@@ -2376,7 +2397,7 @@ ul {
   font-weight: 600;
   text-align: center;
   width: 8.5%;
-  /* 曜日列を坁E��に */
+  /* 譖懈律蛻励ｒ蝮・・ｽ・ｽ縺ｫ */
 }
 
 .editorial-schedule-table th:first-child {
@@ -2384,7 +2405,7 @@ ul {
   color: var(--primary-blue);
   font-weight: 800;
   font-size: 0.95rem;
-  /* 時刻�E�Ed�E��Eフォントサイズと統一 */
+  /* 譎ょ綾・ｽE・ｽEd・ｽE・ｽ・ｽE繝輔か繝ｳ繝医し繧､繧ｺ縺ｨ邨ｱ荳 */
   width: 40.5%;
 }
 
@@ -2419,7 +2440,7 @@ ul {
 .hero-editorial-scroll {
   position: absolute;
   bottom: -20px;
-  /* さらに下方へ */
+  /* 縺輔ｉ縺ｫ荳区婿縺ｸ */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -2437,7 +2458,7 @@ ul {
   writing-mode: vertical-rl;
   margin-bottom: 12px;
   font-weight: 700;
-  /* チE��スト部刁E��限定して細ぁE��を適用 */
+  /* 繝・・ｽ・ｽ繧ｹ繝磯Κ蛻・・ｽ・ｽ髯仙ｮ壹＠縺ｦ邏ｰ縺・・ｽ・ｽ繧帝←逕ｨ */
   background: rgba(255, 255, 255, 0.9);
   padding: 1.2rem 0.35rem;
   line-height: 1;
@@ -2640,7 +2661,7 @@ ul {
     box-shadow: none;
   }
 
-  /* モバイル版�E縦書きキャチE��コピ�E調整 */
+  /* 繝｢繝舌う繝ｫ迚茨ｿｽE邵ｦ譖ｸ縺阪く繝｣繝・・ｽ・ｽ繧ｳ繝費ｿｽE隱ｿ謨ｴ */
   .hero-editorial-catch {
     top: max(110px, 15vh);
     left: 20px;
@@ -2659,7 +2680,7 @@ ul {
     margin-top: 3rem;
   }
 
-  /* モバイル版�E診療受付時間カード調整 */
+  /* 繝｢繝舌う繝ｫ迚茨ｿｽE險ｺ逋ょ女莉俶凾髢薙き繝ｼ繝芽ｪｿ謨ｴ */
   .hero-editorial-schedule {
     right: 18px;
     bottom: 18px;
@@ -2800,7 +2821,7 @@ ul {
   z-index: 0;
   isolation: isolate;
   min-height: 400vh;
-  /* 400vhに増やして「タメ」を確俁E*/
+  /* 400vh縺ｫ蠅励ｄ縺励※縲後ち繝｡縲阪ｒ遒ｺ菫・*/
   padding: 0;
   overflow: visible;
   background: #fff !important;
@@ -2894,7 +2915,7 @@ ul {
 
 .about-section::before {
   display: none;
-  /* 允E�E背景裁E��を一旦消去 */
+  /* 蜈・・ｽE閭梧勹陬・・ｽ・ｽ繧剃ｸ譌ｦ豸亥悉 */
 }
 
 .about-stage {
@@ -2939,14 +2960,14 @@ ul {
   margin-right: auto;
   padding-left: 0;
   padding-right: 0;
-  /* スクロール連動�E親の .about-content が持つ変数 (--about-content-opacity, --about-content-y) で制御されまぁE*/
+  /* 繧ｹ繧ｯ繝ｭ繝ｼ繝ｫ騾｣蜍包ｿｽE隕ｪ縺ｮ .about-content 縺梧戟縺､螟画焚 (--about-content-opacity, --about-content-y) 縺ｧ蛻ｶ蠕｡縺輔ｌ縺ｾ縺・*/
   will-change: opacity, transform;
   pointer-events: auto;
   z-index: 10;
   position: relative;
 }
 
-/* 青背景の上で見やすくするための白斁E��設定（デフォルト！E*/
+/* 髱定レ譎ｯ縺ｮ荳翫〒隕九ｄ縺吶￥縺吶ｋ縺溘ａ縺ｮ逋ｽ譁・・ｽ・ｽ險ｭ螳夲ｼ医ョ繝輔か繝ｫ繝茨ｼ・*/
 .about-content-editorial .about-title,
 .about-content-editorial .about-title span,
 .about-content-editorial .about-desc {
@@ -2992,7 +3013,7 @@ ul {
   display: inline-block;
   white-space: nowrap;
   color: inherit;
-  /* 親の白斁E��設定を引き継ぐ */
+  /* 隕ｪ縺ｮ逋ｽ譁・・ｽ・ｽ險ｭ螳壹ｒ蠑輔″邯吶＄ */
 }
 
 @media (max-width: 640px) {
@@ -3075,7 +3096,7 @@ ul {
   display: none;
 }
 
-/* フォトフレーム演�E */
+/* 繝輔か繝医ヵ繝ｬ繝ｼ繝�貍費ｿｽE */
 .about-photos-container {
   position: absolute;
   inset: 0;
@@ -3084,7 +3105,7 @@ ul {
   opacity: var(--about-photos-progress, 0);
   transition: opacity 0.4s ease;
   display: none !important;
-  /* 一旦非表示 */
+  /* 荳譌ｦ髱櫁｡ｨ遉ｺ */
 }
 
 .about-photo-frame {
@@ -3101,9 +3122,9 @@ ul {
   will-change: opacity, transform;
 }
 
-/* スクロール進捗に応じたアニメーション適用 */
+/* 繧ｹ繧ｯ繝ｭ繝ｼ繝ｫ騾ｲ謐励↓蠢懊§縺溘い繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ驕ｩ逕ｨ */
 .about-photos-container[style*="--about-photos-progress"] .about-photo-frame {
-  /* 進捗が0より大きい場合に、個別の遁E��を持って出現 */
+  /* 騾ｲ謐励′0繧医ｊ螟ｧ縺阪＞蝣ｴ蜷医↓縲∝句挨縺ｮ驕・・ｽ・ｽ繧呈戟縺｣縺ｦ蜃ｺ迴ｾ */
   opacity: var(--about-photos-progress);
   transform: translateY(calc(60px * (1 - var(--about-photos-progress)))) rotate(var(--photo-rotate, 0deg));
 }
@@ -3115,7 +3136,7 @@ ul {
   display: block;
 }
 
-/* PC配置 */
+/* PC驟咲ｽｮ */
 @media (min-width: 1025px) {
   .photo-1 {
     width: 220px;
@@ -3172,7 +3193,7 @@ ul {
   }
 }
 
-/* モバイル配置 */
+/* 繝｢繝舌う繝ｫ驟咲ｽｮ */
 @media (max-width: 1024px) {
   .about-photo-frame {
     padding: 6px;
@@ -3285,7 +3306,8 @@ ul {
 
 @media (max-width: 1024px) {
   .about-section {
-    min-height: 450vh;
+    min-height: 220vh;
+    /* Reduced from 450vh to avoid excessive whitespace while keeping scroll effect */
     padding: 0;
   }
 
@@ -3389,7 +3411,7 @@ ul {
   position: relative;
   z-index: 2;
   width: 100%;
-  aspect-ratio: 1.48 / 1;
+  aspect-ratio: 3 / 4;
   border-radius: 0 32px 32px 0;
   overflow: hidden;
   box-shadow: 0 24px 64px rgba(0, 64, 152, 0.1);
@@ -3958,7 +3980,7 @@ ul {
 
 .medical-guide-section {
   position: relative;
-  padding: 120px 0 120px;
+  padding: 120px 0 0px;
   background-color: transparent;
   z-index: 2;
 }
@@ -3991,7 +4013,7 @@ ul {
   }
 }
 
-/* グラチE�Eション裁E��を削除 */
+/* 繧ｰ繝ｩ繝・・ｽE繧ｷ繝ｧ繝ｳ陬・・ｽ・ｽ繧貞炎髯､ */
 .medical-guide-section::before {
   display: none;
 }
@@ -4066,7 +4088,7 @@ ul {
   border: 1px solid rgba(0, 64, 152, 0.2);
   border-radius: 24px;
   box-shadow: 0 18px 40px rgba(31, 83, 135, 0.08);
-  /* アニメーション用初期状慁E*/
+  /* 繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ逕ｨ蛻晄悄迥ｶ諷・*/
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1),
@@ -4525,6 +4547,7 @@ ul {
   /* Line clamp to 2 lines */
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   height: 3.2em;
@@ -5527,18 +5550,18 @@ ul {
 
 .logo-sub {
   font-size: 0.72rem;
-  color: #036eb7;
+  color: var(--primary-blue);
   letter-spacing: 0.08em;
 }
 
 .logo-main {
   font-size: clamp(1.25rem, 1.8vw, 1.72rem);
-  color: #036eb7;
+  color: var(--primary-blue);
 }
 
 .pc-header-nav {
   flex: 1;
-  display: flex !important;
+  display: flex;
   justify-content: center;
   align-items: center;
   gap: clamp(28px, 4.2vw, 64px);
@@ -5561,16 +5584,16 @@ ul {
 }
 
 .header-reservation-btn {
-  display: inline-flex !important;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
   min-width: 198px;
   min-height: 58px;
   padding: 0 26px;
-  border: 1.5px solid #036eb7;
+  border: 1.5px solid var(--primary-blue);
   border-radius: 13px;
-  color: #036eb7;
+  color: var(--primary-blue);
   background: #fff;
   font-weight: 800;
   letter-spacing: 0.06em;
@@ -5618,35 +5641,72 @@ ul {
   z-index: 2;
   --hero-circle-copy-outset: 64px;
   top: clamp(34px, 5vh, 62px);
-  right: clamp(-96px, -4vw, -34px);
-  width: min(78vw, 1250px);
+  right: 50%;
+  left: auto;
+  width: clamp(500px, 68vw, 1380px);
   height: clamp(500px, 67vh, 720px);
-  margin: 0;
+  margin: 0 -50vw 0 0;
   overflow: visible;
   border-radius: 999px 0 0 999px;
   box-shadow: none;
   background: #e9f3f6;
 }
 
-.hero-editorial-main-photo::before {
-  content: "";
+
+.hero-editorial-slider {
   position: absolute;
-  z-index: 3;
-  inset: 0 auto 0 0;
-  width: clamp(72px, 8vw, 136px);
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0));
-  pointer-events: none;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  z-index: 1;
 }
 
-.hero-editorial-main-photo img {
+.hero-editorial-slider img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center 44%;
-  opacity: 1;
+  opacity: 0;
+  transform: scale(1);
   border-radius: inherit;
+  transition: opacity 1.8s ease;
+  z-index: 1;
+}
+
+.hero-editorial-slider img.active {
+  opacity: 1;
+  z-index: 2;
+  animation: heroEditorialImageCycle 6s linear forwards;
+}
+
+@keyframes heroEditorialImageCycle {
+  0% {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-editorial-slider img {
+    transform: none;
+    transition: opacity 0.35s ease;
+  }
+
+  .hero-editorial-slider img.active {
+    transform: none;
+    animation: none;
+  }
 }
 
 .hero-editorial-catch {
@@ -5715,8 +5775,8 @@ ul {
 .hero-editorial-schedule {
   position: absolute;
   z-index: 8;
-  right: clamp(18px, 3vw, 60px);
-  bottom: clamp(86px, 10vh, 128px);
+  right: clamp(12px, 1.5vw, 20px);
+  bottom: clamp(24px, 4vh, 40px);
 }
 
 .editorial-schedule-card {
@@ -5781,7 +5841,7 @@ ul {
   position: absolute;
   z-index: 8;
   right: clamp(24px, 4vw, 68px);
-  bottom: clamp(24px, 4vh, 54px);
+  top: 16px;
   display: flex;
   align-items: center;
   gap: 28px;
@@ -5880,106 +5940,366 @@ ul {
   border-radius: 50%;
 }
 
-@media (max-width: 1024px) {
-  .header-main {
-    height: 80px;
-    padding: 14px 0;
+.hero-mobile-wave {
+  display: none;
+}
+
+@keyframes heroMobileWaveDrift {
+  0% {
+    background-position-x: 0;
   }
 
+  100% {
+    background-position-x: 64px;
+  }
+}
+
+@keyframes heroMobileBirdFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -12px, 0);
+  }
+}
+@keyframes heroMobileWaveFloat {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(var(--wave-rotate, 0deg));
+  }
+
+  50% {
+    transform: translate3d(0, 4px, 0) rotate(var(--wave-rotate, 0deg));
+  }
+}
+
+/* Mobile Hero Editorial Redesign */
+@media (max-width: 1024px) {
+
+  /* Mobile Header */
+  .header-main {
+    height: 72px;
+    padding: 0 20px;
+    background: transparent !important;
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+  }
+
+  .logo-main {
+    font-size: 1.05rem;
+    color: #444 !important;
+  }
+
+  .hamburger {
+    width: 44px;
+    height: 44px;
+    background: transparent !important;
+    border-radius: 0;
+    box-shadow: none !important;
+    gap: 8px !important;
+  }
+
+  .hamburger span {
+    width: 28px;
+    height: 1.5px;
+    background: #444 !important;
+  }
+
+  .hamburger span:nth-child(3) {
+    display: none;
+  }
+
+  /* ===================================================
+     Hero Editorial Stage
+  =================================================== */
   .hero-editorial {
-    min-height: calc(100svh - 80px);
-    padding: 0 16px 28px;
+    min-height: 100svh;
+    background: #f7f6f2 !important;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
   }
 
   .hero-editorial-shell {
-    min-height: calc(100svh - 108px);
+    min-height: 100svh;
     padding: 0;
+    position: relative;
   }
 
   .hero-editorial-stage {
-    min-height: calc(100svh - 108px);
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    padding-top: 24px;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
   }
 
-  .hero-editorial-main-photo {
-    position: relative;
-    top: auto;
-    right: auto;
-    order: 2;
-    width: 100%;
-    height: min(54vh, 520px);
-    margin-top: 22px;
-    border-radius: 44vw 0 0 44vw;
+  .hero-mobile-wave {
+    position: absolute;
+    display: block;
+    width: 132px;
+    height: 18px;
+    z-index: 8;
+    pointer-events: none;
+    --wave-rotate: 0deg;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 18'%3E%3Cpath d='M0 9 C5.33 4 10.67 4 16 9 S26.67 14 32 9 S42.67 4 48 9 S58.67 14 64 9' fill='none' stroke='%23364fd6' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-size: 64px 18px;
+    opacity: 0.92;
+    animation: heroMobileWaveDrift 6.5s linear infinite, heroMobileWaveFloat 7.5s ease-in-out infinite;
   }
 
+  .hero-mobile-wave-1 {
+    top: 58px;
+    left: 34px;
+    width: 72px;
+  }
+
+  .hero-mobile-wave-2 {
+    top: 88px;
+    right: 24px;
+    width: 118px;
+  }
+
+  .hero-mobile-wave-3 {
+    top: 28%;
+    left: 18px;
+    width: 38px;
+  }
+
+  .hero-mobile-wave-4 {
+    right: 18px;
+    bottom: 24%;
+    width: 96px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-mobile-wave {
+      animation: none;
+    }
+  }
+
+  /* ===================================================
+     Catchcopy — 左上固定
+  =================================================== */
   .hero-editorial-catch {
-    position: relative;
-    order: 1;
-    top: auto;
-    left: auto;
-    z-index: 6;
-    padding-left: 0;
+    position: absolute !important;
+    top: auto !important;
+    bottom: clamp(48px, 8svh, 76px) !important;
+    left: 24px !important;
+    right: auto !important;
+    width: auto !important;
+    margin: 0 !important;
+    text-align: left !important;
+    z-index: 10;
+    pointer-events: none;
+    background: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 
   .hero-editorial-catch h1 {
-    justify-content: center;
-    gap: 18px;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 2px;
+    background: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 
   .hero-editorial-catch .catch-line {
-    padding: 14px 8px;
-    font-size: clamp(1.45rem, 7vw, 2.1rem);
+    display: block !important;
+    writing-mode: horizontal-tb !important;
+    font-family: var(--font-modern) !important;
+    font-size: clamp(20px, 5.5vw, 26px) !important;
+    font-weight: 800 !important;
+    color: var(--primary-blue) !important;
+    letter-spacing: 0.14em !important;
+    line-height: 1.25 !important;
+    white-space: nowrap !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 
-  .hero-editorial-catch .catch-line:nth-child(2) {
-    margin-top: 54px;
+
+  .hero-editorial-catch::before,
+  .hero-editorial-catch::after,
+  .hero-editorial-catch .catch-line::before,
+  .hero-editorial-catch .catch-line::after {
+    content: none !important;
+    display: none !important;
   }
 
-  .hero-editorial-catch .catch-line:nth-child(3) {
-    margin-top: 108px;
+  /* ===================================================
+     Oval Photo — ステージ中央（少し右下寄り）
+  =================================================== */
+  .hero-editorial-main-photo {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -48%) !important;
+    width: min(72vw, 320px) !important;
+    height: min(72svh, 620px) !important;
+    margin: 0 !important;
+    border-radius: clamp(58px, 18vw, 86px) !important;
+    overflow: hidden !important;
+    z-index: 2 !important;
+    background: #d8d3ca !important;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12) !important;
   }
 
-  .hero-circle-copy,
-  .hero-editorial-deco,
-  .hero-editorial-pager {
-    display: none;
+  .hero-editorial-slider {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    overflow: hidden;
   }
 
+  .hero-editorial-slider img {
+    object-fit: cover;
+    object-position: center top;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+  }
+
+  .hero-editorial-slider img.active {
+    opacity: 1;
+  }
+
+  /* ===================================================
+     Schedule Card — 右下
+  =================================================== */
   .hero-editorial-schedule {
-    position: relative;
-    order: 3;
-    right: auto;
-    bottom: auto;
-    margin-top: -36px;
-    padding: 0 10px;
+    display: none !important;
   }
 
   .editorial-schedule-card {
-    width: 100%;
-    padding: 16px;
-    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.92) !important;
+    border-radius: 12px !important;
+    padding: 12px 14px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
+
+  .editorial-schedule-table {
+    font-size: 8px !important;
+    width: 100% !important;
+    table-layout: fixed !important;
+    border-collapse: collapse !important;
+  }
+
+  .editorial-schedule-table th {
+    font-size: 7px !important;
+    padding: 3px 1px 5px !important;
+    color: #888 !important;
+    font-weight: 700 !important;
+    border-bottom: 1px solid #eee !important;
+    text-align: center !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
   }
 
   .editorial-schedule-table th:first-child {
-    width: 36%;
-  }
-
-  .editorial-schedule-table,
-  .editorial-schedule-table .time-slot {
-    font-size: 0.74rem;
+    font-size: 7.5px !important;
+    color: #036eb7 !important;
+    text-align: left !important;
+    white-space: nowrap !important;
+    width: 70px !important;
   }
 
   .editorial-schedule-table td {
-    font-size: 0.8rem;
+    font-size: 9px !important;
+    padding: 4px 1px !important;
+    text-align: center !important;
+    color: #036eb7 !important;
+    font-weight: 700 !important;
+    border-bottom: 1px solid rgba(3, 110, 183, 0.08) !important;
   }
 
-  .hero-editorial-scroll {
-    display: none;
+  .editorial-schedule-table .time-slot {
+    text-align: left !important;
+    font-size: 7px !important;
+    color: #666 !important;
+    white-space: nowrap !important;
+    font-weight: 500 !important;
+    width: 70px !important;
+    overflow: hidden !important;
+  }
+
+  .editorial-schedule-table .closed {
+    color: #ccc !important;
+  }
+
+  .schedule-footer {
+    margin-top: 6px !important;
+    font-size: 7.5px !important;
+    color: #aaa !important;
+  }
+
+  /* ===================================================
+     Bird Illustration
+  =================================================== */
+  .hero-editorial-bird {
+    position: absolute !important;
+    top: 28% !important;
+    right: 6vw !important;
+    width: 80px !important;
+    z-index: 20 !important;
+    pointer-events: none;
+    opacity: 0.9;
+    animation: heroMobileBirdFloat 4.8s ease-in-out infinite;
+  }
+
+  .hero-editorial-bird img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-editorial-bird {
+      animation: none;
+    }
+  }
+
+  /* ===================================================
+     Hidden on Mobile
+  =================================================== */
+  .hero-editorial-news,
+  .hero-editorial-pager,
+  .hero-editorial-scroll,
+  .hero-editorial-badge,
+  .hero-editorial-swoosh,
+  .hero-circle-copy,
+  .hero-editorial-deco {
+    display: none !important;
   }
 }
+
 
 @media (max-width: 640px) {
   .logo-mark img {
@@ -5992,27 +6312,28 @@ ul {
 
   .logo-main {
     font-size: 1.08rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
   }
 
-  .hero-editorial {
-    padding-left: 10px;
-    padding-right: 10px;
+
+  .brand-marquee-track span {
+    font-size: 2.8rem;
+    letter-spacing: 0.12em;
   }
 
-  .hero-editorial-catch h1 {
-    gap: 10px;
+  .sections-with-bg-arc {
+    background-color: var(--bg-warm);
+    padding-bottom: 60px;
   }
 
-  .hero-editorial-catch .catch-line {
-    font-size: 1.26rem;
-    letter-spacing: 0.1em;
-  }
-
-  .hero-editorial-main-photo {
-    height: 40vh;
-  }
-
-  .editorial-schedule-card {
-    padding: 14px 12px;
+  .facility-bg-shape {
+    display: block !important;
+    width: 100%;
+    height: 100vh;
+    top: auto;
+    bottom: -30vh;
+    transform: none;
+    border-radius: 100% 100% 0 0;
+    opacity: 0.5;
   }
 }
