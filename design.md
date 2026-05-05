@@ -77,8 +77,14 @@
 
 ### Responsive Design (Mobile Optimization)
 - **Hero Section**:
-  - Catchcopy: Switch from vertical to horizontal layout, centered.
-  - Photo: Rounded corners on left side, `border-radius: 44vw 0 0 44vw`.
+  - Catchcopy: 
+    - PC版と共通の縦書き（vertical-rl）を採用。
+    - 各行に縦方向の白帯を敷き、スライダー画像との重なり部分の可読性を確保する。
+    - 中央から左側に配置（案B）し、メインの被写体と重なりすぎないように調整する。
+  - Photo: 
+    - 垂直方向の位置を引き上げ、ファーストビューの上部に寄せる。
+    - 左右の幅を広げ（viewport幅の85-90%程度）、画面一杯に近い広がりを持たせる。
+    - 角丸の調整を行い、幅拡大に合わせたバランスを維持する。
   - Decorations: Add `.hero-editorial-swoosh` (gradient) and `.hero-editorial-badge` (Access info).
 - **Navigation**:
   - Hamburger Menu: Yellow circular button (`#f8b500`) with white lines.
