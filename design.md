@@ -75,6 +75,16 @@
 - **Support Info Row**:
   - 最下部に4つのアイコン項目（車椅子対応入口、駐車場、トイレ、医療サポート）を等間隔で配置。
 
+### Responsive Design (Mobile Optimization)
+- **Hero Section**:
+  - Catchcopy: Switch from vertical to horizontal layout, centered.
+  - Photo: Rounded corners on left side, `border-radius: 44vw 0 0 44vw`.
+  - Decorations: Add `.hero-editorial-swoosh` (gradient) and `.hero-editorial-badge` (Access info).
+- **Navigation**:
+  - Hamburger Menu: Yellow circular button (`#f8b500`) with white lines.
+- **Section Backgrounds**:
+  - Use `.sections-with-bg-arc` to create a large unified background arc across Service, Facility, and News sections.
+
 ## 実装上の注意点
 - `z-index` を適切に管理し、イラストやオーバーレイの重なり順を制御。
 - `object-fit: cover` を使用して、メイン写真のアスペクト比を維持。
