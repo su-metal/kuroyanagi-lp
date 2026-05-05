@@ -35,9 +35,9 @@ const getAboutWaveSettings = () => {
 const HERO_VARIANT = "editorial"; // "current" に戻すと従来FVへ切り替え
 
 const heroEditorialImages = {
-  main: "/photo/hero-editorial-main.jpg",
-  left: "/photo/hero-editorial-left.jpg",
-  right: "/photo/hero-editorial-right.jpg",
+  main: "/photo/hero-slider/hero-01.jpg",
+  left: "/photo/hero-slider/hero-left.jpg",
+  right: "/photo/hero-slider/hero-right.jpg",
 };
 
 export default function Home() {
@@ -62,9 +62,9 @@ export default function Home() {
   // Hero Slider logic: Switch 3 images every 6 seconds
   const [heroActiveIndex, setHeroActiveIndex] = useState(0);
   const heroSliderImages = [
-    "/photo/hero-editorial-main.jpg",
-    "/photo/slide-title2.jpg",
-    "/photo/slide-title3.jpg"
+    "/photo/hero-slider/hero-01.jpg",
+    "/photo/hero-slider/hero-02.jpg",
+    "/photo/hero-slider/hero-03.jpg"
   ];
 
   useEffect(() => {

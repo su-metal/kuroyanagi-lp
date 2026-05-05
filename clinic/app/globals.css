@@ -31,7 +31,7 @@
 .header {
   position: relative;
   z-index: 1000;
-  background: #fff;
+  background: #f7fafa;
   isolation: isolate;
 }
 
@@ -189,7 +189,7 @@ ul {
 .header-main {
   height: 94px;
   padding: 16px 0;
-  background: #fff;
+  background: #f7fafa;
   display: flex;
   align-items: center;
 }
@@ -2208,7 +2208,7 @@ ul {
 .hero-editorial {
   min-height: calc(100svh - var(--hero-header-height, 94px));
   padding: clamp(22px, 3vh, 42px) 0 0;
-  background: #ffffff;
+  background: #f7fafa;
   overflow: hidden;
 }
 
@@ -2821,10 +2821,12 @@ ul {
   z-index: 0;
   isolation: isolate;
   min-height: 400vh;
-  /* 400vh縺ｫ蠅励ｄ縺励※縲後ち繝｡縲阪ｒ遒ｺ菫・*/
   padding: 0;
   overflow: visible;
-  background: #fff !important;
+  background:
+    radial-gradient(circle at 17% 34%, rgba(3, 110, 183, 0.06) 0 0.8px, transparent 1px),
+    #fff !important;
+  background-size: 22px 22px, auto;
 }
 
 .about-reveal-wrapper {
@@ -2837,6 +2839,10 @@ ul {
   justify-content: center;
   overflow: hidden;
   z-index: 1;
+  background:
+    radial-gradient(circle at 17% 34%, rgba(3, 110, 183, 0.06) 0 0.8px, transparent 1px),
+    #fff;
+  background-size: 22px 22px, auto;
 }
 
 .about-reveal-wrapper::before {
@@ -2845,7 +2851,7 @@ ul {
   inset: 0;
   z-index: 3;
   pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg width='1440' height='1000' viewBox='0 0 1440 1000' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-70 236C66 280 166 178 292 104C404 38 508 56 574 -28' stroke='rgba(255,255,255,0.45)' stroke-width='1.2' stroke-linecap='round'/%3E%3Cpath d='M1238 566C1222 512 1266 470 1314 470C1320 414 1368 372 1424 382C1448 328 1506 302 1568 324' stroke='rgba(255,255,255,0.34)' stroke-width='1.2' stroke-linecap='round'/%3E%3C/svg%3E");
+  display: none; /* 風のようなSVG装飾を削除 */
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -2855,7 +2861,7 @@ ul {
 
 @media (max-width: 640px) {
   .about-reveal-wrapper::before {
-    background-image: url("data:image/svg+xml,%3Csvg width='390' height='844' viewBox='0 0 390 844' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-86 238C-18 264 26 205 84 166C130 136 172 140 204 106' stroke='rgba(255,255,255,0.58)' stroke-width='1.15' stroke-linecap='round'/%3E%3Cpath d='M334 430C326 396 354 370 384 372C390 338 420 314 456 322' stroke='rgba(255,255,255,0.48)' stroke-width='1.15' stroke-linecap='round'/%3E%3C/svg%3E");
+    display: none; /* モバイル版も削除 */
     background-size: 100% 100%;
     opacity: 0.9;
     mask-image: linear-gradient(180deg, #000 0%, #000 68%, rgba(0, 0, 0, 0.35) 80%, transparent 90%);
@@ -2869,14 +2875,16 @@ ul {
   z-index: 1;
   width: 150vmax;
   height: 150vmax;
+  /* サイト全体のトーンに合わせた、清潔感のある淡いグラデーション */
   background:
-    radial-gradient(circle at 50% 72%, rgba(8, 185, 221, 0.38) 0 18%, rgba(8, 185, 221, 0) 46%),
-    linear-gradient(180deg, #147fc3 0%, #118bca 48%, #08b9dd 100%);
+    radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 60%),
+    linear-gradient(180deg, #f7fafa 0%, #eef3f7 40%, #e1e9f0 100%);
   border-radius: 50%;
   transform: translate(-50%, -50%) scale(var(--about-circle-scale, 0));
   pointer-events: none;
   will-change: transform;
   overflow: hidden;
+  box-shadow: inset 0 0 100px rgba(255, 255, 255, 0.3);
 }
 
 .about-reveal-circle::before {
@@ -2887,8 +2895,8 @@ ul {
   background-image: url("/photo/assets/about/about-sky-texture.png");
   background-size: cover;
   background-position: center;
-  opacity: 0.42;
-  mix-blend-mode: soft-light;
+  opacity: 0.12; /* 強すぎるテクスチャを抑制 */
+  mix-blend-mode: multiply;
 }
 
 .about-reveal-circle::after {
@@ -2897,19 +2905,19 @@ ul {
   inset: 0;
   border-radius: inherit;
   background-image:
-    radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.2) 0 18%, rgba(255, 255, 255, 0) 44%),
-    radial-gradient(circle, rgba(255, 255, 255, 0.36) 0 1px, rgba(255, 255, 255, 0) 1.4px);
+    radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.6) 0 20%, rgba(255, 255, 255, 0) 50%),
+    radial-gradient(circle, rgba(61, 98, 173, 0.08) 0 1.2px, rgba(255, 255, 255, 0) 1.5px);
   background-size:
     100% 100%,
-    24px 24px;
+    32px 32px; /* FVのドットサイズと同期 */
   background-position:
     center,
     0 0;
   background-repeat:
     no-repeat,
     repeat;
-  opacity: 0.52;
-  mask-image: linear-gradient(180deg, #000 0%, #000 39%, rgba(0, 0, 0, 0.22) 58%, transparent 76%);
+  opacity: 0.5;
+  mask-image: radial-gradient(circle at 50% 30%, #000 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -2971,16 +2979,16 @@ ul {
 .about-content-editorial .about-title,
 .about-content-editorial .about-title span,
 .about-content-editorial .about-desc {
-  color: #fff;
+  color: var(--text-color); /* 背景が明るくなったためダークカラーに変更 */
 }
 
 .about-label {
-  color: var(--accent-yellow);
+  color: var(--accent-orange); /* ブランドカラーのオレンジをアクセントに */
   font-size: 1.1rem;
   font-weight: 800;
   letter-spacing: 0.18em;
   line-height: 1;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .about-dots {
@@ -2994,7 +3002,7 @@ ul {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #b7d5f7;
+  background: rgba(61, 98, 173, 0.25); /* プライマリーブルーの透過色に変更 */
 }
 
 .about-title {
@@ -3733,6 +3741,7 @@ ul {
 }
 
 /* Divider */
+
 .f-divider {
   position: relative;
   height: 1px;
@@ -5950,7 +5959,7 @@ ul {
   }
 
   100% {
-    background-position-x: 64px;
+    background-position-x: 72px;
   }
 }
 
@@ -6050,9 +6059,9 @@ ul {
     z-index: 8;
     pointer-events: none;
     --wave-rotate: 0deg;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 18'%3E%3Cpath d='M0 9 C5.33 4 10.67 4 16 9 S26.67 14 32 9 S42.67 4 48 9 S58.67 14 64 9' fill='none' stroke='%23364fd6' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 18'%3E%3Cpath d='M0 9 C3.2 5.7 8.8 5.6 12 9 C15.3 12.3 20.7 12.2 24 9 C27.2 5.8 32.8 5.7 36 9 C39.2 12.2 44.8 12.4 48 9 C51.3 5.7 56.7 5.8 60 9 C63.2 12.3 68.8 12.2 72 9' fill='none' stroke='%23364fd6' stroke-width='1.35' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
     background-repeat: repeat-x;
-    background-size: 64px 18px;
+    background-size: 72px 18px;
     opacity: 0.92;
     animation: heroMobileWaveDrift 6.5s linear infinite, heroMobileWaveFloat 7.5s ease-in-out infinite;
   }
@@ -6061,6 +6070,7 @@ ul {
     top: 58px;
     left: 34px;
     width: 72px;
+    display: none !important; /* ロゴ直下の波線のみ削除 */
   }
 
   .hero-mobile-wave-2 {
@@ -6092,11 +6102,13 @@ ul {
   =================================================== */
   .hero-editorial-catch {
     position: absolute !important;
-    top: auto !important;
-    bottom: clamp(48px, 8svh, 76px) !important;
-    left: 24px !important;
+    top: 54svh !important;
+    left: clamp(24px, 8vw, 40px) !important;
     right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
     width: auto !important;
+    padding: 0 !important;
     margin: 0 !important;
     text-align: left !important;
     z-index: 10;
@@ -6109,9 +6121,10 @@ ul {
 
   .hero-editorial-catch h1 {
     display: flex !important;
-    flex-direction: column !important;
+    flex-direction: column !important; /* 縦書きの行を横に2列並べる */
+    writing-mode: vertical-rl !important;
     align-items: flex-start !important;
-    gap: 2px;
+    gap: 12px !important;
     background: none !important;
     box-shadow: none !important;
     backdrop-filter: none !important;
@@ -6119,20 +6132,25 @@ ul {
   }
 
   .hero-editorial-catch .catch-line {
-    display: block !important;
-    writing-mode: horizontal-tb !important;
-    font-family: var(--font-modern) !important;
-    font-size: clamp(20px, 5.5vw, 26px) !important;
+    display: flex !important;
+    writing-mode: vertical-rl !important;
+    flex-direction: row !important; /* 縦書き時の主軸は垂直方向 */
+    align-items: center !important; /* 横方向（厚み）の中央揃え */
+    justify-content: center !important; /* 縦方向（長さ）の中央揃え */
+    text-align: center !important;
+    font-size: clamp(17px, 5vw, 22px) !important;
     font-weight: 800 !important;
     color: var(--primary-blue) !important;
-    letter-spacing: 0.14em !important;
-    line-height: 1.25 !important;
+    letter-spacing: 0.18em !important;
+    line-height: 1 !important;
     white-space: nowrap !important;
-    background: transparent !important;
-    padding: 0 !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    padding: 0.8em 0.55em 0.4em 0.45em !important; /* 下側の余白をさらにタイトに調整 */
     margin: 0 !important;
-    text-shadow: none !important;
-    box-shadow: none !important;
+    width: fit-content !important;
+    height: fit-content !important;
+    border-radius: 4px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
     border: 0 !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
@@ -6154,11 +6172,12 @@ ul {
     position: absolute !important;
     top: 50% !important;
     left: 50% !important;
-    transform: translate(-50%, -48%) !important;
-    width: min(72vw, 320px) !important;
-    height: min(72svh, 620px) !important;
+    right: auto !important;
+    transform: translate(-50%, -52%) !important;
+    width: min(88vw, 420px) !important;
+    height: min(75svh, 650px) !important;
     margin: 0 !important;
-    border-radius: clamp(58px, 18vw, 86px) !important;
+    border-radius: clamp(48px, 15vw, 70px) !important;
     overflow: hidden !important;
     z-index: 2 !important;
     background: #d8d3ca !important;
