@@ -77,3 +77,10 @@
 - [x] 各モバイルデバイスサイズでの表示確認
 - [x] 縦書きキャッチコピー（左寄せ・白帯あり）の実装
 - [/] 被写体との重なり具合の微調整
+
+## 8. モバイル版 Service / Facility / News 背景半円の最適化
+- [x] `requirements.md` および `design.md` の更新
+- [x] `.sections-with-bg-arc` にモバイル用の淡い青い背景レイヤーを追加
+- [x] モバイル末尾で `.facility-bg-shape` を再表示する上書きを停止
+- [x] `npm run build` によるビルド確認
+- [x] 390px / 430px / 768px 幅での表示確認

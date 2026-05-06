@@ -983,9 +983,6 @@ export default function Home() {
         </div>
 
         {/* Background Decorations */}
-        <div className="news-deco news-deco-right">
-          <img src="/photo/assets/06_landscapes/03_街並みの風景.png" alt="" />
-        </div>
         <div className="news-deco news-deco-birds">
           <img src="/photo/assets/07_ashirai/06_鳥.png" alt="" />
         </div>
