@@ -1236,7 +1236,7 @@ ul {
   transform: translateY(-50%);
   width: 60vw;
   height: 140vw;
-  background-color: var(--accent-color);
+  background-color: var(--primary-blue);
   border-radius: 140vw 0 0 140vw;
   z-index: -1;
   pointer-events: none;
@@ -1532,13 +1532,14 @@ ul {
   .facility-en-label {
     font-size: 1.0rem;
     margin-bottom: 8px;
+    color: #fff;
   }
 
   .facility-title {
     font-size: 1.8rem;
     margin-bottom: 24px;
-    color: var(--text-color);
-    border-bottom-color: rgba(0, 64, 152, 0.36);
+    color: #fff;
+    border-bottom-color: rgba(255, 255, 255, 0.7);
   }
 
   .facility-lead {
@@ -4224,10 +4225,41 @@ ul {
 }
 
 .medical-guide-note {
-  color: #6d7f93;
+  color: #fff;
   font-size: 0.86rem;
   line-height: 1.7;
   margin: 28px 0 0;
+}
+
+.service-facility-decoration {
+  position: absolute;
+  right: 20px;
+  bottom: 28px;
+  display: none;
+  width: clamp(168px, 48vw, 220px);
+  height: 86px;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.72;
+}
+
+.service-facility-decoration img {
+  display: block;
+  height: auto;
+}
+
+.service-facility-wave {
+  position: absolute;
+  right: 0;
+  bottom: 4px;
+  width: 100%;
+}
+
+.service-facility-bird {
+  position: absolute;
+  right: 14px;
+  top: 0;
+  width: clamp(58px, 16vw, 74px);
 }
 
 .medical-guide-copy {
@@ -4287,6 +4319,10 @@ ul {
 @media (max-width: 640px) {
   .medical-guide-section {
     padding: 82px 0 96px;
+  }
+
+  .service-facility-decoration {
+    display: block;
   }
 
   .medical-guide-en {
@@ -6363,7 +6399,7 @@ ul {
     width: clamp(520px, 146vw, 720px);
     height: clamp(1080px, 290vw, 1460px);
     transform: translateX(-50%);
-    background-color: var(--bg-blue-mid);
+    background-color: var(--primary-blue);
     border-radius: 999px 999px 0 0 / clamp(250px, 70vw, 360px) clamp(250px, 70vw, 360px) 0 0;
     z-index: 0;
     pointer-events: none;

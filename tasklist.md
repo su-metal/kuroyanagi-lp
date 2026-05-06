@@ -84,3 +84,10 @@
 - [x] モバイル末尾で `.facility-bg-shape` を再表示する上書きを停止
 - [x] `npm run build` によるビルド確認
 - [x] 390px / 430px / 768px 幅での表示確認
+
+## 9. Service / Facility 間のあしらい追加
+- [x] `requirements.md` および `design.md` の更新
+- [x] 波線と小鳥を使った装飾DOMの追加
+- [x] モバイル向けの配置CSS追加
+- [x] `npm run build` によるビルド確認
+- [ ] in-app browserでのPC / モバイル表示確認
