@@ -91,9 +91,11 @@
 - **Section Backgrounds**:
   - Use `.sections-with-bg-arc` to create a large unified background arc across Service, Facility, and News sections.
   - Mobile: Draw the unified arc with `.sections-with-bg-arc::before` as a pale blue background layer behind the sections. Do not reuse `.facility-bg-shape` for the mobile shared arc, because the desktop accent shape becomes a muddy semi-transparent oval on narrow screens.
+  - Service / Facility gap on mobile: Place separate wave and bird decorative assets near the lower right of Service. Keep them below content emphasis and above the shared background only as a subtle connector.
 
 ## 実装上の注意点
 - `z-index` を適切に管理し、イラストやオーバーレイの重なり順を制御。
 - Service, Facility, News を跨ぐモバイル背景は共有ラッパーを `isolation: isolate` したうえで背面レイヤー化し、各セクション本文より前面に出ないようにする。
+- Service と Facility の間のあしらいは装飾専用として `aria-hidden` にし、操作・読解対象にはしない。
 - `object-fit: cover` を使用して、メイン写真のアスペクト比を維持。
 - 1024px以下のレスポンシブ対応では、2カラムまたは1カラムへの切り替えを行う。

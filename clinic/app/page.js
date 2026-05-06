@@ -835,6 +835,10 @@ export default function Home() {
             <p>どんなことでも<br />まずはご相談ください。</p>
           </aside>
         </div>
+        <div className="service-facility-decoration" aria-hidden="true">
+          <img className="service-facility-wave" src="/photo/assets/07_ashirai/10_波線.png" alt="" />
+          <img className="service-facility-bird" src="/photo/assets/07_ashirai/06_鳥.png" alt="" />
+        </div>
       </section>
       {/* --- FACILITY --- */}
       <section id="facility" className="facility-section">
