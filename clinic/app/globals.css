@@ -1196,6 +1196,21 @@ ul {
   position: relative;
   overflow: hidden;
   background-color: var(--bg-warm);
+  isolation: isolate;
+}
+
+.sections-with-bg-arc::before {
+  content: "";
+  display: none;
+}
+
+.sections-with-bg-arc > section {
+  position: relative;
+  z-index: 1;
+}
+
+.sections-with-bg-arc > .medical-guide-section {
+  z-index: 3;
 }
 
 /* --- FACILITY --- */
@@ -1365,6 +1380,12 @@ ul {
   max-width: 25em;
   margin-bottom: 40px;
   opacity: 0.95;
+}
+
+@media (min-width: 769px) {
+  .facility-en-label {
+    color: #fff;
+  }
 }
 
 .facility-btn {
@@ -1758,12 +1779,6 @@ ul {
   width: 480px;
 }
 
-.news-deco-right {
-  bottom: 0;
-  right: 0;
-  width: 420px;
-}
-
 .news-deco-birds {
   bottom: 140px;
   right: 120px;
@@ -1818,11 +1833,6 @@ ul {
   .news-deco-left {
     width: 320px;
     left: -40px;
-  }
-
-  .news-deco-right {
-    width: 280px;
-    right: -20px;
   }
 
   .news-deco-birds {
@@ -6345,14 +6355,21 @@ ul {
     padding-bottom: 60px;
   }
 
+  .sections-with-bg-arc::before {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: clamp(520px, 142vw, 690px);
+    width: clamp(520px, 146vw, 720px);
+    height: clamp(1080px, 290vw, 1460px);
+    transform: translateX(-50%);
+    background-color: var(--bg-blue-mid);
+    border-radius: 999px 999px 0 0 / clamp(250px, 70vw, 360px) clamp(250px, 70vw, 360px) 0 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
   .facility-bg-shape {
-    display: block !important;
-    width: 100%;
-    height: 100vh;
-    top: auto;
-    bottom: -30vh;
-    transform: none;
-    border-radius: 100% 100% 0 0;
-    opacity: 0.5;
+    display: none !important;
   }
 }
