@@ -414,7 +414,7 @@ export default function Home() {
                 </h1>
               </div>
 
-              <div className="hero-editorial-schedule">
+              <div className="hero-editorial-schedule hidden-mobile">
                 <div className="editorial-schedule-card">
                   <table className="editorial-schedule-table">
                     <thead>
@@ -455,6 +455,32 @@ export default function Home() {
               <div className="hero-editorial-scroll">
                 <span className="scroll-text">SCROLL</span>
                 <div className="scroll-line"></div>
+              </div>
+            </div>
+
+            {/* Mobile Schedule Card (Appears after scrolling FV) */}
+            <div className="hero-editorial-schedule-mobile show-mobile">
+              <div className="editorial-schedule-card">
+                <table className="editorial-schedule-table">
+                  <thead>
+                    <tr>
+                      <th>診療受付時間</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th><th>日祝</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="time-slot">午前 8:30 - 12:00</td>
+                      <td>●</td><td>●</td><td>●</td><td>●</td><td>●</td><td>●</td><td className="closed">×</td>
+                    </tr>
+                    <tr>
+                      <td className="time-slot">午後 14:00 - 17:30</td>
+                      <td>●</td><td>●</td><td>●</td><td className="closed">×</td><td>●</td><td className="closed">×</td><td className="closed">×</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <footer className="schedule-footer">
+                  <p>休診日：木・土午後、日・祝日</p>
+                </footer>
               </div>
             </div>
           </div>
