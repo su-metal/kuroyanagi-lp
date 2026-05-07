@@ -360,11 +360,6 @@ export default function Home() {
         <section className="hero hero-editorial">
           <div className="hero-editorial-shell">
             <div className="hero-editorial-stage">
-              <div className="hero-editorial-deco deco-dot-large deco-dot-1" aria-hidden="true" />
-              <div className="hero-editorial-deco deco-dot-large deco-dot-2" aria-hidden="true" />
-              <div className="hero-editorial-deco deco-dot-small deco-dot-3" aria-hidden="true" />
-              <div className="hero-editorial-deco deco-dot-small deco-dot-4" aria-hidden="true" />
-              <div className="hero-editorial-deco deco-dot-grid" aria-hidden="true" />
               <div className="hero-mobile-wave hero-mobile-wave-1" aria-hidden="true" />
               <div className="hero-mobile-wave hero-mobile-wave-2" aria-hidden="true" />
               <div className="hero-mobile-wave hero-mobile-wave-3" aria-hidden="true" />

@@ -194,6 +194,8 @@ ul {
   background: #f7fafa;
   display: flex;
   align-items: center;
+  max-width: var(--container-width);
+  margin: 0 auto;
 }
 
 .header-main-inner {
@@ -2315,33 +2317,13 @@ ul {
 .hero-editorial-stage {
   position: relative;
   min-height: clamp(620px, 84vh, 880px);
-}
-
-.hero-editorial-main-photo {
-  position: relative;
-  z-index: 2;
-  width: calc(100% - clamp(24px, 4.2vw, 48px));
-  max-width: 1540px;
-  height: clamp(540px, 80vh, 880px);
+  max-width: var(--container-width);
   margin: 0 auto;
-  border-radius: clamp(34px, 4.4vw, 58px);
-  overflow: visible;
-  background: #fff;
-  box-shadow: 0 32px 80px rgba(3, 110, 183, 0.08);
-}
-
-.hero-editorial-peek img {
-  position: relative;
-  z-index: 2;
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  overflow: hidden; /* 枠外のはみ出しをカット */
 }
 
 .hero-editorial-main-photo img {
   position: absolute;
-  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -2369,8 +2351,7 @@ ul {
   flex-direction: row-reverse;
   /* 譌･譛ｬ隱橸ｿｽE鬆・・ｽ・ｽ・壼承縺九ｉ蟾ｦ縺ｸ蛻励ｒ荳ｦ縺ｹ繧・*/
   align-items: flex-start;
-  gap: clamp(12px, 2.5vw, 32px);
-  /* 蛻怜酔螢ｫ縺ｮ讓ｪ縺ｮ髢馴囈繧堤ｸｮ蟆・*/
+  gap: clamp(8px, 1.2vw, 16px);
 }
 
 .hero-editorial-catch .catch-line {
@@ -2379,27 +2360,20 @@ ul {
   font-family: var(--font-modern);
   font-weight: 700;
   color: var(--primary-blue);
-  font-size: clamp(1.6rem, 2.4vw, 2.8rem);
+  font-size: 26px;
   line-height: 1;
   letter-spacing: 0.3em;
   white-space: nowrap;
-  /* 逋ｽ縺・・ｽ・ｽ繧定ｿｽ蜉� */
-  background: rgba(255, 255, 255, 0.85);
-  padding: 1.5rem 0.5rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-}
-
-/* 蜷・・ｽE縺ｮ髢句ｧ倶ｽ咲ｽｮ・ｽE・ｽ鬮倥＆・ｽE・ｽ繧偵★繧峨＠縺ｦ諠・・ｽ・ｽ繧貞・縺・*/
-.hero-editorial-catch .catch-line:nth-child(1) {
-  margin-top: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .hero-editorial-catch .catch-line:nth-child(2) {
-  margin-top: 3rem;
+  margin-top: 0;
 }
 
 .hero-editorial-catch .catch-line:nth-child(3) {
-  margin-top: 6rem;
+  margin-top: 0;
 }
 
 .hero-editorial-schedule {
@@ -2912,30 +2886,29 @@ ul {
   width: 150vmax;
   height: 150vmax;
   background: var(--about-reveal-bg);
+  /* グラデーションを重ねて奥行きを出す */
+  background-image: 
+    radial-gradient(circle at center, transparent 0%, rgba(0, 35, 92, 0.15) 100%),
+    linear-gradient(to bottom, transparent 60%, rgba(0, 35, 92, 0.2) 100%);
   border-radius: 50%;
   transform: translate(-50%, -50%) scale(var(--about-circle-scale, 0));
   pointer-events: none;
   will-change: transform;
   overflow: hidden;
-  box-shadow: inset 0 0 100px rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 0 100px rgba(255, 255, 255, 0.1);
 }
 
-.about-reveal-circle::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  display: none;
-}
-
+/* 円の内側にかけるノイズとオーバーレイの統合層 */
 .about-reveal-circle::after {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: inherit;
-  background-image: none;
-  opacity: 0;
   pointer-events: none;
+  /* ノイズとグラデーションを重ねる */
+  background-image: 
+    linear-gradient(to bottom, rgba(0, 35, 92, 0.1) 0%, rgba(0, 35, 92, 0.4) 100%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.05; /* 極限までかすかに調整 */
 }
 
 .about-fluid-shape {
@@ -3035,13 +3008,29 @@ ul {
 
 .about-content {
   position: relative;
-  z-index: 6;
-  max-width: 1440px;
+  z-index: 10;
+  width: 100%;
+  max-width: 800px;
   text-align: center;
+  color: #fff;
   opacity: var(--about-content-opacity, 1);
-  padding-bottom: clamp(150px, 18vh, 220px);
   transform: translateY(var(--about-content-y, 0));
   will-change: opacity, transform;
+  padding-bottom: clamp(150px, 18vh, 220px); /* 完全に元のレイアウトに戻す */
+}
+
+/* 不要な重複とオーバーレイ定義を削除 */
+
+.about-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 15;
+  padding: 0 20px;
 }
 
 .about-content-editorial {
@@ -3092,13 +3081,17 @@ ul {
   width: fit-content;
   color: var(--white);
   font-family: var(--font-modern);
-  font-size: 2.6rem;
+  font-size: 2.0rem;
   font-weight: 800;
   line-height: 1.7;
   letter-spacing: 0.08em;
   margin-bottom: 32px;
   max-width: none;
-  text-shadow: 0 3px 14px rgba(0, 35, 92, 0.24);
+  /* 視認性を極限まで高める多重シャドウ */
+  text-shadow: 
+    0 0 10px rgba(0, 35, 92, 0.8),
+    0 0 20px rgba(0, 35, 92, 0.5),
+    0 2px 4px rgba(0, 20, 50, 0.4);
 }
 
 .about-title-line {
@@ -3123,7 +3116,10 @@ ul {
   letter-spacing: 0.06em;
   margin: 0 auto;
   max-width: 650px;
-  text-shadow: 0 2px 10px rgba(0, 35, 92, 0.18);
+  /* 本文もシャドウを強化 */
+  text-shadow: 
+    0 0 8px rgba(0, 35, 92, 0.6),
+    0 2px 4px rgba(0, 20, 50, 0.4);
 }
 
 .about-desc p {
@@ -3208,7 +3204,7 @@ ul {
   display: none;
 }
 
-/* 繝輔か繝医ヵ繝ｬ繝ｼ繝�貍費ｿｽE */
+/* 繝輔か繝医ヵ繝ｬ繝ｼ繝貍費ｿｽE */
 .about-photos-container {
   position: absolute;
   inset: 0;
@@ -3217,7 +3213,7 @@ ul {
   opacity: var(--about-photos-progress, 0);
   transition: opacity 0.4s ease;
   display: none !important;
-  /* 荳譌ｦ髱櫁｡ｨ遉ｺ */
+  /* 荳€譌ｦ髱櫁｡ｨ遉ｺ */
 }
 
 .about-photo-frame {
@@ -3236,7 +3232,7 @@ ul {
 
 /* 繧ｹ繧ｯ繝ｭ繝ｼ繝ｫ騾ｲ謐励↓蠢懊§縺溘い繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ驕ｩ逕ｨ */
 .about-photos-container[style*="--about-photos-progress"] .about-photo-frame {
-  /* 騾ｲ謐励′0繧医ｊ螟ｧ縺阪＞蝣ｴ蜷医↓縲∝句挨縺ｮ驕・・ｽ・ｽ繧呈戟縺｣縺ｦ蜃ｺ迴ｾ */
+  /* 騾ｲ謐励′0繧医ｊ螟ｧ縺阪＞蝣ｴ蜷医↓縲∝€句挨縺ｮ驕・・ｽ・ｽ繧呈戟縺｣縺ｦ蜃ｺ迴ｾ */
   opacity: var(--about-photos-progress);
   transform: translateY(calc(60px * (1 - var(--about-photos-progress)))) rotate(var(--photo-rotate, 0deg));
 }
@@ -3429,7 +3425,7 @@ ul {
   }
 
   .about-title {
-    font-size: clamp(1.92rem, 4.8vw, 2.7rem);
+    font-size: clamp(1.5rem, 3.5vw, 2.0rem);
   }
 
   .about-semicircle {
@@ -3449,7 +3445,7 @@ ul {
   }
 
   .about-title {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     line-height: 1.5;
     letter-spacing: 0.03em;
     margin-bottom: 20px;
@@ -5795,7 +5791,7 @@ ul {
 .hero-editorial-stage {
   position: relative;
   min-height: calc(100svh - 130px);
-  max-width: 1680px;
+  max-width: var(--container-width);
   margin: 0 auto;
 }
 
@@ -5884,7 +5880,7 @@ ul {
   display: flex;
   flex-direction: row-reverse;
   align-items: flex-start;
-  gap: clamp(22px, 3vw, 48px);
+  gap: clamp(8px, 2vw, 24px);
   margin: 0;
 }
 
@@ -5893,9 +5889,10 @@ ul {
   writing-mode: vertical-rl;
   padding: 22px 12px;
   color: var(--primary-blue);
-  background: rgba(255, 255, 255, 0.82);
+  background: transparent;
+  box-shadow: none;
   font-family: var(--font-modern);
-  font-size: clamp(2rem, 3vw, 3.15rem);
+  font-size: 26px;
   font-weight: 800;
   line-height: 1.25;
   letter-spacing: 0.14em;
@@ -5903,11 +5900,11 @@ ul {
 }
 
 .hero-editorial-catch .catch-line:nth-child(2) {
-  margin-top: clamp(120px, 18vh, 205px);
+  margin-top: 0;
 }
 
 .hero-editorial-catch .catch-line:nth-child(3) {
-  margin-top: clamp(205px, 29vh, 330px);
+  margin-top: 0;
 }
 
 .hero-circle-copy {
@@ -6305,14 +6302,14 @@ ul {
     letter-spacing: 0.18em !important;
     line-height: 1 !important;
     white-space: nowrap !important;
-    background: rgba(255, 255, 255, 0.96) !important;
+    background: transparent !important;
     padding: 0.8em 0.55em 0.4em 0.45em !important;
     /* 下側の余白をさらにタイトに調整 */
     margin: 0 !important;
     width: fit-content !important;
     height: fit-content !important;
     border-radius: 4px !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: none !important;
     border: 0 !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
