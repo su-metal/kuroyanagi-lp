@@ -91,3 +91,62 @@
 - [x] モバイル向けの配置CSS追加
 - [x] `npm run build` によるビルド確認
 - [ ] in-app browserでのPC / モバイル表示確認
+
+## 10. PC版 Facility 背景円弧の調整
+- [x] `requirements.md` および `design.md` の更新
+- [x] `.facility-bg-shape` のPC向けサイズと位置を縮小
+- [x] `npm run build` によるビルド確認
+- [ ] PC幅でServiceへの侵入とFacility本文可読性を確認
+
+## 11. PC版 Service / Facility / News 共有背景円弧の再設計
+- [x] `requirements.md` および `design.md` の更新
+- [x] PC用の大きな円弧を `.sections-with-bg-arc::after` へ移動
+- [x] PC表示の `.facility-bg-shape` を非表示化
+- [x] `npm run build` によるビルド確認
+- [ ] PC幅で3セクションの流れと可読性を確認
+
+## 12. PC版共有背景を半円から右側パネルへ変更
+- [x] `requirements.md` および `design.md` の更新
+- [x] `.sections-with-bg-arc::after` を右側ブルーパネルへ変更
+- [x] PC用の波線・小鳥あしらいを共有ラッパーへ追加
+- [x] `npm run build` によるビルド確認
+- [ ] PC幅で横幅変化時の破綻がないことを確認
+
+## 13. PC版青パネルのスコープ修正
+- [x] `requirements.md` および `design.md` の更新
+- [x] 共有ラッパー側のPC青パネルと背景あしらいを無効化
+- [x] `.facility-section::before` にFacility内限定の右側パネルを追加
+- [x] `npm run build` によるビルド確認
+- [ ] PC幅でServiceカードへ食い込まないことを確認
+
+## 14. ABOUTセクションのプライマリーカラー統一
+- [x] `requirements.md` および `design.md` の更新
+- [x] ABOUTラベルをプライマリーブルーへ変更
+- [x] 背景の単色ブルー面と装飾トーンをブルー系へ調整
+- [x] 見出し・本文をブルーグレー系へ調整
+- [x] `npm run build` によるビルド確認
+- [ ] ABOUTセクションの目視確認
+
+## 15. ABOUT背景のブルーオーバーレイ追加
+- [x] `requirements.md` および `design.md` の更新
+- [x] ABOUT背景の全面風景素材を撤回
+- [x] プライマリーブルー系オーバーレイを追加
+- [x] 下部イラストにごく弱いトーン調整を適用
+- [x] `npm run build` によるビルド確認
+- [ ] ABOUT本文の可読性を目視確認
+
+## 16. FV / ABOUT境界の接続改善
+- [x] `requirements.md` および `design.md` の更新
+- [x] FV背景を白に戻す
+- [x] ABOUT境界のグラデーションを削除
+- [x] FVとABOUT初期背景を共通変数で管理
+- [x] ABOUT円形リビールの開始だけ前倒し
+- [x] ABOUT円形リビールをプライマリーカラー化
+- [x] ABOUTテキストを白に変更
+- [x] ABOUT背景をベタ塗り土台と複数の楕円シェイプ装飾に変更
+- [x] ABOUT背景シェイプを大小1つずつに整理
+- [x] ABOUT背景シェイプを薄い白に変更
+- [x] ABOUT白文字の可読性を調整
+- [x] モバイル時のABOUT下部イラスト位置を下げる
+- [x] `npm run build` によるビルド確認
+- [ ] FVからABOUTへの境界を目視確認

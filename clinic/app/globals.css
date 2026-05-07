@@ -10,6 +10,8 @@
   --bg-blue-soft: #deedf1;
   --bg-blue-mid: #cfe6ee;
   --bg-blue-pale: #e9f3f6;
+  --fv-bg: #ffffff;
+  --about-reveal-bg: var(--primary-blue);
   --about-sky: #08b9dd;
   --accent-yellow: #3c699c;
   --accent-orange: #ef8e45;
@@ -1204,12 +1206,17 @@ ul {
   display: none;
 }
 
-.sections-with-bg-arc > section {
+.sections-with-bg-arc::after {
+  content: "";
+  display: none;
+}
+
+.sections-with-bg-arc>section {
   position: relative;
   z-index: 1;
 }
 
-.sections-with-bg-arc > .medical-guide-section {
+.sections-with-bg-arc>.medical-guide-section {
   z-index: 3;
 }
 
@@ -1222,22 +1229,38 @@ ul {
   overflow: visible;
 }
 
+.facility-section::before {
+  content: "";
+  position: absolute;
+  top: clamp(-36px, -2vw, -12px);
+  right: 0;
+  bottom: clamp(-96px, -5vw, -56px);
+  width: clamp(680px, 56vw, 940px);
+  background-color: var(--primary-blue);
+  border-radius: clamp(84px, 8vw, 132px) 0 0 clamp(84px, 8vw, 132px);
+  z-index: 0;
+  pointer-events: none;
+}
+
 .facility-section .container {
   max-width: none;
   width: 100%;
   padding-left: clamp(24px, 5vw, 80px);
   padding-right: clamp(24px, 5vw, 80px);
+  position: relative;
+  z-index: 1;
 }
 
 .facility-bg-shape {
   position: absolute;
-  top: 50%;
-  right: 0;
+  top: 54%;
+  right: clamp(-180px, -9vw, -96px);
+  display: none;
   transform: translateY(-50%);
-  width: 60vw;
-  height: 140vw;
+  width: clamp(520px, 48vw, 760px);
+  height: clamp(620px, 58vw, 900px);
   background-color: var(--primary-blue);
-  border-radius: 140vw 0 0 140vw;
+  border-radius: 999px 0 0 999px;
   z-index: -1;
   pointer-events: none;
 }
@@ -1482,6 +1505,10 @@ ul {
     background: transparent;
   }
 
+  .facility-section::before {
+    display: none;
+  }
+
   .facility-section .container {
     padding-left: 0;
     padding-right: 0;
@@ -1580,7 +1607,7 @@ ul {
 }
 
 .news-section {
-  padding: 100px 0 160px;
+  padding: 240px 0 160px;
   background-color: transparent;
   position: relative;
   z-index: 2;
@@ -2219,7 +2246,7 @@ ul {
 .hero-editorial {
   min-height: calc(100svh - var(--hero-header-height, 94px));
   padding: clamp(22px, 3vh, 42px) 0 0;
-  background: #f7fafa;
+  background: #fff;
   overflow: hidden;
 }
 
@@ -2834,10 +2861,11 @@ ul {
   min-height: 400vh;
   padding: 0;
   overflow: visible;
-  background:
-    radial-gradient(circle at 17% 34%, rgba(3, 110, 183, 0.06) 0 0.8px, transparent 1px),
-    #fff !important;
-  background-size: 22px 22px, auto;
+  background: var(--fv-bg) !important;
+}
+
+.about-section::after {
+  display: none;
 }
 
 .about-reveal-wrapper {
@@ -2850,10 +2878,7 @@ ul {
   justify-content: center;
   overflow: hidden;
   z-index: 1;
-  background:
-    radial-gradient(circle at 17% 34%, rgba(3, 110, 183, 0.06) 0 0.8px, transparent 1px),
-    #fff;
-  background-size: 22px 22px, auto;
+  background: var(--fv-bg);
 }
 
 .about-reveal-wrapper::before {
@@ -2862,20 +2887,20 @@ ul {
   inset: 0;
   z-index: 3;
   pointer-events: none;
-  display: none; /* 風のようなSVG装飾を削除 */
+  display: none;
+  /* 風のようなSVG装飾を削除 */
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
   opacity: 0.72;
-  mask-image: linear-gradient(180deg, #000 0%, #000 50%, rgba(0, 0, 0, 0.35) 66%, transparent 82%);
 }
 
 @media (max-width: 640px) {
   .about-reveal-wrapper::before {
-    display: none; /* モバイル版も削除 */
+    display: none;
+    /* モバイル版も削除 */
     background-size: 100% 100%;
     opacity: 0.9;
-    mask-image: linear-gradient(180deg, #000 0%, #000 68%, rgba(0, 0, 0, 0.35) 80%, transparent 90%);
   }
 }
 
@@ -2886,10 +2911,7 @@ ul {
   z-index: 1;
   width: 150vmax;
   height: 150vmax;
-  /* サイト全体のトーンに合わせた、清潔感のある淡いグラデーション */
-  background:
-    radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 60%),
-    linear-gradient(180deg, #f7fafa 0%, #eef3f7 40%, #e1e9f0 100%);
+  background: var(--about-reveal-bg);
   border-radius: 50%;
   transform: translate(-50%, -50%) scale(var(--about-circle-scale, 0));
   pointer-events: none;
@@ -2903,11 +2925,7 @@ ul {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background-image: url("/photo/assets/about/about-sky-texture.png");
-  background-size: cover;
-  background-position: center;
-  opacity: 0.12; /* 強すぎるテクスチャを抑制 */
-  mix-blend-mode: multiply;
+  display: none;
 }
 
 .about-reveal-circle::after {
@@ -2915,21 +2933,75 @@ ul {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background-image:
-    radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.6) 0 20%, rgba(255, 255, 255, 0) 50%),
-    radial-gradient(circle, rgba(61, 98, 173, 0.08) 0 1.2px, rgba(255, 255, 255, 0) 1.5px);
-  background-size:
-    100% 100%,
-    32px 32px; /* FVのドットサイズと同期 */
-  background-position:
-    center,
-    0 0;
-  background-repeat:
-    no-repeat,
-    repeat;
-  opacity: 0.5;
-  mask-image: radial-gradient(circle at 50% 30%, #000 0%, transparent 70%);
+  background-image: none;
+  opacity: 0;
   pointer-events: none;
+}
+
+.about-fluid-shape {
+  position: absolute;
+  display: block;
+  background: var(--white);
+  border-radius: 999px;
+  opacity: 0.34;
+  will-change: transform;
+  animation: aboutFluidDrift 18s ease-in-out infinite alternate;
+}
+
+.about-fluid-shape.shape-1 {
+  width: 56%;
+  height: 34%;
+  left: 5%;
+  top: 15%;
+  transform: rotate(-8deg);
+  background: var(--white);
+  opacity: 0.14;
+}
+
+.about-fluid-shape.shape-2 {
+  width: 22%;
+  height: 14%;
+  right: 18%;
+  top: 34%;
+  background: var(--white);
+  opacity: 0.22;
+  animation-duration: 22s;
+  animation-delay: -5s;
+}
+
+.about-fluid-shape.shape-3 {
+  display: none;
+}
+
+.about-fluid-shape.shape-4 {
+  display: none;
+}
+
+.about-fluid-shape.shape-5 {
+  display: none;
+}
+
+@keyframes aboutFluidDrift {
+  0% {
+    transform: translate3d(-2.5%, 1.5%, 0) rotate(-8deg) scale(1);
+    border-radius: 60% 40% 54% 46% / 46% 58% 42% 54%;
+  }
+
+  50% {
+    transform: translate3d(2%, -2%, 0) rotate(5deg) scale(1.05);
+    border-radius: 44% 56% 38% 62% / 58% 42% 60% 40%;
+  }
+
+  100% {
+    transform: translate3d(3.5%, 2.5%, 0) rotate(11deg) scale(1.02);
+    border-radius: 52% 48% 62% 38% / 42% 52% 48% 58%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-fluid-shape {
+    animation: none;
+  }
 }
 
 .about-section::before {
@@ -2955,10 +3027,8 @@ ul {
   height: 700px;
   transform: translateX(-50%);
   border-radius: 50% 50% 0 0 / 76% 76% 0 0;
-  background:
-    radial-gradient(circle at 50% 5%, rgba(251, 249, 246, 0.94) 0 14%, rgba(251, 249, 246, 0) 36%),
-    linear-gradient(180deg, #eaf5ff 0%, #dff0ff 100%);
-  box-shadow: inset 0 28px 70px rgba(251, 249, 246, 0.72);
+  background: #d6e6f0;
+  box-shadow: inset 0 28px 70px rgba(255, 255, 255, 0.58);
   overflow: hidden;
 }
 
@@ -2990,16 +3060,17 @@ ul {
 .about-content-editorial .about-title,
 .about-content-editorial .about-title span,
 .about-content-editorial .about-desc {
-  color: var(--text-color); /* 背景が明るくなったためダークカラーに変更 */
+  color: var(--white);
 }
 
 .about-label {
-  color: var(--accent-orange); /* ブランドカラーのオレンジをアクセントに */
+  color: rgba(255, 255, 255, 0.92);
   font-size: 1.1rem;
   font-weight: 800;
   letter-spacing: 0.18em;
   line-height: 1;
   margin-bottom: 12px;
+  text-shadow: 0 2px 12px rgba(0, 35, 92, 0.22);
 }
 
 .about-dots {
@@ -3013,12 +3084,12 @@ ul {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: rgba(61, 98, 173, 0.25); /* プライマリーブルーの透過色に変更 */
+  background: rgba(255, 255, 255, 0.78);
 }
 
 .about-title {
   width: fit-content;
-  color: #333;
+  color: var(--white);
   font-family: var(--font-modern);
   font-size: 2.6rem;
   font-weight: 800;
@@ -3026,6 +3097,7 @@ ul {
   letter-spacing: 0.08em;
   margin-bottom: 32px;
   max-width: none;
+  text-shadow: 0 3px 14px rgba(0, 35, 92, 0.24);
 }
 
 .about-title-line {
@@ -3043,13 +3115,14 @@ ul {
 }
 
 .about-desc {
-  color: #333;
+  color: rgba(255, 255, 255, 0.9);
   font-size: 1.02rem;
   font-weight: 600;
   line-height: 2.15;
   letter-spacing: 0.06em;
   margin: 0 auto;
   max-width: 650px;
+  text-shadow: 0 2px 10px rgba(0, 35, 92, 0.18);
 }
 
 .about-desc p {
@@ -3062,20 +3135,20 @@ ul {
   justify-content: center;
   min-width: 230px;
   min-height: 66px;
-  background: var(--primary-blue);
-  color: #fff;
+  background: #fff;
+  color: var(--primary-blue);
   padding: 18px 40px;
   border-radius: 999px;
   font-weight: 800;
   font-size: 1.08rem;
   letter-spacing: 0.04em;
-  box-shadow: 0 14px 30px rgba(0, 74, 168, 0.25);
+  box-shadow: 0 14px 30px rgba(0, 40, 96, 0.18);
   transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
 }
 
 .about-btn:hover {
-  background: linear-gradient(180deg, #0068dc 0%, #003f9b 100%);
-  box-shadow: 0 18px 34px rgba(0, 74, 168, 0.32);
+  background: #eef3f8;
+  box-shadow: 0 18px 34px rgba(0, 40, 96, 0.24);
   transform: translateY(-2px);
 }
 
@@ -3084,7 +3157,7 @@ ul {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 4;
+  z-index: 3;
   height: clamp(320px, 44vh, 520px);
   overflow: hidden;
   pointer-events: none;
@@ -3105,6 +3178,7 @@ ul {
   object-fit: contain;
   object-position: center bottom;
   transform: translateX(-50%);
+  filter: saturate(0.94) brightness(0.98) opacity(0.96);
 }
 
 .about-bottom-visual-img--mobile {
@@ -3286,8 +3360,8 @@ ul {
   right: 0;
   top: -140px;
   height: 180px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.92));
-  opacity: var(--about-wave-feather-opacity, 0);
+  background: transparent;
+  opacity: 0;
   pointer-events: none;
 }
 
@@ -3385,7 +3459,7 @@ ul {
 
   .about-bottom-visual {
     height: clamp(320px, 42vh, 360px);
-    bottom: 0;
+    bottom: -34px;
   }
 
   .about-bottom-visual-img--desktop {
@@ -3396,7 +3470,7 @@ ul {
     display: block;
     width: 170%;
     max-width: none;
-    bottom: 0;
+    bottom: -18px;
     transform: translateX(-50%);
   }
 
@@ -3421,7 +3495,7 @@ ul {
   grid-template-columns: minmax(0, 1.04fr) minmax(420px, 0.96fr);
   align-items: center;
   gap: clamp(56px, 7vw, 112px);
-  padding: 130px max(48px, calc((100vw - 1440px) / 2 + 48px)) 150px 0;
+  padding: 180px max(48px, calc((100vw - 1440px) / 2 + 48px)) 150px 0;
   background: #ffffff;
   overflow: hidden;
 }
@@ -5671,10 +5745,7 @@ ul {
   --hero-blue: #3d62ad;
   min-height: calc(100svh - 108px);
   padding: 0 0 22px;
-  background:
-    radial-gradient(circle at 17% 34%, rgba(3, 110, 183, 0.06) 0 0.8px, transparent 1px),
-    #fff;
-  background-size: 22px 22px, auto;
+  background: var(--fv-bg);
   overflow: hidden;
 }
 
@@ -6010,6 +6081,7 @@ ul {
 }
 
 @keyframes heroMobileBirdFloat {
+
   0%,
   100% {
     transform: translate3d(0, 0, 0);
@@ -6019,6 +6091,7 @@ ul {
     transform: translate3d(0, -12px, 0);
   }
 }
+
 @keyframes heroMobileWaveFloat {
 
   0%,
@@ -6073,7 +6146,7 @@ ul {
   =================================================== */
   .hero-editorial {
     min-height: 100svh;
-    background: #f7f6f2 !important;
+    background: var(--fv-bg) !important;
     padding: 0;
     position: relative;
     overflow: hidden;
@@ -6116,7 +6189,8 @@ ul {
     top: 58px;
     left: 34px;
     width: 72px;
-    display: none !important; /* ロゴ直下の波線のみ削除 */
+    display: none !important;
+    /* ロゴ直下の波線のみ削除 */
   }
 
   .hero-mobile-wave-2 {
@@ -6167,7 +6241,8 @@ ul {
 
   .hero-editorial-catch h1 {
     display: flex !important;
-    flex-direction: column !important; /* 縦書きの行を横に2列並べる */
+    flex-direction: column !important;
+    /* 縦書きの行を横に2列並べる */
     writing-mode: vertical-rl !important;
     align-items: flex-start !important;
     gap: 12px !important;
@@ -6180,9 +6255,12 @@ ul {
   .hero-editorial-catch .catch-line {
     display: flex !important;
     writing-mode: vertical-rl !important;
-    flex-direction: row !important; /* 縦書き時の主軸は垂直方向 */
-    align-items: center !important; /* 横方向（厚み）の中央揃え */
-    justify-content: center !important; /* 縦方向（長さ）の中央揃え */
+    flex-direction: row !important;
+    /* 縦書き時の主軸は垂直方向 */
+    align-items: center !important;
+    /* 横方向（厚み）の中央揃え */
+    justify-content: center !important;
+    /* 縦方向（長さ）の中央揃え */
     text-align: center !important;
     font-size: clamp(17px, 5vw, 22px) !important;
     font-weight: 800 !important;
@@ -6191,7 +6269,8 @@ ul {
     line-height: 1 !important;
     white-space: nowrap !important;
     background: rgba(255, 255, 255, 0.96) !important;
-    padding: 0.8em 0.55em 0.4em 0.45em !important; /* 下側の余白をさらにタイトに調整 */
+    padding: 0.8em 0.55em 0.4em 0.45em !important;
+    /* 下側の余白をさらにタイトに調整 */
     margin: 0 !important;
     width: fit-content !important;
     height: fit-content !important;
@@ -6403,6 +6482,10 @@ ul {
     border-radius: 999px 999px 0 0 / clamp(250px, 70vw, 360px) clamp(250px, 70vw, 360px) 0 0;
     z-index: 0;
     pointer-events: none;
+  }
+
+  .sections-with-bg-arc::after {
+    display: none;
   }
 
   .facility-bg-shape {
