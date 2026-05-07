@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
 const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
@@ -359,22 +360,10 @@ export default function Home() {
         <section className="hero hero-editorial">
           <div className="hero-editorial-shell">
             <div className="hero-editorial-stage">
-              <div className="hero-editorial-deco deco-dot-large deco-dot-1" aria-hidden="true" />
-              <div className="hero-editorial-deco deco-dot-large deco-dot-2" aria-hidden="true" />
-              <div className="hero-editorial-deco deco-dot-small deco-dot-3" aria-hidden="true" />
-              <div className="hero-editorial-deco deco-dot-small deco-dot-4" aria-hidden="true" />
-              <div className="hero-editorial-deco deco-dot-grid" aria-hidden="true" />
               <div className="hero-mobile-wave hero-mobile-wave-1" aria-hidden="true" />
               <div className="hero-mobile-wave hero-mobile-wave-2" aria-hidden="true" />
               <div className="hero-mobile-wave hero-mobile-wave-3" aria-hidden="true" />
               <div className="hero-mobile-wave hero-mobile-wave-4" aria-hidden="true" />
-
-              <div className="hero-editorial-catch">
-                <h1>
-                  <span className="catch-line catch-line-primary">医療から介護まで、</span>
-                  <span className="catch-line">この場所で。</span>
-                </h1>
-              </div>
 
               {/* Mobile Bird Illustration */}
               <div className="hero-editorial-bird show-mobile" aria-hidden="true">
@@ -418,7 +407,14 @@ export default function Home() {
                 </div>
               </figure>
 
-              <div className="hero-editorial-schedule">
+              <div className="hero-editorial-catch">
+                <h1>
+                  <span className="catch-line">医療から介護まで、</span>
+                  <span className="catch-line">この場所で。</span>
+                </h1>
+              </div>
+
+              <div className="hero-editorial-schedule hidden-mobile">
                 <div className="editorial-schedule-card">
                   <table className="editorial-schedule-table">
                     <thead>
@@ -459,6 +455,32 @@ export default function Home() {
               <div className="hero-editorial-scroll">
                 <span className="scroll-text">SCROLL</span>
                 <div className="scroll-line"></div>
+              </div>
+            </div>
+
+            {/* Mobile Schedule Card (Appears after scrolling FV) */}
+            <div className="hero-editorial-schedule-mobile show-mobile">
+              <div className="editorial-schedule-card">
+                <table className="editorial-schedule-table">
+                  <thead>
+                    <tr>
+                      <th>診療受付時間</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th><th>日祝</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="time-slot">午前 8:30 - 12:00</td>
+                      <td>●</td><td>●</td><td>●</td><td>●</td><td>●</td><td>●</td><td className="closed">×</td>
+                    </tr>
+                    <tr>
+                      <td className="time-slot">午後 14:00 - 17:30</td>
+                      <td>●</td><td>●</td><td>●</td><td className="closed">×</td><td>●</td><td className="closed">×</td><td className="closed">×</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <footer className="schedule-footer">
+                  <p>休診日：木・土午後、日・祝日</p>
+                </footer>
               </div>
             </div>
           </div>
@@ -577,7 +599,14 @@ export default function Home() {
       {/* --- ABOUT --- */}
       <section id="about" className="about-section" ref={aboutSectionRef}>
           <div className="about-reveal-wrapper">
-          <div className="about-reveal-circle" style={{ '--about-circle-scale': aboutActiveScale }} aria-hidden="true">
+          <div
+            className="about-reveal-circle"
+            style={{
+              '--about-circle-scale': aboutActiveScale,
+              '--about-shapes-opacity': aboutActiveScale >= 1 ? 1 : 0,
+            }}
+            aria-hidden="true"
+          >
             <span className="about-fluid-shape shape-1"></span>
             <span className="about-fluid-shape shape-2"></span>
             <span className="about-fluid-shape shape-3"></span>
@@ -1023,27 +1052,33 @@ export default function Home() {
 
       {/* Access Section */}
       <section id="access" className="access-section">
-        <div className="container">
-          <div className="section-header">
-            <h2 className="section-title">アクセス</h2>
-            <p className="section-subtitle">Access</p>
-          </div>
-          <div className="access-info">
-            <p className="access-address">〒431-1404<br />静岡県浜松市浜名区三ヶ日町宇志34-1</p>
-            <div className="access-map-link">
-              <a href="https://www.google.com/maps/search/?api=1&query=%E9%9D%99%E5%B2%A1%E7%9C%8C%E6%B5%9C%E6%9D%BE%E5%B8%82%E6%B5%9C%E5%90%8D%E5%8C%BA%E4%B8%89%E3%83%B6%E6%97%A5%E7%94%BA%E5%AE%87%E5%BF%9734-1" target="_blank" rel="noreferrer">
-                Googleマップで見る
-                <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-            <a href="#" className="access-detail-btn">
-              <span>詳しくみる</span>
-              <span aria-hidden="true">→</span>
-            </a>
+        <div className="access-heading-row">
+          <div className="access-title-block">
+            <span className="access-en">ACCESS</span>
+            <h2>アクセス</h2>
           </div>
 
-          <div className="access-method-card">
-            <div className="access-method">
+          <div className="access-address-block">
+            <div className="access-address-content">
+              <p>
+                〒431-1404<br />
+                静岡県浜松市浜名区三ヶ日町宇志34-1
+              </p>
+              <a href="https://maps.google.com/?q=クロヤナギ医院" target="_blank" rel="noopener noreferrer" className="access-map-link">
+                Googleマップで見る
+                <span className="icon">↗</span>
+              </a>
+            </div>
+          </div>
+
+          <Link href="/access" className="access-detail-btn">
+            <span>詳しくみる</span>
+            <span className="arrow">→</span>
+          </Link>
+        </div>
+
+        <div className="access-method-card">
+          <div className="access-method">
               <div className="access-method-icon">
                 <img src="/photo/assets/access/01_電車.png" alt="" />
               </div>
@@ -1070,7 +1105,6 @@ export default function Home() {
                 <p>駐車場をご用意しております。<br />（台数・利用条件はお問い合わせください）</p>
               </div>
             </div>
-          </div>
         </div>
       </section>
 
