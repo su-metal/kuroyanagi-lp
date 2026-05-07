@@ -2943,7 +2943,8 @@ ul {
   display: block;
   background: var(--white);
   border-radius: 999px;
-  opacity: 0.34;
+  opacity: calc(var(--about-shapes-opacity, 0) * var(--shape-opacity, 0.34));
+  transition: opacity 0.35s ease;
   will-change: transform;
   animation: aboutFluidDrift 18s ease-in-out infinite alternate;
 }
@@ -2955,7 +2956,7 @@ ul {
   top: 15%;
   transform: rotate(-8deg);
   background: var(--white);
-  opacity: 0.14;
+  --shape-opacity: 0.14;
 }
 
 .about-fluid-shape.shape-2 {
@@ -2964,7 +2965,7 @@ ul {
   right: 18%;
   top: 34%;
   background: var(--white);
-  opacity: 0.22;
+  --shape-opacity: 0.22;
   animation-duration: 22s;
   animation-delay: -5s;
 }
@@ -3459,7 +3460,7 @@ ul {
 
   .about-bottom-visual {
     height: clamp(320px, 42vh, 360px);
-    bottom: -34px;
+    bottom: 0;
   }
 
   .about-bottom-visual-img--desktop {
@@ -3468,9 +3469,9 @@ ul {
 
   .about-bottom-visual-img--mobile {
     display: block;
-    width: 170%;
+    width: 122%;
     max-width: none;
-    bottom: -18px;
+    bottom: 0;
     transform: translateX(-50%);
   }
 

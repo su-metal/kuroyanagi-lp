@@ -577,7 +577,14 @@ export default function Home() {
       {/* --- ABOUT --- */}
       <section id="about" className="about-section" ref={aboutSectionRef}>
           <div className="about-reveal-wrapper">
-          <div className="about-reveal-circle" style={{ '--about-circle-scale': aboutActiveScale }} aria-hidden="true">
+          <div
+            className="about-reveal-circle"
+            style={{
+              '--about-circle-scale': aboutActiveScale,
+              '--about-shapes-opacity': aboutActiveScale >= 1 ? 1 : 0,
+            }}
+            aria-hidden="true"
+          >
             <span className="about-fluid-shape shape-1"></span>
             <span className="about-fluid-shape shape-2"></span>
             <span className="about-fluid-shape shape-3"></span>
