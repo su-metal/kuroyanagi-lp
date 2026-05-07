@@ -47,6 +47,12 @@
 - 背景はFEATUREセクションと一体化させ、文字は白で情報セクションを邪魔しない背面タイポとして扱う。
 - `prefers-reduced-motion` が有効な環境ではアニメーションを停止し、静止したブランド帯として表示する。
 
+### About Section
+- ABOUTはプライマリーカラーの円形リビールと白いラベル・見出し・本文で構成し、サイト全体の色調から浮かないようにする。
+- 背景には画像を全面使用せず、初期背景はFVと同じ白背景、円形リビール後はブルー系の薄い色面として可読性と統一感を両立する。
+- スクロールによる円形リビールと下部イラスト演出は維持し、下部イラストには素材本来の印象を残す程度のごく弱いトーン調整をかける。
+- FVとABOUT初期背景は `--fv-bg` で共通管理し、円形リビール側は `--about-reveal-bg: var(--primary-blue)` のベタ塗りを土台にする。その上に薄い白の大きな楕円シェイプと小さな楕円シェイプを1つずつ装飾として配置する。境界接続にグラデーションは使わない。
+
 ### Feature Section (New 4-Column Design)
 - **Layout**: 従来の左右分割から、中央揃えのタイトル + 4カラムの横並びカードレイアウトへ変更。
 - **Card Design**:
@@ -90,11 +96,16 @@
   - Hamburger Menu: Yellow circular button (`#f8b500`) with white lines.
 - **Section Backgrounds**:
   - Use `.sections-with-bg-arc` to create a large unified background arc across Service, Facility, and News sections.
+  - Desktop: Draw a primary-blue right-side panel inside `.facility-section::before`, keeping the blue area scoped to Facility so it never cuts across Service cards or News cards.
   - Mobile: Draw the unified arc with `.sections-with-bg-arc::before` as a pale blue background layer behind the sections. Do not reuse `.facility-bg-shape` for the mobile shared arc, because the desktop accent shape becomes a muddy semi-transparent oval on narrow screens.
   - Service / Facility gap on mobile: Place separate wave and bird decorative assets near the lower right of Service. Keep them below content emphasis and above the shared background only as a subtle connector.
 
 ## 実装上の注意点
 - `z-index` を適切に管理し、イラストやオーバーレイの重なり順を制御。
+- PC版のFacilityパネルは右端に固定した矩形ベースの装飾として配置し、他セクションの本文・カードより上に出さない。
+- ABOUTセクションはオレンジのアクセントを避け、プライマリーブルー面と白文字で統一する。
+- ABOUT背景は円が広がる前をFVと同じ白、円が広がった後をプライマリーカラーのベタ塗りにし、大小1つずつの薄い白シェイプをゆっくりうねる動きで柔らかく見せる。テキストは白系にし、軽い影で可読性を補う。イラストは素材本来の印象を保ちながら少しだけ馴染ませる。
+- FVとABOUTの境界は同一変数の白背景でつなぎ、グラデーション表現は避ける。
 - Service, Facility, News を跨ぐモバイル背景は共有ラッパーを `isolation: isolate` したうえで背面レイヤー化し、各セクション本文より前面に出ないようにする。
 - Service と Facility の間のあしらいは装飾専用として `aria-hidden` にし、操作・読解対象にはしない。
 - `object-fit: cover` を使用して、メイン写真のアスペクト比を維持。

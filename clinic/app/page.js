@@ -242,16 +242,23 @@ export default function Home() {
       const viewportHeight = window.innerHeight;
 
       // セクションが上端に張り付いてからのスクロール距離
-      const stickyDist = sectionHeight - viewportHeight;
+      const stickyDist = Math.max(sectionHeight - viewportHeight, 1);
       const scrollOffset = clamp(-rect.top, 0, stickyDist);
       const progress = scrollOffset / stickyDist;
+      const circleEndProgress = 0.4;
+      const circleEarlyStart = viewportHeight * 0.18;
+      const circleProgress = clamp(
+        (-rect.top + circleEarlyStart) / (stickyDist * circleEndProgress + circleEarlyStart),
+        0,
+        1
+      );
 
       // 3フェーズに分割
       // Phase 1 (0% - 40%): 円の拡大
       // Phase 2 (40% - 80%): テキストの浮上
       // Phase 3 (80% - 100%): 保持（タメ）
       if (progress <= 0.4) {
-        setAboutActiveScale(progress / 0.4);
+        setAboutActiveScale(circleProgress);
         setAboutTextProgress(0);
         setAboutPhotosProgress(0);
       } else {
@@ -570,7 +577,13 @@ export default function Home() {
       {/* --- ABOUT --- */}
       <section id="about" className="about-section" ref={aboutSectionRef}>
           <div className="about-reveal-wrapper">
-          <div className="about-reveal-circle" style={{ '--about-circle-scale': aboutActiveScale }}></div>
+          <div className="about-reveal-circle" style={{ '--about-circle-scale': aboutActiveScale }} aria-hidden="true">
+            <span className="about-fluid-shape shape-1"></span>
+            <span className="about-fluid-shape shape-2"></span>
+            <span className="about-fluid-shape shape-3"></span>
+            <span className="about-fluid-shape shape-4"></span>
+            <span className="about-fluid-shape shape-5"></span>
+          </div>
           
           {/* フォトフレーム演出 */}
           <div className="about-photos-container" style={{ '--about-photos-progress': aboutPhotosProgress }}>
