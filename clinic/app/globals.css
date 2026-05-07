@@ -3012,11 +3012,28 @@ ul {
   width: 100%;
   max-width: 800px;
   text-align: center;
-  color: #fff;
+  color: #003893; /* 明確なディープネイビー */
   opacity: var(--about-content-opacity, 1);
   transform: translateY(var(--about-content-y, 0));
   will-change: opacity, transform;
-  padding-bottom: clamp(150px, 18vh, 220px); /* 完全に元のレイアウトに戻す */
+  padding-bottom: clamp(150px, 18vh, 220px);
+}
+
+/* テキストを保護するホワイト・エディトリアル・プレート */
+.about-content::before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: 10px;
+  right: 10px;
+  bottom: calc(clamp(150px, 18vh, 220px) - 30px);
+  background: rgba(255, 255, 255, 0.88); /* 白の透過 */
+  backdrop-filter: blur(12px); /* すりガラス効果を強める */
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  box-shadow: 0 15px 45px rgba(0, 35, 92, 0.15); /* プレートを少し浮かせる */
+  z-index: -1;
+  pointer-events: none;
 }
 
 /* 不要な重複とオーバーレイ定義を削除 */
@@ -3046,21 +3063,17 @@ ul {
   position: relative;
 }
 
-/* 髱定レ譎ｯ縺ｮ荳翫〒隕九ｄ縺吶￥縺吶ｋ縺溘ａ縺ｮ逋ｽ譁・・ｽ・ｽ險ｭ螳夲ｼ医ョ繝輔か繝ｫ繝茨ｼ・*/
-.about-content-editorial .about-title,
-.about-content-editorial .about-title span,
-.about-content-editorial .about-desc {
-  color: var(--white);
-}
+/* テキスト保護用の色の設定は個別の要素で行うため、ここでは削除 */
+
 
 .about-label {
-  color: rgba(255, 255, 255, 0.92);
+  color: #003893; /* ディープネイビー */
   font-size: 1.1rem;
   font-weight: 800;
   letter-spacing: 0.18em;
   line-height: 1;
   margin-bottom: 12px;
-  text-shadow: 0 2px 12px rgba(0, 35, 92, 0.22);
+  opacity: 1;
 }
 
 .about-dots {
@@ -3074,12 +3087,13 @@ ul {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.78);
+  background: var(--primary-blue);
+  opacity: 0.4;
 }
 
 .about-title {
   width: fit-content;
-  color: var(--white);
+  color: var(--primary-blue) !important; /* プライマリーブルーを割り当て */
   font-family: var(--font-modern);
   font-size: 2.0rem;
   font-weight: 800;
@@ -3087,18 +3101,13 @@ ul {
   letter-spacing: 0.08em;
   margin-bottom: 32px;
   max-width: none;
-  /* 視認性を極限まで高める多重シャドウ */
-  text-shadow: 
-    0 0 10px rgba(0, 35, 92, 0.8),
-    0 0 20px rgba(0, 35, 92, 0.5),
-    0 2px 4px rgba(0, 20, 50, 0.4);
+  text-shadow: none;
 }
 
 .about-title-line {
   display: inline-block;
   white-space: nowrap;
-  color: inherit;
-  /* 隕ｪ縺ｮ逋ｽ譁・・ｽ・ｽ險ｭ螳壹ｒ蠑輔″邯吶＄ */
+  color: inherit; /* 親のプライマリーブルーを継承 */
 }
 
 @media (max-width: 640px) {
@@ -3109,17 +3118,14 @@ ul {
 }
 
 .about-desc {
-  color: rgba(255, 255, 255, 0.9);
+  color: #333333 !important; /* 強制的にダークグレーに */
   font-size: 1.02rem;
   font-weight: 600;
   line-height: 2.15;
   letter-spacing: 0.06em;
   margin: 0 auto;
   max-width: 650px;
-  /* 本文もシャドウを強化 */
-  text-shadow: 
-    0 0 8px rgba(0, 35, 92, 0.6),
-    0 2px 4px rgba(0, 20, 50, 0.4);
+  text-shadow: none;
 }
 
 .about-desc p {
