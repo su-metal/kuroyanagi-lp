@@ -365,13 +365,6 @@ export default function Home() {
               <div className="hero-mobile-wave hero-mobile-wave-3" aria-hidden="true" />
               <div className="hero-mobile-wave hero-mobile-wave-4" aria-hidden="true" />
 
-              <div className="hero-editorial-catch">
-                <h1>
-                  <span className="catch-line catch-line-primary">医療から介護まで、</span>
-                  <span className="catch-line">この場所で。</span>
-                </h1>
-              </div>
-
               {/* Mobile Bird Illustration */}
               <div className="hero-editorial-bird show-mobile" aria-hidden="true">
                 <img src="/photo/kamome.png" alt="" />
@@ -413,6 +406,13 @@ export default function Home() {
                   </div>
                 </div>
               </figure>
+
+              <div className="hero-editorial-catch">
+                <h1>
+                  <span className="catch-line">医療から介護まで、</span>
+                  <span className="catch-line">この場所で。</span>
+                </h1>
+              </div>
 
               <div className="hero-editorial-schedule">
                 <div className="editorial-schedule-card">

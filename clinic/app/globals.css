@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Noto+Serif+JP:wght@600;700&family=Outfit:wght@400;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Noto+Serif+JP:wght@600;700&family=Outfit:wght@400;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Zen+Maru+Gothic:wght@700;900&display=swap');
 
 :root {
   --primary-blue: #3d62ad;
@@ -20,8 +20,9 @@
 
   --font-serif: "Noto Serif JP", serif;
   --font-sans: "Zen Kaku Gothic New", sans-serif;
-  --font-round: "Outfit", "Zen Kaku Gothic New", sans-serif;
+  --font-round: "Zen Maru Gothic", sans-serif;
   --font-modern: "Outfit", "Zen Kaku Gothic New", sans-serif;
+  --font-maru: "Zen Maru Gothic", sans-serif;
 
   --container-width: 1440px;
 }
@@ -3036,7 +3037,7 @@ ul {
   left: clamp(40px, 8vw, 80px);
   right: clamp(40px, 8vw, 80px);
   bottom: calc(clamp(150px, 18vh, 220px) - 60px);
-  background: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 24px;
@@ -3131,7 +3132,8 @@ ul {
 
   /* モバイル時はプレートを横に広げ、全体を下に下げる */
   .about-content::before {
-    top: 10px; /* 40pxから少し戻す */
+    top: 10px;
+    /* 40pxから少し戻す */
     left: 15px;
     right: 15px;
     /* さらに一息分だけ伸ばす */
@@ -3190,7 +3192,7 @@ ul {
   overflow: visible;
   pointer-events: none;
   /* 60% 程度まで戻して視認性を確保 */
-  opacity: calc(var(--about-bottom-progress, 0) * 0.6);
+  opacity: calc(var(--about-bottom-progress, 0) * 0.8);
   transform: translateY(calc(42px * (1 - var(--about-bottom-progress, 0))));
   transition: opacity 0.4s ease, transform 0.4s ease;
   will-change: opacity, transform;
@@ -3242,6 +3244,7 @@ ul {
   .about-bottom-visual {
     opacity: var(--about-bottom-progress, 0) !important;
   }
+
   .about-bottom-visual-img {
     filter: none !important;
   }
@@ -5922,33 +5925,29 @@ ul {
 
 .hero-editorial-catch h1 {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
+  writing-mode: vertical-rl;
   align-items: flex-start;
-  gap: clamp(8px, 2vw, 24px);
+  gap: 12px;
+  /* 列の間隔を詰める */
   margin: 0;
 }
 
 .hero-editorial-catch .catch-line {
   display: block;
   writing-mode: vertical-rl;
-  padding: 22px 12px;
-  color: var(--primary-blue);
-  background: transparent;
-  box-shadow: none;
-  font-family: var(--font-modern);
-  font-size: 26px;
+  font-size: clamp(28px, 4.5vh, 42px);
   font-weight: 800;
-  line-height: 1.25;
-  letter-spacing: 0.14em;
-  text-shadow: none;
-}
-
-.hero-editorial-catch .catch-line:nth-child(2) {
-  margin-top: 0;
-}
-
-.hero-editorial-catch .catch-line:nth-child(3) {
-  margin-top: 0;
+  color: var(--primary-blue);
+  letter-spacing: 0.12em;
+  line-height: 1.3;
+  /* 行間を詰める */
+  white-space: nowrap;
+  background: none;
+  padding: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  font-family: var(--font-modern);
 }
 
 .hero-circle-copy {
@@ -6300,11 +6299,12 @@ ul {
   =================================================== */
   .hero-editorial-catch {
     position: absolute !important;
-    top: 54svh !important;
+    top: auto !important;
+    bottom: 8px !important;
+    /* 極限まで下へ */
     left: clamp(24px, 8vw, 40px) !important;
-    right: auto !important;
-    bottom: auto !important;
     transform: none !important;
+    right: auto !important;
     width: auto !important;
     padding: 0 !important;
     margin: 0 !important;
@@ -6320,43 +6320,28 @@ ul {
   .hero-editorial-catch h1 {
     display: flex !important;
     flex-direction: column !important;
-    /* 縦書きの行を横に2列並べる */
-    writing-mode: vertical-rl !important;
+    writing-mode: horizontal-tb !important;
     align-items: flex-start !important;
-    gap: 12px !important;
+    text-align: left !important;
+    gap: 2px !important;
+    /* 行間を最小限に */
     background: none !important;
-    box-shadow: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
   }
 
   .hero-editorial-catch .catch-line {
-    display: flex !important;
-    writing-mode: vertical-rl !important;
-    flex-direction: row !important;
-    /* 縦書き時の主軸は垂直方向 */
-    align-items: center !important;
-    /* 横方向（厚み）の中央揃え */
-    justify-content: center !important;
-    /* 縦方向（長さ）の中央揃え */
-    text-align: center !important;
-    font-size: clamp(17px, 5vw, 22px) !important;
+    display: block !important;
+    writing-mode: horizontal-tb !important;
+    font-size: clamp(20px, 6vw, 26px) !important;
     font-weight: 800 !important;
     color: var(--primary-blue) !important;
-    letter-spacing: 0.18em !important;
-    line-height: 1 !important;
-    white-space: nowrap !important;
-    background: transparent !important;
-    padding: 0.8em 0.55em 0.4em 0.45em !important;
-    /* 下側の余白をさらにタイトに調整 */
+    letter-spacing: 0.08em !important;
+    line-height: 1.2 !important;
+    /* 行間を詰める */
+    white-space: normal !important;
+    padding: 4px 10px !important;
     margin: 0 !important;
-    width: fit-content !important;
-    height: fit-content !important;
-    border-radius: 4px !important;
-    box-shadow: none !important;
-    border: 0 !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
+    width: auto !important;
+    height: auto !important;
   }
 
 
