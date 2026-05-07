@@ -4939,15 +4939,21 @@ ul {
   min-width: 0;
 }
 
+.access-address-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .access-address-block p {
-  margin: 0 0 10px;
+  margin: 0;
   color: #123;
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.7;
 }
 
-.access-address-block a {
+.access-map-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -4955,6 +4961,7 @@ ul {
   font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 4px;
+  white-space: nowrap;
 }
 
 .access-detail-btn {
@@ -5401,6 +5408,12 @@ ul {
     grid-template-columns: 1fr;
     gap: 24px;
     text-align: center;
+  }
+
+  .access-address-content {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
   }
 
   .access-detail-btn {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
 const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
@@ -1030,27 +1031,33 @@ export default function Home() {
 
       {/* Access Section */}
       <section id="access" className="access-section">
-        <div className="container">
-          <div className="section-header">
-            <h2 className="section-title">アクセス</h2>
-            <p className="section-subtitle">Access</p>
-          </div>
-          <div className="access-info">
-            <p className="access-address">〒431-1404<br />静岡県浜松市浜名区三ヶ日町宇志34-1</p>
-            <div className="access-map-link">
-              <a href="https://www.google.com/maps/search/?api=1&query=%E9%9D%99%E5%B2%A1%E7%9C%8C%E6%B5%9C%E6%9D%BE%E5%B8%82%E6%B5%9C%E5%90%8D%E5%8C%BA%E4%B8%89%E3%83%B6%E6%97%A5%E7%94%BA%E5%AE%87%E5%BF%9734-1" target="_blank" rel="noreferrer">
-                Googleマップで見る
-                <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-            <a href="#" className="access-detail-btn">
-              <span>詳しくみる</span>
-              <span aria-hidden="true">→</span>
-            </a>
+        <div className="access-heading-row">
+          <div className="access-title-block">
+            <span className="access-en">ACCESS</span>
+            <h2>アクセス</h2>
           </div>
 
-          <div className="access-method-card">
-            <div className="access-method">
+          <div className="access-address-block">
+            <div className="access-address-content">
+              <p>
+                〒431-1404<br />
+                静岡県浜松市浜名区三ヶ日町宇志34-1
+              </p>
+              <a href="https://maps.google.com/?q=クロヤナギ医院" target="_blank" rel="noopener noreferrer" className="access-map-link">
+                Googleマップで見る
+                <span className="icon">↗</span>
+              </a>
+            </div>
+          </div>
+
+          <Link href="/access" className="access-detail-btn">
+            <span>詳しくみる</span>
+            <span className="arrow">→</span>
+          </Link>
+        </div>
+
+        <div className="access-method-card">
+          <div className="access-method">
               <div className="access-method-icon">
                 <img src="/photo/assets/access/01_電車.png" alt="" />
               </div>
@@ -1077,7 +1084,6 @@ export default function Home() {
                 <p>駐車場をご用意しております。<br />（台数・利用条件はお問い合わせください）</p>
               </div>
             </div>
-          </div>
         </div>
       </section>
 
