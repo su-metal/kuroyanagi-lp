@@ -586,7 +586,6 @@ export default function Home() {
         >
           <path
             d="M0,0 L0,50 C200,100 400,100 720,60 C1040,20 1240,20 1440,50 L1440,0 Z"
-            fill="#eef6ff"
           />
         </svg>
       </div>

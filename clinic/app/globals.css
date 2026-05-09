@@ -4520,7 +4520,7 @@ ul {
 }
 
 .wave-divider-svg path {
-  fill: #ffffff;
+  fill: var(--bg-warm);
 }
 
 .wave-divider-img {

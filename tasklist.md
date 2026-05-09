@@ -173,3 +173,10 @@
 - [ ] `npm run build` によるビルド確認
 - [ ] PC幅でLeftエリアが追従し、Rightエリアがスクロールすることを確認
 - [ ] モバイル幅でスタック配置に切り替わることを確認
+
+## 19. Wave Divider の実装
+- [x] `requirements.md` および `design.md` の更新
+- [x] `globals.css` で `.wave-divider-wrapper` の背景色と `.wave-divider-svg path` の `fill` を調整
+- [x] `page.js` の SVG パスからハードコードされた `fill` 属性を削除
+- [x] `npm run build` によるビルド確認
+- [ ] PC / モバイル両方で `news` セクションのボトムが波型に見えることを確認
