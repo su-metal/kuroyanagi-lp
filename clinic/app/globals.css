@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Noto+Serif+JP:wght@600;700&family=Outfit:wght@400;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Zen+Maru+Gothic:wght@700;900&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Noto+Serif+JP:wght@600;700&family=Outfit:wght@400;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Zen+Maru+Gothic:wght@700;900&display=swap');
 
 :root {
   --primary-blue: #3d62ad;
@@ -1506,6 +1506,64 @@ ul {
 }
 
 
+
+/* ===================================================
+   Hero Scroll Indicator (Editorial)
+   =================================================== */
+.hero-editorial-scroll {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 50;
+  background-color: var(--primary-blue);
+  width: 44px;
+  padding: 40px 0 20px;
+  border-top-left-radius: 20px;
+  pointer-events: none;
+  transform: none;
+}
+
+.scroll-text {
+  font-family: var(--font-modern);
+  font-size: 0.75rem;
+  color: #fff;
+  letter-spacing: 0.4em;
+  writing-mode: vertical-rl;
+  margin-bottom: 25px;
+  font-weight: 700;
+  line-height: 1;
+  background: none;
+  padding: 0;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-line::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  animation: scrollLineAnim 2s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+}
+
+@keyframes scrollLineAnim {
+  0% { transform: translateY(-100%); }
+  50% { transform: translateY(100%); }
+  100% { transform: translateY(100%); }
+}
+
 /* --- NEWS --- */
 .news-section {
   padding: 0px;
@@ -2262,40 +2320,22 @@ ul {
   font-weight: 500;
 }
 
-.hero-editorial-scroll {
+.scroll-line::after {
+  content: "";
   position: absolute;
-  bottom: -20px;
-  /* 縺輔ｉ縺ｫ荳区婿縺ｸ */
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 10;
-  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  animation: scrollLineAnim 2s cubic-bezier(0.76, 0, 0.24, 1) infinite;
 }
 
-.scroll-text {
-  font-family: var(--font-modern);
-  font-size: 0.65rem;
-  color: var(--primary-blue);
-  letter-spacing: 0.25em;
-  writing-mode: vertical-rl;
-  margin-bottom: 12px;
-  font-weight: 700;
-  /* 繝・・ｽ・ｽ繧ｹ繝磯Κ蛻・・ｽ・ｽ髯仙ｮ壹＠縺ｦ邏ｰ縺・・ｽ・ｽ繧帝←逕ｨ */
-  background: rgba(255, 255, 255, 0.9);
-  padding: 1.2rem 0.35rem;
-  line-height: 1;
-}
-
-.scroll-line {
-  width: 1px;
-  height: 80px;
-  background: rgba(3, 110, 183, 0.2);
-  position: relative;
-  overflow: hidden;
-}
+@keyframes scrollLineAnim {
+  0% { transform: translateY(-100%); }
+  50% { transform: translateY(100%); }
+  100% { transform: translateY(100%); }
+}
 
 .scroll-line::after {
   content: "";
@@ -2609,19 +2649,7 @@ ul {
 
   .editorial-schedule-table td {
     font-size: 0.78rem;
-  }
-
-  .hero-editorial-scroll {
-    bottom: clamp(280px, 40vh, 360px);
-    right: 12px;
-    left: auto;
-    transform: none;
-    opacity: 0.6;
-  }
-
-  .scroll-line {
-    height: 60px;
-  }
+  }
 
   .hero-editorial-news {
     gap: 10px;
@@ -5833,33 +5861,22 @@ ul {
   background: var(--hero-blue);
 }
 
-.hero-editorial-scroll {
+.scroll-line::after {
+  content: "";
   position: absolute;
-  z-index: 7;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 14px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  animation: scrollLineAnim 2s cubic-bezier(0.76, 0, 0.24, 1) infinite;
 }
 
-.scroll-text {
-  color: var(--hero-blue);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  writing-mode: horizontal-tb;
-  margin: 0;
-}
-
-.scroll-line {
-  width: 2px;
-  height: 54px;
-  background: var(--hero-blue);
-  animation: none;
-}
+@keyframes scrollLineAnim {
+  0% { transform: translateY(-100%); }
+  50% { transform: translateY(100%); }
+  100% { transform: translateY(100%); }
+}
 
 .hero-editorial-deco {
   position: absolute;
@@ -6271,7 +6288,6 @@ ul {
   =================================================== */
   .hero-editorial-news,
   .hero-editorial-pager,
-  .hero-editorial-scroll,
   .hero-editorial-badge,
   .hero-editorial-swoosh,
   .hero-editorial-deco {
@@ -6335,3 +6351,6 @@ ul {
     -webkit-backdrop-filter: none !important;
   }
 }
+
+
+

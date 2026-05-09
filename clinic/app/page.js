@@ -229,11 +229,11 @@ export default function Home() {
                 <p className="news-title">地域に根ざした医療を提供してまいります</p>
                 <div className="news-underline"></div>
               </div>
+            </div>
 
-              <div className="hero-editorial-scroll">
-                <span className="scroll-text">SCROLL</span>
-                <div className="scroll-line"></div>
-              </div>
+            <div className="hero-editorial-scroll">
+              <span className="scroll-text">SCROLL</span>
+              <div className="scroll-line"></div>
             </div>
 
             {/* Mobile Schedule Card (Appears after scrolling FV) */}
