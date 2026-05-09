@@ -164,3 +164,12 @@
 - [x] フォーム入力者メールはReply-Toにのみ設定
 - [x] PHPMailer / Composer / SMTP環境変数の追加方針を撤回
 - [ ] Gmail宛テスト送信で `spf=pass` / `dkim=pass` / `dmarc=pass` を確認
+
+## 18. FeatureセクションのSticky Sidebar化（エディトリアル・リデザイン）
+- [x] `requirements.md` および `design.md` の更新
+- [ ] `page.js` のHTML構造刷新（Left: Sticky Title, Right: Scrolling Content）
+- [ ] `globals.css` へのStickyレイアウト用スタイルの実装
+- [ ] 各カードのエディトリアルなデザイントークン（大きな角丸、タイポグラフィ）の適用
+- [ ] `npm run build` によるビルド確認
+- [ ] PC幅でLeftエリアが追従し、Rightエリアがスクロールすることを確認
+- [ ] モバイル幅でスタック配置に切り替わることを確認

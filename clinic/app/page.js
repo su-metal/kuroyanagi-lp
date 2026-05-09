@@ -373,22 +373,19 @@ export default function Home() {
         </section>
       )}
 
-      {/* --- FEATURES --- */}
-      <section id="features" className="features-editorial-section">
-        <div className="features-editorial-inner">
-          <div className="features-editorial-left">
-            <div className="features-editorial-image-mask">
-              <img src="/photo/assets/modern_clinic_reception_interior.png" alt="クロヤナギ医院の院内" />
-            </div>
-          </div>
-          <div className="features-editorial-right">
-            <div className="features-editorial-vertical-copy">
-              <p>地域の皆さまに寄り添い、<br />日々の不調から専門的な相談まで<br />安心して頼れる医院へ</p>
-            </div>
-            <div className="features-editorial-main-content">
+      {/* --- FEATURES SECTION (Sticky Sidebar Editorial) --- */}
+      <section id="features" className="features-sticky-section">
+        <div className="features-sticky-container">
+          <div className="features-sticky-sidebar">
+            <div className="features-sticky-sidebar-inner">
               <span className="features-editorial-en">FEATURE</span>
               <h2 className="features-editorial-title">当クリニックの特徴</h2>
-              <p className="features-editorial-sub">内科を中心に、予防医療や検査、日々の健康相談まで幅広く対応しています。患者さま一人ひとりの不安に耳を傾け、必要な医療へ丁寧につなげます。</p>
+              <div className="features-editorial-vertical-copy">
+                <p>地域の皆さまに寄り添い、<br />日々の不調から専門的な相談まで<br />安心して頼れる医院へ</p>
+              </div>
+              <p className="features-editorial-sub">
+                内科を中心に、予防医療や検査、日々の健康相談まで幅広く対応しています。患者さま一人ひとりの不安に耳を傾け、必要な医療へ丁寧につなげます。
+              </p>
               <div className="features-editorial-action">
                 <a href="#service" className="features-editorial-link">
                   <span>詳しく見る</span>
@@ -397,85 +394,25 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-
-      <section className="features-new-section features-legacy-section" aria-hidden="true">
-        <div className="container">
-          <div className="features-white-card">
-            
-            {/* Floating Decorations (PC Only) */}
-            <div className="features-deco features-deco-left hidden-mobile">
-              <div className="f-deco-bubble">安心して通える理由は？</div>
-              <div className="f-deco-person">
-                <img src="/photo/assets/features/feature_05.png" alt="" />
-              </div>
-            </div>
-            <div className="features-deco features-deco-right hidden-mobile">
-              <div className="f-deco-bubble">私たちが大切にしていること</div>
-              <div className="f-deco-person">
-                <img src="/photo/assets/features/feature_06.png" alt="" />
-              </div>
-            </div>
-
-            <div className="features-card-inner">
-              {/* Header */}
-              <div className="f-header">
-                <h2 className="f-title">当クリニックの特徴</h2>
-                <p className="f-lead">
-                  患者さま一人ひとりに寄り添い、安心して通える医療を<br className="hidden-mobile" />
-                  提供するための取り組みを行っています。
-                </p>
-              </div>
-
-              {/* Top Row: 4 Items */}
-              <div className="f-top-grid">
-                {[
-                  { img: "/photo/assets/features/feature_01.png", icon: "/photo/assets/03_medical/01_内科.png", title: "丁寧なカウンセリング", text: "患者さまのお悩みやご希望を丁寧に伺い、最適な治療をご提案します。" },
-                  { img: "/photo/assets/features/feature_02.png", icon: "/photo/assets/03_medical/03_検査.png", title: "最新の医療設備", text: "正確な診断と安全な治療のために、最新の医療機器を導入しています。" },
-                  { img: "/photo/assets/features/feature_03.png", icon: "/photo/assets/03_medical/04_循環器内科.png", title: "経験豊富な医師が担当", text: "専門性の高い医師が、豊富な経験に基づいた質の高い医療を提供します。" },
-                  { img: "/photo/assets/features/feature_04.png", icon: "/photo/assets/03_medical/08_バリアフリー.png", title: "通いやすい診療体制", text: "平日夜間や土曜診療にも対応。ご都合に合わせて通いやすい体制を整えています。" },
-                ].map((item, idx) => (
-                  <div className="f-top-item" key={idx}>
-                    <div className="f-item-img-wrap">
-                      <img src={item.img} alt={item.title} className="f-item-img" />
-                      <div className="f-item-icon">
-                        <img src={item.icon} alt="" />
-                      </div>
-                    </div>
-                    <h3 className="f-item-title">{item.title}</h3>
-                    <p className="f-item-text">{item.text}</p>
+          <div className="features-sticky-content">
+            <div className="features-card-list">
+              {[
+                { img: "/photo/assets/features/feature_01.png", title: "丁寧なカウンセリング", text: "患者さまのお悩みやご希望を丁寧に伺い、最適な治療をご提案します。" },
+                { img: "/photo/assets/features/feature_02.png", title: "最新の医療設備", text: "正確な診断と安全な治療のために、最新の医療機器を導入しています。" },
+                { img: "/photo/assets/features/feature_03.png", title: "経験豊富な医師が担当", text: "専門性の高い医師が、豊富な経験に基づいた質の高い医療を提供します。" },
+                { img: "/photo/assets/features/feature_04.png", title: "通いやすい診療体制", text: "平日夜間や土曜診療にも対応。ご都合に合わせて通いやすい体制を整えています。" },
+              ].map((item, idx) => (
+                <div className="features-sticky-card" key={idx}>
+                  <div className="features-sticky-card-img">
+                    <img src={item.img} alt={item.title} />
+                    <div className="features-sticky-card-badge">0{idx + 1}</div>
                   </div>
-                ))}
-              </div>
-
-              {/* Divider */}
-              <div className="f-divider">
-                <span className="f-divider-text">こんな方におすすめです</span>
-              </div>
-
-              {/* Bottom Row: 4 Items */}
-              <div className="f-bottom-grid">
-                {[
-                  { icon: "/photo/assets/03_medical/01_内科.png", text: "体調の変化や不調が気になる方" },
-                  { icon: "/photo/assets/03_medical/02_予防接種.png", text: "健康診断の結果を相談したい方" },
-                  { icon: "/photo/assets/03_medical/05_呼吸器内科.png", text: "お子さまの健康について相談したい方" },
-                  { icon: "/photo/assets/03_medical/06_消化器内科.png", text: "かかりつけ医をお探しの方" },
-                ].map((item, idx) => (
-                  <div className="f-bottom-item" key={idx}>
-                    <div className="f-bottom-icon">
-                      <img src={item.icon} alt="" />
-                    </div>
-                    <p className="f-bottom-text">{item.text}</p>
+                  <div className="features-sticky-card-body">
+                    <h3 className="features-sticky-card-title">{item.title}</h3>
+                    <p className="features-sticky-card-text">{item.text}</p>
                   </div>
-                ))}
-              </div>
-
-              {/* Footer Note */}
-              <p className="f-note">
-                ※診療内容や診療時間など、詳細は各ページをご確認ください。
-              </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
