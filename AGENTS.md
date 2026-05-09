@@ -13,6 +13,7 @@
 - `clinic_old/` は作りかけの Next.js 版クロヤナギ医院サイトとして残す。
 - `clinic/` は、既存サイトを壊さずゼロベースで作り直す新しいクロヤナギ医院サイトの作業領域として扱う。
 - `clinic/` のFVは、PC幅では写真フレーム、診療受付時間カード、縦書きコピー、左下イラストをviewport各辺基準で配置する。
+- `clinic/` のFEATUREセクションは、PC幅では左側の説明とタイムラインをsticky表示し、右側の4枚の特徴カードをスクロールに応じて1枚ずつ重ねる。1024px未満ではsticky演出を解除し、通常の縦積み表示にする。
 - Cloudflare Workers へのデプロイは、ルートの `wrangler.jsonc` で `clinic/out` を静的アセットとして指定する。
 - ルートの `requirements_definition.md`、`requirements.md`、`design.md`、`tasklist.md` は、現在の `clinic/` 新規構築方針を管理する。
 

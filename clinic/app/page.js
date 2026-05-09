@@ -11,6 +11,13 @@ const heroEditorialImages = {
   right: "/photo/hero-slider/hero-right.jpg",
 };
 
+const featureItems = [
+  { img: "/photo/assets/features/feature_01.png", title: "丁寧なカウンセリング", text: "患者さまのお悩みやご希望を丁寧に伺い、最適な治療をご提案します。" },
+  { img: "/photo/assets/features/feature_02.png", title: "最新の医療設備", text: "正確な診断と安全な治療のために、最新の医療機器を導入しています。" },
+  { img: "/photo/assets/features/feature_03.png", title: "経験豊富な医師が担当", text: "専門性の高い医師が、豊富な経験に基づいた質の高い医療を提供します。" },
+  { img: "/photo/assets/features/feature_04.png", title: "通いやすい診療体制", text: "平日夜間や土曜診療にも対応。ご都合に合わせて通いやすい体制を整えています。" },
+];
+
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMedicalVisible, setIsMedicalVisible] = useState(false);
@@ -19,6 +26,7 @@ export default function Home() {
   const medicalSectionRef = useRef(null);
   const featuresSectionRef = useRef(null);
   const [isFeaturesVisible, setIsFeaturesVisible] = useState(false);
+  const [activeFeatureIndex, setActiveFeatureIndex] = useState(0);
 
   // Hero Slider logic: Switch 3 images every 6 seconds
   const [heroActiveIndex, setHeroActiveIndex] = useState(0);
@@ -65,9 +73,35 @@ export default function Home() {
     );
     if (featuresSectionRef.current) featuresObserver.observe(featuresSectionRef.current);
 
+    const updateActiveFeature = () => {
+      const section = featuresSectionRef.current;
+      if (!section) return;
+
+      const rect = section.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || 1;
+      const scrollableDistance = Math.max(rect.height - viewportHeight, 1);
+      const scrolledInside = Math.min(
+        Math.max(-rect.top + viewportHeight * 0.18, 0),
+        scrollableDistance
+      );
+      const progress = scrolledInside / scrollableDistance;
+      const nextIndex = Math.min(
+        featureItems.length - 1,
+        Math.floor(progress * featureItems.length)
+      );
+
+      setActiveFeatureIndex(nextIndex);
+    };
+
+    updateActiveFeature();
+    window.addEventListener("scroll", updateActiveFeature, { passive: true });
+    window.addEventListener("resize", updateActiveFeature);
+
     return () => {
       medicalObserver.disconnect();
       featuresObserver.disconnect();
+      window.removeEventListener("scroll", updateActiveFeature);
+      window.removeEventListener("resize", updateActiveFeature);
     };
   }, []);
 
@@ -374,7 +408,7 @@ export default function Home() {
       )}
 
       {/* --- FEATURES SECTION (Sticky Sidebar Editorial) --- */}
-      <section id="features" className="features-sticky-section">
+      <section id="features" className={`features-sticky-section ${isFeaturesVisible ? "is-visible" : ""}`} ref={featuresSectionRef}>
         <div className="features-sticky-container">
           <div className="features-sticky-sidebar">
             <div className="features-sticky-sidebar-inner">
@@ -392,26 +426,42 @@ export default function Home() {
                   <span className="dot"></span>
                 </a>
               </div>
+              <ol className="features-timeline" aria-label="特徴の現在位置">
+                {featureItems.map((item, idx) => (
+                  <li
+                    className={`features-timeline-item ${activeFeatureIndex === idx ? "is-active" : ""}`}
+                    key={item.title}
+                    aria-current={activeFeatureIndex === idx ? "step" : undefined}
+                  >
+                    <span className="features-timeline-number">0{idx + 1}</span>
+                    <span className="features-timeline-line"></span>
+                    <span className="features-timeline-label">{item.title}</span>
+                  </li>
+                ))}
+              </ol>
             </div>
           </div>
           <div className="features-sticky-content">
             <div className="features-card-list">
-              {[
-                { img: "/photo/assets/features/feature_01.png", title: "丁寧なカウンセリング", text: "患者さまのお悩みやご希望を丁寧に伺い、最適な治療をご提案します。" },
-                { img: "/photo/assets/features/feature_02.png", title: "最新の医療設備", text: "正確な診断と安全な治療のために、最新の医療機器を導入しています。" },
-                { img: "/photo/assets/features/feature_03.png", title: "経験豊富な医師が担当", text: "専門性の高い医師が、豊富な経験に基づいた質の高い医療を提供します。" },
-                { img: "/photo/assets/features/feature_04.png", title: "通いやすい診療体制", text: "平日夜間や土曜診療にも対応。ご都合に合わせて通いやすい体制を整えています。" },
-              ].map((item, idx) => (
-                <div className="features-sticky-card" key={idx}>
+              {featureItems.map((item, idx) => (
+                <article
+                  className={`features-sticky-card ${idx <= activeFeatureIndex ? "is-stacked" : ""} ${idx === activeFeatureIndex ? "is-active" : ""}`}
+                  data-feature-index={idx}
+                  key={item.title}
+                >
+                  <span className="features-sticky-card-number" aria-hidden="true">0{idx + 1}</span>
                   <div className="features-sticky-card-img">
                     <img src={item.img} alt={item.title} />
-                    <div className="features-sticky-card-badge">0{idx + 1}</div>
                   </div>
                   <div className="features-sticky-card-body">
                     <h3 className="features-sticky-card-title">{item.title}</h3>
                     <p className="features-sticky-card-text">{item.text}</p>
+                    <a href="#service" className="features-sticky-card-link">
+                      <span>詳しく見る</span>
+                      <span className="features-sticky-card-link-icon" aria-hidden="true">›</span>
+                    </a>
                   </div>
-                </div>
+                </article>
               ))}
             </div>
           </div>

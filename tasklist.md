@@ -167,10 +167,12 @@
 
 ## 18. FeatureセクションのSticky Sidebar化（エディトリアル・リデザイン）
 - [x] `requirements.md` および `design.md` の更新
-- [ ] `page.js` のHTML構造刷新（Left: Sticky Title, Right: Scrolling Content）
-- [ ] `globals.css` へのStickyレイアウト用スタイルの実装
-- [ ] 各カードのエディトリアルなデザイントークン（大きな角丸、タイポグラフィ）の適用
-- [ ] `npm run build` によるビルド確認
+- [x] `page.js` のHTML構造刷新（Left: Sticky Title, Right: Scrolling Content）
+- [x] 左側タイムラインと現在カード連動用IntersectionObserverの実装
+- [x] `globals.css` へのStickyレイアウト用スタイルの実装
+- [x] 各カードのエディトリアルなデザイントークン（大きな番号、写真、タイポグラフィ）の適用
+- [x] PC幅で右側カードが1枚ずつ重なって固定される演出の実装
+- [x] `npm run build` によるビルド確認
 - [ ] PC幅でLeftエリアが追従し、Rightエリアがスクロールすることを確認
 - [ ] モバイル幅でスタック配置に切り替わることを確認
 
