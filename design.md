@@ -40,7 +40,7 @@
 - **Decorations**:
   - 風景シルエット: PC幅ではviewport左下から固定オフセットかつ固定サイズで、三ヶ日の街並みをイメージしたイラストを配置。
 - **ScheduleCard**:
-  - PC幅ではviewport右下から固定オフセットで配置。角丸、シャドウ、清潔なテーブルスタイル。
+  - PC幅ではviewport右下から固定オフセットで配置. 角丸、シャドウ、清潔なテーブルスタイル。
 
 ### Brand Marquee
 - FEATUREセクション内の背面装飾として、`FEATURE / 当クリニックの特徴` に少しかかる位置へ `KUROYANAGI CLINIC` の大きな英字タイポを右から左へ無限スクロールさせる。
@@ -53,18 +53,20 @@
 - スクロールによる円形リビールと下部イラスト演出は維持し、下部イラストは既存イラストを使用する。素材本来の印象を残す程度のごく弱いトーン調整をかける。
 - FVとABOUT初期背景は `--fv-bg` で共通管理し、円形リビール側は `--about-reveal-bg: var(--primary-blue)` のベタ塗りを土台にする。薄い白の大きな楕円シェイプと小さな楕円シェイプは、円形リビールが開き切った後に表示する。境界接続にグラデーションは使わない。
 
-### Feature Section (New 4-Column Design)
-- **Layout**: 従来の左右分割から、中央揃えのタイトル + 4カラムの横並びカードレイアウトへ変更。
+### Feature Section (Sticky Sidebar Re-design)
+- **Concept**: 雑誌のエディトリアル（編集）ページのような、情報の深掘りと視覚的な楽しさを両立させるレイアウト。
+- **Layout (PC 1024px+)**:
+  - `display: flex` または `grid` による左右2カラム構成。
+  - **Left Sidebar (Sticky)**: `position: sticky; top: 120px;`（ヘッダーの高さを考慮）。
+    - 構成: 英語タイトル "Feature"、日本語タイトル "当クリニックの特徴"、導入テキスト。
+    - 背景に現行のウォーターマーク（"KUROYANAGI CLINIC"）を控えめに配置。
+  - **Right Content (Scrollable)**: 特徴を詳しく紹介する4枚のカードを垂直にスタック配置。
 - **Card Design**:
-  - **Shape**: 角丸（radius: 24px）の垂直長方形。背景に全面画像を使用。
-  - **Icon Badge**: カード上端中央に、オレンジ色の円形バッジを配置。内部には `photo/assets/` 配下のクリニック向けアイコン（聴診器、注射器等）を配置。
-  - **Numbering**: アイコンの傍らに小さく番号（01, 02...）を添えるか、バッジ内に統合。
-  - **Text Overlays**:
-    - オレンジ背景のラベルを画像上にスタック配置。
-    - 下部にダークグラデーションを敷き、「View All」リンクを配置。
-- **Background**:
-  - セクション背後に薄いベージュ系の背景色。
-  - 大きなタイポグラフィ（"KUROYANAGI CLINIC"）をウォーターマークとして配置。
+  - **Shape**: 大きな角丸（radius: 80px〜300px）を左右交互に配置するなど、アシンメトリーな形状でリズムを出す。
+  - **Visual**: 高品質な写真と、現行のアイコンバッジ（オレンジ系）を統合。
+  - **Color**: 現行のプライマリーカラー（ブルー・グリーン系）とベージュ背景を維持。
+- **Layout (Mobile)**:
+  - 通常の垂直スタックに切り替え。Sticky解除。
 
 ### Service Section
 - **Introduction**:
@@ -81,12 +83,17 @@
 - **Support Info Row**:
   - 最下部に4つのアイコン項目（車椅子対応入口、駐車場、トイレ、医療サポート）を等間隔で配置。
 
+### Contact Mail Form
+- ルートの `contact.php` は `mb_send_mail()` を使ってフォーム通知を送信する。
+- Gmail対策として、フォーム入力者のメールアドレスはFromに使わず、Reply-Toに設定する。
+- FromとEnvelope senderは `postmaster@kuroyanagi-clinic.jp`、送信先は `web@kuroyanagi-clinic.jp` とする。
+
 ### Responsive Design (Mobile Optimization)
 - **Hero Section**:
   - Catchcopy: 
     - PC版と共通の縦書き（vertical-rl）を採用。
     - 各行に縦方向の白帯を敷き、スライダー画像との重なり部分の可読性を確保する。
-    - 中央から左側に配置（案B）し、メインの被写体と重なりすぎないように調整する。
+    - 中央から左側に配置し、メインの被写体と重なりすぎないように調整する。
   - Photo: 
     - 垂直方向の位置を引き上げ、ファーストビューの上部に寄せる。
     - 左右の幅を広げ（viewport幅の85-90%程度）、画面一杯に近い広がりを持たせる。
@@ -97,17 +104,24 @@
 - **Section Backgrounds**:
   - Use `.sections-with-bg-arc` to create a large unified background arc across Service, Facility, and News sections.
   - Desktop: Draw a primary-blue right-side panel inside `.facility-section::before`, keeping the blue area scoped to Facility so it never cuts across Service cards or News cards.
-  - Mobile: Draw the unified arc with `.sections-with-bg-arc::before` as a pale blue background layer behind the sections. Do not reuse `.facility-bg-shape` for the mobile shared arc, because the desktop accent shape becomes a muddy semi-transparent oval on narrow screens.
-  - Service / Facility gap on mobile: Place separate wave and bird decorative assets near the lower right of Service. Keep them below content emphasis and above the shared background only as a subtle connector.
+  - Mobile: Draw the unified arc with `.sections-with-bg-arc::before` as a pale blue background layer behind the sections.
+  - Service / Facility gap on mobile: Place separate wave and bird decorative assets near the lower right of Service.
 
 ## 実装上の注意点
 - `z-index` を適切に管理し、イラストやオーバーレイの重なり順を制御。
 - PC版のFacilityパネルは右端に固定した矩形ベースの装飾として配置し、他セクションの本文・カードより上に出さない。
 - ABOUTセクションはオレンジのアクセントを避け、プライマリーブルー面と白文字で統一する。
-- ABOUT背景は円が広がる前をFVと同じ白、円が広がった後をプライマリーカラーのベタ塗りにし、大小1つずつの薄い白シェイプをゆっくりうねる動きで柔らかく見せる。テキストは白系にし、軽い影で可読性を補う。イラストは既存イラストを使用する。
-- ABOUT下部イラストは全幅表示を維持し、イラスト上部の雲や山が横幅に関係なく見えるよう、PCでは画像ボックスの高さを `clamp()` で固定範囲に収め、`object-position: center top` で上部あしらいを優先して表示する。下部ビジュアル領域はクリップせず、青背景より前面・本文より背面に配置する。
-- FVとABOUTの境界は同一変数の白背景でつなぎ、グラデーション表現は避ける。
-- Service, Facility, News を跨ぐモバイル背景は共有ラッパーを `isolation: isolate` したうえで背面レイヤー化し、各セクション本文より前面に出ないようにする。
-- Service と Facility の間のあしらいは装飾専用として `aria-hidden` にし、操作・読解対象にはしない。
-- `object-fit: cover` を使用して、メイン写真のアスペクト比を維持。
-- 1024px以下のレスポンシブ対応では、2カラムまたは1カラムへの切り替えを行う。
+- ABOUT背景は円が広がる前をFVと同じ白、円が広がった後をプライマリーカラーのベタ塗りにし、大小1つずつの薄い白シェイプをゆっくりうねる動きで柔らかく見せる。
+- ABOUT下部イラストは全幅表示を維持。
+- FVとABOUTの境界は同一変数の白背景でつなぐ。
+- Service, Facility, News を跨ぐモバイル背景は共有ラッパーを背面レイヤー化する。
+- 問い合わせフォームの送信失敗時はエラーを表示する。
+- `object-fit: cover` を使用。
+- 1024px以下のレスポンシブ対応を行う。
+
+### Wave Divider
+- **Position**: `news` セクション直後に配置。
+- **Color**: 
+  - SVG パス（波部分）: `var(--bg-warm)` (#e8eef2)。`news` セクションの背景色と一致させる。
+  - ラッパー背景: `#ffffff`。`access` セクションの背景色と一致させる。
+- **Shape**: `page.js` 内に定義された既存の SVG パス（上部を塗りつぶす形状）を使用し、`news` セクションが下に向かって波打っているような視覚効果を実現する。

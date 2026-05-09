@@ -156,3 +156,27 @@
 - [x] PCのABOUT下部イラストを固定高さボックス内で上基準表示に変更
 - [x] `npm run build` によるビルド確認
 - [ ] FVからABOUTへの境界を目視確認
+
+## 17. LP問い合わせフォームのGmail対策確認
+- [x] `contact.php` は `mb_send_mail()` 送信を維持
+- [x] FromとEnvelope senderを `postmaster@kuroyanagi-clinic.jp` に固定
+- [x] 送信先を `web@kuroyanagi-clinic.jp` に固定
+- [x] フォーム入力者メールはReply-Toにのみ設定
+- [x] PHPMailer / Composer / SMTP環境変数の追加方針を撤回
+- [ ] Gmail宛テスト送信で `spf=pass` / `dkim=pass` / `dmarc=pass` を確認
+
+## 18. FeatureセクションのSticky Sidebar化（エディトリアル・リデザイン）
+- [x] `requirements.md` および `design.md` の更新
+- [ ] `page.js` のHTML構造刷新（Left: Sticky Title, Right: Scrolling Content）
+- [ ] `globals.css` へのStickyレイアウト用スタイルの実装
+- [ ] 各カードのエディトリアルなデザイントークン（大きな角丸、タイポグラフィ）の適用
+- [ ] `npm run build` によるビルド確認
+- [ ] PC幅でLeftエリアが追従し、Rightエリアがスクロールすることを確認
+- [ ] モバイル幅でスタック配置に切り替わることを確認
+
+## 19. Wave Divider の実装
+- [x] `requirements.md` および `design.md` の更新
+- [x] `globals.css` で `.wave-divider-wrapper` の背景色と `.wave-divider-svg path` の `fill` を調整
+- [x] `page.js` の SVG パスからハードコードされた `fill` 属性を削除
+- [x] `npm run build` によるビルド確認
+- [ ] PC / モバイル両方で `news` セクションのボトムが波型に見えることを確認
