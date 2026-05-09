@@ -379,9 +379,9 @@ export default function Home() {
           <div className="features-sticky-sidebar">
             <div className="features-sticky-sidebar-inner">
               <span className="features-editorial-en">FEATURE</span>
-              <h2 className="features-editorial-title">当クリニックの特徴</h2>
-              <div className="features-editorial-vertical-copy">
-                <p>地域の皆さまに寄り添い、<br />日々の不調から専門的な相談まで<br />安心して頼れる医院へ</p>
+              <h2 className="features-editorial-title">当院の特徴</h2>
+              <div className="features-editorial-lead-copy">
+                <p>安心して頼れる、<br />地域のかかりつけ医へ。</p>
               </div>
               <p className="features-editorial-sub">
                 内科を中心に、予防医療や検査、日々の健康相談まで幅広く対応しています。患者さま一人ひとりの不安に耳を傾け、必要な医療へ丁寧につなげます。
