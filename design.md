@@ -81,6 +81,11 @@
 - **Support Info Row**:
   - 最下部に4つのアイコン項目（車椅子対応入口、駐車場、トイレ、医療サポート）を等間隔で配置。
 
+### Contact Mail Form
+- ルートの `contact.php` は `mb_send_mail()` を使ってフォーム通知を送信する。
+- Gmail対策として、フォーム入力者のメールアドレスはFromに使わず、Reply-Toに設定する。
+- FromとEnvelope senderは `postmaster@kuroyanagi-clinic.jp`、送信先は `web@kuroyanagi-clinic.jp` とする。
+
 ### Responsive Design (Mobile Optimization)
 - **Hero Section**:
   - Catchcopy: 
@@ -109,5 +114,6 @@
 - FVとABOUTの境界は同一変数の白背景でつなぎ、グラデーション表現は避ける。
 - Service, Facility, News を跨ぐモバイル背景は共有ラッパーを `isolation: isolate` したうえで背面レイヤー化し、各セクション本文より前面に出ないようにする。
 - Service と Facility の間のあしらいは装飾専用として `aria-hidden` にし、操作・読解対象にはしない。
+- 問い合わせフォームの送信失敗時は、ユーザーには汎用エラーを表示する。
 - `object-fit: cover` を使用して、メイン写真のアスペクト比を維持。
 - 1024px以下のレスポンシブ対応では、2カラムまたは1カラムへの切り替えを行う。

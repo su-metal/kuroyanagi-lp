@@ -9,6 +9,7 @@
 ## 現在のリポジトリ構成
 
 - ルートには既存の静的サイト (`index.html`、`contact.php`、`privacy.html`、`thanks.html`) と共有画像素材 (`photo/`) がある。
+- ルートの `contact.php` は、LP問い合わせフォームの送信処理として `mb_send_mail()` を使用する。送信元とEnvelope senderは `postmaster@kuroyanagi-clinic.jp`、送信先は `web@kuroyanagi-clinic.jp`、返信先はフォーム入力メールとして扱う。
 - `clinic_old/` は作りかけの Next.js 版クロヤナギ医院サイトとして残す。
 - `clinic/` は、既存サイトを壊さずゼロベースで作り直す新しいクロヤナギ医院サイトの作業領域として扱う。
 - `clinic/` のFVは、PC幅では写真フレーム、診療受付時間カード、縦書きコピー、左下イラストをviewport各辺基準で配置する。

@@ -156,3 +156,11 @@
 - [x] PCのABOUT下部イラストを固定高さボックス内で上基準表示に変更
 - [x] `npm run build` によるビルド確認
 - [ ] FVからABOUTへの境界を目視確認
+
+## 17. LP問い合わせフォームのGmail対策確認
+- [x] `contact.php` は `mb_send_mail()` 送信を維持
+- [x] FromとEnvelope senderを `postmaster@kuroyanagi-clinic.jp` に固定
+- [x] 送信先を `web@kuroyanagi-clinic.jp` に固定
+- [x] フォーム入力者メールはReply-Toにのみ設定
+- [x] PHPMailer / Composer / SMTP環境変数の追加方針を撤回
+- [ ] Gmail宛テスト送信で `spf=pass` / `dkim=pass` / `dmarc=pass` を確認
