@@ -12,10 +12,10 @@ const heroEditorialImages = {
 };
 
 const featureItems = [
-  { img: "/photo/assets/features/feature_01.png", title: "丁寧なカウンセリング", text: "患者さまのお悩みやご希望を丁寧に伺い、最適な治療をご提案します。" },
-  { img: "/photo/assets/features/feature_02.png", title: "最新の医療設備", text: "正確な診断と安全な治療のために、最新の医療機器を導入しています。" },
-  { img: "/photo/assets/features/feature_03.png", title: "経験豊富な医師が担当", text: "専門性の高い医師が、豊富な経験に基づいた質の高い医療を提供します。" },
-  { img: "/photo/assets/features/feature_04.png", title: "通いやすい診療体制", text: "平日夜間や土曜診療にも対応。ご都合に合わせて通いやすい体制を整えています。" },
+  { img: "/photo/assets/features/feature_01.png", label: "CONSULTATION", title: "丁寧なカウンセリング", text: "患者さまのお悩みやご希望を丁寧に伺い、最適な治療をご提案します。" },
+  { img: "/photo/assets/features/feature_02.png", label: "EQUIPMENT", title: "最新の医療設備", text: "正確な診断と安全な治療のために、最新の医療機器を導入しています。" },
+  { img: "/photo/assets/features/feature_03.png", label: "DOCTOR", title: "経験豊富な医師が担当", text: "専門性の高い医師が、豊富な経験に基づいた質の高い医療を提供します。" },
+  { img: "/photo/assets/features/feature_04.png", label: "ACCESS", title: "通いやすい診療体制", text: "平日夜間や土曜診療にも対応。ご都合に合わせて通いやすい体制を整えています。" },
 ];
 
 export default function Home() {
@@ -420,12 +420,6 @@ export default function Home() {
               <p className="features-editorial-sub">
                 内科を中心に、予防医療や検査、日々の健康相談まで幅広く対応しています。患者さま一人ひとりの不安に耳を傾け、必要な医療へ丁寧につなげます。
               </p>
-              <div className="features-editorial-action">
-                <a href="#service" className="features-editorial-link">
-                  <span>詳しく見る</span>
-                  <span className="dot"></span>
-                </a>
-              </div>
               <ol className="features-timeline" aria-label="特徴の現在位置">
                 {featureItems.map((item, idx) => (
                   <li
@@ -454,12 +448,9 @@ export default function Home() {
                     <img src={item.img} alt={item.title} />
                   </div>
                   <div className="features-sticky-card-body">
+                    <span className="features-sticky-card-label">FEATURE 0{idx + 1} / {item.label}</span>
                     <h3 className="features-sticky-card-title">{item.title}</h3>
                     <p className="features-sticky-card-text">{item.text}</p>
-                    <a href="#service" className="features-sticky-card-link">
-                      <span>詳しく見る</span>
-                      <span className="features-sticky-card-link-icon" aria-hidden="true">›</span>
-                    </a>
                   </div>
                 </article>
               ))}
