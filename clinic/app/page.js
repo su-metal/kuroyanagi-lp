@@ -18,6 +18,15 @@ const featureItems = [
   { img: "/photo/assets/features/feature_04.png", label: "ACCESS", title: "通いやすい診療体制", text: "平日夜間や土曜診療にも対応。ご都合に合わせて通いやすい体制を整えています。" },
 ];
 
+const featureIntro = {
+  isIntro: true,
+  label: "INTRODUCTION",
+  title: "当院の特徴",
+  text: "内科を中心に、予防医療や検査、日々の健康相談まで幅広く対応しています。患者さま一人ひとりの不安に耳を傾け、必要な医療へ丁寧につなげます。",
+};
+
+const featureStackItems = [featureIntro, ...featureItems];
+
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMedicalVisible, setIsMedicalVisible] = useState(false);
@@ -79,15 +88,17 @@ export default function Home() {
 
       const rect = section.getBoundingClientRect();
       const viewportHeight = window.innerHeight || 1;
-      const scrollableDistance = Math.max(rect.height - viewportHeight, 1);
+      const stickyEndOffset = viewportHeight * 0.68;
+      const scrollableDistance = Math.max(rect.height - stickyEndOffset, 1);
       const scrolledInside = Math.min(
-        Math.max(-rect.top + viewportHeight * 0.18, 0),
+        Math.max(-rect.top, 0),
         scrollableDistance
       );
-      const progress = scrolledInside / scrollableDistance;
+      const revealDistance = scrollableDistance * 0.82;
+      const progress = Math.min(scrolledInside / revealDistance, 1);
       const nextIndex = Math.min(
-        featureItems.length - 1,
-        Math.floor(progress * featureItems.length)
+        featureStackItems.length - 1,
+        Math.floor(progress * featureStackItems.length)
       );
 
       setActiveFeatureIndex(nextIndex);
@@ -250,13 +261,6 @@ export default function Home() {
                   </footer>
                 </div>
               </div>
-
-              <div className="hero-editorial-pager" aria-hidden="true">
-                {heroSliderImages.map((src, index) => (
-                  <span key={src} className={index === heroActiveIndex ? "active" : ""}></span>
-                ))}
-              </div>
-
               {/* Mobile Hero News */}
               <div className="hero-editorial-news show-mobile">
                 <span className="news-date">2025.07.08</span>
@@ -413,19 +417,15 @@ export default function Home() {
           <div className="features-sticky-sidebar">
             <div className="features-sticky-sidebar-inner">
               <span className="section-heading-en features-editorial-en">FEATURE</span>
-              <h2 className="section-heading-ja features-editorial-title">当院の特徴</h2>
               <div className="features-editorial-lead-copy">
                 <p>安心して頼れる、<br />地域のかかりつけ医へ。</p>
               </div>
-              <p className="features-editorial-sub">
-                内科を中心に、予防医療や検査、日々の健康相談まで幅広く対応しています。患者さま一人ひとりの不安に耳を傾け、必要な医療へ丁寧につなげます。
-              </p>
               <ol className="features-timeline" aria-label="特徴の現在位置">
                 {featureItems.map((item, idx) => (
                   <li
-                    className={`features-timeline-item ${activeFeatureIndex === idx ? "is-active" : ""}`}
+                    className={`features-timeline-item ${activeFeatureIndex === idx + 1 ? "is-active" : ""}`}
                     key={item.title}
-                    aria-current={activeFeatureIndex === idx ? "step" : undefined}
+                    aria-current={activeFeatureIndex === idx + 1 ? "step" : undefined}
                   >
                     <span className="features-timeline-number">0{idx + 1}</span>
                     <span className="features-timeline-line"></span>
@@ -437,23 +437,33 @@ export default function Home() {
           </div>
           <div className="features-sticky-content">
             <div className="features-card-list">
-              {featureItems.map((item, idx) => (
-                <article
-                  className={`features-sticky-card ${idx <= activeFeatureIndex ? "is-stacked" : ""} ${idx === activeFeatureIndex ? "is-active" : ""}`}
-                  data-feature-index={idx}
-                  key={item.title}
-                >
-                  <span className="features-sticky-card-number" aria-hidden="true">0{idx + 1}</span>
-                  <div className="features-sticky-card-img">
-                    <img src={item.img} alt={item.title} />
-                  </div>
-                  <div className="features-sticky-card-body">
-                    <span className="features-sticky-card-label">FEATURE 0{idx + 1} / {item.label}</span>
-                    <h3 className="features-sticky-card-title">{item.title}</h3>
-                    <p className="features-sticky-card-text">{item.text}</p>
-                  </div>
-                </article>
-              ))}
+              {featureStackItems.map((item, idx) => {
+                const featureNumber = idx;
+
+                return (
+                  <article
+                    className={`features-sticky-card ${item.isIntro ? "is-intro" : ""} ${idx <= activeFeatureIndex ? "is-stacked" : ""} ${idx === activeFeatureIndex ? "is-active" : ""}`}
+                    data-feature-index={idx}
+                    key={item.title}
+                  >
+                    {!item.isIntro && (
+                      <span className="features-sticky-card-number" aria-hidden="true">0{featureNumber}</span>
+                    )}
+                    {!item.isIntro && (
+                      <div className="features-sticky-card-img">
+                        <img src={item.img} alt={item.title} />
+                      </div>
+                    )}
+                    <div className="features-sticky-card-body">
+                      <span className="features-sticky-card-label">
+                        {item.isIntro ? "FEATURE / INTRODUCTION" : `FEATURE 0${featureNumber} / ${item.label}`}
+                      </span>
+                      <h3 className="features-sticky-card-title">{item.title}</h3>
+                      <p className="features-sticky-card-text">{item.text}</p>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </div>
