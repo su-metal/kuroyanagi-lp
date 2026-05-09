@@ -412,8 +412,8 @@ export default function Home() {
         <div className="features-sticky-container">
           <div className="features-sticky-sidebar">
             <div className="features-sticky-sidebar-inner">
-              <span className="features-editorial-en">FEATURE</span>
-              <h2 className="features-editorial-title">当院の特徴</h2>
+              <span className="section-heading-en features-editorial-en">FEATURE</span>
+              <h2 className="section-heading-ja features-editorial-title">当院の特徴</h2>
               <div className="features-editorial-lead-copy">
                 <p>安心して頼れる、<br />地域のかかりつけ医へ。</p>
               </div>
@@ -468,8 +468,8 @@ export default function Home() {
         <div className="container medical-guide-inner">
           <div className="medical-guide-main">
             <div className="medical-guide-heading">
-              <span className="medical-guide-en">Service</span>
-              <h2 className="medical-guide-title">診療案内</h2>
+              <span className="section-heading-en medical-guide-en">SERVICE</span>
+              <h2 className="section-heading-ja medical-guide-title">診療案内</h2>
               <p className="medical-guide-lead">
                 地域の皆さまの健康を支えるため、幅広い診療とサービスに対応しています。
               </p>
@@ -521,9 +521,9 @@ export default function Home() {
             
             {/* Left: Content Card */}
             <div className="facility-content-card">
-              <div className="facility-card-header">
-                <span className="facility-label">ー 施設紹介</span>
-                <h2 className="facility-main-title">FACILITY</h2>
+              <div className="section-heading section-heading--inverse facility-card-header">
+                <span className="section-heading-en facility-label">FACILITY</span>
+                <h2 className="section-heading-ja facility-main-title">施設紹介</h2>
               </div>
               
               <div className="facility-text-group">
@@ -575,11 +575,8 @@ export default function Home() {
             
           {/* Left Column */}
           <div className="news-title-area">
-            <div className="news-label-group">
-              <span className="news-label-deco"></span>
-              <span className="news-label-text">トピックス</span>
-            </div>
-            <h2 className="news-main-title">NEWS</h2>
+            <span className="section-heading-en news-label-text">NEWS</span>
+            <h2 className="section-heading-ja news-main-title">お知らせ</h2>
             <a href="#" className="news-btn-all">一覧</a>
           </div>
 
