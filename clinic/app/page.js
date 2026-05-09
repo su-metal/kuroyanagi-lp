@@ -11,6 +11,22 @@ const heroEditorialImages = {
   right: "/photo/hero-slider/hero-right.jpg",
 };
 
+const featureItems = [
+  { img: "/photo/assets/features/feature_01.png", label: "CONSULTATION", title: "丁寧なカウンセリング", text: "患者さまのお悩みやご希望を丁寧に伺い、最適な治療をご提案します。" },
+  { img: "/photo/assets/features/feature_02.png", label: "EQUIPMENT", title: "最新の医療設備", text: "正確な診断と安全な治療のために、最新の医療機器を導入しています。" },
+  { img: "/photo/assets/features/feature_03.png", label: "DOCTOR", title: "経験豊富な医師が担当", text: "専門性の高い医師が、豊富な経験に基づいた質の高い医療を提供します。" },
+  { img: "/photo/assets/features/feature_04.png", label: "ACCESS", title: "通いやすい診療体制", text: "平日夜間や土曜診療にも対応。ご都合に合わせて通いやすい体制を整えています。" },
+];
+
+const featureIntro = {
+  isIntro: true,
+  label: "INTRODUCTION",
+  title: "当院の特徴",
+  text: "内科を中心に、予防医療や検査、日々の健康相談まで幅広く対応しています。患者さま一人ひとりの不安に耳を傾け、必要な医療へ丁寧につなげます。",
+};
+
+const featureStackItems = [featureIntro, ...featureItems];
+
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMedicalVisible, setIsMedicalVisible] = useState(false);
@@ -19,6 +35,7 @@ export default function Home() {
   const medicalSectionRef = useRef(null);
   const featuresSectionRef = useRef(null);
   const [isFeaturesVisible, setIsFeaturesVisible] = useState(false);
+  const [activeFeatureIndex, setActiveFeatureIndex] = useState(0);
 
   // Hero Slider logic: Switch 3 images every 6 seconds
   const [heroActiveIndex, setHeroActiveIndex] = useState(0);
@@ -65,9 +82,37 @@ export default function Home() {
     );
     if (featuresSectionRef.current) featuresObserver.observe(featuresSectionRef.current);
 
+    const updateActiveFeature = () => {
+      const section = featuresSectionRef.current;
+      if (!section) return;
+
+      const rect = section.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || 1;
+      const stickyEndOffset = viewportHeight * 0.68;
+      const scrollableDistance = Math.max(rect.height - stickyEndOffset, 1);
+      const scrolledInside = Math.min(
+        Math.max(-rect.top, 0),
+        scrollableDistance
+      );
+      const revealDistance = scrollableDistance * 0.82;
+      const progress = Math.min(scrolledInside / revealDistance, 1);
+      const nextIndex = Math.min(
+        featureStackItems.length - 1,
+        Math.floor(progress * featureStackItems.length)
+      );
+
+      setActiveFeatureIndex(nextIndex);
+    };
+
+    updateActiveFeature();
+    window.addEventListener("scroll", updateActiveFeature, { passive: true });
+    window.addEventListener("resize", updateActiveFeature);
+
     return () => {
       medicalObserver.disconnect();
       featuresObserver.disconnect();
+      window.removeEventListener("scroll", updateActiveFeature);
+      window.removeEventListener("resize", updateActiveFeature);
     };
   }, []);
 
@@ -216,13 +261,6 @@ export default function Home() {
                   </footer>
                 </div>
               </div>
-
-              <div className="hero-editorial-pager" aria-hidden="true">
-                {heroSliderImages.map((src, index) => (
-                  <span key={src} className={index === heroActiveIndex ? "active" : ""}></span>
-                ))}
-              </div>
-
               {/* Mobile Hero News */}
               <div className="hero-editorial-news show-mobile">
                 <span className="news-date">2025.07.08</span>
@@ -374,45 +412,58 @@ export default function Home() {
       )}
 
       {/* --- FEATURES SECTION (Sticky Sidebar Editorial) --- */}
-      <section id="features" className="features-sticky-section">
+      <section id="features" className={`features-sticky-section ${isFeaturesVisible ? "is-visible" : ""}`} ref={featuresSectionRef}>
         <div className="features-sticky-container">
           <div className="features-sticky-sidebar">
             <div className="features-sticky-sidebar-inner">
-              <span className="features-editorial-en">FEATURE</span>
-              <h2 className="features-editorial-title">当院の特徴</h2>
+              <span className="section-heading-en features-editorial-en">FEATURE</span>
               <div className="features-editorial-lead-copy">
                 <p>安心して頼れる、<br />地域のかかりつけ医へ。</p>
               </div>
-              <p className="features-editorial-sub">
-                内科を中心に、予防医療や検査、日々の健康相談まで幅広く対応しています。患者さま一人ひとりの不安に耳を傾け、必要な医療へ丁寧につなげます。
-              </p>
-              <div className="features-editorial-action">
-                <a href="#service" className="features-editorial-link">
-                  <span>詳しく見る</span>
-                  <span className="dot"></span>
-                </a>
-              </div>
+              <ol className="features-timeline" aria-label="特徴の現在位置">
+                {featureItems.map((item, idx) => (
+                  <li
+                    className={`features-timeline-item ${activeFeatureIndex === idx + 1 ? "is-active" : ""}`}
+                    key={item.title}
+                    aria-current={activeFeatureIndex === idx + 1 ? "step" : undefined}
+                  >
+                    <span className="features-timeline-number">0{idx + 1}</span>
+                    <span className="features-timeline-line"></span>
+                    <span className="features-timeline-label">{item.title}</span>
+                  </li>
+                ))}
+              </ol>
             </div>
           </div>
           <div className="features-sticky-content">
             <div className="features-card-list">
-              {[
-                { img: "/photo/assets/features/feature_01.png", title: "丁寧なカウンセリング", text: "患者さまのお悩みやご希望を丁寧に伺い、最適な治療をご提案します。" },
-                { img: "/photo/assets/features/feature_02.png", title: "最新の医療設備", text: "正確な診断と安全な治療のために、最新の医療機器を導入しています。" },
-                { img: "/photo/assets/features/feature_03.png", title: "経験豊富な医師が担当", text: "専門性の高い医師が、豊富な経験に基づいた質の高い医療を提供します。" },
-                { img: "/photo/assets/features/feature_04.png", title: "通いやすい診療体制", text: "平日夜間や土曜診療にも対応。ご都合に合わせて通いやすい体制を整えています。" },
-              ].map((item, idx) => (
-                <div className="features-sticky-card" key={idx}>
-                  <div className="features-sticky-card-img">
-                    <img src={item.img} alt={item.title} />
-                    <div className="features-sticky-card-badge">0{idx + 1}</div>
-                  </div>
-                  <div className="features-sticky-card-body">
-                    <h3 className="features-sticky-card-title">{item.title}</h3>
-                    <p className="features-sticky-card-text">{item.text}</p>
-                  </div>
-                </div>
-              ))}
+              {featureStackItems.map((item, idx) => {
+                const featureNumber = idx;
+
+                return (
+                  <article
+                    className={`features-sticky-card ${item.isIntro ? "is-intro" : ""} ${idx <= activeFeatureIndex ? "is-stacked" : ""} ${idx === activeFeatureIndex ? "is-active" : ""}`}
+                    data-feature-index={idx}
+                    key={item.title}
+                  >
+                    {!item.isIntro && (
+                      <span className="features-sticky-card-number" aria-hidden="true">0{featureNumber}</span>
+                    )}
+                    {!item.isIntro && (
+                      <div className="features-sticky-card-img">
+                        <img src={item.img} alt={item.title} />
+                      </div>
+                    )}
+                    <div className="features-sticky-card-body">
+                      <span className="features-sticky-card-label">
+                        {item.isIntro ? "FEATURE / INTRODUCTION" : `FEATURE 0${featureNumber} / ${item.label}`}
+                      </span>
+                      <h3 className="features-sticky-card-title">{item.title}</h3>
+                      <p className="features-sticky-card-text">{item.text}</p>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -427,8 +478,8 @@ export default function Home() {
         <div className="container medical-guide-inner">
           <div className="medical-guide-main">
             <div className="medical-guide-heading">
-              <span className="medical-guide-en">Service</span>
-              <h2 className="medical-guide-title">診療案内</h2>
+              <span className="section-heading-en medical-guide-en">SERVICE</span>
+              <h2 className="section-heading-ja medical-guide-title">診療案内</h2>
               <p className="medical-guide-lead">
                 地域の皆さまの健康を支えるため、幅広い診療とサービスに対応しています。
               </p>
@@ -480,9 +531,9 @@ export default function Home() {
             
             {/* Left: Content Card */}
             <div className="facility-content-card">
-              <div className="facility-card-header">
-                <span className="facility-label">ー 施設紹介</span>
-                <h2 className="facility-main-title">FACILITY</h2>
+              <div className="section-heading section-heading--inverse facility-card-header">
+                <span className="section-heading-en facility-label">FACILITY</span>
+                <h2 className="section-heading-ja facility-main-title">施設紹介</h2>
               </div>
               
               <div className="facility-text-group">
@@ -534,11 +585,8 @@ export default function Home() {
             
           {/* Left Column */}
           <div className="news-title-area">
-            <div className="news-label-group">
-              <span className="news-label-deco"></span>
-              <span className="news-label-text">トピックス</span>
-            </div>
-            <h2 className="news-main-title">NEWS</h2>
+            <span className="section-heading-en news-label-text">NEWS</span>
+            <h2 className="section-heading-ja news-main-title">お知らせ</h2>
             <a href="#" className="news-btn-all">一覧</a>
           </div>
 
