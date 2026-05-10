@@ -53,13 +53,13 @@ export default function Home() {
   }, [heroSliderImages.length]);
 
   
-  const facilityImages = [
-    { src: "/photo/clinic_02.png", alt: "診察室", variant: "vertical" },
-    { src: "/photo/assets/modern_clinic_reception_interior.png", alt: "待合室", variant: "wide" },
-    { src: "/photo/img3.jpg", alt: "医療設備", variant: "vertical" },
-    { src: "/photo/clinic_03.png", alt: "院内設備", variant: "wide" },
-    { src: "/photo/access_entrance.jpg", alt: "医院入口", variant: "vertical" },
-    { src: "/photo/clinic_011.png", alt: "診療環境", variant: "wide" },
+  const facilityItems = [
+    { src: "/photo/clinic_011.png", title: "診療環境", desc: "患者さまが安心して治療に専念できるよう、常に清潔で快適な環境づくりに努めています。" },
+    { src: "/photo/clinic_02.png", title: "診察室", desc: "プライバシーに配慮した、清潔感のある診察室です。リラックスしてお話しいただけます。" },
+    { src: "/photo/assets/modern_clinic_reception_interior.png", title: "待合室", desc: "開放感があり、ゆったりとお待ちいただける空間です。落ち着いたインテリアで統一しています。" },
+    { src: "/photo/img3.jpg", title: "医療設備", desc: "正確な診断と安全な治療のために、最新の医療機器を導入しています。" },
+    { src: "/photo/clinic_03.png", title: "院内設備", desc: "院内各所に最新の設備を整え、スムーズな検査と診療を行えるよう配慮しています。" },
+    { src: "/photo/access_entrance.jpg", title: "医院入口", desc: "三ヶ日駅から徒歩圏内にあり、車椅子の方でもスムーズに入っていただけるバリアフリー設計です。" },
   ];
   useEffect(() => {
     const medicalObserver = new IntersectionObserver(
@@ -592,15 +592,19 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Right: Images Slider (Marquee) */}
+              {/* Right: Images Slider (Marquee) - Forces HMR */}
               <div className="facility-images-area">
                 <div className="facility-image-grid">
                   {[0, 1].map((setIndex) => (
                     <div className="facility-image-set" aria-hidden={setIndex === 1} key={setIndex}>
-                      {facilityImages.map((image) => (
-                        <div className={`facility-img-item ${image.variant}`} key={`${setIndex}-${image.src}`}>
-                          <img src={image.src} alt={setIndex === 0 ? image.alt : ""} />
-                        </div>
+                      {facilityItems.map((item, idx) => (
+                        <article className="facility-card-item" key={`${setIndex}-${idx}`}>
+                          <h4 className="facility-card-title">{item.title}</h4>
+                          <div className="facility-card-img">
+                            <img src={item.src} alt={item.title} />
+                          </div>
+                          <p className="facility-card-text">{item.desc}</p>
+                        </article>
                       ))}
                     </div>
                   ))}
