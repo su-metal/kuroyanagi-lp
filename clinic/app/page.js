@@ -567,60 +567,28 @@ export default function Home() {
 
         {/* --- FACILITY --- */}
         <section id="facility" className="facility-section">
-          {/* Background shape */}
-          <div className="facility-bg-shape" aria-hidden="true"></div>
-          
-          <div className="container">
-            <div className="facility-layout">
-              
-              {/* Left: Content Card */}
-              <div className="facility-content-card">
-                <div className="section-heading section-heading--inverse facility-card-header">
-                  <span className="section-heading-en facility-label">FACILITY</span>
-                  <h2 className="section-heading-ja facility-main-title">施設紹介</h2>
-                </div>
-                
-                <div className="facility-text-group">
-                  <h3 className="facility-lead">
-                    最新の設備・機器を揃えた<br />
-                    快適で安心できる診療環境
-                  </h3>
-                  <p className="facility-desc">
-                    皆さまに安心して受診していただけるよう、清潔で開放感のある空間づくりを心がけています。
-                    最新の医療機器を導入し、精密な診断と適切な治療を行える環境を整えております。
-                  </p>
-                </div>
-              </div>
-
-              {/* Right: Images Slider (Marquee) - Forces HMR */}
-              <div className="facility-images-area">
-                <div className="facility-image-grid">
-                  {[0, 1].map((setIndex) => (
-                    <div className="facility-image-set" aria-hidden={setIndex === 1} key={setIndex}>
-                      {facilityItems.map((item, idx) => (
-                        <article className="facility-card-item" key={`${setIndex}-${idx}`}>
-                          <h4 className="facility-card-title">{item.title}</h4>
-                          <div className="facility-card-img">
-                            <img src={item.src} alt={item.title} />
-                          </div>
-                          <p className="facility-card-text">{item.desc}</p>
-                        </article>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-                
-                {/* Mobile Slides (Will be handled by CSS) */}
-                <div className="facility-mobile-collage" aria-label="施設紹介の写真">
-                  <div className="facility-mobile-photo main">
-                    <img src="/photo/assets/modern_clinic_reception_interior.png" alt="待合室" />
+          <div className="facility-header">
+            <h2 className="facility-title">KUROYANAGI CLINIC FACILITY</h2>
+          </div>
+          <div className="facility-strip-container">
+            <div className="facility-strip">
+              {facilityItems.map((item, idx) => (
+                <article className="facility-strip-item" key={idx}>
+                  <div className="facility-strip-img">
+                    <img src={item.src} alt={item.title} />
                   </div>
-                  <div className="facility-mobile-photo">
-                    <img src="/photo/doctor.png" alt="診療風景" />
+                </article>
+              ))}
+              {/* Infinite loop simulation or just double the items for marquee if needed, 
+                  but for the "simple" look, a clean row might be better. 
+                  Adding a second set for a seamless scroll effect if we want animation. */}
+              {facilityItems.map((item, idx) => (
+                <article className="facility-strip-item" key={`extra-${idx}`}>
+                  <div className="facility-strip-img">
+                    <img src={item.src} alt={item.title} />
                   </div>
-                </div>
-              </div>
-
+                </article>
+              ))}
             </div>
           </div>
         </section>
@@ -630,10 +598,10 @@ export default function Home() {
           <div className="container atmosphere-container">
             <div className="atmosphere-visual">
               <div className="atmosphere-img-wrap left">
-                <img src="/photo/hero-slider/hero-02.jpg" alt="地域の風景" />
+                <img src="/photo/hero-slider/hero-033.jpg" alt="クロヤナギ医院・みっかび東の外観" />
               </div>
               <div className="atmosphere-img-wrap right">
-                <img src="/photo/hero-slider/hero-03.jpg" alt="院内の様子" />
+                <img src="/photo/hero-slider/hero-022.jpg" alt="三ヶ日の豊かな自然" />
               </div>
               
               {/* Decorations */}
