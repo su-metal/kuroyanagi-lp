@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -411,51 +411,6 @@ export default function Home() {
         </section>
       )}
 
-      {/* --- NEWS --- */}
-      <section id="news" className="news-section">
-        <div className="container">
-          <div className="news-inner">
-            
-          {/* Left Column */}
-          <div className="news-title-area">
-            <span className="section-heading-en news-label-text">NEWS</span>
-            <h2 className="section-heading-ja news-main-title">お知らせ</h2>
-            <a href="#" className="news-btn-all">一覧</a>
-          </div>
-
-          {/* Right Column */}
-          <div className="news-list-area">
-            {[
-              {
-                date: "2026.04.24",
-                tag: "information",
-                title: "5月11日 12:00まで！ゴールデンウィークはしっかり自分磨き！オンラインショップ10%OFFキャンペーン",
-              },
-              {
-                date: "2026.04.01",
-                tag: "information",
-                title: "人気アイテムがリニューアル発売！毛穴づまりケアセット『ドットウォッシー』",
-              },
-              {
-                date: "2026.03.23",
-                tag: "information",
-                title: "「40オヤジ」のための本音スタイルマガジン『Hot-Dog PRESS』に掲載されました",
-              },
-            ].map((item, index) => (
-              <div key={index} className="news-item">
-                <div className="news-meta">
-                  <span className="news-date">{item.date}</span>
-                  <span className="news-tag">{item.tag}</span>
-                </div>
-                <p className="news-title">{item.title}</p>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </div>
-    </section>
-
       {/* --- FEATURES SECTION (Sticky Sidebar Editorial) --- */}
       <section id="features" className={`features-sticky-section ${isFeaturesVisible ? "is-visible" : ""}`} ref={featuresSectionRef}>
         <div className="features-sticky-container">
@@ -518,152 +473,155 @@ export default function Home() {
       <div className="sections-with-bg-arc">
 
         {/* --- MEDICAL GUIDE --- */}
-        <section id="service" className={`medical-guide-section ${isMedicalVisible ? 'is-visible' : ''}`} ref={medicalSectionRef}>
-          <div className="container medical-guide-inner">
-            <div className="medical-guide-main">
-              <div className="medical-guide-heading">
-                <span className="section-heading-en medical-guide-en">SERVICE</span>
-                <h2 className="section-heading-ja medical-guide-title">診療案内</h2>
-                <p className="medical-guide-lead">
-                  地域の皆さまの健康を支えるため、幅広い診療とサービスに対応しています。
-                </p>
-              </div>
 
-              <div className="medical-guide-grid">
-                {[
-                  { title: "内科", icon: "/photo/assets/medical_icon/01_聴診器十字.png" },
-                  { title: "呼吸器内科", icon: "/photo/assets/medical_icon/02_肺.png" },
-                  { title: "胃腸科（消化器科）", icon: "/photo/assets/medical_icon/03_消化器.png" },
-                  { title: "整形外科", icon: "/photo/assets/medical_icon/04_膝関節.png" },
-                  { title: "リハビリテーション科", icon: "/photo/assets/medical_icon/05_リハビリ.png" },
-                  { title: "婦人科", icon: "/photo/assets/medical_icon/06_子宮.png" },
-                  { title: "予防医療・検診", icon: "/photo/assets/medical_icon/07_問診票.png" },
-                  { title: "バリアフリー対応", icon: "/photo/assets/medical_icon/08_バリアフリー.png" }
-                ].map((item) => (
-                  <a href="#" className="medical-guide-card" key={item.title}>
-                    <span className="medical-guide-icon">
-                      <img src={item.icon} alt="" />
-                    </span>
-                    <span className="medical-guide-card-title">{item.title}</span>
-                  </a>
-                ))}
-              </div>
-
-              <p className="medical-guide-note">
-                ※ 診療科目は変更となる場合があります。詳細は医院までお問い合わせください。
+      <section id="service" className={`medical-guide-section ${isMedicalVisible ? 'is-visible' : ''}`} ref={medicalSectionRef}>
+        <div className="container medical-guide-inner">
+          <div className="medical-guide-main">
+            <div className="medical-guide-heading">
+              <span className="section-heading-en medical-guide-en">SERVICE</span>
+              <h2 className="section-heading-ja medical-guide-title">診療案内</h2>
+              <p className="medical-guide-lead">
+                地域の皆さまの健康を支えるため、幅広い診療とサービスに対応しています。
               </p>
             </div>
 
-            <aside className="medical-guide-copy" aria-label="診療案内のメッセージ">
-              {/* <span className="medical-guide-copy-label">診療案内</span> */}
-              <p>どんなことでも<br />まずはご相談ください。</p>
-            </aside>
-          </div>
-          <div className="service-facility-decoration" aria-hidden="true">
-            <img className="service-facility-wave" src="/photo/assets/07_ashirai/10_波線.png" alt="" />
-            <img className="service-facility-bird" src="/photo/assets/07_ashirai/06_鳥.png" alt="" />
-          </div>
-        </section>
-
-        {/* --- FACILITY --- */}
-        <section id="facility" className="facility-section">
-          {/* Background shape */}
-          <div className="facility-bg-shape" aria-hidden="true"></div>
-          
-          <div className="container">
-            <div className="facility-layout">
-              
-              {/* Left: Content Card */}
-              <div className="facility-content-card">
-                <div className="section-heading section-heading--inverse facility-card-header">
-                  <span className="section-heading-en facility-label">FACILITY</span>
-                  <h2 className="section-heading-ja facility-main-title">施設紹介</h2>
-                </div>
-                
-                <div className="facility-text-group">
-                  <h3 className="facility-lead">
-                    最新の設備・機器を揃えた<br />
-                    快適で安心できる診療環境
-                  </h3>
-                  <p className="facility-desc">
-                    皆さまに安心して受診していただけるよう、清潔で開放感のある空間づくりを心がけています。
-                    最新の医療機器を導入し、精密な診断と適切な治療を行える環境を整えております。
-                  </p>
-                </div>
-              </div>
-
-              {/* Right: Images Slider (Marquee) */}
-              <div className="facility-images-area">
-                <div className="facility-image-grid">
-                  {[0, 1].map((setIndex) => (
-                    <div className="facility-image-set" aria-hidden={setIndex === 1} key={setIndex}>
-                      {facilityImages.map((image) => (
-                        <div className={`facility-img-item ${image.variant}`} key={`${setIndex}-${image.src}`}>
-                          <img src={image.src} alt={setIndex === 0 ? image.alt : ""} />
-                        </div>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-                
-                {/* Mobile Slides (Will be handled by CSS) */}
-                <div className="facility-mobile-collage" aria-label="施設紹介の写真">
-                  <div className="facility-mobile-photo main">
-                    <img src="/photo/assets/modern_clinic_reception_interior.png" alt="待合室" />
-                  </div>
-                  <div className="facility-mobile-photo">
-                    <img src="/photo/doctor.png" alt="診療風景" />
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </section>
-
-        {/* --- ATMOSPHERE SECTION --- */}
-        <section className="atmosphere-section">
-          <div className="container atmosphere-container">
-            <div className="atmosphere-visual">
-              <div className="atmosphere-img-wrap left">
-                <img src="/photo/hero-slider/hero-02.jpg" alt="地域の風景" />
-              </div>
-              <div className="atmosphere-img-wrap right">
-                <img src="/photo/hero-slider/hero-03.jpg" alt="院内の様子" />
-              </div>
-              
-              {/* Decorations */}
-              <div className="atmosphere-deco deco-cloud-1">
-                <img src="/photo/assets/07_ashirai/editorial_soft_clouds.png" alt="" />
-              </div>
-              <div className="atmosphere-deco deco-cloud-2">
-                <img src="/photo/assets/07_ashirai/editorial_soft_clouds.png" alt="" />
-              </div>
-              <div className="atmosphere-deco deco-sakura-1">
-                <img src="/photo/assets/07_ashirai/editorial_sakura_petals.png" alt="" />
-              </div>
-              <div className="atmosphere-deco deco-person-bench">
-                <img src="/photo/assets/05_persons/clean_person_bench_dog.png" alt="" />
-              </div>
-              <div className="atmosphere-deco deco-leaves-1">
-                <img src="/photo/assets/07_ashirai/13_葉.png" alt="" />
-              </div>
+            <div className="medical-guide-grid">
+              {[
+                { title: "内科", icon: "/photo/assets/medical_icon/01_聴診器十字.png" },
+                { title: "呼吸器内科", icon: "/photo/assets/medical_icon/02_肺.png" },
+                { title: "胃腸科（消化器科）", icon: "/photo/assets/medical_icon/03_消化器.png" },
+                { title: "整形外科", icon: "/photo/assets/medical_icon/04_膝関節.png" },
+                { title: "リハビリテーション科", icon: "/photo/assets/medical_icon/05_リハビリ.png" },
+                { title: "婦人科", icon: "/photo/assets/medical_icon/06_子宮.png" },
+                { title: "予防医療・検診", icon: "/photo/assets/medical_icon/07_問診票.png" },
+                { title: "バリアフリー対応", icon: "/photo/assets/medical_icon/08_バリアフリー.png" }
+              ].map((item) => (
+                <a href="#" className="medical-guide-card" key={item.title}>
+                  <span className="medical-guide-icon">
+                    <img src={item.icon} alt="" />
+                  </span>
+                  <span className="medical-guide-card-title">{item.title}</span>
+                </a>
+              ))}
             </div>
 
-            <div className="atmosphere-content">
-              <div className="atmosphere-text-box">
-                <h2 className="atmosphere-title">
-                  地域に寄り添う、<br />健やかな暮らし。
-                </h2>
-                <p className="atmosphere-desc">
-                  クロヤナギ医院は、地域の皆さまが安心して健やかな毎日を過ごせるよう、医療だけでなく生活のサポートにも取り組んでいます。<br /><br />
-                  併設されている『みっかび東』との連携により、リハビリテーションや介護の面からも皆さまの暮らしを支えます。
+            <p className="medical-guide-note">
+              ※ 診療科目は変更となる場合があります。詳細は医院までお問い合わせください。
+            </p>
+          </div>
+
+          <aside className="medical-guide-copy" aria-label="診療案内のメッセージ">
+            {/* <span className="medical-guide-copy-label">診療案内</span> */}
+            <p>どんなことでも<br />まずはご相談ください。</p>
+          </aside>
+        </div>
+        <div className="service-facility-decoration" aria-hidden="true">
+          <img className="service-facility-wave" src="/photo/assets/07_ashirai/10_波線.png" alt="" />
+          <img className="service-facility-bird" src="/photo/assets/07_ashirai/06_鳥.png" alt="" />
+        </div>
+      </section>
+      {/* --- FACILITY --- */}
+      <section id="facility" className="facility-section">
+        {/* Background shape */}
+        <div className="facility-bg-shape" aria-hidden="true"></div>
+        
+
+        <div className="container">
+          <div className="facility-layout">
+            
+            {/* Left: Content Card */}
+            <div className="facility-content-card">
+              <div className="section-heading section-heading--inverse facility-card-header">
+                <span className="section-heading-en facility-label">FACILITY</span>
+                <h2 className="section-heading-ja facility-main-title">施設紹介</h2>
+              </div>
+              
+              <div className="facility-text-group">
+                <h3 className="facility-lead">
+                  最新の設備・機器を揃えた<br />
+                  快適で安心できる診療環境
+                </h3>
+                <p className="facility-desc">
+                  皆さまに安心して受診していただけるよう、清潔で開放感のある空間づくりを心がけています。
+                  最新の医療機器を導入し、精密な診断と適切な治療を行える環境を整えております。
                 </p>
               </div>
-            </div>
-          </div>
-        </section>
 
+            </div>
+
+            {/* Right: Images Slider (Marquee) */}
+            <div className="facility-images-area">
+              <div className="facility-image-grid">
+                {[0, 1].map((setIndex) => (
+                  <div className="facility-image-set" aria-hidden={setIndex === 1} key={setIndex}>
+                    {facilityImages.map((image) => (
+                      <div className={`facility-img-item ${image.variant}`} key={`${setIndex}-${image.src}`}>
+                        <img src={image.src} alt={setIndex === 0 ? image.alt : ""} />
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+              
+              {/* Mobile Slides (Will be handled by CSS) */}
+              <div className="facility-mobile-collage" aria-label="施設紹介の写真">
+                <div className="facility-mobile-photo main">
+                  <img src="/photo/assets/modern_clinic_reception_interior.png" alt="待合室" />
+                </div>
+                <div className="facility-mobile-photo">
+                  <img src="/photo/doctor.png" alt="診療風景" />
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* --- NEWS --- */}
+      <section id="news" className="news-section">
+        <div className="container">
+          <div className="news-inner">
+            
+          {/* Left Column */}
+          <div className="news-title-area">
+            <span className="section-heading-en news-label-text">NEWS</span>
+            <h2 className="section-heading-ja news-main-title">お知らせ</h2>
+            <a href="#" className="news-btn-all">一覧</a>
+          </div>
+
+          {/* Right Column */}
+          <div className="news-list-area">
+            {[
+              {
+                date: "2026.04.24",
+                tag: "information",
+                title: "5月11日 12:00まで！ゴールデンウィークはしっかり自分磨き！オンラインショップ10%OFFキャンペーン",
+              },
+              {
+                date: "2026.04.01",
+                tag: "information",
+                title: "人気アイテムがリニューアル発売！毛穴づまりケアセット『ドットウォッシー』",
+              },
+              {
+                date: "2026.03.23",
+                tag: "information",
+                title: "「40オヤジ」のための本音スタイルマガジン『Hot-Dog PRESS』に掲載されました",
+              },
+            ].map((item, index) => (
+              <div key={index} className="news-item">
+                <div className="news-meta">
+                  <span className="news-date">{item.date}</span>
+                  <span className="news-tag">{item.tag}</span>
+                </div>
+                <p className="news-title">{item.title}</p>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </div>
+    </section>
       </div>
 
       {/* Wave Divider */}
