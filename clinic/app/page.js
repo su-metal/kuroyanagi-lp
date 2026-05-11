@@ -53,13 +53,13 @@ export default function Home() {
   }, [heroSliderImages.length]);
 
   
-  const facilityImages = [
-    { src: "/photo/clinic_02.png", alt: "診察室", variant: "vertical" },
-    { src: "/photo/assets/modern_clinic_reception_interior.png", alt: "待合室", variant: "wide" },
-    { src: "/photo/img3.jpg", alt: "医療設備", variant: "vertical" },
-    { src: "/photo/clinic_03.png", alt: "院内設備", variant: "wide" },
-    { src: "/photo/access_entrance.jpg", alt: "医院入口", variant: "vertical" },
-    { src: "/photo/clinic_011.png", alt: "診療環境", variant: "wide" },
+  const facilityItems = [
+    { src: "/photo/clinic_011.png", title: "診療環境", desc: "患者さまが安心して治療に専念できるよう、常に清潔で快適な環境づくりに努めています。" },
+    { src: "/photo/clinic_02.png", title: "診察室", desc: "プライバシーに配慮した、清潔感のある診察室です。リラックスしてお話しいただけます。" },
+    { src: "/photo/assets/modern_clinic_reception_interior.png", title: "待合室", desc: "開放感があり、ゆったりとお待ちいただける空間です。落ち着いたインテリアで統一しています。" },
+    { src: "/photo/img3.jpg", title: "医療設備", desc: "正確な診断と安全な治療のために、最新の医療機器を導入しています。" },
+    { src: "/photo/clinic_03.png", title: "院内設備", desc: "院内各所に最新の設備を整え、スムーズな検査と診療を行えるよう配慮しています。" },
+    { src: "/photo/access_entrance.jpg", title: "医院入口", desc: "三ヶ日駅から徒歩圏内にあり、車椅子の方でもスムーズに入っていただけるバリアフリー設計です。" },
   ];
   useEffect(() => {
     const medicalObserver = new IntersectionObserver(
@@ -82,37 +82,25 @@ export default function Home() {
     );
     if (featuresSectionRef.current) featuresObserver.observe(featuresSectionRef.current);
 
-    const updateActiveFeature = () => {
-      const section = featuresSectionRef.current;
-      if (!section) return;
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const index = parseInt(entry.target.getAttribute('data-feature-index'));
+          setActiveFeatureIndex(index);
+        }
+      });
+    }, {
+      rootMargin: '-30% 0px -50% 0px',
+      threshold: 0
+    });
 
-      const rect = section.getBoundingClientRect();
-      const viewportHeight = window.innerHeight || 1;
-      const stickyEndOffset = viewportHeight * 0.68;
-      const scrollableDistance = Math.max(rect.height - stickyEndOffset, 1);
-      const scrolledInside = Math.min(
-        Math.max(-rect.top, 0),
-        scrollableDistance
-      );
-      const revealDistance = scrollableDistance * 0.82;
-      const progress = Math.min(scrolledInside / revealDistance, 1);
-      const nextIndex = Math.min(
-        featureStackItems.length - 1,
-        Math.floor(progress * featureStackItems.length)
-      );
-
-      setActiveFeatureIndex(nextIndex);
-    };
-
-    updateActiveFeature();
-    window.addEventListener("scroll", updateActiveFeature, { passive: true });
-    window.addEventListener("resize", updateActiveFeature);
+    const featureCards = document.querySelectorAll('.features-sticky-card');
+    featureCards.forEach(card => cardObserver.observe(card));
 
     return () => {
       medicalObserver.disconnect();
       featuresObserver.disconnect();
-      window.removeEventListener("scroll", updateActiveFeature);
-      window.removeEventListener("resize", updateActiveFeature);
+      featureCards.forEach(card => cardObserver.unobserve(card));
     };
   }, []);
 
@@ -167,6 +155,21 @@ export default function Home() {
           </div>
         </div>
 
+        <button
+          className="desktop-side-menu-button hidden-mobile"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="メニューを開く"
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-menu"
+        >
+          <span className="desktop-side-menu-lines" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+          <span className="desktop-side-menu-text">MENU OPEN</span>
+        </button>
+
         <div
           className={`mobile-menu-backdrop ${isMenuOpen ? "is-open" : ""}`}
           onClick={() => setIsMenuOpen(false)}
@@ -194,21 +197,7 @@ export default function Home() {
         <section className="hero hero-editorial">
           <div className="hero-editorial-shell">
             <div className="hero-editorial-stage">
-              <div className="hero-mobile-wave hero-mobile-wave-1" aria-hidden="true" />
-              <div className="hero-mobile-wave hero-mobile-wave-2" aria-hidden="true" />
-              <div className="hero-mobile-wave hero-mobile-wave-3" aria-hidden="true" />
-              <div className="hero-mobile-wave hero-mobile-wave-4" aria-hidden="true" />
-
-              {/* Mobile Bird Illustration */}
-              <div className="hero-editorial-bird show-mobile" aria-hidden="true">
-                <img src="/photo/kamome.png" alt="" />
-              </div>
-
               <figure className="hero-editorial-main-photo" aria-label="クロヤナギ医院の医師">
-                {/* Mobile swoosh decoration */}
-                <div className="hero-editorial-swoosh show-mobile" aria-hidden="true" />
-                
-
                 <div className="hero-editorial-slider">
                   {heroSliderImages.map((src, index) => (
                     <img
@@ -487,25 +476,38 @@ export default function Home() {
 
                 return (
                   <article
-                    className={`features-sticky-card ${item.isIntro ? "is-intro" : ""} ${idx <= activeFeatureIndex ? "is-stacked" : ""} ${idx === activeFeatureIndex ? "is-active" : ""}`}
+                    className={`features-sticky-card ${item.isIntro ? "is-intro" : ""} ${idx === activeFeatureIndex ? "is-active" : ""}`}
                     data-feature-index={idx}
                     key={item.title}
                   >
-                    {!item.isIntro && (
-                      <span className="features-sticky-card-number" aria-hidden="true">0{featureNumber}</span>
-                    )}
-                    {!item.isIntro && (
-                      <div className="features-sticky-card-img">
-                        <img src={item.img} alt={item.title} />
+                    {!item.isIntro ? (
+                      <div className="feature-unified-card">
+                        <span className="feature-unified-number" aria-hidden="true">
+                          0{featureNumber}
+                        </span>
+                        <div className="feature-unified-img">
+                          <img src={item.img} alt={item.title} />
+                        </div>
+                        <div className="feature-unified-content">
+                          <div className="feature-unified-label-wrap">
+                            <span className="feature-unified-label">FEATURE 0{featureNumber} / {item.label}</span>
+                          </div>
+                          <h3 className="feature-unified-title">{item.title}</h3>
+                          <p className="feature-unified-text">{item.text}</p>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="features-sticky-card-body">
+                        <div className="features-sticky-card-body-inner">
+                          <span className="features-sticky-card-label">
+                            {item.isIntro ? "FEATURE / INTRODUCTION" : `FEATURE 0${featureNumber} / ${item.label}`}
+                          </span>
+                          <h3 className="features-sticky-card-title">{item.title}</h3>
+                          <p className="features-sticky-card-text">{item.text}</p>
+                          <span className="features-intro-range" aria-hidden="true">01 - 04</span>
+                        </div>
                       </div>
                     )}
-                    <div className="features-sticky-card-body">
-                      <span className="features-sticky-card-label">
-                        {item.isIntro ? "FEATURE / INTRODUCTION" : `FEATURE 0${featureNumber} / ${item.label}`}
-                      </span>
-                      <h3 className="features-sticky-card-title">{item.title}</h3>
-                      <p className="features-sticky-card-text">{item.text}</p>
-                    </div>
                   </article>
                 );
               })}
@@ -517,47 +519,87 @@ export default function Home() {
       {/* --- SERVICE, FACILITY, NEWS SHARED BACKGROUND AREA --- */}
       <div className="sections-with-bg-arc">
 
-        {/* --- MEDICAL GUIDE --- */}
+        {/* --- MEDICAL GUIDE (INFORMATION) --- */}
         <section id="service" className={`medical-guide-section ${isMedicalVisible ? 'is-visible' : ''}`} ref={medicalSectionRef}>
-          <div className="container medical-guide-inner">
-            <div className="medical-guide-main">
-              <div className="medical-guide-heading">
-                <span className="section-heading-en medical-guide-en">SERVICE</span>
-                <h2 className="section-heading-ja medical-guide-title">診療案内</h2>
-                <p className="medical-guide-lead">
-                  地域の皆さまの健康を支えるため、幅広い診療とサービスに対応しています。
-                </p>
+          <div className="container information-container">
+            {/* Left Sidebar */}
+            <div className="info-left-sidebar">
+              <span className="info-en">SERVICE</span>
+              <h2 className="info-ja">診療案内</h2>
+            </div>
+
+            {/* Right Content */}
+            <div className="info-right-content">
+              {/* Lead Copy */}
+              <div className="info-lead">
+                <p>地域の皆さまの健康を支えるため、<br />幅広い診療とサービスに対応しています。</p>
               </div>
 
-              <div className="medical-guide-grid">
+              {/* Main Cards */}
+              <div className="info-main-cards">
+                <div className="info-card main-card">
+                  <div className="info-card-icon">
+                    <img src="/photo/assets/medical_icon/01_聴診器十字.png" alt="" />
+                  </div>
+                  <h3 className="info-card-title">内科</h3>
+                  <div className="info-card-line"></div>
+                </div>
+                <div className="info-card main-card">
+                  <div className="info-card-icon">
+                    <img src="/photo/assets/medical_icon/03_消化器.png" alt="" />
+                  </div>
+                  <h3 className="info-card-title">消化器科</h3>
+                  <div className="info-card-line"></div>
+                </div>
+              </div>
+
+              {/* Sub Cards */}
+              <div className="info-sub-cards">
                 {[
-                  { title: "内科", icon: "/photo/assets/medical_icon/01_聴診器十字.png" },
                   { title: "呼吸器内科", icon: "/photo/assets/medical_icon/02_肺.png" },
-                  { title: "胃腸科（消化器科）", icon: "/photo/assets/medical_icon/03_消化器.png" },
                   { title: "整形外科", icon: "/photo/assets/medical_icon/04_膝関節.png" },
                   { title: "リハビリテーション科", icon: "/photo/assets/medical_icon/05_リハビリ.png" },
-                  { title: "婦人科", icon: "/photo/assets/medical_icon/06_子宮.png" },
-                  { title: "予防医療・検診", icon: "/photo/assets/medical_icon/07_問診票.png" },
-                  { title: "バリアフリー対応", icon: "/photo/assets/medical_icon/08_バリアフリー.png" }
+                  { title: "婦人科", icon: "/photo/assets/medical_icon/06_子宮.png" }
                 ].map((item) => (
-                  <a href="#" className="medical-guide-card" key={item.title}>
-                    <span className="medical-guide-icon">
+                  <div className="info-card sub-card" key={item.title}>
+                    <div className="info-card-icon">
                       <img src={item.icon} alt="" />
-                    </span>
-                    <span className="medical-guide-card-title">{item.title}</span>
-                  </a>
+                    </div>
+                    <h3 className="info-card-title">{item.title}</h3>
+                    <div className="info-card-line"></div>
+                  </div>
                 ))}
               </div>
 
-              <p className="medical-guide-note">
-                ※ 診療科目は変更となる場合があります。詳細は医院までお問い合わせください。
+              <p className="info-note">
+                ※ 少数ですが、地域の方に向けた外来診療も行います。
               </p>
-            </div>
 
-            <aside className="medical-guide-copy" aria-label="診療案内のメッセージ">
-              {/* <span className="medical-guide-copy-label">診療案内</span> */}
-              <p>どんなことでも<br />まずはご相談ください。</p>
-            </aside>
+              {/* Schedule Info */}
+              <div className="info-schedule-container">
+                <div className="info-schedule-row">
+                  <div className="info-schedule-col">
+                    <div className="schedule-header">
+                      <span className="schedule-pill">診療時間</span>
+                      <span className="schedule-connector"></span>
+                      <span className="schedule-time">9:00 - 17:30</span>
+                    </div>
+                    <p className="schedule-sub">※必要なときには24時間365日往診します</p>
+                  </div>
+                  <div className="info-schedule-col">
+                    <div className="schedule-header">
+                      <span className="schedule-pill">休診日</span>
+                      <span className="schedule-connector"></span>
+                      <span className="schedule-time">土曜・日曜・祝日・年末年始</span>
+                    </div>
+                    <p className="schedule-sub">※必要なときには24時間365日往診します</p>
+                  </div>
+                </div>
+              </div>
+
+
+
+            </div>
           </div>
           <div className="service-facility-decoration" aria-hidden="true">
             <img className="service-facility-wave" src="/photo/assets/07_ashirai/10_波線.png" alt="" />
@@ -567,98 +609,55 @@ export default function Home() {
 
         {/* --- FACILITY --- */}
         <section id="facility" className="facility-section">
-          {/* Background shape */}
-          <div className="facility-bg-shape" aria-hidden="true"></div>
-          
-          <div className="container">
-            <div className="facility-layout">
-              
-              {/* Left: Content Card */}
-              <div className="facility-content-card">
-                <div className="section-heading section-heading--inverse facility-card-header">
-                  <span className="section-heading-en facility-label">FACILITY</span>
-                  <h2 className="section-heading-ja facility-main-title">施設紹介</h2>
-                </div>
-                
-                <div className="facility-text-group">
-                  <h3 className="facility-lead">
-                    最新の設備・機器を揃えた<br />
-                    快適で安心できる診療環境
-                  </h3>
-                  <p className="facility-desc">
-                    皆さまに安心して受診していただけるよう、清潔で開放感のある空間づくりを心がけています。
-                    最新の医療機器を導入し、精密な診断と適切な治療を行える環境を整えております。
-                  </p>
-                </div>
-              </div>
-
-              {/* Right: Images Slider (Marquee) */}
-              <div className="facility-images-area">
-                <div className="facility-image-grid">
-                  {[0, 1].map((setIndex) => (
-                    <div className="facility-image-set" aria-hidden={setIndex === 1} key={setIndex}>
-                      {facilityImages.map((image) => (
-                        <div className={`facility-img-item ${image.variant}`} key={`${setIndex}-${image.src}`}>
-                          <img src={image.src} alt={setIndex === 0 ? image.alt : ""} />
-                        </div>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-                
-                {/* Mobile Slides (Will be handled by CSS) */}
-                <div className="facility-mobile-collage" aria-label="施設紹介の写真">
-                  <div className="facility-mobile-photo main">
-                    <img src="/photo/assets/modern_clinic_reception_interior.png" alt="待合室" />
+          <div className="facility-header">
+            <h2 className="facility-title">KUROYANAGI CLINIC FACILITY</h2>
+          </div>
+          <div className="facility-strip-container">
+            <div className="facility-strip">
+              {facilityItems.map((item, idx) => (
+                <article className="facility-strip-item" key={idx}>
+                  <div className="facility-strip-img">
+                    <img src={item.src} alt={item.title} />
                   </div>
-                  <div className="facility-mobile-photo">
-                    <img src="/photo/doctor.png" alt="診療風景" />
+                </article>
+              ))}
+              {/* Infinite loop simulation or just double the items for marquee if needed, 
+                  but for the "simple" look, a clean row might be better. 
+                  Adding a second set for a seamless scroll effect if we want animation. */}
+              {facilityItems.map((item, idx) => (
+                <article className="facility-strip-item" key={`extra-${idx}`}>
+                  <div className="facility-strip-img">
+                    <img src={item.src} alt={item.title} />
                   </div>
-                </div>
-              </div>
-
+                </article>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* --- ATMOSPHERE SECTION --- */}
-        <section className="atmosphere-section">
-          <div className="container atmosphere-container">
-            <div className="atmosphere-visual">
-              <div className="atmosphere-img-wrap left">
-                <img src="/photo/hero-slider/hero-02.jpg" alt="地域の風景" />
-              </div>
-              <div className="atmosphere-img-wrap right">
-                <img src="/photo/hero-slider/hero-03.jpg" alt="院内の様子" />
-              </div>
-              
-              {/* Decorations */}
-              <div className="atmosphere-deco deco-cloud-1">
-                <img src="/photo/assets/07_ashirai/editorial_soft_clouds.png" alt="" />
-              </div>
-              <div className="atmosphere-deco deco-cloud-2">
-                <img src="/photo/assets/07_ashirai/editorial_soft_clouds.png" alt="" />
-              </div>
-              <div className="atmosphere-deco deco-sakura-1">
-                <img src="/photo/assets/07_ashirai/editorial_sakura_petals.png" alt="" />
-              </div>
-              <div className="atmosphere-deco deco-person-bench">
-                <img src="/photo/assets/05_persons/clean_person_bench_dog.png" alt="" />
-              </div>
-              <div className="atmosphere-deco deco-leaves-1">
-                <img src="/photo/assets/07_ashirai/13_葉.png" alt="" />
-              </div>
-            </div>
-
-            <div className="atmosphere-content">
-              <div className="atmosphere-text-box">
-                <h2 className="atmosphere-title">
-                  地域に寄り添う、<br />健やかな暮らし。
-                </h2>
-                <p className="atmosphere-desc">
-                  クロヤナギ医院は、地域の皆さまが安心して健やかな毎日を過ごせるよう、医療だけでなく生活のサポートにも取り組んでいます。<br /><br />
-                  併設されている『みっかび東』との連携により、リハビリテーションや介護の面からも皆さまの暮らしを支えます。
+        {/* --- RELATED FACILITY --- */}
+        <section className="related-facility-section" aria-labelledby="related-facility-title">
+          <div className="container related-facility-container">
+            <div className="related-facility-card">
+              <div className="related-facility-content">
+                <span className="related-facility-label">RELATED FACILITY</span>
+                <h2 id="related-facility-title" className="related-facility-kicker">併設施設のご案内</h2>
+                <h3 className="related-facility-title">みっかび東</h3>
+                <p className="related-facility-desc">
+                  クロヤナギ医院に併設する施設として、地域での暮らしを支えています。
                 </p>
+                <a
+                  href="https://kuroyanagi-clinic.jp/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="related-facility-btn"
+                >
+                  詳しく見る
+                  <span aria-hidden="true">→</span>
+                </a>
+              </div>
+              <div className="related-facility-photo" aria-hidden="true">
+                <img src="/photo/clinic_02.png" alt="" />
               </div>
             </div>
           </div>
