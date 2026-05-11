@@ -59,10 +59,12 @@
   - `display: grid` による左右2カラム構成。
   - **Left Sidebar (Sticky)**: `position: sticky; top: 120px;`（ヘッダーの高さを考慮）。
     - 構成: 英語タイトル "Feature"、縦書きリードコピー、番号付きタイムライン。
+    - リードコピーは白帯つきで表示し、文字色は通常のテキストカラーにする。破線装飾は置かない。
     - タイムラインは右側の特徴カードと連動し、導入カード表示中は番号をアクティブにしない。
+    - アクティブカード判定はスクロール位置ベースで行い、下り・戻りの両方向でタイムラインとカード内番号を同期する。
     - 左サイドバーには現在位置を示す大きな背景番号を置かない。
     - 背景に現行のウォーターマーク（"KUROYANAGI CLINIC"）を控えめに配置。
-  - **Right Content (Scrollable)**: 番号なしの導入カードと、特徴を詳しく紹介する4枚のカードを垂直に配置する。PC幅ではカード束全体を `position: sticky` で固定し、後続カードほど少し下にずらして1枚ずつ重なっていくスクロール演出にする。導入カードは写真なしの白カードに左アクセントラインと `01 - 04` 表示を置き、特徴カードは3:2比率に近い1枚の白いカード内へ写真、ピル型ラベル、見出し、本文を収める。
+  - **Right Content (Scrollable)**: 番号なしの導入カードと、特徴を詳しく紹介する4枚のカードを垂直に配置する。PC幅ではカード束全体を `position: sticky` で固定し、後続カードほど少し下にずらして1枚ずつ重なっていくスクロール演出にする。導入カードは写真なしの白カードに左アクセントラインと `01 - 04` 表示を置き、次カードが入る前に専用スペーサーでスクロール猶予を確保する。特徴カードは3:2比率に近い1枚の白いカード内へ写真、ピル型ラベル、見出し、本文を収める。
 - **Card Design**:
   - **Shape**: 白カード、控えめな角丸、薄い境界線、影で重なりを表現する。特徴カード内では写真とテキストを別カード化せず、斜めカットや強いドット装飾は使わない。
   - **Visual**: 高品質な写真、アクティブカードのみ表示する大きな薄青の番号、タイトル、本文、詳細リンクで構成する。
@@ -104,7 +106,7 @@
     - 縦書きコピーは写真中央寄りに白帯つきで配置し、左側にSCROLL導線、右側に縦型メニューボタンを置く。
     - 角のイラスト装飾は一旦使用しない。
   - Catchcopy: 
-    - PC版と共通の縦書き（vertical-rl）を採用。
+    - PC版と共通の縦書き（vertical-rl）を採用し、モバイル幅でも画面中央付近に配置する。
     - 各行に縦方向の白帯を敷き、スライダー画像との重なり部分の可読性を確保する。
     - 中央から左側に配置し、メインの被写体と重なりすぎないように調整する。
   - Photo: 
@@ -114,6 +116,11 @@
   - Decorations: PC幅では角イラスト装飾を置かず、モバイルでも過度な装飾を避ける。
 - **Navigation**:
   - Hamburger Menu: Yellow circular button (`#f8b500`) with white lines.
+- **News Section**:
+  - PC幅では見出しカラム内に「一覧」ボタンを置く。
+  - モバイル幅ではニュース一覧の末尾に「一覧」ボタンを置き、見出し直下の余白を詰める。
+- **Service Section**:
+  - PC幅では右端の固定メニューボタンと干渉しないよう、診療案内コンテンツの右余白を広めに確保する。
 - **Section Backgrounds**:
   - Use `.sections-with-bg-arc` to create a large unified background arc across Service, Facility, and News sections.
   - Desktop: Draw a primary-blue right-side panel inside `.facility-section::before`, keeping the blue area scoped to Facility so it never cuts across Service cards or News cards.

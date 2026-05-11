@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
 const HERO_VARIANT = "editorial"; // "current" に戻すと従来FVへ切り替え
@@ -82,25 +82,62 @@ export default function Home() {
     );
     if (featuresSectionRef.current) featuresObserver.observe(featuresSectionRef.current);
 
-    const cardObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const index = parseInt(entry.target.getAttribute('data-feature-index'));
-          setActiveFeatureIndex(index);
-        }
-      });
-    }, {
-      rootMargin: '-30% 0px -50% 0px',
-      threshold: 0
-    });
+    const featureCards = Array.from(document.querySelectorAll('.features-sticky-card'));
+    const featureCardList = document.querySelector('.features-card-list');
+    let featureRafId = null;
 
-    const featureCards = document.querySelectorAll('.features-sticky-card');
-    featureCards.forEach(card => cardObserver.observe(card));
+    const updateActiveFeature = () => {
+      featureRafId = null;
+
+      if (!featuresSectionRef.current || !featureCardList || featureCards.length === 0) {
+        return;
+      }
+
+      const scrollY = window.scrollY;
+      const triggerY = scrollY + window.innerHeight * 0.48;
+      const sectionTop = featuresSectionRef.current.getBoundingClientRect().top + scrollY;
+      const sectionBottom = sectionTop + featuresSectionRef.current.offsetHeight;
+      const listTop = featureCardList.getBoundingClientRect().top + scrollY;
+
+      if (triggerY < sectionTop) {
+        setActiveFeatureIndex(0);
+        return;
+      }
+
+      if (triggerY > sectionBottom) {
+        setActiveFeatureIndex(featureCards.length - 1);
+        return;
+      }
+
+      const nextIndex = featureCards.reduce((currentIndex, card) => {
+        const cardIndex = Number(card.getAttribute('data-feature-index'));
+        const cardTop = listTop + card.offsetTop;
+
+        return triggerY >= cardTop ? cardIndex : currentIndex;
+      }, 0);
+
+      setActiveFeatureIndex((currentIndex) => (
+        currentIndex === nextIndex ? currentIndex : nextIndex
+      ));
+    };
+
+    const scheduleFeatureUpdate = () => {
+      if (featureRafId !== null) return;
+      featureRafId = window.requestAnimationFrame(updateActiveFeature);
+    };
+
+    updateActiveFeature();
+    window.addEventListener('scroll', scheduleFeatureUpdate, { passive: true });
+    window.addEventListener('resize', scheduleFeatureUpdate);
 
     return () => {
       medicalObserver.disconnect();
       featuresObserver.disconnect();
-      featureCards.forEach(card => cardObserver.unobserve(card));
+      window.removeEventListener('scroll', scheduleFeatureUpdate);
+      window.removeEventListener('resize', scheduleFeatureUpdate);
+      if (featureRafId !== null) {
+        window.cancelAnimationFrame(featureRafId);
+      }
     };
   }, []);
 
@@ -409,7 +446,7 @@ export default function Home() {
           <div className="news-title-area">
             <span className="section-heading-en news-label-text">NEWS</span>
             <h2 className="section-heading-ja news-main-title">お知らせ</h2>
-            <a href="#" className="news-btn-all">一覧</a>
+            <a href="#" className="news-btn-all hidden-mobile">一覧</a>
           </div>
 
           {/* Right Column */}
@@ -439,6 +476,7 @@ export default function Home() {
                 <p className="news-title">{item.title}</p>
               </div>
             ))}
+            <a href="#" className="news-btn-all news-btn-all-mobile show-mobile">一覧</a>
           </div>
 
         </div>
@@ -452,7 +490,10 @@ export default function Home() {
             <div className="features-sticky-sidebar-inner">
               <span className="section-heading-en features-editorial-en">FEATURE</span>
               <div className="features-editorial-lead-copy">
-                <p>安心して頼れる、<br />地域のかかりつけ医へ。</p>
+                <p>
+                  <span className="features-lead-line">安心して頼れる、</span>
+                  <span className="features-lead-line">地域のかかりつけ医へ。</span>
+                </p>
               </div>
               <ol className="features-timeline" aria-label="特徴の現在位置">
                 {featureItems.map((item, idx) => (
@@ -475,40 +516,42 @@ export default function Home() {
                 const featureNumber = idx;
 
                 return (
-                  <article
-                    className={`features-sticky-card ${item.isIntro ? "is-intro" : ""} ${idx === activeFeatureIndex ? "is-active" : ""}`}
-                    data-feature-index={idx}
-                    key={item.title}
-                  >
-                    {!item.isIntro ? (
-                      <div className="feature-unified-card">
-                        <span className="feature-unified-number" aria-hidden="true">
-                          0{featureNumber}
-                        </span>
-                        <div className="feature-unified-img">
-                          <img src={item.img} alt={item.title} />
-                        </div>
-                        <div className="feature-unified-content">
-                          <div className="feature-unified-label-wrap">
-                            <span className="feature-unified-label">FEATURE 0{featureNumber} / {item.label}</span>
-                          </div>
-                          <h3 className="feature-unified-title">{item.title}</h3>
-                          <p className="feature-unified-text">{item.text}</p>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="features-sticky-card-body">
-                        <div className="features-sticky-card-body-inner">
-                          <span className="features-sticky-card-label">
-                            {item.isIntro ? "FEATURE / INTRODUCTION" : `FEATURE 0${featureNumber} / ${item.label}`}
+                  <Fragment key={item.title}>
+                    <article
+                      className={`features-sticky-card ${item.isIntro ? "is-intro" : ""} ${idx === activeFeatureIndex ? "is-active" : ""}`}
+                      data-feature-index={idx}
+                    >
+                      {!item.isIntro ? (
+                        <div className="feature-unified-card">
+                          <span className="feature-unified-number" aria-hidden="true">
+                            0{featureNumber}
                           </span>
-                          <h3 className="features-sticky-card-title">{item.title}</h3>
-                          <p className="features-sticky-card-text">{item.text}</p>
-                          <span className="features-intro-range" aria-hidden="true">01 - 04</span>
+                          <div className="feature-unified-img">
+                            <img src={item.img} alt={item.title} />
+                          </div>
+                          <div className="feature-unified-content">
+                            <div className="feature-unified-label-wrap">
+                              <span className="feature-unified-label">FEATURE 0{featureNumber} / {item.label}</span>
+                            </div>
+                            <h3 className="feature-unified-title">{item.title}</h3>
+                            <p className="feature-unified-text">{item.text}</p>
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </article>
+                      ) : (
+                        <div className="features-sticky-card-body">
+                          <div className="features-sticky-card-body-inner">
+                            <span className="features-sticky-card-label">
+                              {item.isIntro ? "FEATURE / INTRODUCTION" : `FEATURE 0${featureNumber} / ${item.label}`}
+                            </span>
+                            <h3 className="features-sticky-card-title">{item.title}</h3>
+                            <p className="features-sticky-card-text">{item.text}</p>
+                            <span className="features-intro-range" aria-hidden="true">01 - 04</span>
+                          </div>
+                        </div>
+                      )}
+                    </article>
+                    {item.isIntro && <div className="features-intro-scroll-hold" aria-hidden="true" />}
+                  </Fragment>
                 );
               })}
             </div>
