@@ -504,6 +504,7 @@ export default function Home() {
                           </span>
                           <h3 className="features-sticky-card-title">{item.title}</h3>
                           <p className="features-sticky-card-text">{item.text}</p>
+                          <span className="features-intro-range" aria-hidden="true">01 - 04</span>
                         </div>
                       </div>
                     )}
