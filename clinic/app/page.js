@@ -517,47 +517,87 @@ export default function Home() {
       {/* --- SERVICE, FACILITY, NEWS SHARED BACKGROUND AREA --- */}
       <div className="sections-with-bg-arc">
 
-        {/* --- MEDICAL GUIDE --- */}
+        {/* --- MEDICAL GUIDE (INFORMATION) --- */}
         <section id="service" className={`medical-guide-section ${isMedicalVisible ? 'is-visible' : ''}`} ref={medicalSectionRef}>
-          <div className="container medical-guide-inner">
-            <div className="medical-guide-main">
-              <div className="medical-guide-heading">
-                <span className="section-heading-en medical-guide-en">SERVICE</span>
-                <h2 className="section-heading-ja medical-guide-title">診療案内</h2>
-                <p className="medical-guide-lead">
-                  地域の皆さまの健康を支えるため、幅広い診療とサービスに対応しています。
-                </p>
+          <div className="container information-container">
+            {/* Left Sidebar */}
+            <div className="info-left-sidebar">
+              <span className="info-en">SERVICE</span>
+              <h2 className="info-ja">診療案内</h2>
+            </div>
+
+            {/* Right Content */}
+            <div className="info-right-content">
+              {/* Lead Copy */}
+              <div className="info-lead">
+                <p>地域の皆さまの健康を支えるため、<br />幅広い診療とサービスに対応しています。</p>
               </div>
 
-              <div className="medical-guide-grid">
+              {/* Main Cards */}
+              <div className="info-main-cards">
+                <div className="info-card main-card">
+                  <div className="info-card-icon">
+                    <img src="/photo/assets/medical_icon/01_聴診器十字.png" alt="" />
+                  </div>
+                  <h3 className="info-card-title">内科</h3>
+                  <div className="info-card-line"></div>
+                </div>
+                <div className="info-card main-card">
+                  <div className="info-card-icon">
+                    <img src="/photo/assets/medical_icon/03_消化器.png" alt="" />
+                  </div>
+                  <h3 className="info-card-title">消化器科</h3>
+                  <div className="info-card-line"></div>
+                </div>
+              </div>
+
+              {/* Sub Cards */}
+              <div className="info-sub-cards">
                 {[
-                  { title: "内科", icon: "/photo/assets/medical_icon/01_聴診器十字.png" },
                   { title: "呼吸器内科", icon: "/photo/assets/medical_icon/02_肺.png" },
-                  { title: "胃腸科（消化器科）", icon: "/photo/assets/medical_icon/03_消化器.png" },
                   { title: "整形外科", icon: "/photo/assets/medical_icon/04_膝関節.png" },
                   { title: "リハビリテーション科", icon: "/photo/assets/medical_icon/05_リハビリ.png" },
-                  { title: "婦人科", icon: "/photo/assets/medical_icon/06_子宮.png" },
-                  { title: "予防医療・検診", icon: "/photo/assets/medical_icon/07_問診票.png" },
-                  { title: "バリアフリー対応", icon: "/photo/assets/medical_icon/08_バリアフリー.png" }
+                  { title: "婦人科", icon: "/photo/assets/medical_icon/06_子宮.png" }
                 ].map((item) => (
-                  <a href="#" className="medical-guide-card" key={item.title}>
-                    <span className="medical-guide-icon">
+                  <div className="info-card sub-card" key={item.title}>
+                    <div className="info-card-icon">
                       <img src={item.icon} alt="" />
-                    </span>
-                    <span className="medical-guide-card-title">{item.title}</span>
-                  </a>
+                    </div>
+                    <h3 className="info-card-title">{item.title}</h3>
+                    <div className="info-card-line"></div>
+                  </div>
                 ))}
               </div>
 
-              <p className="medical-guide-note">
-                ※ 診療科目は変更となる場合があります。詳細は医院までお問い合わせください。
+              <p className="info-note">
+                ※ 少数ですが、地域の方に向けた外来診療も行います。
               </p>
-            </div>
 
-            <aside className="medical-guide-copy" aria-label="診療案内のメッセージ">
-              {/* <span className="medical-guide-copy-label">診療案内</span> */}
-              <p>どんなことでも<br />まずはご相談ください。</p>
-            </aside>
+              {/* Schedule Info */}
+              <div className="info-schedule-container">
+                <div className="info-schedule-row">
+                  <div className="info-schedule-col">
+                    <div className="schedule-header">
+                      <span className="schedule-pill">診療時間</span>
+                      <span className="schedule-connector"></span>
+                      <span className="schedule-time">9:00 - 17:30</span>
+                    </div>
+                    <p className="schedule-sub">※必要なときには24時間365日往診します</p>
+                  </div>
+                  <div className="info-schedule-col">
+                    <div className="schedule-header">
+                      <span className="schedule-pill">休診日</span>
+                      <span className="schedule-connector"></span>
+                      <span className="schedule-time">土曜・日曜・祝日・年末年始</span>
+                    </div>
+                    <p className="schedule-sub">※必要なときには24時間365日往診します</p>
+                  </div>
+                </div>
+              </div>
+
+
+
+            </div>
           </div>
           <div className="service-facility-decoration" aria-hidden="true">
             <img className="service-facility-wave" src="/photo/assets/07_ashirai/10_波線.png" alt="" />
