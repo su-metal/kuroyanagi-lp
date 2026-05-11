@@ -82,37 +82,25 @@ export default function Home() {
     );
     if (featuresSectionRef.current) featuresObserver.observe(featuresSectionRef.current);
 
-    const updateActiveFeature = () => {
-      const section = featuresSectionRef.current;
-      if (!section) return;
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const index = parseInt(entry.target.getAttribute('data-feature-index'));
+          setActiveFeatureIndex(index);
+        }
+      });
+    }, {
+      rootMargin: '-30% 0px -50% 0px',
+      threshold: 0
+    });
 
-      const rect = section.getBoundingClientRect();
-      const viewportHeight = window.innerHeight || 1;
-      const stickyEndOffset = viewportHeight * 0.68;
-      const scrollableDistance = Math.max(rect.height - stickyEndOffset, 1);
-      const scrolledInside = Math.min(
-        Math.max(-rect.top, 0),
-        scrollableDistance
-      );
-      const revealDistance = scrollableDistance * 0.82;
-      const progress = Math.min(scrolledInside / revealDistance, 1);
-      const nextIndex = Math.min(
-        featureStackItems.length - 1,
-        Math.floor(progress * featureStackItems.length)
-      );
-
-      setActiveFeatureIndex(nextIndex);
-    };
-
-    updateActiveFeature();
-    window.addEventListener("scroll", updateActiveFeature, { passive: true });
-    window.addEventListener("resize", updateActiveFeature);
+    const featureCards = document.querySelectorAll('.features-sticky-card');
+    featureCards.forEach(card => cardObserver.observe(card));
 
     return () => {
       medicalObserver.disconnect();
       featuresObserver.disconnect();
-      window.removeEventListener("scroll", updateActiveFeature);
-      window.removeEventListener("resize", updateActiveFeature);
+      featureCards.forEach(card => cardObserver.unobserve(card));
     };
   }, []);
 
@@ -492,7 +480,7 @@ export default function Home() {
 
                 return (
                   <article
-                    className={`features-sticky-card ${item.isIntro ? "is-intro" : ""} ${idx <= activeFeatureIndex ? "is-stacked" : ""} ${idx === activeFeatureIndex ? "is-active" : ""}`}
+                    className={`features-sticky-card ${item.isIntro ? "is-intro" : ""} ${idx === activeFeatureIndex ? "is-active" : ""}`}
                     data-feature-index={idx}
                     key={item.title}
                   >
@@ -652,44 +640,29 @@ export default function Home() {
           </div>
         </section>
 
-        {/* --- ATMOSPHERE SECTION --- */}
-        <section className="atmosphere-section">
-          <div className="container atmosphere-container">
-            <div className="atmosphere-visual">
-              <div className="atmosphere-img-wrap left">
-                <img src="/photo/hero-slider/hero-033.jpg" alt="クロヤナギ医院・みっかび東の外観" />
-              </div>
-              <div className="atmosphere-img-wrap right">
-                <img src="/photo/hero-slider/hero-022.jpg" alt="三ヶ日の豊かな自然" />
-              </div>
-              
-              {/* Decorations */}
-              <div className="atmosphere-deco deco-cloud-1">
-                <img src="/photo/assets/07_ashirai/editorial_soft_clouds.png" alt="" />
-              </div>
-              <div className="atmosphere-deco deco-cloud-2">
-                <img src="/photo/assets/07_ashirai/editorial_soft_clouds.png" alt="" />
-              </div>
-              <div className="atmosphere-deco deco-sakura-1">
-                <img src="/photo/assets/07_ashirai/editorial_sakura_petals.png" alt="" />
-              </div>
-              <div className="atmosphere-deco deco-person-bench">
-                <img src="/photo/assets/05_persons/clean_person_bench_dog.png" alt="" />
-              </div>
-              <div className="atmosphere-deco deco-leaves-1">
-                <img src="/photo/assets/07_ashirai/13_葉.png" alt="" />
-              </div>
-            </div>
-
-            <div className="atmosphere-content">
-              <div className="atmosphere-text-box">
-                <h2 className="atmosphere-title">
-                  地域に寄り添う、<br />健やかな暮らし。
-                </h2>
-                <p className="atmosphere-desc">
-                  クロヤナギ医院は、地域の皆さまが安心して健やかな毎日を過ごせるよう、医療だけでなく生活のサポートにも取り組んでいます。<br /><br />
-                  併設されている『みっかび東』との連携により、リハビリテーションや介護の面からも皆さまの暮らしを支えます。
+        {/* --- RELATED FACILITY --- */}
+        <section className="related-facility-section" aria-labelledby="related-facility-title">
+          <div className="container related-facility-container">
+            <div className="related-facility-card">
+              <div className="related-facility-content">
+                <span className="related-facility-label">RELATED FACILITY</span>
+                <h2 id="related-facility-title" className="related-facility-kicker">併設施設のご案内</h2>
+                <h3 className="related-facility-title">みっかび東</h3>
+                <p className="related-facility-desc">
+                  クロヤナギ医院に併設する施設として、地域での暮らしを支えています。
                 </p>
+                <a
+                  href="https://kuroyanagi-clinic.jp/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="related-facility-btn"
+                >
+                  詳しく見る
+                  <span aria-hidden="true">→</span>
+                </a>
+              </div>
+              <div className="related-facility-photo" aria-hidden="true">
+                <img src="/photo/clinic_02.png" alt="" />
               </div>
             </div>
           </div>
