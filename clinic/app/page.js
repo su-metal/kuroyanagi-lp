@@ -559,6 +559,10 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section-parallax-break" aria-label="三ヶ日の風景">
+        <div className="section-parallax-break-inner" aria-hidden="true" />
+      </section>
+
       {/* --- SERVICE, FACILITY, NEWS SHARED BACKGROUND AREA --- */}
       <div className="sections-with-bg-arc">
 

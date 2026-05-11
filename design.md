@@ -121,6 +121,9 @@
   - モバイル幅ではニュース一覧の末尾に「一覧」ボタンを置き、見出し直下の余白を詰める。
 - **Service Section**:
   - PC幅では右端の固定メニューボタンと干渉しないよう、診療案内コンテンツの右余白を広めに確保する。
+- **Parallax Break**:
+  - FEATUREとSERVICEの間に三ヶ日の湖と山の風景写真を横断的に配置し、セクション間の呼吸を作る。
+  - PC幅では `background-attachment: fixed` を使い、モバイルでは通常スクロール背景に切り替える。
 - **Section Backgrounds**:
   - Use `.sections-with-bg-arc` to create a large unified background arc across Service, Facility, and News sections.
   - Desktop: Draw a primary-blue right-side panel inside `.facility-section::before`, keeping the blue area scoped to Facility so it never cuts across Service cards or News cards.
