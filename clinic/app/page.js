@@ -461,6 +461,11 @@ export default function Home() {
         <div className="features-sticky-container">
           <div className="features-sticky-sidebar">
             <div className="features-sticky-sidebar-inner">
+              {activeFeatureIndex > 0 && (
+                <span className="features-sticky-sidebar-number" aria-hidden="true">
+                  0{activeFeatureIndex}
+                </span>
+              )}
               <span className="section-heading-en features-editorial-en">FEATURE</span>
               <div className="features-editorial-lead-copy">
                 <p>安心して頼れる、<br />地域のかかりつけ医へ。</p>
@@ -492,19 +497,19 @@ export default function Home() {
                     key={item.title}
                   >
                     {!item.isIntro && (
-                      <span className="features-sticky-card-number" aria-hidden="true">0{featureNumber}</span>
-                    )}
-                    {!item.isIntro && (
                       <div className="features-sticky-card-img">
                         <img src={item.img} alt={item.title} />
                       </div>
                     )}
                     <div className="features-sticky-card-body">
-                      <span className="features-sticky-card-label">
-                        {item.isIntro ? "FEATURE / INTRODUCTION" : `FEATURE 0${featureNumber} / ${item.label}`}
-                      </span>
-                      <h3 className="features-sticky-card-title">{item.title}</h3>
-                      <p className="features-sticky-card-text">{item.text}</p>
+                      <div className="features-sticky-card-body-inner">
+                        <span className="features-sticky-card-label">
+                          {item.isIntro ? "FEATURE / INTRODUCTION" : `FEATURE 0${featureNumber} / ${item.label}`}
+                        </span>
+                        <h3 className="features-sticky-card-title">{item.title}</h3>
+                        {!item.isIntro && <div className="features-sticky-card-divider" />}
+                        <p className="features-sticky-card-text">{item.text}</p>
+                      </div>
                     </div>
                   </article>
                 );
