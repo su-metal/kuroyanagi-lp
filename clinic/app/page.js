@@ -496,21 +496,35 @@ export default function Home() {
                     data-feature-index={idx}
                     key={item.title}
                   >
-                    {!item.isIntro && (
-                      <div className="features-sticky-card-img">
-                        <img src={item.img} alt={item.title} />
+                    {!item.isIntro ? (
+                      <>
+                        <div className="feature-layer-bg">
+                          <div className="feature-layer-img">
+                            <img src={item.img} alt={item.title} />
+                          </div>
+                        </div>
+                        <div className="feature-layer-content">
+                          <div className="feature-layer-label-wrap">
+                            <span className="feature-layer-label">FEATURE / {item.label}</span>
+                            <div className="feature-layer-label-line" />
+                          </div>
+                          <h3 className="feature-layer-title">{item.title}</h3>
+                          <div className="feature-layer-divider" />
+                          <p className="feature-layer-text">{item.text}</p>
+                          <div className="feature-layer-dots" aria-hidden="true" />
+                        </div>
+                      </>
+                    ) : (
+                      <div className="features-sticky-card-body">
+                        <div className="features-sticky-card-body-inner">
+                          <span className="features-sticky-card-label">
+                            {item.isIntro ? "FEATURE / INTRODUCTION" : `FEATURE 0${featureNumber} / ${item.label}`}
+                          </span>
+                          <h3 className="features-sticky-card-title">{item.title}</h3>
+                          <p className="features-sticky-card-text">{item.text}</p>
+                        </div>
                       </div>
                     )}
-                    <div className="features-sticky-card-body">
-                      <div className="features-sticky-card-body-inner">
-                        <span className="features-sticky-card-label">
-                          {item.isIntro ? "FEATURE / INTRODUCTION" : `FEATURE 0${featureNumber} / ${item.label}`}
-                        </span>
-                        <h3 className="features-sticky-card-title">{item.title}</h3>
-                        {!item.isIntro && <div className="features-sticky-card-divider" />}
-                        <p className="features-sticky-card-text">{item.text}</p>
-                      </div>
-                    </div>
                   </article>
                 );
               })}
