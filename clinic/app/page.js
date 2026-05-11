@@ -155,6 +155,21 @@ export default function Home() {
           </div>
         </div>
 
+        <button
+          className="desktop-side-menu-button hidden-mobile"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="メニューを開く"
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-menu"
+        >
+          <span className="desktop-side-menu-lines" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+          <span className="desktop-side-menu-text">MENU OPEN</span>
+        </button>
+
         <div
           className={`mobile-menu-backdrop ${isMenuOpen ? "is-open" : ""}`}
           onClick={() => setIsMenuOpen(false)}
@@ -182,21 +197,7 @@ export default function Home() {
         <section className="hero hero-editorial">
           <div className="hero-editorial-shell">
             <div className="hero-editorial-stage">
-              <div className="hero-mobile-wave hero-mobile-wave-1" aria-hidden="true" />
-              <div className="hero-mobile-wave hero-mobile-wave-2" aria-hidden="true" />
-              <div className="hero-mobile-wave hero-mobile-wave-3" aria-hidden="true" />
-              <div className="hero-mobile-wave hero-mobile-wave-4" aria-hidden="true" />
-
-              {/* Mobile Bird Illustration */}
-              <div className="hero-editorial-bird show-mobile" aria-hidden="true">
-                <img src="/photo/kamome.png" alt="" />
-              </div>
-
               <figure className="hero-editorial-main-photo" aria-label="クロヤナギ医院の医師">
-                {/* Mobile swoosh decoration */}
-                <div className="hero-editorial-swoosh show-mobile" aria-hidden="true" />
-                
-
                 <div className="hero-editorial-slider">
                   {heroSliderImages.map((src, index) => (
                     <img
@@ -449,11 +450,6 @@ export default function Home() {
         <div className="features-sticky-container">
           <div className="features-sticky-sidebar">
             <div className="features-sticky-sidebar-inner">
-              {activeFeatureIndex > 0 && (
-                <span className="features-sticky-sidebar-number" aria-hidden="true">
-                  0{activeFeatureIndex}
-                </span>
-              )}
               <span className="section-heading-en features-editorial-en">FEATURE</span>
               <div className="features-editorial-lead-copy">
                 <p>安心して頼れる、<br />地域のかかりつけ医へ。</p>
@@ -485,23 +481,21 @@ export default function Home() {
                     key={item.title}
                   >
                     {!item.isIntro ? (
-                      <>
-                        <div className="feature-layer-bg">
-                          <div className="feature-layer-img">
-                            <img src={item.img} alt={item.title} />
-                          </div>
+                      <div className="feature-unified-card">
+                        <span className="feature-unified-number" aria-hidden="true">
+                          0{featureNumber}
+                        </span>
+                        <div className="feature-unified-img">
+                          <img src={item.img} alt={item.title} />
                         </div>
-                        <div className="feature-layer-content">
-                          <div className="feature-layer-label-wrap">
-                            <span className="feature-layer-label">FEATURE / {item.label}</span>
-                            <div className="feature-layer-label-line" />
+                        <div className="feature-unified-content">
+                          <div className="feature-unified-label-wrap">
+                            <span className="feature-unified-label">FEATURE 0{featureNumber} / {item.label}</span>
                           </div>
-                          <h3 className="feature-layer-title">{item.title}</h3>
-                          <div className="feature-layer-divider" />
-                          <p className="feature-layer-text">{item.text}</p>
-                          <div className="feature-layer-dots" aria-hidden="true" />
+                          <h3 className="feature-unified-title">{item.title}</h3>
+                          <p className="feature-unified-text">{item.text}</p>
                         </div>
-                      </>
+                      </div>
                     ) : (
                       <div className="features-sticky-card-body">
                         <div className="features-sticky-card-body-inner">
