@@ -910,7 +910,7 @@ ul {
 .deco-family {
   position: absolute;
   bottom: 340px;
-  /* 髯ｷﾂ陷･荵暦ｽ・・ｽ・ｽ・ｽE・ｽ繝ｻ・ｽE・ｽ髯溷叙繝ｻ繝ｻ・ｽE・ｽ繝ｻ・ｽE・ｽ髣皮甥ﾂ・ｽE・ｽ繝ｻ・ｽE・ｽ隰・・ｽ・ｽ・ｽE・ｽ・ｽE・ｽ郢晢ｽｻ60px + 髣厄ｽｴ陷ｻ・ｽE・ｽ繝ｻ・ｽE・ｽ陋ｹ繝ｻ・ｽE・ｽ・ｽE・ｽ陝ｲ・ｽE・ｽ遶企ｦｴ・ｽE・ｽ貅ｷ隱ｿ繝ｻ・ｽE・ｽ繝ｻ・ｽE・ｽ */
+  /* Position the family decoration near the hero lower edge. */
   right: 26px;
   width: 160px;
   z-index: 2;
@@ -926,7 +926,7 @@ ul {
   .hero {
     height: calc(100svh - var(--hero-header-height));
     min-height: 0;
-    /* 隴崢陝・・ｽ・ｽ・ｽE・ｽ蛟･・ｽE・ｽE・ｽ・ｽ雋橸ｽｰ莉｣・ｽE・ｽ闕ｳ荵晢ｿ｡邵ｺ・ｽE・ｽ邵ｲ竏ｵ・ｽE・ｽ・ｽE・ｽ郢ｧ蠕鯉ｿｽE邵ｺ荳奇ｿ･邵ｺ蜷ｶ・ｽE・ｽE*/
+    /* Keep the mobile hero within the visible viewport. */
     overflow: hidden;
   }
 
@@ -1544,18 +1544,63 @@ ul {
     margin-top: 0;
   }
 
+  .info-main-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
   .info-sub-cards {
     grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .info-card {
+    min-width: 0;
+  }
+
+  .info-card.sub-card {
+    padding: 12px 8px;
+  }
+
+  .info-card-title {
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  .info-card.sub-card .info-card-title {
+    font-size: 0.75rem;
+    margin-bottom: 8px;
+    white-space: normal;
+    word-break: break-all;
+    line-height: 1.3;
+    letter-spacing: 0;
+  }
+
+  .info-card-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 12px;
+  }
+
+  .info-card.sub-card .info-card-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
   }
 }
 
 @media (max-width: 768px) {
-  .info-main-cards {
-    grid-template-columns: 1fr;
+  .information-container {
+    padding: 40px 10px 80px;
+    gap: 24px;
+  }
+
+  .info-sub-cards {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .info-card.main-card {
-    padding: 32px 24px;
+    padding: 24px 12px;
   }
 
   .info-schedule-row {
@@ -2080,6 +2125,8 @@ ul {
 }
 
 .news-title {
+  overflow-wrap: anywhere;
+  word-break: break-all;
   font-size: 0.94rem;
   color: var(--text-color);
   line-height: 1.7;
@@ -2138,6 +2185,8 @@ ul {
   }
 
   .news-title {
+  overflow-wrap: anywhere;
+  word-break: break-all;
     order: 3;
     width: 100%;
   }
@@ -2172,6 +2221,8 @@ ul {
   }
 
   .news-title {
+  overflow-wrap: anywhere;
+  word-break: break-all;
     font-size: 0.84rem;
   }
 }
@@ -2579,7 +2630,7 @@ ul {
   max-width: none;
   margin: 0 auto;
   overflow: hidden;
-  /* 枠外のはみ出しをカット */
+  /* Clip overflow outside the frame. */
 }
 
 .hero-editorial-main-photo img {
@@ -2609,7 +2660,7 @@ ul {
 .hero-editorial-catch h2 {
   display: flex;
   flex-direction: row-reverse;
-  /* 譌･譛ｬ隱橸ｿｽE鬆・・ｽ・ｽ・壼承縺九ｉ蟾ｦ縺ｸ蛻励ｒ荳ｦ縺ｹ繧・*/
+  /* Render Japanese vertical copy from right to left. */
   align-items: flex-start;
   gap: clamp(8px, 1.2vw, 16px);
 }
@@ -2659,7 +2710,7 @@ ul {
   font-size: clamp(0.68rem, 0.74vw, 0.8rem);
   color: var(--text-color);
   table-layout: fixed;
-  /* 蝮・・ｽ・ｽ蜑ｲ繧奇ｿｽE縺溘ａ縺ｫ蝗ｺ螳壹Ξ繧､繧｢繧ｦ繝医ｒ謗｡逕ｨ */
+  /* Use fixed layout to keep schedule columns aligned. */
 }
 
 .editorial-schedule-table th {
@@ -2669,7 +2720,7 @@ ul {
   font-weight: 600;
   text-align: center;
   width: 8.5%;
-  /* 譖懈律蛻励ｒ蝮・・ｽ・ｽ縺ｫ */
+  /* Keep weekday columns compact. */
 }
 
 .editorial-schedule-table th:first-child {
@@ -2677,7 +2728,7 @@ ul {
   color: var(--primary-blue);
   font-weight: 800;
   font-size: 0.95rem;
-  /* 譎ょ綾・ｽE・ｽEd・ｽE・ｽ・ｽE繝輔か繝ｳ繝医し繧､繧ｺ縺ｨ邨ｱ荳 */
+  /* Match the time-slot column width to the smaller font size. */
   width: 40.5%;
 }
 
@@ -2924,7 +2975,7 @@ ul {
     box-shadow: none;
   }
 
-  /* 繝｢繝舌う繝ｫ迚茨ｿｽE邵ｦ譖ｸ縺阪く繝｣繝・・ｽ・ｽ繧ｳ繝費ｿｽE隱ｿ謨ｴ */
+  /* Mobile vertical-copy position adjustment. */
   .hero-editorial-catch {
     top: max(110px, 15vh);
     left: 20px;
@@ -2943,7 +2994,7 @@ ul {
     margin-top: 3rem;
   }
 
-  /* 繝｢繝舌う繝ｫ迚茨ｿｽE險ｺ逋ょ女莉俶凾髢薙き繝ｼ繝芽ｪｿ謨ｴ */
+  /* Mobile reception-hours card position adjustment. */
   .hero-editorial-schedule {
     right: 18px;
     bottom: 18px;
@@ -3124,7 +3175,7 @@ ul {
   width: 150vmax;
   height: 150vmax;
   background: var(--about-reveal-bg);
-  /* グラデーションを重ねて奥行きを出す */
+  /* Layer gradients to add depth. */
   background-image:
     radial-gradient(circle at center, transparent 0%, rgba(0, 35, 92, 0.15) 100%),
     linear-gradient(to bottom, transparent 60%, rgba(0, 35, 92, 0.2) 100%);
@@ -3136,13 +3187,13 @@ ul {
   box-shadow: inset 0 0 100px rgba(255, 255, 255, 0.1);
 }
 
-/* 円の内側にかけるノイズとオーバーレイの統合層 */
+/* Combined noise and overlay layer inside the circle. */
 .about-reveal-circle::after {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  /* ノイズとグラデーションを重ねる */
+  /* Stack noise and gradient overlays. */
   background-image:
     linear-gradient(to bottom, rgba(0, 35, 92, 0.1) 0%, rgba(0, 35, 92, 0.4) 100%),
     url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
@@ -3224,7 +3275,7 @@ ul {
 
 .about-section::before {
   display: none;
-  /* 蜈・・ｽE閭梧勹陬・・ｽ・ｽ繧剃ｸ譌ｦ豸亥悉 */
+  /* Remove the background decoration layer. */
 }
 
 .about-stage {
@@ -3260,18 +3311,18 @@ ul {
   margin-right: auto;
   text-align: left;
   color: #fff;
-  /* 明確なディープネイビー */
+  /* Clear deep navy text treatment. */
   opacity: var(--about-content-opacity, 1);
   transform: translateY(var(--about-content-y, 0));
   will-change: opacity, transform;
   padding-bottom: 0;
 }
 
-/* テキストを保護するホワイト・エディトリアル・プレート */
+/* White editorial plate for text protection. */
 .about-content::before {
   content: none;
   position: absolute;
-  /* 左右を絞り、上下を伸ばして「縦長」の印象を強める */
+  /* Narrow the sides and extend vertically. */
   top: -60px;
   left: clamp(40px, 8vw, 80px);
   right: clamp(40px, 8vw, 80px);
@@ -3280,13 +3331,13 @@ ul {
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 24px;
-  /* 角を少しシャープに */
+  /* Keep the corners slightly sharper. */
   box-shadow: 0 15px 45px rgba(0, 35, 92, 0.12);
   z-index: -1;
   pointer-events: none;
 }
 
-/* 不要な重複とオーバーレイ定義を削除 */
+/* Remove duplicate and unused overlay definitions. */
 
 .about-inner {
   position: relative;
@@ -3306,19 +3357,19 @@ ul {
   margin-right: auto;
   padding-left: 0;
   padding-right: 0;
-  /* 繧ｹ繧ｯ繝ｭ繝ｼ繝ｫ騾｣蜍包ｿｽE隕ｪ縺ｮ .about-content 縺梧戟縺､螟画焚 (--about-content-opacity, --about-content-y) 縺ｧ蛻ｶ蠕｡縺輔ｌ縺ｾ縺・*/
+  /* Controlled by the scroll-linked about-content variables. */
   will-change: opacity, transform;
   pointer-events: auto;
   z-index: 10;
   position: relative;
 }
 
-/* テキスト保護用の色の設定は個別の要素で行うため、ここでは削除 */
+/* Text protection colors are handled by individual elements. */
 
 
 .about-label {
   color: rgba(232, 244, 255, 0.9);
-  /* ディープネイビー */
+  /* Deep navy. */
   font-size: 1.1rem;
   font-weight: 800;
   letter-spacing: 0.18em;
@@ -3345,7 +3396,7 @@ ul {
 .about-title {
   width: fit-content;
   color: #fff !important;
-  /* プライマリーブルーを割り当て */
+  /* Use the primary blue treatment. */
   font-family: var(--font-modern);
   font-size: 2.0rem;
   font-weight: 800;
@@ -3360,7 +3411,7 @@ ul {
   display: inline-block;
   white-space: nowrap;
   color: inherit;
-  /* 親のプライマリーブルーを継承 */
+  /* Inherit the parent primary-blue color. */
 }
 
 @media (max-width: 640px) {
@@ -3377,7 +3428,7 @@ ul {
 
 .about-desc {
   color: rgba(247, 251, 255, 0.96) !important;
-  /* 強制的にダークグレーに */
+  /* Force a dark-gray readable tone. */
   font-size: 1.02rem;
   font-weight: 600;
   line-height: 2.15;
@@ -3424,7 +3475,7 @@ ul {
   height: clamp(390px, 36vw, 620px);
   overflow: visible;
   pointer-events: none;
-  /* 60% 程度まで戻して視認性を確保 */
+  /* Restore visibility to around 60%. */
   opacity: calc(var(--about-bottom-progress, 0) * 0.8);
   transform: translateY(calc(42px * (1 - var(--about-bottom-progress, 0))));
   transition: opacity 0.4s ease, transform 0.4s ease;
@@ -3443,7 +3494,7 @@ ul {
   object-fit: cover;
   object-position: center top;
   transform: translateX(-50%);
-  /* ぼかしを削除し、彩度も戻す */
+  /* Remove blur and restore saturation. */
   filter: saturate(0.9) brightness(1.0);
   z-index: 1;
 }
@@ -3472,7 +3523,7 @@ ul {
   display: none;
 }
 
-/* モバイル用イラスト設定の確実な上書き */
+/* Ensure mobile illustration settings win. */
 @media (max-width: 640px) {
   .about-bottom-visual {
     opacity: var(--about-bottom-progress, 0) !important;
@@ -3484,7 +3535,7 @@ ul {
 }
 
 
-/* 繝輔か繝医ヵ繝ｬ繝ｼ繝貍費ｿｽE */
+/* Photo frame layout. */
 .about-photos-container {
   position: absolute;
   inset: 0;
@@ -3493,7 +3544,7 @@ ul {
   opacity: var(--about-photos-progress, 0);
   transition: opacity 0.4s ease;
   display: none !important;
-  /* 荳€譌ｦ髱櫁｡ｨ遉ｺ */
+  /* Hide by default. */
 }
 
 .about-photo-frame {
@@ -3510,9 +3561,9 @@ ul {
   will-change: opacity, transform;
 }
 
-/* 繧ｹ繧ｯ繝ｭ繝ｼ繝ｫ騾ｲ謐励↓蠢懊§縺溘い繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ驕ｩ逕ｨ */
+/* Apply animation as the scroll progress changes. */
 .about-photos-container[style*="--about-photos-progress"] .about-photo-frame {
-  /* 騾ｲ謐励′0繧医ｊ螟ｧ縺阪＞蝣ｴ蜷医↓縲∝€句挨縺ｮ驕・・ｽ・ｽ繧呈戟縺｣縺ｦ蜃ｺ迴ｾ */
+  /* Reveal each frame once progress is greater than zero. */
   opacity: var(--about-photos-progress);
   transform: translateY(calc(60px * (1 - var(--about-photos-progress)))) rotate(var(--photo-rotate, 0deg));
 }
@@ -3524,7 +3575,7 @@ ul {
   display: block;
 }
 
-/* PC驟咲ｽｮ */
+/* Desktop placement. */
 @media (min-width: 1025px) {
   .photo-1 {
     width: 220px;
@@ -3581,7 +3632,7 @@ ul {
   }
 }
 
-/* 繝｢繝舌う繝ｫ驟咲ｽｮ */
+/* Mobile placement. */
 @media (max-width: 1024px) {
   .about-photo-frame {
     padding: 6px;
@@ -4668,7 +4719,7 @@ ul {
   z-index: 2;
 }
 
-/* 繧ｰ繝ｩ繝・・ｽE繧ｷ繝ｧ繝ｳ陬・・ｽ・ｽ繧貞炎髯､ */
+/* Remove the decorative gradient wrapper. */
 .medical-guide-section::before {
   display: none;
 }
@@ -4740,7 +4791,7 @@ ul {
   border-radius: 20px;
   border: 1px solid #f0f5fa;
   box-shadow: 0 10px 30px rgba(0, 50, 100, 0.04);
-  /* アニメーション用初期状態 */
+  /* Initial animation state. */
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1),
@@ -6562,7 +6613,7 @@ ul {
   }
 
   .mobile-menu>a::after {
-    content: "→";
+    content: "›";
     color: var(--primary-blue);
     font-family: var(--font-modern);
     margin-left: 14px;
@@ -6994,7 +7045,7 @@ ul {
     left: 34px;
     width: 72px;
     display: none !important;
-    /* ロゴ直下の波線のみ削除 */
+    /* Hide only the wave line directly below the logo. */
   }
 
   .hero-mobile-wave-2 {
@@ -7022,7 +7073,7 @@ ul {
   }
 
   /* ===================================================
-     Catchcopy — center overlay
+     Catchcopy - center overlay
   =================================================== */
   .hero-editorial-catch {
     position: absolute !important;
@@ -7080,7 +7131,7 @@ ul {
   }
 
   /* ===================================================
-     Oval Photo — ステージ中央（少し右下寄り）
+     Oval Photo - centered stage with slight lower-right bias
   =================================================== */
   .hero-editorial-main-photo {
     position: absolute !important;
@@ -7123,7 +7174,7 @@ ul {
   }
 
   /* ===================================================
-     Schedule Card — 右下
+     Schedule Card - lower right
   =================================================== */
   .hero-editorial-schedule-mobile {
     display: block !important;
@@ -7375,58 +7426,16 @@ ul {
 
 .deco-sakura-1 {
   top: 10%;
-  .hero-editorial-schedule-mobile .editorial-schedule-table .time-slot {
-    text-align: left !important;
-    font-size: 10px !important;
-    color: var(--hero-blue) !important;
-    white-space: nowrap !important;
-    font-weight: 700 !important;
-  }
-
-  .hero-editorial-schedule-mobile .editorial-schedule-table .closed {
-    color: #cbd3dc !important;
-  }
-
-  .hero-editorial-schedule-mobile .schedule-footer {
-    margin-top: 14px !important;
-    font-size: 11px !important;
-    color: #a8b0ba !important;
-    font-weight: 700 !important;
-  }
-
-  /* ===================================================
-     Bird Illustration
-  =================================================== */
-  .hero-editorial-bird {
-    display: none !important;
-  }
-
-  .hero-editorial-bird img {
-    display: block;
-    width: 100%;
-    height: auto;
-    filter: none;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .hero-editorial-bird {
-      animation: none;
-    }
-  }
-
-  /* ===================================================
-     Hidden on Mobile
-  =================================================== */
-  .hero-editorial-news,
-  .hero-editorial-pager,
-  .hero-editorial-badge,
-  .hero-editorial-swoosh,
-  .hero-editorial-deco {
-    display: none !important;
-  }
+  right: 25%;
+  width: 100px;
 }
 
-
+.deco-sakura-2 {
+  bottom: 15%;
+  left: 10%;
+  width: 80px;
+  transform: rotate(-15deg);
+}
 @media (max-width: 640px) {
   .logo-mark img {
     height: 42px !important;
@@ -7579,7 +7588,6 @@ ul {
   width: 80px;
   transform: rotate(-15deg);
 }
-
 .deco-person-bench {
   bottom: 10px;
   left: 35%;
@@ -7714,9 +7722,11 @@ ul {
   border-radius: 0 0 16px 0;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   z-index: 1100;
-  display: none; /* Only show on mobile via JS toggle or CSS below */
+  display: none;
   align-items: center;
   gap: 8px;
+  margin: 0;
+  max-width: 80%; /* Prevent the logo from occupying too much screen width. */
 }
 
 @media (max-width: 1024px) {
@@ -7922,3 +7932,167 @@ ul {
 .action-item.inquiry span { color: #fff; }
 .action-item.line { background: #06c755; }
 .action-item.line span { color: #fff; }
+
+/* ===================================================
+   MOBILE OVERFLOW & LAYOUT FIXES (FINAL OVERRIDES)
+   =================================================== */
+@media (max-width: 768px) {
+  body, html {
+    overflow-x: hidden !important;
+    position: relative;
+    width: 100%;
+  }
+
+  .wrapper {
+    overflow-x: hidden !important;
+    width: 100%;
+  }
+
+  .container, .information-container, .news-section .container {
+    max-width: 100% !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    overflow: hidden !important;
+  }
+
+  /* Service Section Fixes */
+  .info-ja {
+    font-size: 1.8rem !important;
+    letter-spacing: 0.1em !important;
+    white-space: normal !important;
+    word-break: break-all !important;
+  }
+
+  .info-lead {
+    font-size: 1rem !important;
+    line-height: 1.7 !important;
+    white-space: normal !important;
+    word-break: break-all !important;
+  }
+
+  .info-sub-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+  }
+
+  .info-right-content,
+  .info-main-cards,
+  .info-sub-cards {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .info-main-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+
+  .info-card {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .info-schedule-container,
+  .info-schedule-col {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .schedule-header {
+    display: grid !important;
+    grid-template-columns: auto minmax(16px, 32px) minmax(0, 1fr) !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+
+  .schedule-pill {
+    min-width: 104px !important;
+    padding: 9px 16px !important;
+  }
+
+  .schedule-connector {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .schedule-time {
+    min-width: 0 !important;
+    margin-left: 12px !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    word-break: keep-all !important;
+    line-height: 1.5 !important;
+  }
+
+  /* News Section Fixes */
+  .news-inner {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 40px 0 !important;
+    gap: 32px !important;
+  }
+
+  .news-title-area {
+    text-align: left !important;
+    padding: 0 !important;
+  }
+
+  .news-item {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    padding: 16px 0 !important;
+  }
+
+  .news-meta {
+    min-width: auto !important;
+    gap: 10px !important;
+  }
+
+  .news-title {
+    font-size: 0.9rem !important;
+    width: 100% !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-all !important;
+  }
+
+  /* Header Fixes */
+  .header-logo-card {
+    max-width: 75% !important;
+    left: 0 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .info-main-cards,
+  .info-sub-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .info-card.main-card {
+    min-height: 200px !important;
+    padding: 24px 10px !important;
+  }
+
+  .info-card.main-card .info-card-icon {
+    width: 72px !important;
+    height: 72px !important;
+  }
+
+  .schedule-pill {
+    min-width: 98px !important;
+    padding: 8px 14px !important;
+    font-size: 0.85rem !important;
+  }
+
+  .schedule-time {
+    margin-left: 10px !important;
+    font-size: clamp(1rem, 4.6vw, 1.18rem) !important;
+  }
+
+  .news-main-title {
+    font-size: 1.6rem !important;
+  }
+}
