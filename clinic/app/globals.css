@@ -5700,6 +5700,7 @@ ul {
 .site-footer {
   background: #fff;
   padding: 96px 0 56px;
+  font-family: var(--font-sans);
 }
 
 .footer-container {
@@ -5741,6 +5742,7 @@ ul {
 .footer-logo-text {
   display: flex;
   flex-direction: column;
+  font-family: var(--font-modern);
   line-height: 1.2;
 }
 
@@ -5766,9 +5768,10 @@ ul {
 }
 
 .footer-contact {
+  font-family: var(--font-sans);
   color: var(--text-dark);
   font-size: 0.98rem;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.8;
   margin-bottom: 28px;
 }
@@ -5784,12 +5787,16 @@ ul {
 
 .footer-contact-line span {
   min-width: 34px;
+  font-family: var(--font-modern);
   font-size: 0.75rem;
+  font-weight: 800;
   letter-spacing: 0.12em;
 }
 
 .footer-contact-line strong {
+  font-family: var(--font-modern);
   font-size: 1.85rem;
+  font-weight: 700;
   letter-spacing: 0.08em;
 }
 
@@ -5814,6 +5821,7 @@ ul {
   border-collapse: collapse;
   background: #fff;
   color: #294261;
+  font-family: var(--font-modern);
   font-size: 0.98rem;
 }
 
@@ -5854,9 +5862,10 @@ ul {
 
 .footer-notes {
   margin-top: 20px;
+  font-family: var(--font-sans);
   color: var(--text-dark);
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.9;
 }
 
@@ -5879,6 +5888,7 @@ ul {
   align-items: center;
   justify-content: center;
   gap: 14px;
+  font-family: var(--font-modern);
   font-size: 1.28rem;
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -5944,19 +5954,23 @@ ul {
   min-height: 48px;
   padding-bottom: 14px;
   border-bottom: 1px dotted #77a9ed;
+  font-family: var(--font-sans);
   color: #193b68;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.04em;
 }
 
 .footer-nav-link span:last-child {
+  font-family: var(--font-modern);
   color: var(--primary-blue);
   font-size: 1.25rem;
+  font-weight: 800;
 }
 
 .footer-bottom {
   margin-top: 62px;
   text-align: center;
+  font-family: var(--font-modern);
   color: var(--primary-blue);
   font-size: 0.9rem;
   font-weight: 700;
@@ -5969,6 +5983,8 @@ ul {
   justify-content: center;
   gap: 28px;
   margin-bottom: 26px;
+  font-family: var(--font-sans);
+  font-weight: 600;
 }
 
 /* Responsive */
