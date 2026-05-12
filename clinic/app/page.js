@@ -177,7 +177,7 @@ export default function Home() {
               <span>ご予約はこちら</span>
             </a>
 
-            {/* Mobile Hamburger */}
+            {/* Mobile Hamburger (Default PC structure) */}
             <button 
               className="hamburger show-mobile"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -191,6 +191,28 @@ export default function Home() {
             </button>
           </div>
         </div>
+
+        {/* --- MOBILE REDESIGN HEADER ELEMENTS --- */}
+        <div className="header-logo-card show-mobile">
+          <div className="logo-mark">
+            <img src="/photo/assets/01_action/08_当院について.png" alt="" />
+          </div>
+          <div className="logo-text">
+            <span className="logo-sub">医療法人社団 早友会</span>
+            <span className="logo-main">クロヤナギ医院</span>
+          </div>
+        </div>
+
+        <button 
+          className="header-menu-button show-mobile"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="メニューを開く"
+          aria-expanded={isMenuOpen}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
 
         <button
           className="desktop-side-menu-button hidden-mobile"
@@ -693,7 +715,7 @@ export default function Home() {
                 <p className="related-facility-desc">
                   クロヤナギ医院に併設する施設として、地域での暮らしを支えています。
                 </p>
-                <a
+                <a
                   href="https://kuroyanagi-clinic.jp/"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -839,31 +861,25 @@ export default function Home() {
                       <td>－</td>
                     </tr>
                     <tr>
-                      <th>14:30-17:30</th>
+                      <th>14:00-17:30</th>
                       <td>●</td>
                       <td>●</td>
                       <td>●</td>
-                      <td>－</td>
+                      <td className="closed">×</td>
                       <td>●</td>
-                      <td>●</td>
-                      <td>－</td>
+                      <td className="closed">×</td>
+                      <td className="closed">×</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-
-              <ul className="footer-notes">
-                <li>※ 予約優先</li>
-                <li>※ 木曜午後、日曜、祝日は休診となります</li>
-                <li>※ 初診の方は診療時間が終了する30分前までにご来院ください</li>
-              </ul>
             </div>
 
-            <div className="footer-action-area">
+            <div className="footer-cta-area">
               <div className="footer-cta-row">
                 <a href="tel:0535251113" className="footer-cta footer-cta-primary">
                   <span className="footer-cta-icon">
-                    <img src="/photo/assets/01_action/03_電話.png" alt="" />
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: '20px', height: '20px' }}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                   </span>
                   <span>053-525-1113</span>
                 </a>
@@ -876,6 +892,7 @@ export default function Home() {
               </div>
 
               <div className="footer-map">
+
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21807.205815202164!2d137.55273239146715!3d34.79978991325786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601b2efb69d1f481%3A0xff7102d5b326d22f!2z44G_44Gj44GL44Gz5p2x5LuL6K236ICB5Lq65L-d5YGl5pa96Kit!5e1!3m2!1sja!2sjp!4v1777211323976!5m2!1sja!2sjp"
                   width="600"
@@ -918,8 +935,25 @@ export default function Home() {
         </div>
       </footer>
       {/* Mobile Fixed Action Bar */}
-      <div className="mobile-action-bar show-mobile">
-        <a href="#" className="action-btn-main">online reservation</a>
+      <div className="mobile-action-bar">
+        <a href="tel:0535251113" className="action-item tel">
+          <svg className="icon" viewBox="0 0 24 24" fill="#333">
+            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1H3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+          </svg>
+          <span>電話する</span>
+        </a>
+        <a href="#" className="action-item inquiry">
+          <svg className="icon" viewBox="0 0 24 24" fill="#fff">
+            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+          <span>お問い合わせ</span>
+        </a>
+        <a href="#" className="action-item line">
+          <svg className="icon" viewBox="0 0 24 24" fill="#fff">
+            <path d="M24 10.3c0-4.6-5.4-8.3-12-8.3S0 5.7 0 10.3c0 4.1 4.3 7.5 10 8.2.4.1.9.4 1 .9l.3 2.1c.1.6.4.8.8.4.4-.3 2.1-1.3 3-2.1.1-.1.2-.2.3-.3 5.4-.8 8.6-4 8.6-8.9zm-15.6 3h-2c-.3 0-.5-.2-.5-.5v-4c0-.3.2-.5.5-.5s.5.2.5.5v3.5h1.5c.3 0 .5.2.5.5s-.2.5-.5.5zm3.5-.5c0 .3-.2.5-.5.5s-.5-.2-.5-.5v-4c0-.3.2-.5.5-.5s.5.2.5.5v4zm3.8 0c0 .1-.1.3-.2.4-.1.1-.3.1-.4.1s-.3-.1-.4-.1-.2-.3-.2-.4v-4c0-.3.2-.5.5-.5s.5.2.5.5l1 2.2 1-2.2c.1-.1.2-.2.4-.2.3 0 .5.2.5.5v4c0 .3-.2.5-.5.5s-.5-.2-.5-.5v-2.3l-.7 1.6c-.1.2-.3.3-.5.3h-.1c-.2 0-.4-.1-.5-.3l-.7-1.6v2.3zm4.8-1.5c0 .3-.2.5-.5.5h-1.5v.5h1.5c.3 0 .5.2.5.5s-.2.5-.5.5h-2c-.3 0-.5-.2-.5-.5v-4c0-.3.2-.5.5-.5h2c.3 0 .5.2.5.5s-.2.5-.5.5h-1.5v.5h1.5c.3 0 .5.2.5.5z"/>
+          </svg>
+          <span>LINEで相談</span>
+        </a>
       </div>
     </div>
   );
