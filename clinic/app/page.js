@@ -61,6 +61,44 @@ export default function Home() {
     { src: "/photo/clinic_03.png", title: "院内設備", desc: "院内各所に最新の設備を整え、スムーズな検査と診療を行えるよう配慮しています。" },
     { src: "/photo/access_entrance.jpg", title: "医院入口", desc: "三ヶ日駅から徒歩圏内にあり、車椅子の方でもスムーズに入っていただけるバリアフリー設計です。" },
   ];
+
+  useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+
+    if (!isMenuOpen) {
+      window.lenis?.start?.();
+      html.classList.remove("is-mobile-menu-open");
+      body.classList.remove("is-mobile-menu-open");
+      return;
+    }
+
+    const scrollY = window.scrollY;
+    html.classList.add("is-mobile-menu-open");
+    body.classList.add("is-mobile-menu-open");
+    body.dataset.scrollLockY = String(scrollY);
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.left = "0";
+    body.style.right = "0";
+    body.style.width = "100%";
+    window.lenis?.stop?.();
+
+    return () => {
+      const lockedY = Number(body.dataset.scrollLockY || 0);
+      html.classList.remove("is-mobile-menu-open");
+      body.classList.remove("is-mobile-menu-open");
+      body.style.position = "";
+      body.style.top = "";
+      body.style.left = "";
+      body.style.right = "";
+      body.style.width = "";
+      delete body.dataset.scrollLockY;
+      window.lenis?.start?.();
+      window.scrollTo(0, lockedY);
+    };
+  }, [isMenuOpen]);
+
   useEffect(() => {
     const medicalObserver = new IntersectionObserver(
       ([entry]) => {
@@ -239,6 +277,15 @@ export default function Home() {
           className={`mobile-menu ${isMenuOpen ? "is-open" : ""}`}
         aria-label="モバイルナビゲーション"
       >
+          <button
+            type="button"
+            className="mobile-menu-close"
+            onClick={() => setIsMenuOpen(false)}
+            aria-label="メニューを閉じる"
+          >
+            <span></span>
+            <span></span>
+          </button>
           <a href="#features" onClick={() => setIsMenuOpen(false)}>当院の特徴</a>
           <a href="#service" onClick={() => setIsMenuOpen(false)}>診療案内</a>
           <a href="#facility" onClick={() => setIsMenuOpen(false)}>施設紹介</a>

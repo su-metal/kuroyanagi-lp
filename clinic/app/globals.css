@@ -69,6 +69,17 @@ body {
   overflow-x: hidden;
 }
 
+body.is-mobile-menu-open {
+  overflow: hidden !important;
+  touch-action: none;
+}
+
+html.is-mobile-menu-open,
+html.is-mobile-menu-open body {
+  overflow: hidden !important;
+  overscroll-behavior: none;
+}
+
 /* Lenis */
 html.lenis,
 html.lenis body {
@@ -435,6 +446,8 @@ ul {
     z-index: 1050;
     display: block;
     background: rgba(7, 48, 78, 0.2);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -487,6 +500,37 @@ ul {
     transform: translateY(0) scale(1);
   }
 
+  .mobile-menu-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 999px;
+    background: var(--primary-blue);
+    cursor: pointer;
+  }
+
+  .mobile-menu-close span {
+    position: absolute;
+    width: 18px;
+    height: 2px;
+    border-radius: 999px;
+    background: #fff;
+  }
+
+  .mobile-menu-close span:first-child {
+    transform: rotate(45deg);
+  }
+
+  .mobile-menu-close span:last-child {
+    transform: rotate(-45deg);
+  }
+
   .mobile-menu>a {
     display: flex;
     align-items: center;
@@ -528,7 +572,7 @@ ul {
 
   .mobile-menu-actions a:first-child {
     background: var(--accent-yellow);
-    color: #173957;
+    color: #fff;
   }
 }
 
@@ -1842,7 +1886,7 @@ ul {
     grid-template-columns: 1fr;
     max-width: 680px;
     margin: 0 auto;
-    padding: 28px;
+    padding: 72px 28px 28px;
     border-radius: 26px;
   }
 
@@ -6663,6 +6707,8 @@ ul {
     z-index: 1050;
     display: block;
     background: rgba(7, 48, 78, 0.24);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -6701,6 +6747,37 @@ ul {
     visibility: visible;
     pointer-events: auto;
     transform: translateX(0);
+  }
+
+  .mobile-menu-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 999px;
+    background: var(--primary-blue);
+    cursor: pointer;
+  }
+
+  .mobile-menu-close span {
+    position: absolute;
+    width: 18px;
+    height: 2px;
+    border-radius: 999px;
+    background: #fff;
+  }
+
+  .mobile-menu-close span:first-child {
+    transform: rotate(45deg);
+  }
+
+  .mobile-menu-close span:last-child {
+    transform: rotate(-45deg);
   }
 
   .mobile-menu>a {
@@ -6743,6 +6820,7 @@ ul {
 
   .mobile-menu-actions a:first-child {
     background: #1f1f1f;
+    color: #fff;
   }
 }
 
