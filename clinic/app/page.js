@@ -34,6 +34,7 @@ export default function Home() {
   const newsSectionRef = useRef(null);
   const medicalSectionRef = useRef(null);
   const featuresSectionRef = useRef(null);
+  const parallaxRef = useRef(null);
   const [isFeaturesVisible, setIsFeaturesVisible] = useState(false);
   const [activeFeatureIndex, setActiveFeatureIndex] = useState(0);
 
@@ -51,6 +52,44 @@ export default function Home() {
     }, 6000);
     return () => clearInterval(interval);
   }, [heroSliderImages.length]);
+
+  // Dynamic Parallax Logic
+  useEffect(() => {
+    const handleParallax = () => {
+      if (!parallaxRef.current) return;
+      
+      const parent = parallaxRef.current.parentElement;
+      const rect = parent.getBoundingClientRect();
+      const winH = window.innerHeight;
+
+      // Only calculate if the section is partially visible in the viewport
+      if (rect.top < winH && rect.bottom > 0) {
+        // Calculate relative position (-1.0 to 1.0)
+        // 0.0 means the center of the section is at the center of the viewport
+        const center = (rect.top + rect.bottom) / 2;
+        const viewportCenter = winH / 2;
+        const distance = center - viewportCenter;
+        
+        // Intensity of movement (adjustment factor)
+        // Move image by e.g. 15% of container height max
+        const movement = (distance / winH) * 15; 
+        
+        parallaxRef.current.style.setProperty("--parallax-y", `${movement}%`);
+      }
+    };
+
+    // Use Lenis scroll if available, otherwise fallback to window scroll
+    if (window.lenis) {
+      window.lenis.on("scroll", handleParallax);
+    } else {
+      window.addEventListener("scroll", handleParallax);
+    }
+
+    return () => {
+      if (window.lenis) window.lenis.off("scroll", handleParallax);
+      window.removeEventListener("scroll", handleParallax);
+    };
+  }, []);
 
   
   const facilityItems = [
@@ -633,7 +672,7 @@ export default function Home() {
       </section>
 
       <section className="section-parallax-break" aria-label="三ヶ日の風景">
-        <div className="section-parallax-break-inner" aria-hidden="true" />
+        <div className="section-parallax-break-inner" aria-hidden="true" ref={parallaxRef} />
       </section>
 
       {/* --- SERVICE, FACILITY, NEWS SHARED BACKGROUND AREA --- */}
