@@ -54,12 +54,16 @@ export default function Home() {
 
   
   const facilityItems = [
-    { src: "/photo/clinic_011.png", title: "診療環境", desc: "患者さまが安心して治療に専念できるよう、常に清潔で快適な環境づくりに努めています。" },
-    { src: "/photo/clinic_02.png", title: "診察室", desc: "プライバシーに配慮した、清潔感のある診察室です。リラックスしてお話しいただけます。" },
-    { src: "/photo/assets/modern_clinic_reception_interior.png", title: "待合室", desc: "開放感があり、ゆったりとお待ちいただける空間です。落ち着いたインテリアで統一しています。" },
-    { src: "/photo/img3.jpg", title: "医療設備", desc: "正確な診断と安全な治療のために、最新の医療機器を導入しています。" },
-    { src: "/photo/clinic_03.png", title: "院内設備", desc: "院内各所に最新の設備を整え、スムーズな検査と診療を行えるよう配慮しています。" },
-    { src: "/photo/access_entrance.jpg", title: "医院入口", desc: "三ヶ日駅から徒歩圏内にあり、車椅子の方でもスムーズに入っていただけるバリアフリー設計です。" },
+    { src: "/photo/slider/01.jpg", title: "診療環境", desc: "患者さまが安心して治療に専念できるよう、常に清潔で快適な環境づくりに努めています。" },
+    { src: "/photo/slider/02.jpg", title: "診察室", desc: "プライバシーに配慮した、清潔感のある診察室です。リラックスしてお話しいただけます。" },
+    { src: "/photo/slider/03.jpg", title: "待合室", desc: "開放感があり、ゆったりとお待ちいただける空間です。落ち着いたインテリアで統一しています。" },
+    { src: "/photo/slider/04.jpg", title: "医療設備", desc: "正確な診断と安全な治療のために、最新の医療機器を導入しています。" },
+    { src: "/photo/slider/05.jpg", title: "院内設備", desc: "院内各所に最新の設備を整え、スムーズな検査と診療を行えるよう配慮しています。" },
+    { src: "/photo/slider/06.jpg", title: "医院入口", desc: "三ヶ日駅から徒歩圏内にあり、車椅子の方でもスムーズに入っていただけるバリアフリー設計です。" },
+    { src: "/photo/slider/07.jpg", title: "診療環境 (2)", desc: "患者さまが安心して治療に専念できるよう、常に清潔で快適な環境づくりに努めています。" },
+    { src: "/photo/slider/08.jpg", title: "診察室 (2)", desc: "プライバシーに配慮した、清潔感のある診察室です。リラックスしてお話しいただけます。" },
+    { src: "/photo/slider/09.jpg", title: "医療設備 (2)", desc: "正確な診断と安全な治療のために、最新の医療機器を導入しています。" },
+    { src: "/photo/slider/10.jpg", title: "院内設備 (2)", desc: "院内各所に最新の設備を整え、スムーズな検査と診療を行えるよう配慮しています。" },
   ];
 
   useEffect(() => {
@@ -762,7 +766,8 @@ export default function Home() {
                 <p className="related-facility-desc">
                   クロヤナギ医院に併設する施設として、地域での暮らしを支えています。
                 </p>
-                <a
+
+                <a
                   href="https://kuroyanagi-clinic.jp/"
                   target="_blank"
                   rel="noopener noreferrer"

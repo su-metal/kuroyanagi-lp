@@ -1,4 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Noto+Serif+JP:wght@600;700&family=Outfit:wght@400;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Zen+Maru+Gothic:wght@700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Noto+Serif+JP:wght@600;700&family=Outfit:wght@400;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Zen+Maru+Gothic:wght@700;900&display=swap');
 
 :root {
   --primary-blue: #3d62ad;
@@ -1917,8 +1917,8 @@ ul {
   }
 
   .facility-strip-item {
-    width: 200px;
-    height: 280px;
+    width: 320px;
+    height: 240px;
   }
 
   .related-facility-section {
