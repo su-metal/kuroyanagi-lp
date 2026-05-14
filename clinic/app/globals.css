@@ -1374,7 +1374,7 @@ ul {
   font-size: clamp(1.8rem, 3vw, 2.4rem);
   letter-spacing: 0.4em;
   color: var(--text-dark);
-  font-weight: 400;
+  font-weight: 600;
   margin-top: 40px;
 }
 
@@ -1814,8 +1814,8 @@ ul {
   color: #fff;
   font-family: var(--font-modern);
   font-size: clamp(1.4rem, 2vw, 2.4rem);
-  font-weight: 400;
-  letter-spacing: 0.4em;
+  font-weight: 800;
+  letter-spacing: 0.2em;
   line-height: 1.2;
 }
 
@@ -2090,8 +2090,8 @@ ul {
   font-size: clamp(1.8rem, 3vw, 2.4rem);
   font-family: var(--font-modern);
   color: var(--text-dark);
-  font-weight: 400;
-  letter-spacing: 0.4em;
+  font-weight: 600;
+  letter-spacing: 0.2em;
   line-height: normal;
   margin-bottom: 54px;
 }
@@ -4238,13 +4238,13 @@ ul {
   justify-content: center;
   min-height: 34px;
   padding: 0 22px;
-  border: 1.5px solid rgba(51, 51, 51, 0.72);
+  border: 1.5px solid var(--primary-blue);
   border-radius: 999px;
   background: #fff;
   font-family: var(--font-modern);
   font-size: 0.72rem;
   font-weight: 900;
-  color: #333;
+  color: var(--primary-blue);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   white-space: nowrap;
@@ -4253,10 +4253,11 @@ ul {
 .feature-unified-title {
   font-family: var(--font-modern);
   font-size: clamp(1.35rem, 1.65vw, 1.72rem);
-  font-weight: 400;
-  color: var(--primary-blue);
+  font-weight: 600;
+  color: var(--text-color);
   line-height: 1.45;
   margin-bottom: clamp(20px, 2.4vw, 30px);
+  letter-spacing: 0.08em;
 }
 
 .feature-unified-text {
@@ -4347,7 +4348,7 @@ ul {
 .features-sticky-card.is-intro .features-sticky-card-title {
   color: var(--text-dark);
   font-size: clamp(1.45rem, 1.8vw, 1.9rem);
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.45;
   margin-bottom: 24px;
 }
@@ -5734,7 +5735,7 @@ ul {
 
 .access-method-text h6 {
   font-size: 1.1rem;
-  color: #122;
+  color: var(--text-color);
   font-weight: 800;
   margin-bottom: 12px;
   font-family: var(--font-modern);
@@ -5742,7 +5743,7 @@ ul {
 
 .access-method-text p {
   font-size: 0.95rem;
-  color: #243845;
+  color: var(--text-color);
   line-height: 1.85;
   margin: 0;
 }
@@ -6006,7 +6007,7 @@ ul {
   padding-bottom: 14px;
   border-bottom: 1px dotted #77a9ed;
   font-family: var(--font-sans);
-  color: #193b68;
+  color: var(--text-color);
   font-weight: 700;
   letter-spacing: 0.04em;
 }
