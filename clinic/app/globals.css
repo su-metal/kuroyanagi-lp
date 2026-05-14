@@ -1298,6 +1298,7 @@ ul {
   }
 }
 
+
 /* --- SERVICE, FACILITY, NEWS SHARED BACKGROUND AREA --- */
 .sections-with-bg-arc {
   position: relative;
@@ -4819,15 +4820,17 @@ ul {
 
 .section-parallax-break-inner {
   position: absolute;
-  inset: -12% 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-image: linear-gradient(rgba(255, 255, 255, 0.08),
       rgba(255, 255, 255, 0.08)),
     url("/photo/Parallax.jpg");
   background-size: cover;
-  background-position: center 58%;
+  background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  transform: translateZ(0);
 }
 
 @media (max-width: 1024px) {
@@ -7355,9 +7358,9 @@ ul {
     opacity: 1;
   }
 
-  /* 2枚目の画像（hero-02）を右にずらし、左側を中央に寄せる */
+  /* 2枚目の画像（hero-02）を右にずらし、左側を中央に寄せる（建物名を見せる） */
   .hero-editorial-slider img:nth-child(2) {
-    object-position: 45% top;
+    object-position: 43% top;
   }
 
   .hero-editorial-slider img:nth-child(3) {
