@@ -7355,6 +7355,15 @@ ul {
     opacity: 1;
   }
 
+  /* 2枚目の画像（hero-02）を右にずらし、左側を中央に寄せる */
+  .hero-editorial-slider img:nth-child(2) {
+    object-position: 45% top;
+  }
+
+  .hero-editorial-slider img:nth-child(3) {
+    object-position: 50% top;
+  }
+
   /* ===================================================
      Schedule Card - lower right
   =================================================== */
