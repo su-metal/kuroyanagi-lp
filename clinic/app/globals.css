@@ -4154,14 +4154,14 @@ ul {
   display: grid;
   grid-template-columns: minmax(280px, 0.92fr) minmax(300px, 1fr);
   align-items: center;
-  gap: clamp(34px, 4vw, 58px);
-  padding: clamp(42px, 5vw, 68px);
-  border: 1px solid rgba(61, 98, 173, 0.14);
-  border-radius: clamp(42px, 5vw, 70px);
+  gap: clamp(28px, 3.2vw, 44px);
+  padding: clamp(32px, 4vw, 48px);
+  border: 1px solid rgba(61, 98, 173, 0.1);
+  border-radius: clamp(36px, 4.2vw, 56px);
   background:
-    radial-gradient(rgba(61, 98, 173, 0.08) 1px, transparent 1px) 0 0 / 18px 18px,
+    radial-gradient(rgba(61, 98, 173, 0.05) 1px, transparent 1px) 0 0 / 22px 22px,
     #ffffff;
-  /* box-shadow: 0 22px 70px rgba(26, 63, 94, 0.08); */
+  box-shadow: none !important;
   z-index: 1;
   overflow: visible;
 }
@@ -4230,42 +4230,42 @@ ul {
 
 
 .feature-unified-label-wrap {
-  margin-bottom: clamp(20px, 2.4vw, 30px);
+  margin-bottom: clamp(16px, 2vw, 24px);
 }
 
 .feature-unified-label {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 34px;
-  padding: 0 22px;
-  border: 1.5px solid var(--primary-blue);
+  min-height: 30px;
+  padding: 0 18px;
+  border: 1px solid rgba(61, 98, 173, 0.24);
   border-radius: 999px;
-  background: #fff;
+  background: rgba(61, 98, 173, 0.04);
   font-family: var(--font-modern);
-  font-size: 0.72rem;
-  font-weight: 900;
+  font-size: 0.68rem;
+  font-weight: 700;
   color: var(--primary-blue);
-  letter-spacing: 0.18em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
 .feature-unified-title {
   font-family: var(--font-modern);
-  font-size: clamp(1.35rem, 1.65vw, 1.72rem);
-  font-weight: 600;
-  color: var(--text-color);
-  line-height: 1.45;
-  margin-bottom: clamp(20px, 2.4vw, 30px);
-  letter-spacing: 0.08em;
+  font-size: clamp(1.4rem, 1.8vw, 1.85rem);
+  font-weight: 700;
+  color: var(--primary-blue);
+  line-height: 1.4;
+  margin-bottom: clamp(16px, 2vw, 24px);
+  letter-spacing: 0.12em;
 }
 
 .feature-unified-text {
-  font-size: clamp(0.96rem, 1.1vw, 1.08rem);
-  line-height: 2;
-  color: #556677;
-  letter-spacing: 0.04em;
+  font-size: clamp(0.92rem, 1.05vw, 1.05rem);
+  line-height: 2.1;
+  color: #667788;
+  letter-spacing: 0.05em;
 }
 
 .features-sticky-card:not(.is-intro)::after {
@@ -4281,10 +4281,10 @@ ul {
   width: min(100%, clamp(720px, 58vw, 900px));
   aspect-ratio: 3 / 2;
   background: #fff;
-  padding: clamp(54px, 5.8vw, 84px);
-  border: 1px solid rgba(61, 98, 173, 0.14);
-  border-radius: clamp(42px, 5vw, 70px);
-  box-shadow: 0 22px 70px rgba(26, 63, 94, 0.08);
+  padding: clamp(32px, 4vw, 48px);
+  border: 1px solid rgba(61, 98, 173, 0.1);
+  border-radius: clamp(36px, 4.2vw, 56px);
+  box-shadow: none !important;
 }
 
 .features-sticky-card:nth-of-type(2) {
@@ -4347,18 +4347,21 @@ ul {
 }
 
 .features-sticky-card.is-intro .features-sticky-card-title {
-  color: var(--text-dark);
-  font-size: clamp(1.45rem, 1.8vw, 1.9rem);
-  font-weight: 600;
-  line-height: 1.45;
+  color: var(--primary-blue);
+  font-size: clamp(1.5rem, 2vw, 2.1rem);
+  font-weight: 700;
+  line-height: 1.4;
   margin-bottom: 24px;
+  letter-spacing: 0.12em;
 }
 
 .features-sticky-card.is-intro .features-sticky-card-text {
   max-width: 42em;
-  color: #40556d;
-  font-size: clamp(1rem, 1.1vw, 1.12rem);
-  font-weight: 600;
+  color: #667788;
+  font-size: clamp(1.02rem, 1.15vw, 1.18rem);
+  line-height: 2.1;
+  font-weight: 500;
+  letter-spacing: 0.05em;
 }
 
 .features-intro-range {
@@ -4625,10 +4628,12 @@ ul {
     width: 100%;
     aspect-ratio: auto;
     grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 20px;
-    border-radius: 18px;
-    box-shadow: 0 14px 38px rgba(26, 63, 94, 0.06);
+    gap: 16px;
+    padding: 22px;
+    border: 1px solid rgba(61, 98, 173, 0.1);
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: none !important;
   }
 
   .feature-unified-number {
@@ -4674,7 +4679,7 @@ ul {
     border: 0;
     border-radius: 0;
     background: transparent;
-    box-shadow: none;
+    box-shadow: none !important;
   }
 
   .features-sticky-card.is-intro .features-sticky-card-body-inner {
@@ -4700,21 +4705,29 @@ ul {
   }
 
   .features-sticky-card.is-intro .features-sticky-card-title {
-    font-size: 1.28rem;
-    line-height: 1.55;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    line-height: 1.45;
     margin-bottom: 16px;
+    letter-spacing: 0.1em;
   }
 
   .features-sticky-card.is-intro .features-sticky-card-text {
-    font-size: 0.95rem;
-    line-height: 1.9;
+    font-size: 0.92rem;
+    line-height: 2;
+    color: #667788;
     font-weight: 500;
+    letter-spacing: 0.04em;
   }
 
   .feature-unified-title {
-    font-size: 1.28rem;
-    line-height: 1.5;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    line-height: 1.45;
     margin-bottom: 14px;
+    letter-spacing: 0.1em;
   }
 
   .feature-unified-text {

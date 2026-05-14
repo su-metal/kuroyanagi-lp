@@ -35,6 +35,9 @@ export default function Home() {
   const medicalSectionRef = useRef(null);
   const featuresSectionRef = useRef(null);
   const parallaxRef = useRef(null);
+  const parallaxTargetY = useRef(0);
+  const parallaxCurrentY = useRef(0);
+  const parallaxRafId = useRef(null);
   const [isFeaturesVisible, setIsFeaturesVisible] = useState(false);
   const [activeFeatureIndex, setActiveFeatureIndex] = useState(0);
 
@@ -53,9 +56,22 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [heroSliderImages.length]);
 
-  // Dynamic Parallax Logic
+  // Dynamic Parallax Logic with Smooth Lerp
   useEffect(() => {
-    const handleParallax = () => {
+    let isInitialCalculation = true;
+
+    const updateParallax = () => {
+      // Lerp logic: current = current + (target - current) * factor
+      parallaxCurrentY.current += (parallaxTargetY.current - parallaxCurrentY.current) * 0.08;
+      
+      if (parallaxRef.current) {
+        parallaxRef.current.style.setProperty("--parallax-y", `${parallaxCurrentY.current}%`);
+      }
+      
+      parallaxRafId.current = requestAnimationFrame(updateParallax);
+    };
+
+    const handleScroll = () => {
       if (!parallaxRef.current) return;
       
       const parent = parallaxRef.current.parentElement;
@@ -65,29 +81,37 @@ export default function Home() {
       // Only calculate if the section is partially visible in the viewport
       if (rect.top < winH && rect.bottom > 0) {
         // Calculate relative position (-1.0 to 1.0)
-        // 0.0 means the center of the section is at the center of the viewport
         const center = (rect.top + rect.bottom) / 2;
         const viewportCenter = winH / 2;
         const distance = center - viewportCenter;
         
         // Intensity of movement (adjustment factor)
-        // Move image by e.g. 15% of container height max
-        const movement = (distance / winH) * 15; 
-        
-        parallaxRef.current.style.setProperty("--parallax-y", `${movement}%`);
+        parallaxTargetY.current = (distance / winH) * 15; 
+
+        // On mount/reload, sync current position immediately to avoid the sliding effect
+        if (isInitialCalculation) {
+          parallaxCurrentY.current = parallaxTargetY.current;
+          isInitialCalculation = false;
+        }
       }
     };
 
-    // Use Lenis scroll if available, otherwise fallback to window scroll
+    // Start the animation loop
+    parallaxRafId.current = requestAnimationFrame(updateParallax);
+
+    // Perform initial calculation immediately for reload scroll restoration
+    handleScroll();
+
+    // Listen for scroll events (both Lenis and native for reliability)
     if (window.lenis) {
-      window.lenis.on("scroll", handleParallax);
-    } else {
-      window.addEventListener("scroll", handleParallax);
+      window.lenis.on("scroll", handleScroll);
     }
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
-      if (window.lenis) window.lenis.off("scroll", handleParallax);
-      window.removeEventListener("scroll", handleParallax);
+      if (parallaxRafId.current) cancelAnimationFrame(parallaxRafId.current);
+      if (window.lenis) window.lenis.off("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
