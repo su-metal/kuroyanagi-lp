@@ -415,17 +415,94 @@
             object-fit: cover;
             object-position: center 42%;
         }
-        .horizontal-scroll {
+        .facility-gallery-main {
+            aspect-ratio: 16 / 9;
+        }
+        .facility-gallery-photo {
+            transition: opacity 0.35s ease;
+        }
+        .facility-gallery-photo.opacity-0 {
+            opacity: 0;
+        }
+        .facility-gallery-thumb {
             scrollbar-width: none;
             -ms-overflow-style: none;
         }
-        .horizontal-scroll::-webkit-scrollbar {
+        .facility-gallery-thumb::-webkit-scrollbar {
             display: none;
         }
-        .horizontal-scroll.is-dragging {
-            cursor: grabbing;
-            scroll-snap-type: none;
-            user-select: none;
+        .facility-gallery-thumb-button {
+            flex: 0 0 clamp(104px, 12vw, 150px);
+        }
+        .facility-gallery-thumb-button[aria-selected="true"] {
+            border-color: rgba(0, 54, 127, 0.65);
+            box-shadow: 0 16px 40px rgba(0, 54, 127, 0.12);
+            transform: translateY(-2px);
+        }
+        .facility-simple-slider {
+            display: flex;
+            gap: 1.125rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .facility-simple-slider::-webkit-scrollbar {
+            display: none;
+        }
+        .facility-simple-slide {
+            flex: 0 0 min(78vw, 420px);
+            scroll-snap-align: start;
+        }
+        .facility-simple-progress {
+            position: relative;
+            height: 3px;
+            overflow: hidden;
+            background: rgba(0, 54, 127, 0.14);
+        }
+        .facility-simple-progress-bar {
+            display: block;
+            width: 0;
+            height: 100%;
+            background: rgba(0, 54, 127, 0.65);
+            transition: width 0.25s ease;
+        }
+        @media (min-width: 1024px) {
+            .facility-simple-slide {
+                flex-basis: min(42vw, 540px);
+            }
+        }
+        .facility-marquee {
+            display: none;
+            overflow: hidden;
+        }
+        .facility-marquee-track {
+            display: flex;
+            width: max-content;
+            gap: 1.25rem;
+            animation: facilityMarquee 86s linear infinite;
+        }
+        .facility-marquee:hover .facility-marquee-track {
+            animation-play-state: paused;
+        }
+        .facility-marquee-card {
+            flex: 0 0 clamp(260px, 32vw, 420px);
+        }
+        @keyframes facilityMarquee {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(calc(-50% - 0.625rem));
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .facility-marquee {
+                overflow-x: auto;
+            }
+            .facility-marquee-track {
+                animation: none;
+            }
         }
     </style>
 </head>
@@ -708,7 +785,7 @@
                     <p class="text-text-main/80 text-base md:text-lg leading-loose mb-10 reveal" style="transition-delay: 0.2s;">
                         家庭のように明るく落ち着いた雰囲気を大切にしながら、プライバシーに配慮した居室と開放的な共用空間を整えています。5階建ての館内には、個室・2人部屋・4人部屋をご用意し、ご状態やご希望に応じた環境づくりに努めています。入所サービスに加えて通所リハビリテーションにも対応し、ご自宅での暮らしを見据えた支援体制を整えています。
                     </p>
-                    <ul class="grid gap-5 md:grid-cols-3 reveal" style="transition-delay: 0.3s;">
+                    <ul class="grid gap-3 md:grid-cols-3 reveal" style="transition-delay: 0.3s;">
                         <li class="flex items-start gap-4 rounded-[1.75rem] border border-primary/10 bg-[#f4f8fc] p-5">
                             <span class="material-symbols-outlined text-secondary mt-0.5">check_circle</span>
                             <span class="font-bold text-primary leading-relaxed">個室・2人部屋・4人部屋を備えた居室構成</span>
@@ -725,67 +802,408 @@
                 </div>
 
                 <div class="reveal" style="transition-delay: 0.35s;">
-                    <div class="hidden lg:flex items-center justify-end gap-3 mb-5">
-                        <p class="mr-3 text-sm font-bold tracking-[0.18em] text-primary/55">写真を左右に送れます</p>
-                        <button type="button" class="facility-slider-button inline-flex h-12 w-12 items-center justify-center rounded-full border border-primary/10 bg-white text-primary shadow-sm transition-colors hover:border-primary hover:bg-primary hover:text-white" data-facility-slider-prev aria-label="前の施設写真を見る">
-                            <span class="material-symbols-outlined">arrow_back</span>
-                        </button>
-                        <button type="button" class="facility-slider-button inline-flex h-12 w-12 items-center justify-center rounded-full border border-primary/10 bg-white text-primary shadow-sm transition-colors hover:border-primary hover:bg-primary hover:text-white" data-facility-slider-next aria-label="次の施設写真を見る">
-                            <span class="material-symbols-outlined">arrow_forward</span>
-                        </button>
-                    </div>
-                    <div class="horizontal-scroll flex gap-5 overflow-x-auto pb-4 lg:cursor-grab" data-facility-slider>
-                        <article class="min-w-[88%] md:min-w-[64%] xl:min-w-[52%] overflow-hidden rounded-[2.5rem] border border-primary/5 bg-white">
-                            <div class="relative">
-                                <img src="photo/facility_lobby.jpg" alt="ロビー" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover" draggable="false">
-                                <div class="p-5 md:p-8">
-                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">空間 01</p>
-                                    <h3 class="text-xl md:text-3xl font-bold text-primary mb-2">開放感のあるロビー</h3>
-                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">ご家族が見学に来たときにも、明るく落ち着いた空気が伝わる共用空間です。</p>
-                                </div>
-                            </div>
+                    <div class="facility-simple-slider" aria-label="施設写真" data-facility-simple-slider>
+                        <article class="facility-simple-slide">
+                            <img src="photo/facility_lobby.jpg" alt="ロビー" class="w-full aspect-[2/1.32] rounded-[1rem] object-cover">
                         </article>
-
-                        <article class="min-w-[88%] md:min-w-[64%] xl:min-w-[52%] overflow-hidden rounded-[2.5rem] border border-primary/5 bg-white">
-                            <div class="relative">
-                                <img src="photo/facility_lounge.jpg" alt="談話室" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover" draggable="false">
-                                <div class="p-5 md:p-8">
-                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">空間 02</p>
-                                    <h3 class="text-xl md:text-3xl font-bold text-primary mb-2">安らぎの談話スペース</h3>
-                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">他の利用者様やスタッフとの距離感が心地よい、日中の居場所としての空間です。</p>
-                                </div>
-                            </div>
+                        <article class="facility-simple-slide">
+                            <img src="photo/facility_lounge.jpg" alt="談話スペース" class="w-full aspect-[2/1.32] rounded-[1rem] object-cover">
                         </article>
-
-                        <article class="min-w-[88%] md:min-w-[64%] xl:min-w-[52%] overflow-hidden rounded-[2.5rem] border border-primary/5 bg-white">
-                            <div class="relative">
-                                <img src="photo/access_entrance.jpg" alt="エントランス" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover" draggable="false">
-                                <div class="p-5 md:p-8">
-                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">空間 03</p>
-                                    <h3 class="text-xl md:text-3xl font-bold text-primary mb-2">バリアフリーな玄関</h3>
-                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">見学や面談の段階から、入りやすさそのものが安心につながる入口です。</p>
-                                </div>
-                            </div>
+                        <article class="facility-simple-slide">
+                            <img src="photo/access_entrance.jpg" alt="玄関" class="w-full aspect-[2/1.32] rounded-[1rem] object-cover">
                         </article>
-
-                        <article class="min-w-[88%] md:min-w-[64%] xl:min-w-[52%] overflow-hidden rounded-[2.5rem] border border-primary/5 bg-white">
-                            <div class="relative">
-                                <img src="photo/facility_courtyard.jpg" alt="中庭" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover" draggable="false">
-                                <div class="p-5 md:p-8">
-                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">空間 04</p>
-                                    <h3 class="text-xl md:text-3xl font-bold text-primary mb-2">光あふれる中庭</h3>
-                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">三ヶ日の自然を感じられる環境も、在宅復帰へ向かう日々を穏やかに支えます。</p>
-                                </div>
-                            </div>
+                        <article class="facility-simple-slide">
+                            <img src="photo/入床部屋.png" alt="居室" class="w-full aspect-[2/1.32] rounded-[1rem] object-cover">
+                        </article>
+                        <article class="facility-simple-slide">
+                            <img src="photo/facility_courtyard.jpg" alt="中庭" class="w-full aspect-[2/1.32] rounded-[1rem] object-cover">
+                        </article>
+                        <article class="facility-simple-slide">
+                            <img src="photo/受付け.JPG" alt="受付" class="w-full aspect-[2/1.32] rounded-[1rem] object-cover">
+                        </article>
+                        <article class="facility-simple-slide">
+                            <img src="photo/待合室.JPG" alt="待合室" class="w-full aspect-[2/1.32] rounded-[1rem] object-cover">
+                        </article>
+                        <article class="facility-simple-slide">
+                            <img src="photo/化粧室.JPG" alt="化粧室" class="w-full aspect-[2/1.32] rounded-[1rem] object-cover">
                         </article>
                     </div>
-                    <div class="mt-5 flex items-center justify-center gap-3 lg:hidden">
-                        <button type="button" class="facility-slider-button inline-flex h-12 w-12 items-center justify-center rounded-full border border-primary/10 bg-white text-primary shadow-sm transition-colors hover:border-primary hover:bg-primary hover:text-white" data-facility-slider-prev aria-label="前の施設写真を見る">
-                            <span class="material-symbols-outlined">arrow_back</span>
-                        </button>
-                        <button type="button" class="facility-slider-button inline-flex h-12 w-12 items-center justify-center rounded-full border border-primary/10 bg-white text-primary shadow-sm transition-colors hover:border-primary hover:bg-primary hover:text-white" data-facility-slider-next aria-label="次の施設写真を見る">
-                            <span class="material-symbols-outlined">arrow_forward</span>
-                        </button>
+                    <div class="mt-8 flex items-center gap-6">
+                        <div class="flex shrink-0 items-center gap-3">
+                            <button type="button" class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-white text-primary/35 shadow-sm transition-colors hover:text-primary" data-facility-simple-prev aria-label="前の施設写真を見る">
+                                <span class="material-symbols-outlined">arrow_back</span>
+                            </button>
+                            <button type="button" class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#eef5fa] text-primary shadow-sm transition-colors hover:bg-primary hover:text-white" data-facility-simple-next aria-label="次の施設写真を見る">
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </button>
+                        </div>
+                        <div class="facility-simple-progress flex-1" aria-hidden="true">
+                            <span class="facility-simple-progress-bar" data-facility-simple-progress></span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-5 hidden" data-facility-gallery-disabled>
+                        <div class="facility-gallery-main relative overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-primary/5">
+                            <img src="photo/facility_lobby.jpg" alt="開放感のあるロビー" class="facility-gallery-photo absolute inset-0 h-full w-full object-cover" data-gallery-main-image>
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/10 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-5 md:p-8 text-white">
+                                <p class="text-xs font-bold tracking-[0.28em] text-white/70 mb-2" data-gallery-main-label>FACILITY 01</p>
+                                <h3 class="text-2xl md:text-4xl font-bold leading-relaxed mb-2" data-gallery-main-title>開放感のあるロビー</h3>
+                                <p class="max-w-2xl text-sm md:text-base text-white/85 leading-loose" data-gallery-main-description>館内の明るさと落ち着きが伝わる入口の空間です。</p>
+                            </div>
+                        </div>
+
+                        <div class="facility-gallery-thumb flex gap-3 overflow-x-auto pb-2" role="tablist" aria-label="施設写真">
+                            <button type="button" class="facility-gallery-thumb-button rounded-[1rem] border border-primary/10 bg-white p-1.5 text-left transition-all" aria-selected="true" data-gallery-thumb data-image="photo/facility_lobby.jpg" data-alt="開放感のあるロビー" data-label="FACILITY 01" data-title="開放感のあるロビー" data-description="館内の明るさと落ち着きが伝わる入口の空間です。">
+                                <img src="photo/facility_lobby.jpg" alt="" class="aspect-[4/3] w-full rounded-[0.75rem] object-cover">
+                                <span class="mt-2 block px-1 pb-1 text-xs font-bold text-primary">ロビー</span>
+                            </button>
+                            <button type="button" class="facility-gallery-thumb-button rounded-[1rem] border border-primary/10 bg-white p-1.5 text-left transition-all" aria-selected="false" data-gallery-thumb data-image="photo/facility_lounge.jpg" data-alt="安らぎの談話スペース" data-label="FACILITY 02" data-title="安らぎの談話スペース" data-description="日中の居場所として、自然に人が集まる共用スペースです。">
+                                <img src="photo/facility_lounge.jpg" alt="" class="aspect-[4/3] w-full rounded-[0.75rem] object-cover">
+                                <span class="mt-2 block px-1 pb-1 text-xs font-bold text-primary">談話スペース</span>
+                            </button>
+                            <button type="button" class="facility-gallery-thumb-button rounded-[1rem] border border-primary/10 bg-white p-1.5 text-left transition-all" aria-selected="false" data-gallery-thumb data-image="photo/access_entrance.jpg" data-alt="バリアフリーな玄関" data-label="FACILITY 03" data-title="バリアフリーな玄関" data-description="車いすや歩行補助具をご利用の方にも配慮した入口です。">
+                                <img src="photo/access_entrance.jpg" alt="" class="aspect-[4/3] w-full rounded-[0.75rem] object-cover">
+                                <span class="mt-2 block px-1 pb-1 text-xs font-bold text-primary">玄関</span>
+                            </button>
+                            <button type="button" class="facility-gallery-thumb-button rounded-[1rem] border border-primary/10 bg-white p-1.5 text-left transition-all" aria-selected="false" data-gallery-thumb data-image="photo/入床部屋.png" data-alt="居室" data-label="FACILITY 04" data-title="居室" data-description="個室・2人部屋・4人部屋など、ご状態に応じた生活空間を紹介します。">
+                                <img src="photo/入床部屋.png" alt="" class="aspect-[4/3] w-full rounded-[0.75rem] object-cover">
+                                <span class="mt-2 block px-1 pb-1 text-xs font-bold text-primary">居室</span>
+                            </button>
+                            <button type="button" class="facility-gallery-thumb-button rounded-[1rem] border border-primary/10 bg-white p-1.5 text-left transition-all" aria-selected="false" data-gallery-thumb data-image="photo/facility_courtyard.jpg" data-alt="中庭・周辺環境" data-label="FACILITY 05" data-title="中庭・周辺環境" data-description="三ヶ日の自然を感じる外まわりの環境です。">
+                                <img src="photo/facility_courtyard.jpg" alt="" class="aspect-[4/3] w-full rounded-[0.75rem] object-cover">
+                                <span class="mt-2 block px-1 pb-1 text-xs font-bold text-primary">中庭</span>
+                            </button>
+                            <button type="button" class="facility-gallery-thumb-button rounded-[1rem] border border-primary/10 bg-white p-1.5 text-left transition-all" aria-selected="false" data-gallery-thumb data-image="photo/受付け.JPG" data-alt="受付" data-label="FACILITY 06" data-title="受付" data-description="来訪時のご相談やお手続きの入口となるスペースです。">
+                                <img src="photo/受付け.JPG" alt="" class="aspect-[4/3] w-full rounded-[0.75rem] object-cover">
+                                <span class="mt-2 block px-1 pb-1 text-xs font-bold text-primary">受付</span>
+                            </button>
+                            <button type="button" class="facility-gallery-thumb-button rounded-[1rem] border border-primary/10 bg-white p-1.5 text-left transition-all" aria-selected="false" data-gallery-thumb data-image="photo/待合室.JPG" data-alt="待合室" data-label="FACILITY 07" data-title="待合室" data-description="ご家族や来訪者が落ち着いて過ごせる待合空間です。">
+                                <img src="photo/待合室.JPG" alt="" class="aspect-[4/3] w-full rounded-[0.75rem] object-cover">
+                                <span class="mt-2 block px-1 pb-1 text-xs font-bold text-primary">待合室</span>
+                            </button>
+                            <button type="button" class="facility-gallery-thumb-button rounded-[1rem] border border-primary/10 bg-white p-1.5 text-left transition-all" aria-selected="false" data-gallery-thumb data-image="photo/化粧室.JPG" data-alt="化粧室" data-label="FACILITY 08" data-title="化粧室" data-description="清潔感や使いやすさが伝わる水まわりの写真です。">
+                                <img src="photo/化粧室.JPG" alt="" class="aspect-[4/3] w-full rounded-[0.75rem] object-cover">
+                                <span class="mt-2 block px-1 pb-1 text-xs font-bold text-primary">化粧室</span>
+                            </button>
+                            <button type="button" class="facility-gallery-thumb-button rounded-[1rem] border border-primary/10 bg-white p-1.5 text-left transition-all" aria-selected="false" data-gallery-thumb data-image="photo/点滴室.JPG" data-alt="点滴室" data-label="FACILITY 09" data-title="点滴室" data-description="医療的なケアにも対応できる落ち着いた空間です。">
+                                <img src="photo/点滴室.JPG" alt="" class="aspect-[4/3] w-full rounded-[0.75rem] object-cover">
+                                <span class="mt-2 block px-1 pb-1 text-xs font-bold text-primary">点滴室</span>
+                            </button>
+                            <button type="button" class="facility-gallery-thumb-button rounded-[1rem] border border-primary/10 bg-white p-1.5 text-left transition-all" aria-selected="false" data-gallery-thumb data-image="photo/レントゲン室.JPG" data-alt="レントゲン室" data-label="FACILITY 10" data-title="レントゲン室" data-description="関連する医療設備の雰囲気もあわせて紹介します。">
+                                <img src="photo/レントゲン室.JPG" alt="" class="aspect-[4/3] w-full rounded-[0.75rem] object-cover">
+                                <span class="mt-2 block px-1 pb-1 text-xs font-bold text-primary">レントゲン室</span>
+                            </button>
+                            <button type="button" class="facility-gallery-thumb-button rounded-[1rem] border border-primary/10 bg-white p-1.5 text-left transition-all" aria-selected="false" data-gallery-thumb data-image="photo/CT検査装置＿01.JPG" data-alt="CT検査装置" data-label="FACILITY 11" data-title="CT検査装置" data-description="医療連携や検査設備の安心感につながる写真です。">
+                                <img src="photo/CT検査装置＿01.JPG" alt="" class="aspect-[4/3] w-full rounded-[0.75rem] object-cover">
+                                <span class="mt-2 block px-1 pb-1 text-xs font-bold text-primary">CT検査装置</span>
+                            </button>
+                        </div>
+
+                        <div class="grid gap-3 md:grid-cols-3">
+                            <article class="relative overflow-hidden rounded-[1.5rem] min-h-[150px] md:min-h-[190px]">
+                                <img src="photo/Parallax.jpg" alt="三ヶ日の自然を感じる風景" class="absolute inset-0 h-full w-full object-cover">
+                                <div class="absolute inset-0 bg-primary/25"></div>
+                                <p class="absolute bottom-4 left-4 right-4 text-base md:text-lg font-bold leading-relaxed text-white">三ヶ日の穏やかな空気の中で。</p>
+                            </article>
+                            <article class="relative overflow-hidden rounded-[1.5rem] min-h-[150px] md:min-h-[190px]">
+                                <img src="photo/環境01.png" alt="周辺環境" class="absolute inset-0 h-full w-full object-cover">
+                            </article>
+                            <article class="relative overflow-hidden rounded-[1.5rem] min-h-[150px] md:min-h-[190px]">
+                                <img src="photo/環境02.png" alt="自然を感じる環境" class="absolute inset-0 h-full w-full object-cover">
+                            </article>
+                        </div>
+                    </div>
+                    <div class="facility-marquee">
+                        <div class="facility-marquee-track">
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm">
+                                <img src="photo/facility_lobby.jpg" alt="開放感のあるロビー" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">FACILITY 01</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">開放感のあるロビー</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">館内の明るさと落ち着きが伝わる入口の空間です。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm">
+                                <img src="photo/facility_lounge.jpg" alt="安らぎの談話スペース" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">FACILITY 02</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">安らぎの談話スペース</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">日中の居場所として、自然に人が集まる共用スペースです。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm">
+                                <img src="photo/Parallax.jpg" alt="三ヶ日の自然を感じる風景" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">IMAGE CUT</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">穏やかな時間</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">窓辺の光や季節のしつらえなど、暮らしの空気を添えるカットです。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm">
+                                <img src="photo/access_entrance.jpg" alt="バリアフリーな玄関" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">FACILITY 03</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">バリアフリーな玄関</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">車いすや歩行補助具をご利用の方にも配慮した入口です。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm">
+                                <img src="photo/入床部屋.png" alt="居室" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">FACILITY 04</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">居室・食堂・浴室設備</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">見学時に確認したい生活空間を追加できます。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm">
+                                <img src="photo/facility_courtyard.jpg" alt="中庭・周辺環境" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">FACILITY 05</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">中庭・周辺環境</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">三ヶ日の自然を感じる外まわりの環境です。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm">
+                                <img src="photo/受付け.JPG" alt="受付" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">FACILITY 06</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">受付</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">来訪時のご相談やお手続きの入口となるスペースです。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm">
+                                <img src="photo/待合室.JPG" alt="待合室" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">FACILITY 07</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">待合室</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">ご家族や来訪者が落ち着いて過ごせる待合空間です。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm">
+                                <img src="photo/エントランス.JPG" alt="エントランス" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">FACILITY 08</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">エントランス</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">施設に入る前から安心感が伝わる、明るい入口です。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm">
+                                <img src="photo/化粧室.JPG" alt="化粧室" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">FACILITY 09</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">化粧室</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">清潔感や使いやすさが伝わる水まわりの写真を入れています。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm">
+                                <img src="photo/点滴室.JPG" alt="点滴室" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">FACILITY 10</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">点滴室</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">医療的なケアにも対応できる落ち着いた空間です。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm">
+                                <img src="photo/レントゲン室.JPG" alt="レントゲン室" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">FACILITY 11</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">レントゲン室</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">関連する医療設備の雰囲気もあわせて紹介します。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm">
+                                <img src="photo/CT検査装置＿01.JPG" alt="CT検査装置" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">FACILITY 12</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">CT検査装置</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">医療連携や検査設備の安心感につながる写真です。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm">
+                                <img src="photo/看板.JPG" alt="施設看板" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">FACILITY 13</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">施設看板</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">来訪時の目印となる外まわりの情報です。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm">
+                                <img src="photo/環境01.png" alt="周辺環境" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">IMAGE 01</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">周辺環境</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">三ヶ日らしい穏やかな環境を伝えるイメージカットです。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm">
+                                <img src="photo/環境02.png" alt="自然を感じる環境" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">IMAGE 02</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">自然を感じる環境</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">暮らしの背景にある、静かで落ち着いた空気感を添えます。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm" aria-hidden="true">
+                                <img src="photo/facility_lobby.jpg" alt="" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">FACILITY 01</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">開放感のあるロビー</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">館内の明るさと落ち着きが伝わる入口の空間です。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm" aria-hidden="true">
+                                <img src="photo/facility_lounge.jpg" alt="" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">FACILITY 02</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">安らぎの談話スペース</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">日中の居場所として、自然に人が集まる共用スペースです。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm" aria-hidden="true">
+                                <img src="photo/Parallax.jpg" alt="" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">IMAGE CUT</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">穏やかな時間</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">窓辺の光や季節のしつらえなど、暮らしの空気を添えるカットです。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm" aria-hidden="true">
+                                <img src="photo/access_entrance.jpg" alt="" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">FACILITY 03</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">バリアフリーな玄関</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">車いすや歩行補助具をご利用の方にも配慮した入口です。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm" aria-hidden="true">
+                                <img src="photo/入床部屋.png" alt="" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">FACILITY 04</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">居室・食堂・浴室設備</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">見学時に確認したい生活空間を追加できます。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm" aria-hidden="true">
+                                <img src="photo/facility_courtyard.jpg" alt="" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">FACILITY 05</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">中庭・周辺環境</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">三ヶ日の自然を感じる外まわりの環境です。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm" aria-hidden="true">
+                                <img src="photo/受付け.JPG" alt="" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">FACILITY 06</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">受付</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">来訪時のご相談やお手続きの入口となるスペースです。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm" aria-hidden="true">
+                                <img src="photo/待合室.JPG" alt="" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">FACILITY 07</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">待合室</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">ご家族や来訪者が落ち着いて過ごせる待合空間です。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm" aria-hidden="true">
+                                <img src="photo/エントランス.JPG" alt="" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">FACILITY 08</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">エントランス</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">施設に入る前から安心感が伝わる、明るい入口です。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm" aria-hidden="true">
+                                <img src="photo/化粧室.JPG" alt="" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">FACILITY 09</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">化粧室</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">清潔感や使いやすさが伝わる水まわりの写真を入れています。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm" aria-hidden="true">
+                                <img src="photo/点滴室.JPG" alt="" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">FACILITY 10</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">点滴室</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">医療的なケアにも対応できる落ち着いた空間です。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm" aria-hidden="true">
+                                <img src="photo/レントゲン室.JPG" alt="" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">FACILITY 11</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">レントゲン室</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">関連する医療設備の雰囲気もあわせて紹介します。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm" aria-hidden="true">
+                                <img src="photo/CT検査装置＿01.JPG" alt="" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">FACILITY 12</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">CT検査装置</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">医療連携や検査設備の安心感につながる写真です。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm" aria-hidden="true">
+                                <img src="photo/看板.JPG" alt="" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">FACILITY 13</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">施設看板</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">来訪時の目印となる外まわりの情報です。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm" aria-hidden="true">
+                                <img src="photo/環境01.png" alt="" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">IMAGE 01</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">周辺環境</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">三ヶ日らしい穏やかな環境を伝えるイメージカットです。</p>
+                                </div>
+                            </article>
+
+                            <article class="facility-marquee-card overflow-hidden rounded-[2rem] border border-primary/5 bg-white shadow-sm" aria-hidden="true">
+                                <img src="photo/環境02.png" alt="" class="w-full aspect-[4/3] md:aspect-[16/10] object-cover">
+                                <div class="p-5 md:p-7">
+                                    <p class="text-xs font-bold tracking-[0.28em] text-secondary mb-2">IMAGE 02</p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-primary mb-2">自然を感じる環境</h3>
+                                    <p class="text-sm md:text-base text-text-main/70 leading-loose">暮らしの背景にある、静かで落ち着いた空気感を添えます。</p>
+                                </div>
+                            </article>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1478,74 +1896,179 @@
             parallaxReduceMotion.addEventListener('change', requestFixedParallax);
         }
 
+        // シンプルな施設写真スライダーは、ゆっくり自動で横送りする
+        const facilitySimpleSlider = document.querySelector('[data-facility-simple-slider]');
+        if (facilitySimpleSlider) {
+            const facilitySimplePrev = document.querySelector('[data-facility-simple-prev]');
+            const facilitySimpleNext = document.querySelector('[data-facility-simple-next]');
+            const facilitySimpleProgress = document.querySelector('[data-facility-simple-progress]');
+            const reduceSimpleSliderMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+            let simpleSliderTimer = null;
+            let simpleSliderPaused = false;
+            let simpleSliderRaf = null;
 
-        // 施設紹介の横スライダーは、PCで矢印操作とドラッグ操作を有効にする
-        const facilitySlider = document.querySelector('[data-facility-slider]');
-        const facilitySliderPrevButtons = document.querySelectorAll('[data-facility-slider-prev]');
-        const facilitySliderNextButtons = document.querySelectorAll('[data-facility-slider-next]');
-        if (facilitySlider) {
-            let isPointerDown = false;
-            let dragStartX = 0;
-            let dragStartScrollLeft = 0;
-
-            const facilitySlideAmount = () => {
-                const firstCard = facilitySlider.querySelector('article');
-                if (!firstCard) return facilitySlider.clientWidth * 0.85;
-                return firstCard.getBoundingClientRect().width + 20;
+            const simpleSlideAmount = () => {
+                const firstSlide = facilitySimpleSlider.querySelector('.facility-simple-slide');
+                if (!firstSlide) return facilitySimpleSlider.clientWidth * 0.8;
+                const gap = parseFloat(window.getComputedStyle(facilitySimpleSlider).columnGap || '0');
+                return firstSlide.getBoundingClientRect().width + gap;
             };
 
+            const scrollSimpleFacilityNext = () => {
+                const maxScrollLeft = facilitySimpleSlider.scrollWidth - facilitySimpleSlider.clientWidth - 8;
+                if (facilitySimpleSlider.scrollLeft >= maxScrollLeft) {
+                    facilitySimpleSlider.scrollTo({ left: 0, behavior: 'smooth' });
+                    return;
+                }
+                facilitySimpleSlider.scrollBy({ left: simpleSlideAmount(), behavior: 'smooth' });
+            };
 
-            facilitySlider.querySelectorAll("img").forEach((image) => {
-                image.setAttribute("draggable", "false");
-                image.addEventListener("dragstart", (event) => event.preventDefault());
-            });
+            const scrollSimpleFacilityPrev = () => {
+                if (facilitySimpleSlider.scrollLeft <= 8) {
+                    facilitySimpleSlider.scrollTo({ left: facilitySimpleSlider.scrollWidth, behavior: 'smooth' });
+                    return;
+                }
+                facilitySimpleSlider.scrollBy({ left: -simpleSlideAmount(), behavior: 'smooth' });
+            };
 
-            facilitySliderPrevButtons.forEach((button) => {
-                button.addEventListener('click', () => {
-                    facilitySlider.scrollBy({ left: -facilitySlideAmount(), behavior: 'smooth' });
-                });
-            });
+            const updateSimpleSliderProgress = () => {
+                if (!facilitySimpleProgress) return;
+                const maxScrollLeft = facilitySimpleSlider.scrollWidth - facilitySimpleSlider.clientWidth;
+                const progress = maxScrollLeft > 0 ? facilitySimpleSlider.scrollLeft / maxScrollLeft : 0;
+                facilitySimpleProgress.style.width = `${Math.min(100, Math.max(0, progress * 100))}%`;
+                simpleSliderRaf = null;
+            };
 
-            facilitySliderNextButtons.forEach((button) => {
-                button.addEventListener('click', () => {
-                    facilitySlider.scrollBy({ left: facilitySlideAmount(), behavior: 'smooth' });
-                });
-            });
-
-            facilitySlider.addEventListener('pointerdown', (event) => {
-                if (window.innerWidth < 1024) return;
-                isPointerDown = true;
-                dragStartX = event.clientX;
-                dragStartScrollLeft = facilitySlider.scrollLeft;
-                facilitySlider.classList.add('is-dragging');
-                facilitySlider.setPointerCapture(event.pointerId);
-            });
-
-            facilitySlider.addEventListener('pointermove', (event) => {
-                if (!isPointerDown || window.innerWidth < 1024) return;
-                const deltaX = event.clientX - dragStartX;
-                facilitySlider.scrollLeft = dragStartScrollLeft - deltaX;
-            });
-
-            const stopFacilityDrag = (event) => {
-                if (!isPointerDown) return;
-                isPointerDown = false;
-                facilitySlider.classList.remove('is-dragging');
-                if (event) {
-                    facilitySlider.releasePointerCapture(event.pointerId);
+            const requestSimpleSliderProgress = () => {
+                if (simpleSliderRaf === null) {
+                    simpleSliderRaf = window.requestAnimationFrame(updateSimpleSliderProgress);
                 }
             };
 
-            facilitySlider.addEventListener('pointerup', stopFacilityDrag);
-            facilitySlider.addEventListener('pointercancel', stopFacilityDrag);
-            facilitySlider.addEventListener('lostpointercapture', () => {
-                isPointerDown = false;
-                facilitySlider.classList.remove('is-dragging');
+            const startSimpleFacilitySlider = () => {
+                if (reduceSimpleSliderMotion.matches || simpleSliderTimer) return;
+                simpleSliderTimer = window.setInterval(() => {
+                    if (!simpleSliderPaused) {
+                        scrollSimpleFacilityNext();
+                    }
+                }, 3600);
+            };
+
+            const stopSimpleFacilitySlider = () => {
+                if (!simpleSliderTimer) return;
+                window.clearInterval(simpleSliderTimer);
+                simpleSliderTimer = null;
+            };
+
+            facilitySimpleSlider.addEventListener('pointerenter', () => {
+                simpleSliderPaused = true;
             });
+            facilitySimpleSlider.addEventListener('pointerleave', () => {
+                simpleSliderPaused = false;
+            });
+            facilitySimpleSlider.addEventListener('focusin', () => {
+                simpleSliderPaused = true;
+            });
+            facilitySimpleSlider.addEventListener('focusout', () => {
+                simpleSliderPaused = false;
+            });
+            facilitySimpleSlider.addEventListener('pointerdown', () => {
+                simpleSliderPaused = true;
+            });
+            facilitySimpleSlider.addEventListener('pointerup', () => {
+                simpleSliderPaused = false;
+            });
+            facilitySimpleSlider.addEventListener('pointercancel', () => {
+                simpleSliderPaused = false;
+            });
+            facilitySimpleSlider.addEventListener('scroll', requestSimpleSliderProgress, { passive: true });
+            window.addEventListener('resize', requestSimpleSliderProgress);
+            facilitySimplePrev?.addEventListener('click', scrollSimpleFacilityPrev);
+            facilitySimpleNext?.addEventListener('click', scrollSimpleFacilityNext);
+            reduceSimpleSliderMotion.addEventListener('change', () => {
+                stopSimpleFacilitySlider();
+                startSimpleFacilitySlider();
+            });
+            updateSimpleSliderProgress();
+            startSimpleFacilitySlider();
         }
+
+        // 施設紹介ギャラリーは、サムネイル選択とゆっくりした自動切り替えにする
+        const facilityGallery = document.querySelector('[data-facility-gallery]');
+        if (facilityGallery) {
+            const mainImage = facilityGallery.querySelector('[data-gallery-main-image]');
+            const mainLabel = facilityGallery.querySelector('[data-gallery-main-label]');
+            const mainTitle = facilityGallery.querySelector('[data-gallery-main-title]');
+            const mainDescription = facilityGallery.querySelector('[data-gallery-main-description]');
+            const thumbs = Array.from(facilityGallery.querySelectorAll('[data-gallery-thumb]'));
+            const reduceGalleryMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+            let activeGalleryIndex = 0;
+            let galleryTimer = null;
+            let galleryPaused = false;
+
+            const activateFacilitySlide = (index) => {
+                if (!thumbs.length || !mainImage || !mainLabel || !mainTitle || !mainDescription) return;
+                activeGalleryIndex = (index + thumbs.length) % thumbs.length;
+                const thumb = thumbs[activeGalleryIndex];
+                mainImage.classList.add('opacity-0');
+                window.setTimeout(() => {
+                    mainImage.src = thumb.dataset.image || mainImage.src;
+                    mainImage.alt = thumb.dataset.alt || '';
+                    mainLabel.textContent = thumb.dataset.label || '';
+                    mainTitle.textContent = thumb.dataset.title || '';
+                    mainDescription.textContent = thumb.dataset.description || '';
+                    mainImage.classList.remove('opacity-0');
+                }, 160);
+                thumbs.forEach((button, buttonIndex) => {
+                    button.setAttribute('aria-selected', buttonIndex === activeGalleryIndex ? 'true' : 'false');
+                });
+                thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            };
+
+            const startFacilityGallery = () => {
+                if (reduceGalleryMotion.matches || galleryTimer || thumbs.length <= 1) return;
+                galleryTimer = window.setInterval(() => {
+                    if (!galleryPaused) {
+                        activateFacilitySlide(activeGalleryIndex + 1);
+                    }
+                }, 5200);
+            };
+
+            const stopFacilityGallery = () => {
+                if (!galleryTimer) return;
+                window.clearInterval(galleryTimer);
+                galleryTimer = null;
+            };
+
+            thumbs.forEach((thumb, index) => {
+                thumb.addEventListener('click', () => {
+                    activateFacilitySlide(index);
+                });
+            });
+
+            facilityGallery.addEventListener('pointerenter', () => {
+                galleryPaused = true;
+            });
+            facilityGallery.addEventListener('pointerleave', () => {
+                galleryPaused = false;
+            });
+            facilityGallery.addEventListener('focusin', () => {
+                galleryPaused = true;
+            });
+            facilityGallery.addEventListener('focusout', () => {
+                galleryPaused = false;
+            });
+            reduceGalleryMotion.addEventListener('change', () => {
+                stopFacilityGallery();
+                startFacilityGallery();
+            });
+            startFacilityGallery();
+        }
+
     </script>
 </body>
 </html>
+
 
 
 
