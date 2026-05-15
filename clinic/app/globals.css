@@ -3971,9 +3971,9 @@ ul {
 .features-sticky-sidebar-inner {
   display: flex;
   flex-direction: column;
+  align-items: center;
   position: relative;
-  min-height: min(720px, calc(100vh - 150px));
-  padding: clamp(18px, 2vw, 28px) 0 clamp(12px, 2vw, 24px) clamp(48px, 4.3vw, 68px);
+  padding: clamp(18px, 2vw, 28px) clamp(20px, 2.5vw, 40px) clamp(12px, 2vw, 24px);
 }
 
 .features-sticky-sidebar-inner::before {
@@ -4054,7 +4054,7 @@ ul {
   min-height: clamp(300px, 32vh, 360px);
   position: relative;
   z-index: 1;
-  align-self: flex-start;
+  align-self: center;
   padding-left: 0;
   border-left: 0;
 }
@@ -4255,7 +4255,7 @@ ul {
 .features-card-list::after {
   content: "";
   display: block;
-  flex: 0 0 clamp(320px, 38vh, 480px);
+  flex: 0 0 clamp(120px, 14vh, 180px);
   pointer-events: none;
 }
 
@@ -4422,10 +4422,10 @@ ul {
   content: "";
   order: 2;
   width: 58px;
-  height: 3px;
+  height: 2px;
   margin: clamp(22px, 2vw, 28px) 0 clamp(24px, 2.2vw, 32px);
   border-radius: 999px;
-  background: linear-gradient(90deg, var(--primary-blue), rgba(112, 182, 203, 0.4));
+  background: var(--primary-blue);
 }
 
 .features-sticky-card.is-active .feature-unified-number {
@@ -4521,11 +4521,11 @@ ul {
   display: none;
 }
 
-.feature-unified-points li + li {
+.feature-unified-points li+li {
   position: relative;
 }
 
-.feature-unified-points li + li::after {
+.feature-unified-points li+li::after {
   content: "";
   position: absolute;
   left: calc(-1 * clamp(10px, 1vw, 14px));
@@ -4899,6 +4899,7 @@ ul {
   .features-sticky-sidebar-inner {
     text-align: center;
     align-items: center;
+    padding: 0;
   }
 
   .features-sticky-sidebar-inner::before,
@@ -5039,7 +5040,7 @@ ul {
     aspect-ratio: auto;
     min-height: clamp(740px, 82vw, 840px);
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 0;
     padding: 22px;
     border: 1px solid rgba(61, 98, 173, 0.1);
     border-radius: 20px;
@@ -5081,13 +5082,14 @@ ul {
 
   .feature-unified-content {
     order: 2;
-    padding: 2px 4px 4px;
+    padding: 28px 4px 4px;
     position: static;
+    margin-top: -12px;
+    z-index: 5;
   }
 
   .feature-unified-content::before {
-    width: 32px;
-    margin: 16px 0 18px;
+    display: none;
   }
 
   .feature-unified-label-wrap {
@@ -5191,7 +5193,7 @@ ul {
     border-radius: 14px;
   }
 
-  .feature-unified-points li + li::after {
+  .feature-unified-points li+li::after {
     display: none;
   }
 
