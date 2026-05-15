@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
 const HERO_VARIANT = "editorial"; // "current" に戻すと従来FVへ切り替え
@@ -12,20 +12,16 @@ const heroEditorialImages = {
 };
 
 const featureItems = [
-  { img: "/photo/assets/features/feature_01.png", label: "CONSULTATION", title: "丁寧なカウンセリング", text: "患者さまのお悩みやご希望を丁寧に伺い、最適な治療をご提案します。" },
-  { img: "/photo/assets/features/feature_02.png", label: "EQUIPMENT", title: "最新の医療設備", text: "正確な診断と安全な治療のために、最新の医療機器を導入しています。" },
-  { img: "/photo/assets/features/feature_03.png", label: "DOCTOR", title: "経験豊富な医師が担当", text: "専門性の高い医師が、豊富な経験に基づいた質の高い医療を提供します。" },
-  { img: "/photo/assets/features/feature_04.png", label: "ACCESS", title: "通いやすい診療体制", text: "平日夜間や土曜診療にも対応。ご都合に合わせて通いやすい体制を整えています。" },
+  { img: "/photo/assets/features/feature_01.png", label: "CONSULTATION", title: "丁寧なカウンセリング", text: "患者さまのお悩みやご希望を丁寧に伺い、最適な治療をご提案します。", points: [{ icon: "chat", title: "丁寧な問診", text: "小さな不安も伺い、症状の背景まで確認します。" }, { icon: "note", title: "個別提案", text: "生活状況に合わせた治療方針をご案内します。" }] },
+  { img: "/photo/assets/features/feature_02.png", label: "EQUIPMENT", title: "最新の医療設備", text: "正確な診断と安全な治療のために、最新の医療機器を導入しています。", points: [{ icon: "scope", title: "精密診断", text: "検査結果をもとに、状態を丁寧に見極めます。" }, { icon: "shield", title: "安全配慮", text: "安心して受診できる診療環境を整えています。" }] },
+  { img: "/photo/assets/features/feature_03.png", label: "DOCTOR", title: "経験豊富な医師が担当", text: "専門性の高い医師が、豊富な経験に基づいた質の高い医療を提供します。", points: [{ icon: "doctor", title: "専門性", text: "地域医療で培った経験を診療に活かします。" }, { icon: "heart", title: "継続診療", text: "長く相談できる関係づくりを大切にします。" }] },
+  { img: "/photo/assets/features/feature_04.png", label: "ACCESS", title: "通いやすい診療体制", text: "平日夜間や土曜診療にも対応。ご都合に合わせて通いやすい体制を整えています。", points: [{ icon: "calendar", title: "平日夜間も診療", text: "お仕事帰りでも安心してご来院いただけます。" }, { icon: "clock", title: "土曜も診療", text: "平日お忙しい方も通院しやすい体制です。" }] },
 ];
 
 const featureIntro = {
-  isIntro: true,
-  label: "INTRODUCTION",
   title: "当院の特徴",
   text: "内科を中心に、予防医療や検査、日々の健康相談まで幅広く対応しています。患者さま一人ひとりの不安に耳を傾け、必要な医療へ丁寧につなげます。",
 };
-
-const featureStackItems = [featureIntro, ...featureItems];
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,6 +36,7 @@ export default function Home() {
   const parallaxRafId = useRef(null);
   const [isFeaturesVisible, setIsFeaturesVisible] = useState(false);
   const [activeFeatureIndex, setActiveFeatureIndex] = useState(0);
+  const [isFeaturesReleasing, setIsFeaturesReleasing] = useState(false);
 
   // Hero Slider logic: Switch 3 images every 6 seconds
   const [heroActiveIndex, setHeroActiveIndex] = useState(0);
@@ -203,6 +200,11 @@ export default function Home() {
       const sectionTop = featuresSectionRef.current.getBoundingClientRect().top + scrollY;
       const sectionBottom = sectionTop + featuresSectionRef.current.offsetHeight;
       const listTop = featureCardList.getBoundingClientRect().top + scrollY;
+      const shouldReleaseFeatures = scrollY + window.innerHeight >= sectionBottom - 80;
+
+      setIsFeaturesReleasing((currentValue) => (
+        currentValue === shouldReleaseFeatures ? currentValue : shouldReleaseFeatures
+      ));
 
       if (triggerY < sectionTop) {
         setActiveFeatureIndex(0);
@@ -620,7 +622,7 @@ export default function Home() {
     </section>
 
       {/* --- FEATURES SECTION (Sticky Sidebar Editorial) --- */}
-      <section id="features" className={`features-sticky-section ${isFeaturesVisible ? "is-visible" : ""}`} ref={featuresSectionRef}>
+      <section id="features" className={`features-sticky-section ${isFeaturesVisible ? "is-visible" : ""} ${isFeaturesReleasing ? "is-release-phase" : ""}`} ref={featuresSectionRef}>
         <div className="features-sticky-container">
           <div className="features-sticky-sidebar">
             <div className="features-sticky-sidebar-inner">
@@ -634,9 +636,9 @@ export default function Home() {
               <ol className="features-timeline" aria-label="特徴の現在位置">
                 {featureItems.map((item, idx) => (
                   <li
-                    className={`features-timeline-item ${activeFeatureIndex === idx + 1 ? "is-active" : ""}`}
+                    className={`features-timeline-item ${activeFeatureIndex === idx ? "is-active" : ""}`}
                     key={item.title}
-                    aria-current={activeFeatureIndex === idx + 1 ? "step" : undefined}
+                    aria-current={activeFeatureIndex === idx ? "step" : undefined}
                   >
                     <span className="features-timeline-number">0{idx + 1}</span>
                     <span className="features-timeline-line"></span>
@@ -647,47 +649,48 @@ export default function Home() {
             </div>
           </div>
           <div className="features-sticky-content">
+            <div className="features-intro-lead">
+              <span className="features-intro-lead-label">INTRODUCTION</span>
+              <h3 className="features-intro-lead-title">{featureIntro.title}</h3>
+              <p className="features-intro-lead-text">{featureIntro.text}</p>
+            </div>
             <div className="features-card-list">
-              {featureStackItems.map((item, idx) => {
-                const featureNumber = idx;
+              {featureItems.map((item, idx) => {
+                const featureNumber = idx + 1;
 
                 return (
-                  <Fragment key={item.title}>
-                    <article
-                      className={`features-sticky-card ${item.isIntro ? "is-intro" : ""} ${idx === activeFeatureIndex ? "is-active" : ""}`}
-                      data-feature-index={idx}
-                    >
-                      {!item.isIntro ? (
-                        <div className="feature-unified-card">
-                          <span className="feature-unified-number" aria-hidden="true">
-                            0{featureNumber}
-                          </span>
-                          <div className="feature-unified-img">
-                            <img src={item.img} alt={item.title} />
-                          </div>
-                          <div className="feature-unified-content">
-                            <div className="feature-unified-label-wrap">
-                              <span className="feature-unified-label">FEATURE 0{featureNumber} / {item.label}</span>
-                            </div>
-                            <h3 className="feature-unified-title">{item.title}</h3>
-                            <p className="feature-unified-text">{item.text}</p>
-                          </div>
+                  <article
+                    className={`features-sticky-card ${idx < activeFeatureIndex ? "is-passed" : ""} ${idx === activeFeatureIndex ? "is-active" : ""}`}
+                    data-feature-index={idx}
+                    key={item.title}
+                  >
+                    <div className="feature-unified-card">
+                      <span className="feature-unified-side-label" aria-hidden="true" />
+                      <span className="feature-unified-number" aria-hidden="true">
+                        0{featureNumber}
+                      </span>
+                      <span className="feature-unified-dots" aria-hidden="true"></span>
+                      <div className="feature-unified-img">
+                        <img src={item.img} alt={item.title} />
+                      </div>
+                      <div className="feature-unified-content">
+                        <div className="feature-unified-label-wrap">
+                          <span className="feature-unified-label">0{featureNumber} / {item.label}</span>
                         </div>
-                      ) : (
-                        <div className="features-sticky-card-body">
-                          <div className="features-sticky-card-body-inner">
-                            <span className="features-sticky-card-label">
-                              {item.isIntro ? "FEATURE / INTRODUCTION" : `FEATURE 0${featureNumber} / ${item.label}`}
-                            </span>
-                            <h3 className="features-sticky-card-title">{item.title}</h3>
-                            <p className="features-sticky-card-text">{item.text}</p>
-                            <span className="features-intro-range" aria-hidden="true">01 - 04</span>
-                          </div>
-                        </div>
-                      )}
-                    </article>
-                    {item.isIntro && <div className="features-intro-scroll-hold" aria-hidden="true" />}
-                  </Fragment>
+                        <h3 className="feature-unified-title">{item.title}</h3>
+                        <p className="feature-unified-text">{item.text}</p>
+                        <ul className="feature-unified-points" aria-label={`${item.title}のポイント`}>
+                          {item.points.map((point) => (
+                            <li key={point.title}>
+                              <span className={`feature-unified-point-icon is-${point.icon}`} aria-hidden="true"></span>
+                              <span className="feature-unified-point-title">{point.title}</span>
+                              <span className="feature-unified-point-text">{point.text}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </article>
                 );
               })}
             </div>
