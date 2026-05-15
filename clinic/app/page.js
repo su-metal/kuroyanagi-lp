@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -267,7 +267,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="wrapper">
+    <div className="wrapper" id="top">
 
       {/* --- HEADER --- */}
       <header className={`header ${isMenuOpen ? "is-menu-open" : ""}`}>
@@ -1026,14 +1026,19 @@ export default function Home() {
 
           <nav className="footer-nav" aria-label="フッターナビゲーション">
             {[
-              { label: "ホーム", href: "/" },
+              { label: "ホーム", href: "#top" },
               { label: "当院の特徴", href: "#features" },
               { label: "診療案内", href: "#service" },
               { label: "施設・機器紹介", href: "#facility" },
               { label: "アクセス", href: "#access" },
               { label: "お知らせ", href: "#news" },
             ].map((item) => (
-              <a href={item.href} className="footer-nav-link" key={item.label}>
+              <a 
+                href={item.href} 
+                className="footer-nav-link" 
+                key={item.label}
+                onClick={(e) => handleMobileActionClick(e, item.href.replace('#', ''))}
+              >
                 <span>{item.label}</span>
                 <span aria-hidden="true">→</span>
               </a>
