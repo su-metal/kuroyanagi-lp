@@ -586,7 +586,7 @@ ul {
   }
 
   .mobile-menu-actions a:first-child {
-    background: var(--accent-yellow);
+    background: var(--primary-blue);
     color: #fff;
   }
 
@@ -629,9 +629,10 @@ ul {
 
   .mobile-menu-schedule .editorial-schedule-table th:first-child {
     width: 32%;
-    font-size: 0.6rem;
+    font-size: 0.9rem;
     text-align: left;
     white-space: nowrap;
+    color: #173957;
   }
 
   .mobile-menu-schedule .editorial-schedule-table td {
@@ -646,6 +647,7 @@ ul {
     font-weight: 400;
     text-align: left;
     letter-spacing: -0.02em;
+    color: #173957;
   }
 
   .mobile-menu-schedule .editorial-schedule-table .closed {
@@ -2882,6 +2884,9 @@ ul {
 .editorial-schedule-table th:first-child {
   width: 38%;
   text-align: left;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #173957;
 }
 
 .editorial-schedule-table td {
@@ -3163,7 +3168,7 @@ ul {
   }
 
   .editorial-schedule-table th:first-child {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     width: 35%;
   }
 
@@ -3243,7 +3248,7 @@ ul {
   }
 
   .editorial-schedule-table th:first-child {
-    font-size: 0.74rem;
+    font-size: 0.85rem;
   }
 
   .editorial-schedule-table .time-slot {
@@ -7463,7 +7468,7 @@ ul {
 }
 
 .hero-editorial {
-  --hero-blue: #3d62ad;
+  --hero-blue: var(--primary-blue);
   min-height: 100svh;
   padding: 0 0 28px;
   background: var(--fv-bg);
@@ -8592,12 +8597,12 @@ ul {
 
 .header-menu-button {
   position: fixed;
-  top: 15px;
-  right: 15px;
-  width: 48px;
-  height: 48px;
+  top: 0;
+  right: 0;
+  width: 64px;
+  height: 64px;
   background: var(--primary-blue);
-  border-radius: 10px;
+  border-radius: 0 0 0 4px;
   display: none;
   flex-direction: column;
   justify-content: center;
