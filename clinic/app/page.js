@@ -386,6 +386,31 @@ export default function Home() {
               053-525-1113
             </a>
           </div>
+
+          <div className="mobile-menu-schedule">
+            <div className="editorial-schedule-card">
+              <table className="editorial-schedule-table">
+                <thead>
+                  <tr>
+                    <th>診療時間</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th><th>日・祝</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="time-slot">8:30-12:00</td>
+                    <td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td className="closed">—</td>
+                  </tr>
+                  <tr>
+                    <td className="time-slot">14:00-17:30</td>
+                    <td>○</td><td>○</td><td>○</td><td className="closed">—</td><td>○</td><td className="closed">—</td><td className="closed">—</td>
+                  </tr>
+                </tbody>
+              </table>
+              <footer className="schedule-footer">
+                <p>休診日：木・土午後、日・祝日</p>
+              </footer>
+            </div>
+          </div>
         </nav>
       </header>
 
@@ -428,17 +453,17 @@ export default function Home() {
                   <table className="editorial-schedule-table">
                     <thead>
                       <tr>
-                        <th>診療受付時間</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th><th>日祝</th>
+                        <th>診療時間</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th><th>日・祝</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td className="time-slot">午前 8:30 - 12:00</td>
-                        <td>●</td><td>●</td><td>●</td><td>●</td><td>●</td><td>●</td><td className="closed">×</td>
+                        <td className="time-slot">8:30 - 12:00</td>
+                        <td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td className="closed">—</td>
                       </tr>
                       <tr>
-                        <td className="time-slot">午後 14:00 - 17:30</td>
-                        <td>●</td><td>●</td><td>●</td><td className="closed">×</td><td>●</td><td className="closed">×</td><td className="closed">×</td>
+                        <td className="time-slot">14:00 - 17:30</td>
+                        <td>○</td><td>○</td><td>○</td><td className="closed">—</td><td>○</td><td className="closed">—</td><td className="closed">—</td>
                       </tr>
                     </tbody>
                   </table>
@@ -466,17 +491,17 @@ export default function Home() {
                 <table className="editorial-schedule-table">
                   <thead>
                     <tr>
-                      <th>診療受付時間</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th><th>日祝</th>
+                      <th>診療時間</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th><th>日・祝</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td className="time-slot">午前 8:30 - 12:00</td>
-                      <td>●</td><td>●</td><td>●</td><td>●</td><td>●</td><td>●</td><td className="closed">×</td>
+                      <td className="time-slot">8:30 - 12:00</td>
+                      <td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td className="closed">—</td>
                     </tr>
                     <tr>
-                      <td className="time-slot">午後 14:00 - 17:30</td>
-                      <td>●</td><td>●</td><td>●</td><td className="closed">×</td><td>●</td><td className="closed">×</td><td className="closed">×</td>
+                      <td className="time-slot">14:00 - 17:30</td>
+                      <td>○</td><td>○</td><td>○</td><td className="closed">—</td><td>○</td><td className="closed">—</td><td className="closed">—</td>
                     </tr>
                   </tbody>
                 </table>
@@ -515,40 +540,36 @@ export default function Home() {
                     <table className="schedule-table">
                       <thead>
                         <tr>
-                          <th>診療受付時間</th>
+                          <th>診療時間</th>
                           <th>月</th>
                           <th>火</th>
                           <th>水</th>
                           <th>木</th>
                           <th>金</th>
                           <th>土</th>
-                          <th>日祝</th>
+                          <th>日・祝</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <td className="time-slot">
-                            <span className="time-period">午前</span> 8:30 - 12:00
-                          </td>
-                          <td>●</td>
-                          <td>●</td>
-                          <td>●</td>
-                          <td>●</td>
-                          <td>●</td>
-                          <td>●</td>
-                          <td className="closed">×</td>
+                          <td className="time-slot">8:30 - 12:00</td>
+                          <td>○</td>
+                          <td>○</td>
+                          <td>○</td>
+                          <td>○</td>
+                          <td>○</td>
+                          <td>○</td>
+                          <td className="closed">—</td>
                         </tr>
                         <tr>
-                          <td className="time-slot">
-                            <span className="time-period">午後</span> 14:00 - 17:30
-                          </td>
-                          <td>●</td>
-                          <td>●</td>
-                          <td>●</td>
-                          <td className="closed">×</td>
-                          <td>●</td>
-                          <td className="closed">×</td>
-                          <td className="closed">×</td>
+                          <td className="time-slot">14:00 - 17:30</td>
+                          <td>○</td>
+                          <td>○</td>
+                          <td>○</td>
+                          <td className="closed">—</td>
+                          <td>○</td>
+                          <td className="closed">—</td>
+                          <td className="closed">—</td>
                         </tr>
                       </tbody>
                     </table>
@@ -970,37 +991,37 @@ export default function Home() {
                 <table className="footer-schedule-table">
                   <thead>
                     <tr>
-                      <th>診療受付時間</th>
+                      <th>診療時間</th>
                       <th>月</th>
                       <th>火</th>
                       <th>水</th>
                       <th>木</th>
                       <th>金</th>
                       <th>土</th>
-                      <th>日祝</th>
+                      <th>日・祝</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <th>8:30-12:00</th>
-                      <td>●</td>
-                      <td>●</td>
-                      <td>●</td>
-                      <td>●</td>
-                      <td>●</td>
-                      <td>●</td>
-                      <td className="closed">×</td>
+                      <td>○</td>
+                      <td>○</td>
+                      <td>○</td>
+                      <td>○</td>
+                      <td>○</td>
+                      <td>○</td>
+                      <td className="closed">—</td>
 
                     </tr>
                     <tr>
                       <th>14:30-17:30</th>
-                      <td>●</td>
-                      <td>●</td>
-                      <td>●</td>
-                      <td className="closed">×</td>
-                      <td>●</td>
-                      <td className="closed">×</td>
-                      <td className="closed">×</td>
+                      <td>○</td>
+                      <td>○</td>
+                      <td>○</td>
+                      <td className="closed">—</td>
+                      <td>○</td>
+                      <td className="closed">—</td>
+                      <td className="closed">—</td>
                     </tr>
                   </tbody>
                 </table>

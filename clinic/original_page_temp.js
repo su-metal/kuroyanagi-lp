@@ -247,7 +247,7 @@ export default function Home() {
                     </thead>
                     <tbody>
                       <tr>
-                        <td className="time-slot">午前 8:30 - 12:00</td>
+                        <td className="time-slot">8:30 - 12:00</td>
                         <td>●</td><td>●</td><td>●</td><td>●</td><td>●</td><td>●</td><td className="closed">×</td>
                       </tr>
                       <tr>
@@ -809,6 +809,7 @@ export default function Home() {
               { label: "診療案内", href: "#service" },
               { label: "施設・機器紹介", href: "#facility" },
               { label: "アクセス", href: "#access" },
+              { label: "よくある質問", href: "#" },
               { label: "お知らせ", href: "#" },
             ].map((item) => (
               <a href={item.href} className="footer-nav-link" key={item.label}>
