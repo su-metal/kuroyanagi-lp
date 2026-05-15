@@ -2,7 +2,6 @@
 
 :root {
   --primary-blue: #3d62ad;
-  --primary-green: #009c9c;
   --accent-color: var(--primary-blue);
   --text-color: #333333;
   --text-dark: #333333;
@@ -45,7 +44,7 @@
     background: transparent !important;
     position: absolute;
     width: 100%;
-    z-index: 1200;
+    z-index: 2500;
   }
 }
 
@@ -71,7 +70,6 @@ body {
 
 body.is-mobile-menu-open {
   overflow: hidden !important;
-  touch-action: none;
 }
 
 html.is-mobile-menu-open,
@@ -442,6 +440,10 @@ ul {
 }
 
 @media (max-width: 1024px) {
+  .header.is-menu-open {
+    z-index: 2500 !important;
+  }
+
   .header.is-menu-open .header-main {
     z-index: 1200;
   }
@@ -453,7 +455,7 @@ ul {
   .mobile-menu-backdrop {
     position: fixed;
     inset: 0;
-    z-index: 1050;
+    z-index: 2050;
     display: block;
     background: rgba(7, 48, 78, 0.2);
     backdrop-filter: blur(4px);
@@ -485,9 +487,13 @@ ul {
   .mobile-menu {
     position: fixed;
     top: 14px;
-    left: 14px;
-    right: 14px;
-    z-index: 1100;
+    left: 50%;
+    transform: translateX(-50%) translateY(-12px) scale(0.98);
+    width: calc(100% - 28px);
+    max-width: 480px;
+    max-height: calc(100dvh - 28px);
+    overflow-y: auto;
+    z-index: 2100;
     display: flex;
     flex-direction: column;
     gap: 0;
@@ -499,7 +505,6 @@ ul {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transform: translateY(-12px) scale(0.98);
     transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
   }
 
@@ -507,7 +512,7 @@ ul {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    transform: translateY(0) scale(1);
+    transform: translateX(-50%) translateY(0) scale(1);
   }
 
   .mobile-menu-close {
@@ -583,6 +588,81 @@ ul {
   .mobile-menu-actions a:first-child {
     background: var(--accent-yellow);
     color: #fff;
+  }
+
+  .mobile-menu-schedule {
+    margin-top: 24px;
+    padding: 0;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .mobile-menu-schedule .editorial-schedule-card {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(61, 98, 173, 0.1);
+    border-radius: 20px;
+    padding: 20px 12px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+  }
+
+  .mobile-menu-schedule .editorial-schedule-table {
+    width: 100%;
+    min-width: 280px;
+    font-size: 0.75rem;
+    color: var(--text-dark);
+    border-collapse: collapse;
+  }
+
+  .mobile-menu-schedule .editorial-schedule-table th,
+  .mobile-menu-schedule .editorial-schedule-table td {
+    padding: 8px 2px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .mobile-menu-schedule .editorial-schedule-table th {
+    font-weight: 700;
+  }
+
+  .mobile-menu-schedule .editorial-schedule-table th:first-child {
+    width: 32%;
+    font-size: 0.6rem;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .mobile-menu-schedule .editorial-schedule-table td {
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .mobile-menu-schedule .editorial-schedule-table .time-slot {
+    font-size: 0.85rem;
+    font-weight: 400;
+    text-align: left;
+    letter-spacing: -0.02em;
+  }
+
+  .mobile-menu-schedule .editorial-schedule-table .closed {
+    color: #cbd5e0;
+    font-weight: 400;
+  }
+
+  .mobile-menu-schedule .schedule-footer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(61, 98, 173, 0.08);
+  }
+
+  .mobile-menu-schedule .schedule-footer p {
+    font-size: 0.7rem;
+    color: var(--primary-blue);
+    font-weight: 700;
+    text-align: left;
+    letter-spacing: 0.02em;
   }
 }
 
@@ -780,57 +860,58 @@ ul {
 .schedule-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.78rem;
-  color: var(--primary-blue);
+  font-size: 0.85rem;
+  color: #173957;
 }
 
 .schedule-table th {
   padding: 10px 8px 15px;
-  color: #999;
+  color: #173957;
   font-weight: 700;
-  border-bottom: 1.5px solid #e5eff5;
+  border-bottom: 1px solid rgba(3, 110, 183, 0.1);
   text-align: center;
-  font-size: 1.15rem;
+  font-size: 0.9rem;
 }
 
 .schedule-table th:first-child {
   text-align: left;
-  color: var(--primary-blue);
+  color: #173957;
   font-weight: 700;
-  font-size: 1.15rem;
+  font-size: 1rem;
   letter-spacing: 0.02em;
   padding-left: 0;
-  width: 42%;
+  width: 38%;
 }
 
 .schedule-table td {
-  padding: 18px 8px;
+  padding: 14px 8px;
   text-align: center;
-  border-bottom: 1.5px solid #e5eff5;
+  border-bottom: 1px solid rgba(3, 110, 183, 0.08);
   color: var(--primary-blue);
-  font-size: 1.35rem;
-  font-weight: 700;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .schedule-table .time-slot {
   font-weight: 700;
   text-align: left;
-  font-size: 1.35rem;
+  font-size: 1rem;
+  color: #173957;
   white-space: nowrap;
   letter-spacing: 0.05em;
-  padding-left: 5px;
+  padding-left: 0;
 }
 
 .time-period {
-  font-size: 1.1rem;
+  font-size: 0.85rem;
   margin-right: 0.3em;
   display: inline-block;
+  opacity: 0.8;
 }
 
 .schedule-table .closed {
-  color: #eee;
+  color: #cbd3dc;
   font-weight: 400;
-  font-size: 1.2rem;
 }
 
 .schedule-footer {
@@ -2768,69 +2849,63 @@ ul {
 }
 
 .editorial-schedule-card {
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(14px);
-  padding: clamp(14px, 1.8vw, 22px);
-  border-radius: 24px;
-  box-shadow: 0 16px 40px rgba(3, 110, 183, 0.08);
+  background: #ffffff;
+  padding: clamp(16px, 2vw, 28px);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(26, 63, 94, 0.08);
+  border: 1px solid rgba(224, 230, 237, 0.5);
   width: clamp(400px, 36vw, 520px);
-  border: 1px solid rgba(255, 255, 255, 0.8);
 }
 
 .editorial-schedule-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: clamp(0.68rem, 0.74vw, 0.8rem);
-  color: var(--text-color);
   table-layout: fixed;
-  /* Use fixed layout to keep schedule columns aligned. */
+  color: #173957;
 }
 
 .editorial-schedule-table th {
   padding: 8px 0 12px;
   border-bottom: 1px solid rgba(3, 110, 183, 0.08);
-  color: #999;
-  font-weight: 600;
+  color: #173957;
+  font-weight: 700;
   text-align: center;
-  width: 8.5%;
-  /* Keep weekday columns compact. */
+  font-size: clamp(0.75rem, 0.8vw, 0.85rem);
 }
 
 .editorial-schedule-table th:first-child {
+  width: 38%;
   text-align: left;
+}
+
+.editorial-schedule-table td {
+  padding: 12px 0;
+  text-align: center;
+  font-size: 1.1rem;
   color: var(--primary-blue);
-  font-weight: 800;
-  font-size: 0.95rem;
-  /* Match the time-slot column width to the smaller font size. */
-  width: 40.5%;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(3, 110, 183, 0.08);
 }
 
 .editorial-schedule-table .time-slot {
   text-align: left;
-  color: var(--primary-blue);
-  font-weight: 800;
-  padding: 6px 14px 6px 0;
+  color: #173957;
   font-family: var(--font-modern);
+  font-size: clamp(0.8rem, 0.9vw, 0.95rem);
   white-space: nowrap;
-}
-
-.editorial-schedule-table td {
-  padding: 6px 0;
-  text-align: center;
-  font-size: 0.95rem;
-  color: var(--primary-blue);
+  padding-left: 0;
 }
 
 .editorial-schedule-table .closed {
-  color: #e0e0e0;
+  color: #cbd3dc;
 }
 
 .schedule-footer {
-  margin-top: 20px;
-  font-size: clamp(0.68rem, 0.74vw, 0.82rem);
-  color: #888;
-  text-align: center;
-  font-weight: 500;
+  margin-top: 14px;
+  color: #173957;
+  font-size: clamp(0.75rem, 0.78vw, 0.85rem);
+  font-weight: 600;
+  text-align: left;
 }
 
 .scroll-line::after {
@@ -3939,7 +4014,7 @@ ul {
   background:
     linear-gradient(90deg, rgba(255, 255, 255, 0.52) 0 24%, transparent 24% 100%),
     #e8eef2;
-  padding: clamp(180px, 18vw, 300px) 0 clamp(56px, 7vw, 96px);
+  padding: clamp(140px, 14vw, 220px) 0 clamp(56px, 7vw, 96px);
   overflow: visible;
   border-radius: 48px 48px 0 0;
 }
@@ -3956,7 +4031,7 @@ ul {
 
 .features-sticky-sidebar {
   position: sticky;
-  top: 118px;
+  top: 92px;
   height: fit-content;
   z-index: 10;
 }
@@ -3978,12 +4053,13 @@ ul {
   color: rgba(61, 98, 173, 0.055);
   font-family: var(--font-modern);
   font-size: clamp(5.5rem, 9vw, 9.8rem);
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: 0.08em;
   line-height: 0.8;
   writing-mode: vertical-rl;
   text-orientation: mixed;
   pointer-events: none;
+  opacity: 0.6;
 }
 
 .features-sticky-sidebar-inner::after {
@@ -3999,7 +4075,7 @@ ul {
   font-weight: 800;
   color: var(--primary-blue);
   letter-spacing: 0.2em;
-  margin-bottom: clamp(12px, 1.6vw, 20px);
+  margin-bottom: clamp(8px, 1.2vw, 16px);
 }
 
 .features-editorial-en::before {
@@ -4012,12 +4088,7 @@ ul {
 }
 
 .features-editorial-en::after {
-  content: "";
-  display: block;
-  width: 1px;
-  height: clamp(38px, 4.2vw, 58px);
-  margin: clamp(14px, 1.8vw, 22px) 0 0 2px;
-  background: rgba(61, 98, 173, 0.8);
+  display: none;
 }
 
 .features-editorial-title {
@@ -4299,16 +4370,15 @@ ul {
   pointer-events: none;
 }
 
+/* 
 .feature-unified-card::before {
   inset: 8px;
   border: 1px solid rgba(61, 98, 173, 0.08);
   border-radius: calc(clamp(30px, 3vw, 42px) - 6px);
   background:
-    radial-gradient(circle at 35% 51%, rgba(112, 182, 203, 0.15) 0 18%, transparent 18.5%),
-    radial-gradient(circle at 40% 45%, transparent 0 23%, rgba(61, 98, 173, 0.22) 23.2% 23.6%, transparent 23.8%),
     radial-gradient(circle at 92% 18%, rgba(61, 98, 173, 0.1) 1px, transparent 1px) 0 0 / 18px 18px;
   z-index: 0;
-}
+} */
 
 .feature-unified-img {
   position: relative;
@@ -4870,7 +4940,7 @@ ul {
   }
 
   .features-sticky-section {
-    padding: 80px 0 96px;
+    padding: 56px 0 96px;
     border-radius: 32px 32px 0 0;
     background: #e8eef2;
   }
@@ -4913,7 +4983,7 @@ ul {
   .features-editorial-lead-copy {
     writing-mode: horizontal-tb;
     padding: 0;
-    margin: 28px 0 0;
+    margin: 12px 0 0;
     min-height: 0;
     border-left: 0;
     align-self: stretch;
@@ -5049,9 +5119,7 @@ ul {
   .feature-unified-card::before {
     inset: 10px;
     border-radius: 16px;
-    background:
-      radial-gradient(circle at 82% 24%, rgba(112, 182, 203, 0.12) 0 18%, transparent 18.5%),
-      radial-gradient(circle at 76% 20%, rgba(61, 98, 173, 0.06) 0 27%, transparent 27.5%);
+    background: transparent;
   }
 
   .feature-unified-card::after {
@@ -5213,7 +5281,7 @@ ul {
 
 @media (max-width: 640px) {
   .features-sticky-section {
-    padding: 70px 0 84px;
+    padding: 48px 0 84px;
     border-radius: 28px 28px 0 0;
   }
 
@@ -6122,6 +6190,7 @@ ul {
 .access-section {
   padding: 110px 0 120px;
   background: #fff;
+  scroll-margin-top: 96px;
 }
 
 .access-heading-row {
@@ -6399,6 +6468,7 @@ ul {
   border: 1px solid #cfe0f7;
   border-radius: 12px;
   margin-top: 30px;
+  scroll-margin-top: 96px;
 }
 
 .footer-schedule-table {
@@ -6406,39 +6476,37 @@ ul {
   table-layout: fixed;
   border-collapse: collapse;
   background: #fff;
-  color: #294261;
+  color: #173957;
   font-family: var(--font-modern);
-  font-size: 0.98rem;
+  font-size: 0.9rem;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .footer-schedule-table th,
 .footer-schedule-table td {
-  border-right: 1px solid #d9e7f8;
-  border-bottom: 1px solid #d9e7f8;
-  padding: 16px 10px;
+  border-bottom: 1px solid #eef2f8;
+  padding: 14px 8px;
   text-align: center;
   font-weight: 700;
 }
 
 .footer-schedule-table thead th {
-  color: var(--primary-blue);
-  background: var(--bg-blue-pale);
+  color: #173957;
+  background: #f8fafc;
+  font-size: 0.8rem;
+  border-bottom: 2px solid #eef2f8;
 }
 
 .footer-schedule-table th:first-child {
-  width: 28%;
+  width: 32%;
   text-align: left;
-  padding-left: 18px;
+  padding-left: 14px;
 }
 
 .footer-schedule-table tr:last-child th,
 .footer-schedule-table tr:last-child td {
   border-bottom: 0;
-}
-
-.footer-schedule-table th:last-child,
-.footer-schedule-table td:last-child {
-  border-right: 0;
 }
 
 .footer-schedule-table tbody td {
@@ -6517,6 +6585,7 @@ ul {
   border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 18px 44px rgba(0, 64, 152, 0.08);
+  scroll-margin-top: 96px;
 }
 
 .footer-map iframe {
@@ -6937,6 +7006,7 @@ ul {
 
   .footer-map {
     border-radius: 14px;
+    margin-top: 40px;
   }
 
   .footer-nav {
@@ -7259,13 +7329,16 @@ ul {
   .mobile-menu {
     position: fixed;
     top: 124px;
-    right: clamp(74px, 6vw, 102px);
-    z-index: 1150;
-    width: min(360px, calc(100vw - 148px));
+    left: 50%;
+    z-index: 2100;
+    width: calc(100% - 28px);
+    max-width: 480px;
+    max-height: calc(100dvh - 140px);
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 0;
-    padding: 28px;
+    padding: 78px 28px 28px;
     border: 1px solid rgba(61, 98, 173, 0.12);
     border-radius: 24px;
     background: rgba(255, 255, 255, 0.96);
@@ -7273,7 +7346,7 @@ ul {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transform: translateX(18px);
+    transform: translateX(-50%) translateY(-12px) scale(0.98);
     transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
   }
 
@@ -7281,7 +7354,31 @@ ul {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    transform: translateX(0);
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  /* Reset global desktop schedule card styles inside mobile menu */
+  .mobile-menu .editorial-schedule-card {
+    width: 100%;
+    padding: 20px 12px;
+    background: rgba(255, 255, 255, 0.65);
+    box-shadow: none;
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+  }
+
+  .mobile-menu .editorial-schedule-table th,
+  .mobile-menu .editorial-schedule-table td {
+    padding: 8px 2px;
+  }
+
+  .mobile-menu .editorial-schedule-table th {
+    font-size: 0.75rem;
+  }
+
+  .mobile-menu .editorial-schedule-table th:first-child {
+    width: 32%;
+    font-size: 0.6rem;
   }
 
   .mobile-menu-close {
@@ -7496,45 +7593,43 @@ ul {
 .editorial-schedule-card {
   width: clamp(430px, 34vw, 560px);
   padding: 24px 28px 20px;
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.94);
-  box-shadow: 0 18px 48px rgba(26, 63, 94, 0.16);
-  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 12px 34px rgba(26, 63, 94, 0.1);
 }
 
 .editorial-schedule-table {
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
-  color: var(--text-dark);
-  font-size: 0.82rem;
+  color: #173957;
+  font-size: 0.85rem;
 }
 
 .editorial-schedule-table th {
   padding: 6px 0 12px;
-  border-bottom: 1px solid rgba(3, 110, 183, 0.12);
-  color: #a8b0ba;
-  font-weight: 800;
+  border-bottom: 1px solid rgba(3, 110, 183, 0.1);
+  color: #173957;
+  font-weight: 700;
   text-align: center;
 }
 
 .editorial-schedule-table th:first-child {
-  width: 40%;
-  color: var(--hero-blue);
+  width: 38%;
   text-align: left;
 }
 
 .editorial-schedule-table td {
   padding: 12px 0;
-  border-bottom: 1px solid rgba(3, 110, 183, 0.12);
-  color: var(--hero-blue);
-  font-size: 1.05rem;
-  font-weight: 800;
+  border-bottom: 1px solid rgba(3, 110, 183, 0.08);
+  color: var(--primary-blue);
+  font-size: 1.1rem;
+  font-weight: 600;
   text-align: center;
 }
 
 .editorial-schedule-table .time-slot {
-  color: var(--hero-blue);
+  color: #173957;
   font-size: 0.9rem;
   text-align: left;
   white-space: nowrap;
@@ -7546,9 +7641,9 @@ ul {
 
 .schedule-footer {
   margin-top: 14px;
-  color: #a8b0ba;
-  font-size: 0.78rem;
-  font-weight: 700;
+  color: #173957;
+  font-size: 0.8rem;
+  font-weight: 600;
 }
 
 
@@ -7930,37 +8025,38 @@ ul {
     width: 100% !important;
     table-layout: fixed !important;
     border-collapse: collapse !important;
+    color: #173957 !important;
   }
 
   .hero-editorial-schedule-mobile .editorial-schedule-table th {
     font-size: 10px !important;
     padding: 8px 1px 12px !important;
-    color: #a8b0ba !important;
-    font-weight: 800 !important;
+    color: #173957 !important;
+    font-weight: 700 !important;
     border-bottom: 1px solid rgba(3, 110, 183, 0.08) !important;
     text-align: center !important;
   }
 
   .hero-editorial-schedule-mobile .editorial-schedule-table th:first-child {
     font-size: 11px !important;
-    color: var(--hero-blue) !important;
+    color: #173957 !important;
     text-align: left !important;
-    width: 32% !important;
+    width: 35% !important;
   }
 
   .hero-editorial-schedule-mobile .editorial-schedule-table td {
-    font-size: 12px !important;
-    padding: 14px 1px !important;
+    font-size: 14px !important;
+    padding: 10px 1px !important;
     text-align: center !important;
-    color: var(--hero-blue) !important;
-    font-weight: 800 !important;
+    color: var(--primary-blue) !important;
+    font-weight: 600 !important;
     border-bottom: 1px solid rgba(3, 110, 183, 0.08) !important;
   }
 
   .hero-editorial-schedule-mobile .editorial-schedule-table .time-slot {
     text-align: left !important;
     font-size: 10px !important;
-    color: var(--hero-blue) !important;
+    color: #173957 !important;
     white-space: nowrap !important;
     font-weight: 700 !important;
   }
@@ -8621,7 +8717,7 @@ ul {
   height: 64px;
   background: #fff;
   display: none;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   z-index: 2000;
   box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
   border-top: 1px solid #eee;
@@ -8649,31 +8745,26 @@ ul {
 .action-item .icon {
   width: 22px;
   height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .action-item span {
   font-size: 10px;
   font-weight: 700;
-  color: #333;
+  color: currentColor;
 }
 
-.action-item.tel {
-  background: #fff;
-}
-
-.action-item.inquiry {
+.action-item.schedule {
   background: var(--primary-blue);
-}
-
-.action-item.inquiry span {
   color: #fff;
 }
 
-.action-item.line {
-  background: #06c755;
-}
-
-.action-item.line span {
+.action-item.access {
+  background: #1f7f9c;
   color: #fff;
 }
 
@@ -8784,16 +8875,22 @@ ul {
   }
 
   .access-en::before {
-    width: 34px !important;
-    height: 1px !important;
-    flex-shrink: 0 !important;
+    display: none !important;
+  }
+
+  .access-title-block {
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    margin-bottom: 24px !important;
   }
 
   .access-title-block h2 {
     font-size: 1.5rem !important;
     letter-spacing: 0.2em !important;
     font-weight: 600 !important;
-    margin: 0 0 16px !important;
+    margin: 0 auto 16px !important;
   }
 
   /* ===================================================

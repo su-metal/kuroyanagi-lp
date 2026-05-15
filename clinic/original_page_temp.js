@@ -247,7 +247,7 @@ export default function Home() {
                     </thead>
                     <tbody>
                       <tr>
-                        <td className="time-slot">午前 8:30 - 12:00</td>
+                        <td className="time-slot">8:30 - 12:00</td>
                         <td>●</td><td>●</td><td>●</td><td>●</td><td>●</td><td>●</td><td className="closed">×</td>
                       </tr>
                       <tr>
