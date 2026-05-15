@@ -8736,7 +8736,7 @@ ul {
   .info-ja {
     writing-mode: horizontal-tb !important;
     margin-top: 0 !important;
-    font-size: clamp(1.8rem, 5vw, 2.2rem) !important;
+    font-size: 1.5rem !important;
     letter-spacing: 0.2em !important;
     font-weight: 600 !important;
   }
@@ -8769,7 +8769,7 @@ ul {
   .news-main-title {
     margin-bottom: 0 !important;
     text-align: left !important;
-    font-size: clamp(1.8rem, 5vw, 2.2rem) !important;
+    font-size: 1.5rem !important;
     letter-spacing: 0.2em !important;
     font-weight: 600 !important;
     margin-top: 0 !important;
@@ -8790,7 +8790,7 @@ ul {
   }
 
   .access-title-block h2 {
-    font-size: clamp(1.8rem, 5vw, 2.2rem) !important;
+    font-size: 1.5rem !important;
     letter-spacing: 0.2em !important;
     font-weight: 600 !important;
     margin: 0 0 16px !important;
@@ -8939,8 +8939,10 @@ ul {
     font-size: clamp(1rem, 4.6vw, 1.18rem) !important;
   }
 
-  .news-main-title {
-    font-size: 1.6rem !important;
+  .news-main-title,
+  .info-ja,
+  .access-title-block h2 {
+    font-size: 1.3rem !important;
   }
 
   .news-inner {
