@@ -5075,7 +5075,7 @@ ul {
 
   .feature-unified-content {
     order: 2;
-    padding: 24px 4px 4px;
+    padding: 0px 4px 4px;
     position: static !important;
     margin-top: -32px;
     z-index: 5;
@@ -5163,7 +5163,7 @@ ul {
   .feature-unified-title {
     font-size: 1.3rem;
     font-weight: 700;
-    color: var(--primary-blue);
+    color: var(--text-color);
     line-height: 1.45;
     margin-bottom: 0;
     letter-spacing: 0.1em;
@@ -6872,7 +6872,7 @@ ul {
   }
 
   .footer-container {
-    padding: 0 20px;
+    padding: 0 24px;
   }
 
   .footer-logo {
@@ -8713,6 +8713,92 @@ ul {
     word-break: break-all !important;
   }
 
+  /* ===================================================
+     モバイル見出し統一（ACCESS基準）
+     横線(34px) + ENラベル(ブルー) + h2(日本語)
+     =================================================== */
+
+  /* SERVICE: 縦書き見出しを横書きに変換してACCESSと統一 */
+  .info-en::before {
+    width: 34px !important;
+    height: 1px !important;
+    display: inline-block !important;
+  }
+
+  .info-en {
+    writing-mode: horizontal-tb !important;
+    font-size: 1rem !important;
+    letter-spacing: 0.2em !important;
+    margin-bottom: 10px !important;
+    gap: 12px !important;
+  }
+
+  .info-ja {
+    writing-mode: horizontal-tb !important;
+    margin-top: 0 !important;
+    font-size: clamp(1.8rem, 5vw, 2.2rem) !important;
+    letter-spacing: 0.2em !important;
+    font-weight: 600 !important;
+  }
+
+  /* NEWS: news-label-group をACCESSのaccess-enに揃える */
+  .news-label-group {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .news-label-deco {
+    width: 34px !important;
+    height: 1px !important;
+    display: inline-block !important;
+    background-color: var(--primary-blue) !important;
+    flex-shrink: 0 !important;
+  }
+
+  .news-label-text {
+    font-family: var(--font-modern) !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.2em !important;
+    color: var(--primary-blue) !important;
+    margin-bottom: 0 !important;
+  }
+
+  .news-main-title {
+    margin-bottom: 0 !important;
+    text-align: left !important;
+    font-size: clamp(1.8rem, 5vw, 2.2rem) !important;
+    letter-spacing: 0.2em !important;
+    font-weight: 600 !important;
+    margin-top: 0 !important;
+  }
+
+  /* ACCESS: モバイルでもPC同様の横線装飾を維持 */
+  .access-en {
+    font-size: 1rem !important;
+    letter-spacing: 0.2em !important;
+    margin-bottom: 10px !important;
+    gap: 12px !important;
+  }
+
+  .access-en::before {
+    width: 34px !important;
+    height: 1px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .access-title-block h2 {
+    font-size: clamp(1.8rem, 5vw, 2.2rem) !important;
+    letter-spacing: 0.2em !important;
+    font-weight: 600 !important;
+    margin: 0 0 16px !important;
+  }
+
+  /* ===================================================
+     SERVICE レイアウト修正（変更なし）
+     =================================================== */
   .info-lead {
     font-size: 1rem !important;
     line-height: 1.7 !important;
@@ -8776,7 +8862,7 @@ ul {
     line-height: 1.5 !important;
   }
 
-  /* News Section Fixes */
+  /* NEWS レイアウト修正 */
   .news-inner {
     display: flex !important;
     flex-direction: column !important;
@@ -8788,16 +8874,7 @@ ul {
     text-align: left !important;
     align-items: flex-start !important;
     padding: 0 !important;
-    margin-bottom: 2px !important;
-  }
-
-  .news-label-text {
-    margin-bottom: 12px !important;
-  }
-
-  .news-main-title {
-    margin-bottom: 0 !important;
-    text-align: left !important;
+    margin-bottom: 8px !important;
   }
 
   .news-list-area {
