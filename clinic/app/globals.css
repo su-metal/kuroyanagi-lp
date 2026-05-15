@@ -5351,13 +5351,15 @@ ul {
   }
 
   .section-parallax-break-inner {
-    inset: 0;
-    height: 100%;
-    top: 0;
+    position: absolute;
+    top: -15%;
+    left: 0;
+    width: 100%;
+    height: 130%;
     background-attachment: scroll;
     background-size: cover;
     background-position: center bottom;
-    transform: none;
+    transform: translateY(var(--parallax-y, 0));
   }
 }
 
