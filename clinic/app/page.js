@@ -874,10 +874,10 @@ export default function Home() {
             </div>
           </div>
 
-          <Link href="/access" className="access-detail-btn">
+          <a href="#footer-map" className="access-detail-btn">
             <span>詳しくみる</span>
             <span className="arrow">→</span>
-          </Link>
+          </a>
         </div>
 
         <div className="access-method-card">
@@ -957,6 +957,23 @@ export default function Home() {
                   <tbody>
                     <tr>
                       <th>8:30-12:00</th>
+                      <td>●</td>
+                      <td>●</td>
+                      <td>●</td>
+                      <td>●</td>
+                      <td>●</td>
+                      <td>●</td>
+                      <td className="closed">×</td>
+
+                    </tr>
+                    <tr>
+                      <th>14:30-17:30</th>
+                      <td>●</td>
+                      <td>●</td>
+                      <td>●</td>
+                      <td className="closed">×</td>
+                      <td>●</td>
+                      <td className="closed">×</td>
                       <td className="closed">×</td>
                     </tr>
                   </tbody>
@@ -972,15 +989,15 @@ export default function Home() {
                   </span>
                   <span>053-525-1113</span>
                 </a>
-                <a href="#" className="footer-cta footer-cta-outline">
-                  <span className="footer-cta-icon">
-                    <img src="/photo/assets/01_action/01_予約.png" alt="" />
-                  </span>
-                  <span>web予約</span>
-                </a>
+
+
+
+
+
+
               </div>
 
-              <div className="footer-map">
+              <div id="footer-map" className="footer-map">
 
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21807.205815202164!2d137.55273239146715!3d34.79978991325786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601b2efb69d1f481%3A0xff7102d5b326d22f!2z44G_44Gj44GL44Gz5p2x5LuL6K236ICB5Lq65L-d5YGl5pa96Kit!5e1!3m2!1sja!2sjp!4v1777211323976!5m2!1sja!2sjp"

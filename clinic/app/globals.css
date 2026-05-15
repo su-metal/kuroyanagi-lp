@@ -6937,6 +6937,7 @@ ul {
 
   .footer-map {
     border-radius: 14px;
+    margin-top: 40px;
   }
 
   .footer-nav {
@@ -8784,16 +8785,22 @@ ul {
   }
 
   .access-en::before {
-    width: 34px !important;
-    height: 1px !important;
-    flex-shrink: 0 !important;
+    display: none !important;
+  }
+
+  .access-title-block {
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    margin-bottom: 24px !important;
   }
 
   .access-title-block h2 {
     font-size: 1.5rem !important;
     letter-spacing: 0.2em !important;
     font-weight: 600 !important;
-    margin: 0 0 16px !important;
+    margin: 0 auto 16px !important;
   }
 
   /* ===================================================
