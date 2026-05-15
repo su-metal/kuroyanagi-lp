@@ -2152,6 +2152,10 @@ ul {
   z-index: 2;
 }
 
+.news-section .container {
+  max-width: 1200px;
+}
+
 .news-inner {
   background: transparent;
   padding: 0;

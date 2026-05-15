@@ -796,7 +796,7 @@ export default function Home() {
                     <div className="schedule-header">
                       <span className="schedule-pill">診療時間</span>
                       <span className="schedule-connector"></span>
-                      <span className="schedule-time">9:00 - 17:30</span>
+                      <span className="schedule-time">8:30 - 12:00 / 14:00 - 17:30</span>
                     </div>
                     <p className="schedule-sub">※必要なときには24時間365日往診します</p>
                   </div>
@@ -804,7 +804,7 @@ export default function Home() {
                     <div className="schedule-header">
                       <span className="schedule-pill">休診日</span>
                       <span className="schedule-connector"></span>
-                      <span className="schedule-time">土曜・日曜・祝日・年末年始</span>
+                      <span className="schedule-time">木曜午後・土曜午後・日曜・祝日</span>
                     </div>
                     <p className="schedule-sub">※必要なときには24時間365日往診します</p>
                   </div>
