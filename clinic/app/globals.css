@@ -8668,7 +8668,7 @@ ul {
   }
 
   .hero-editorial-catch {
-    top: 50% !important;
+    top: 48% !important;
     left: 50% !important;
     transform: translate(-50%, -50%) !important;
     width: auto !important;
@@ -8768,8 +8768,8 @@ ul {
 }
 
 .action-item.access {
-  background: #1f7f9c;
-  color: #fff;
+  background: #ffffff;
+  color: var(--primary-blue);
 }
 
 /* ===================================================
