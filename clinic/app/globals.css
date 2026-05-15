@@ -130,7 +130,9 @@ ul {
    SHARED SECTION HEADING
 --------------------------------------------------------- */
 .section-heading-en {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   color: var(--primary-blue);
   font-family: var(--font-modern);
   font-size: 1rem;
@@ -139,6 +141,14 @@ ul {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   margin-bottom: 14px;
+}
+
+.section-heading-en::before {
+  content: "";
+  display: inline-block;
+  width: 34px;
+  height: 1px;
+  background: currentColor;
 }
 
 .section-heading-ja {
@@ -1361,12 +1371,23 @@ ul {
 }
 
 .info-en {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
   writing-mode: vertical-rl;
   font-family: var(--font-modern);
   font-size: 1rem;
   letter-spacing: 0.2em;
   color: var(--primary-blue);
   font-weight: 500;
+}
+
+.info-en::before {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 34px;
+  background: currentColor;
 }
 
 .info-ja {
@@ -1799,7 +1820,9 @@ ul {
 }
 
 .related-facility-label {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   color: #fff;
   font-family: var(--font-modern);
   font-size: 0.8rem;
@@ -1808,6 +1831,14 @@ ul {
   line-height: normal;
   text-transform: uppercase;
   margin-bottom: 10px;
+}
+
+.related-facility-label::before {
+  content: "";
+  display: inline-block;
+  width: 34px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.82);
 }
 
 .related-facility-kicker {
@@ -3978,6 +4009,15 @@ ul {
   margin-bottom: clamp(12px, 1.6vw, 20px);
 }
 
+.features-editorial-en::before {
+  content: "";
+  display: block;
+  width: 34px;
+  height: 1px;
+  margin-bottom: 12px;
+  background: currentColor;
+}
+
 .features-editorial-en::after {
   content: "";
   display: block;
@@ -6089,11 +6129,13 @@ ul {
 }
 
 .access-title-block {
-  text-align: center;
+  text-align: left;
 }
 
 .access-en {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   color: var(--primary-blue);
   font-family: var(--font-modern);
   font-size: 1rem;
@@ -6103,17 +6145,24 @@ ul {
   margin-bottom: 10px;
 }
 
+.access-en::before {
+  content: "";
+  display: inline-block;
+  width: 34px;
+  height: 1px;
+  background: currentColor;
+}
+
 .access-title-block h2 {
   width: fit-content;
-  margin: 0 auto 4px;
+  margin: 0 0 22px;
   color: var(--text-dark);
   font-family: var(--font-modern);
   font-size: clamp(1.8rem, 3vw, 2.4rem);
-  font-weight: 400;
+  font-weight: 600;
   line-height: normal;
-  letter-spacing: 0.4em;
-  padding-bottom: 10px;
-  border-bottom: 3px dotted rgba(0, 64, 152, 0.36);
+  letter-spacing: 0.2em;
+  position: relative;
 }
 
 .access-address-block {
@@ -6604,7 +6653,7 @@ ul {
   .access-heading-row {
     grid-template-columns: 1fr;
     gap: 24px;
-    text-align: center;
+    text-align: left;
   }
 
   .access-address-content {
@@ -6739,7 +6788,7 @@ ul {
 
   .access-title-block h2 {
     font-size: clamp(1.8rem, 3vw, 2.4rem);
-    font-weight: 400;
+    font-weight: 600;
     line-height: normal;
   }
 
