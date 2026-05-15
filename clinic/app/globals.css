@@ -4502,6 +4502,7 @@ ul {
 }
 
 .feature-unified-points li {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -5047,7 +5048,8 @@ ul {
       radial-gradient(rgba(61, 98, 173, 0.045) 1px, transparent 1px) 0 0 / 18px 18px,
       #ffffff;
     box-shadow: none !important;
-    overflow: hidden;
+    position: relative;
+    overflow: visible;
   }
 
   .feature-unified-card::before {
@@ -5080,6 +5082,7 @@ ul {
   .feature-unified-content {
     order: 2;
     padding: 2px 4px 4px;
+    position: static;
   }
 
   .feature-unified-content::before {
@@ -5088,7 +5091,12 @@ ul {
   }
 
   .feature-unified-label-wrap {
-    margin-bottom: 14px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    z-index: 30;
   }
 
   .feature-unified-label {
@@ -5188,9 +5196,9 @@ ul {
   }
 
   .feature-unified-point-icon {
-    width: 42px;
-    height: 42px;
-    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .feature-unified-point-icon::before {
@@ -5298,6 +5306,7 @@ ul {
   }
 
   .feature-unified-points li {
+    position: relative;
     min-height: 0;
     align-items: flex-start;
     padding: 14px 16px 14px 64px;
@@ -5305,6 +5314,7 @@ ul {
   }
 
   .feature-unified-point-icon {
+    display: block;
     position: absolute;
     left: 14px;
     top: 14px;
