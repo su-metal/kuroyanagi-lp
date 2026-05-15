@@ -1657,7 +1657,7 @@ ul {
 
 @media (max-width: 768px) {
   .information-container {
-    padding: 40px 10px 80px;
+    padding: 40px 24px 80px;
     gap: 24px;
   }
 
@@ -1695,7 +1695,7 @@ ul {
 .facility-header {
   text-align: center;
   margin-bottom: clamp(40px, 6vw, 80px);
-  padding: 0 20px;
+  padding: 0 24px;
 }
 
 .facility-title {
@@ -1911,7 +1911,7 @@ ul {
   }
 
   .related-facility-container {
-    padding: 0 20px;
+    padding: 0 24px;
   }
 
   .related-facility-card {
@@ -2065,30 +2065,15 @@ ul {
 
 /* --- NEWS --- */
 .news-section {
-  padding: 0px;
-  background-color: #fff;
+  padding: 80px 0;
+  background-color: #f7f9fc;
   position: relative;
   z-index: 2;
-  overflow: hidden;
 }
-
-.news-section::before {
-  content: "";
-  position: absolute;
-  top: 10%;
-  right: -10%;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(0, 64, 152, 0.05) 0%, rgba(0, 64, 152, 0) 70%);
-  border-radius: 50%;
-  filter: blur(60px);
-  z-index: 1;
-}
-
 
 .news-inner {
-  background: #fff;
-  padding: 100px 0;
+  background: transparent;
+  padding: 0;
   display: grid;
   grid-template-columns: 320px 1fr;
   gap: 80px;
@@ -2217,7 +2202,6 @@ ul {
 /* Responsive */
 @media (max-width: 1200px) {
   .news-inner {
-    padding: 80px 40px;
     gap: 40px;
     grid-template-columns: 280px 1fr;
   }
@@ -2274,11 +2258,11 @@ ul {
 
 @media (max-width: 640px) {
   .news-section {
-    padding: 60px 0 60px;
+    padding: 60px 0;
   }
 
   .news-inner {
-    padding: 50px 24px;
+    padding: 0;
   }
 
   .news-main-title {
@@ -5092,8 +5076,8 @@ ul {
   .feature-unified-content {
     order: 2;
     padding: 0px 4px 4px;
-    position: static;
-    margin-top: -12px;
+    position: static !important;
+    margin-top: -32px;
     z-index: 5;
   }
 
@@ -5102,12 +5086,12 @@ ul {
   }
 
   .feature-unified-label-wrap {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin: 0;
-    z-index: 30;
+    position: absolute !important;
+    top: 0 !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    margin: 0 !important;
+    z-index: 30 !important;
   }
 
   .feature-unified-label {
@@ -5179,7 +5163,7 @@ ul {
   .feature-unified-title {
     font-size: 1.3rem;
     font-weight: 700;
-    color: var(--primary-blue);
+    color: var(--text-color);
     line-height: 1.45;
     margin-bottom: 0;
     letter-spacing: 0.1em;
@@ -5234,7 +5218,7 @@ ul {
   }
 
   .features-sticky-container {
-    padding: 0 22px;
+    padding: 0 24px;
     gap: 30px;
   }
 
@@ -6794,7 +6778,7 @@ ul {
   }
 
   .access-section {
-    padding: 64px 18px;
+    padding: 64px 24px;
   }
 
   .access-heading-row {
@@ -6888,7 +6872,7 @@ ul {
   }
 
   .footer-container {
-    padding: 0 20px;
+    padding: 0 24px;
   }
 
   .footer-logo {
@@ -8712,10 +8696,12 @@ ul {
 
   .container,
   .information-container,
-  .news-section .container {
+  .news-section .container,
+  .facility-section,
+  .access-section {
     max-width: 100% !important;
-    padding-left: 12px !important;
-    padding-right: 12px !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
     overflow: hidden !important;
   }
 
@@ -8727,6 +8713,92 @@ ul {
     word-break: break-all !important;
   }
 
+  /* ===================================================
+     モバイル見出し統一（ACCESS基準）
+     横線(34px) + ENラベル(ブルー) + h2(日本語)
+     =================================================== */
+
+  /* SERVICE: 縦書き見出しを横書きに変換してACCESSと統一 */
+  .info-en::before {
+    width: 34px !important;
+    height: 1px !important;
+    display: inline-block !important;
+  }
+
+  .info-en {
+    writing-mode: horizontal-tb !important;
+    font-size: 1rem !important;
+    letter-spacing: 0.2em !important;
+    margin-bottom: 10px !important;
+    gap: 12px !important;
+  }
+
+  .info-ja {
+    writing-mode: horizontal-tb !important;
+    margin-top: 0 !important;
+    font-size: clamp(1.8rem, 5vw, 2.2rem) !important;
+    letter-spacing: 0.2em !important;
+    font-weight: 600 !important;
+  }
+
+  /* NEWS: news-label-group をACCESSのaccess-enに揃える */
+  .news-label-group {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .news-label-deco {
+    width: 34px !important;
+    height: 1px !important;
+    display: inline-block !important;
+    background-color: var(--primary-blue) !important;
+    flex-shrink: 0 !important;
+  }
+
+  .news-label-text {
+    font-family: var(--font-modern) !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.2em !important;
+    color: var(--primary-blue) !important;
+    margin-bottom: 0 !important;
+  }
+
+  .news-main-title {
+    margin-bottom: 0 !important;
+    text-align: left !important;
+    font-size: clamp(1.8rem, 5vw, 2.2rem) !important;
+    letter-spacing: 0.2em !important;
+    font-weight: 600 !important;
+    margin-top: 0 !important;
+  }
+
+  /* ACCESS: モバイルでもPC同様の横線装飾を維持 */
+  .access-en {
+    font-size: 1rem !important;
+    letter-spacing: 0.2em !important;
+    margin-bottom: 10px !important;
+    gap: 12px !important;
+  }
+
+  .access-en::before {
+    width: 34px !important;
+    height: 1px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .access-title-block h2 {
+    font-size: clamp(1.8rem, 5vw, 2.2rem) !important;
+    letter-spacing: 0.2em !important;
+    font-weight: 600 !important;
+    margin: 0 0 16px !important;
+  }
+
+  /* ===================================================
+     SERVICE レイアウト修正（変更なし）
+     =================================================== */
   .info-lead {
     font-size: 1rem !important;
     line-height: 1.7 !important;
@@ -8790,28 +8862,19 @@ ul {
     line-height: 1.5 !important;
   }
 
-  /* News Section Fixes */
+  /* NEWS レイアウト修正 */
   .news-inner {
     display: flex !important;
     flex-direction: column !important;
-    padding: 48px 22px 52px !important;
+    padding: 0 !important;
     gap: 16px !important;
   }
 
   .news-title-area {
     text-align: left !important;
-    align-items: center !important;
+    align-items: flex-start !important;
     padding: 0 !important;
-    margin-bottom: 2px !important;
-  }
-
-  .news-label-text {
-    margin-bottom: 12px !important;
-  }
-
-  .news-main-title {
-    margin-bottom: 0 !important;
-    text-align: center !important;
+    margin-bottom: 8px !important;
   }
 
   .news-list-area {
@@ -8826,6 +8889,8 @@ ul {
   }
 
   .news-meta {
+    display: flex !important;
+    flex-direction: row !important;
     min-width: auto !important;
     gap: 10px !important;
     width: 100% !important;
@@ -8879,7 +8944,7 @@ ul {
   }
 
   .news-inner {
-    padding-left: 24px !important;
-    padding-right: 24px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 }

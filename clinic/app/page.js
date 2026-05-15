@@ -579,47 +579,32 @@ export default function Home() {
       <section id="news" className="news-section">
         <div className="container">
           <div className="news-inner">
-            
-          {/* Left Column */}
-          <div className="news-title-area">
-            <span className="section-heading-en news-label-text">NEWS</span>
-            <h2 className="section-heading-ja news-main-title">お知らせ</h2>
-            <a href="#" className="news-btn-all hidden-mobile">一覧</a>
-          </div>
-
-          {/* Right Column */}
-          <div className="news-list-area">
-            {[
-              {
-                date: "2026.04.24",
-                tag: "information",
-                title: "5月11日 12:00まで！ゴールデンウィークはしっかり自分磨き！オンラインショップ10%OFFキャンペーン",
-              },
-              {
-                date: "2026.04.01",
-                tag: "information",
-                title: "人気アイテムがリニューアル発売！毛穴づまりケアセット『ドットウォッシー』",
-              },
-              {
-                date: "2026.03.23",
-                tag: "information",
-                title: "「40オヤジ」のための本音スタイルマガジン『Hot-Dog PRESS』に掲載されました",
-              },
-            ].map((item, index) => (
-              <div key={index} className="news-item">
-                <div className="news-meta">
-                  <span className="news-date">{item.date}</span>
-                  <span className="news-tag">{item.tag}</span>
-                </div>
-                <p className="news-title">{item.title}</p>
+            <div className="news-title-area">
+              <div className="news-label-group">
+                <span className="news-label-deco" />
+                <span className="news-label-text">NEWS</span>
               </div>
-            ))}
-            <a href="#" className="news-btn-all news-btn-all-mobile show-mobile">一覧</a>
+              <h2 className="news-main-title">お知らせ</h2>
+            </div>
+            <div className="news-list-area">
+              {[
+                { date: "2025.07.08", tag: "お知らせ", title: "地域に根ざした医療を提供してまいります" },
+                { date: "2025.06.20", tag: "健診・予防接種", title: "夏の健康診断の予約受付を開始しました" },
+                { date: "2025.05.15", tag: "お知らせ", title: "マイナンバーカード保険証の利用が可能です" }
+              ].map((item, idx) => (
+                <article className="news-item" key={idx}>
+                  <div className="news-meta">
+                    <span className="news-date">{item.date}</span>
+                    <span className="news-tag">{item.tag}</span>
+                  </div>
+                  <h3 className="news-title">{item.title}</h3>
+                </article>
+              ))}
+            </div>
           </div>
-
         </div>
-      </div>
-    </section>
+      </section>
+
 
       {/* --- FEATURES SECTION (Sticky Sidebar Editorial) --- */}
       <section id="features" className={`features-sticky-section ${isFeaturesVisible ? "is-visible" : ""} ${isFeaturesReleasing ? "is-release-phase" : ""}`} ref={featuresSectionRef}>
@@ -852,7 +837,9 @@ export default function Home() {
 
       </div>
 
+
       {/* Wave Divider */}
+
       <div className="wave-divider-wrapper">
         <svg
           viewBox="0 0 1440 100"
@@ -970,22 +957,6 @@ export default function Home() {
                   <tbody>
                     <tr>
                       <th>8:30-12:00</th>
-                      <td>●</td>
-                      <td>●</td>
-                      <td>●</td>
-                      <td>●</td>
-                      <td>●</td>
-                      <td>●</td>
-                      <td>－</td>
-                    </tr>
-                    <tr>
-                      <th>14:00-17:30</th>
-                      <td>●</td>
-                      <td>●</td>
-                      <td>●</td>
-                      <td className="closed">×</td>
-                      <td>●</td>
-                      <td className="closed">×</td>
                       <td className="closed">×</td>
                     </tr>
                   </tbody>
