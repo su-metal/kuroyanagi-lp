@@ -26,6 +26,7 @@ const featureIntro = {
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMedicalVisible, setIsMedicalVisible] = useState(false);
+  const [isActionBarVisible, setIsActionBarVisible] = useState(false);
 
   const newsSectionRef = useRef(null);
   const medicalSectionRef = useRef(null);
@@ -70,6 +71,20 @@ export default function Home() {
     }, 6000);
     return () => clearInterval(interval);
   }, [heroSliderImages.length]);
+
+  // Mobile Action Bar Visibility
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsActionBarVisible(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Initial check
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   // Dynamic Parallax Logic with Smooth Lerp
   useEffect(() => {
@@ -1077,7 +1092,7 @@ export default function Home() {
         </div>
       </footer>
       {/* Mobile Fixed Action Bar */}
-      <div className="mobile-action-bar">
+      <div className={`mobile-action-bar ${isActionBarVisible ? "visible" : ""}`}>
         <a href="#schedule" className="action-item schedule" onClick={(event) => handleMobileActionClick(event, "schedule")}>
           <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
             <circle cx="12" cy="12" r="9" />

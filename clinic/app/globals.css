@@ -635,8 +635,10 @@ ul {
   }
 
   .mobile-menu-schedule .editorial-schedule-table td {
-    font-size: 1rem;
+    font-size: 1.1rem;
     line-height: 1;
+    color: var(--primary-blue);
+    font-weight: 600;
   }
 
   .mobile-menu-schedule .editorial-schedule-table .time-slot {
@@ -8668,7 +8670,7 @@ ul {
   }
 
   .hero-editorial-catch {
-    top: 50% !important;
+    top: 48% !important;
     left: 50% !important;
     transform: translate(-50%, -50%) !important;
     width: auto !important;
@@ -8678,7 +8680,7 @@ ul {
   }
 
   .hero-editorial-catch .catch-line {
-    font-size: 20px !important;
+    font-size: 24px !important;
     background: rgba(255, 255, 255, 0.95) !important;
     padding: 12px 8px !important;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
@@ -8725,6 +8727,12 @@ ul {
   z-index: 2000;
   box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
   border-top: 1px solid #eee;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.mobile-action-bar.visible {
+  transform: translateY(0);
 }
 
 @media (max-width: 1024px) {
@@ -8768,8 +8776,8 @@ ul {
 }
 
 .action-item.access {
-  background: #1f7f9c;
-  color: #fff;
+  background: #ffffff;
+  color: var(--primary-blue);
 }
 
 /* ===================================================
