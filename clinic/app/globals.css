@@ -4299,8 +4299,6 @@ ul {
   border: 1px solid rgba(61, 98, 173, 0.08);
   border-radius: calc(clamp(30px, 3vw, 42px) - 6px);
   background:
-    radial-gradient(circle at 35% 51%, rgba(112, 182, 203, 0.15) 0 18%, transparent 18.5%),
-    radial-gradient(circle at 40% 45%, transparent 0 23%, rgba(61, 98, 173, 0.22) 23.2% 23.6%, transparent 23.8%),
     radial-gradient(circle at 92% 18%, rgba(61, 98, 173, 0.1) 1px, transparent 1px) 0 0 / 18px 18px;
   z-index: 0;
 }
@@ -5044,9 +5042,7 @@ ul {
   .feature-unified-card::before {
     inset: 10px;
     border-radius: 16px;
-    background:
-      radial-gradient(circle at 82% 24%, rgba(112, 182, 203, 0.12) 0 18%, transparent 18.5%),
-      radial-gradient(circle at 76% 20%, rgba(61, 98, 173, 0.06) 0 27%, transparent 27.5%);
+    background: transparent;
   }
 
   .feature-unified-card::after {
@@ -6117,6 +6113,7 @@ ul {
 .access-section {
   padding: 110px 0 120px;
   background: #fff;
+  scroll-margin-top: 96px;
 }
 
 .access-heading-row {
@@ -6394,6 +6391,7 @@ ul {
   border: 1px solid #cfe0f7;
   border-radius: 12px;
   margin-top: 30px;
+  scroll-margin-top: 96px;
 }
 
 .footer-schedule-table {
@@ -6512,6 +6510,7 @@ ul {
   border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 18px 44px rgba(0, 64, 152, 0.08);
+  scroll-margin-top: 96px;
 }
 
 .footer-map iframe {
@@ -8617,7 +8616,7 @@ ul {
   height: 64px;
   background: #fff;
   display: none;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   z-index: 2000;
   box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
   border-top: 1px solid #eee;
@@ -8645,31 +8644,26 @@ ul {
 .action-item .icon {
   width: 22px;
   height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .action-item span {
   font-size: 10px;
   font-weight: 700;
-  color: #333;
+  color: currentColor;
 }
 
-.action-item.tel {
-  background: #fff;
-}
-
-.action-item.inquiry {
+.action-item.schedule {
   background: var(--primary-blue);
-}
-
-.action-item.inquiry span {
   color: #fff;
 }
 
-.action-item.line {
-  background: #06c755;
-}
-
-.action-item.line span {
+.action-item.access {
+  background: #1f7f9c;
   color: #fff;
 }
 

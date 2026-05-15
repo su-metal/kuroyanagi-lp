@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -45,6 +45,24 @@ export default function Home() {
     "/photo/hero-slider/hero-02.jpg",
     "/photo/hero-slider/hero-03.jpg"
   ];
+
+  const handleMobileActionClick = (event, targetId) => {
+    event.preventDefault();
+
+    const target = document.getElementById(targetId);
+    if (!target) return;
+
+    const headerOffset = 96;
+    const targetY = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+
+    if (window.lenis?.scrollTo) {
+      window.lenis.scrollTo(targetY, { duration: 0.9 });
+    } else {
+      window.scrollTo({ top: targetY, behavior: "smooth" });
+    }
+
+    window.history.replaceState(null, "", `#${targetId}`);
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -277,11 +295,11 @@ export default function Home() {
               <a href="#">採用情報</a>
             </nav>
 
-            <a href="#" className="header-reservation-btn hidden-mobile">
+            <a href="tel:0535251113" className="header-reservation-btn hidden-mobile">
               <span className="reservation-icon" aria-hidden="true">
-                <img src="/photo/assets/01_action/01_予約.png" alt="" />
+                <img src="/photo/assets/01_action/03_電話.png" alt="" />
               </span>
-              <span>ご予約はこちら</span>
+              <span>053-525-1113</span>
             </a>
 
             {/* Mobile Hamburger (Default PC structure) */}
@@ -361,8 +379,12 @@ export default function Home() {
           <a href="#news" onClick={() => setIsMenuOpen(false)}>お知らせ</a>
           <a href="#access" onClick={() => setIsMenuOpen(false)}>アクセス</a>
           <div className="mobile-menu-actions">
-            <a href="#" onClick={() => setIsMenuOpen(false)}>ご予約はこちら</a>
-            <a href="tel:0535251113" onClick={() => setIsMenuOpen(false)}>053-525-1113</a>
+            <a href="tel:0535251113" onClick={() => setIsMenuOpen(false)}>
+              <span className="reservation-icon" style={{ marginRight: '8px', display: 'inline-flex', alignItems: 'center' }}>
+                <img src="/photo/assets/01_action/03_電話.png" alt="" style={{ width: '20px', height: '20px', filter: 'brightness(0) invert(1)' }} />
+              </span>
+              053-525-1113
+            </a>
           </div>
         </nav>
       </header>
@@ -874,7 +896,11 @@ export default function Home() {
             </div>
           </div>
 
-          <a href="#footer-map" className="access-detail-btn">
+          <a
+            href="#footer-map"
+            className="access-detail-btn"
+            onClick={(event) => handleMobileActionClick(event, "footer-map")}
+          >
             <span>詳しくみる</span>
             <span className="arrow">→</span>
           </a>
@@ -940,7 +966,7 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="footer-schedule-wrap">
+              <div id="schedule" className="footer-schedule-wrap">
                 <table className="footer-schedule-table">
                   <thead>
                     <tr>
@@ -1005,8 +1031,7 @@ export default function Home() {
               { label: "診療案内", href: "#service" },
               { label: "施設・機器紹介", href: "#facility" },
               { label: "アクセス", href: "#access" },
-              { label: "よくある質問", href: "#" },
-              { label: "お知らせ", href: "#" },
+              { label: "お知らせ", href: "#news" },
             ].map((item) => (
               <a href={item.href} className="footer-nav-link" key={item.label}>
                 <span>{item.label}</span>
@@ -1027,23 +1052,19 @@ export default function Home() {
       </footer>
       {/* Mobile Fixed Action Bar */}
       <div className="mobile-action-bar">
-        <a href="tel:0535251113" className="action-item tel">
-          <svg className="icon" viewBox="0 0 24 24" fill="#333">
-            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1H3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+        <a href="#schedule" className="action-item schedule" onClick={(event) => handleMobileActionClick(event, "schedule")}>
+          <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M12 7v5l3.2 2" />
           </svg>
-          <span>電話する</span>
+          <span>診療時間</span>
         </a>
-        <a href="#" className="action-item inquiry">
-          <svg className="icon" viewBox="0 0 24 24" fill="#fff">
-            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        <a href="#access" className="action-item access" onClick={(event) => handleMobileActionClick(event, "access")}>
+          <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20 10c0 5.4-8 12-8 12s-8-6.6-8-12a8 8 0 0 1 16 0Z" />
+            <circle cx="12" cy="10" r="2.6" />
           </svg>
-          <span>お問い合わせ</span>
-        </a>
-        <a href="#" className="action-item line">
-          <svg className="icon" viewBox="0 0 24 24" fill="#fff">
-            <path d="M24 10.3c0-4.6-5.4-8.3-12-8.3S0 5.7 0 10.3c0 4.1 4.3 7.5 10 8.2.4.1.9.4 1 .9l.3 2.1c.1.6.4.8.8.4.4-.3 2.1-1.3 3-2.1.1-.1.2-.2.3-.3 5.4-.8 8.6-4 8.6-8.9zm-15.6 3h-2c-.3 0-.5-.2-.5-.5v-4c0-.3.2-.5.5-.5s.5.2.5.5v3.5h1.5c.3 0 .5.2.5.5s-.2.5-.5.5zm3.5-.5c0 .3-.2.5-.5.5s-.5-.2-.5-.5v-4c0-.3.2-.5.5-.5s.5.2.5.5v4zm3.8 0c0 .1-.1.3-.2.4-.1.1-.3.1-.4.1s-.3-.1-.4-.1-.2-.3-.2-.4v-4c0-.3.2-.5.5-.5s.5.2.5.5l1 2.2 1-2.2c.1-.1.2-.2.4-.2.3 0 .5.2.5.5v4c0 .3-.2.5-.5.5s-.5-.2-.5-.5v-2.3l-.7 1.6c-.1.2-.3.3-.5.3h-.1c-.2 0-.4-.1-.5-.3l-.7-1.6v2.3zm4.8-1.5c0 .3-.2.5-.5.5h-1.5v.5h1.5c.3 0 .5.2.5.5s-.2.5-.5.5h-2c-.3 0-.5-.2-.5-.5v-4c0-.3.2-.5.5-.5h2c.3 0 .5.2.5.5s-.2.5-.5.5h-1.5v.5h1.5c.3 0 .5.2.5.5z"/>
-          </svg>
-          <span>LINEで相談</span>
+          <span>アクセス</span>
         </a>
       </div>
     </div>

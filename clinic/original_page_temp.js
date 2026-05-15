@@ -809,7 +809,6 @@ export default function Home() {
               { label: "診療案内", href: "#service" },
               { label: "施設・機器紹介", href: "#facility" },
               { label: "アクセス", href: "#access" },
-              { label: "よくある質問", href: "#" },
               { label: "お知らせ", href: "#" },
             ].map((item) => (
               <a href={item.href} className="footer-nav-link" key={item.label}>
