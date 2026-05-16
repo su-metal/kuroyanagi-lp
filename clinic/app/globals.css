@@ -8729,8 +8729,8 @@ ul {
   }
 
   .hero-editorial-catch {
-    top: 49% !important;
-    left: auto !important;
+    top: 40% !important;
+    left: 64% !important;
     right: var(--mobile-menu-safe-right) !important;
     transform: translateY(-50%) !important;
     width: auto !important;
