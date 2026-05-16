@@ -2788,7 +2788,7 @@ ul {
 
 .hero-editorial-stage {
   position: relative;
-  min-height: clamp(620px, 84vh, 880px);
+  min-height: clamp(820px, 84vh, 880px);
   max-width: none;
   margin: 0 auto;
   overflow: hidden;
@@ -8686,7 +8686,7 @@ ul {
     width: auto !important;
     height: var(--mobile-hero-photo-height) !important;
     margin: 0 !important;
-    border-radius: 28px !important;
+    border-radius: 0 0 4px 32px !important;
     overflow: hidden;
     border: 0 !important;
     box-shadow: none !important;
