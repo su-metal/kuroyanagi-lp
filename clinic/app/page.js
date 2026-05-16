@@ -26,7 +26,6 @@ const featureIntro = {
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMedicalVisible, setIsMedicalVisible] = useState(false);
-  const [isActionBarVisible, setIsActionBarVisible] = useState(false);
 
   const newsSectionRef = useRef(null);
   const medicalSectionRef = useRef(null);
@@ -72,19 +71,7 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [heroSliderImages.length]);
 
-  // Mobile Action Bar Visibility
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsActionBarVisible(window.scrollY > 10);
-    };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // Initial check
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   // Dynamic Parallax Logic with Smooth Lerp
   useEffect(() => {
@@ -649,7 +636,7 @@ export default function Home() {
                 { date: "2025.07.08", tag: "お知らせ", title: "地域に根ざした医療を提供してまいります" },
                 { date: "2025.06.20", tag: "健診・予防接種", title: "夏の健康診断の予約受付を開始しました" },
                 { date: "2025.05.15", tag: "お知らせ", title: "マイナンバーカード保険証の利用が可能です" }
-              ].map((item, idx) => (
+              ].slice(0, 2).map((item, idx) => (
                 <article className="news-item" key={idx}>
                   <div className="news-meta">
                     <span className="news-date">{item.date}</span>
@@ -1092,7 +1079,7 @@ export default function Home() {
         </div>
       </footer>
       {/* Mobile Fixed Action Bar */}
-      <div className={`mobile-action-bar ${isActionBarVisible ? "visible" : ""}`}>
+      <div className="mobile-action-bar">
         <a href="#schedule" className="action-item schedule" onClick={(event) => handleMobileActionClick(event, "schedule")}>
           <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
             <circle cx="12" cy="12" r="9" />

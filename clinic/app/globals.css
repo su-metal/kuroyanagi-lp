@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Noto+Serif+JP:wght@600;700&family=Outfit:wght@400;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Zen+Maru+Gothic:wght@700;900&display=swap');
 
 :root {
-  --primary-blue: #3d62ad;
+  --primary-blue: #2553af;
   --accent-color: var(--primary-blue);
   --text-color: #333333;
   --text-dark: #333333;
@@ -8631,24 +8631,28 @@ ul {
 /* Hero Editorial Mobile Overrides */
 @media (max-width: 1024px) {
   .hero-editorial {
-    min-height: 100svh !important;
-    height: 100svh !important;
+    --mobile-hero-photo-top: 124px;
+    --mobile-hero-photo-height: clamp(460px, 62svh, 560px);
+    --mobile-hero-bottom-gap: 8px;
+    min-height: calc(var(--mobile-hero-photo-top) + var(--mobile-hero-photo-height) + var(--mobile-hero-bottom-gap)) !important;
+    height: calc(var(--mobile-hero-photo-top) + var(--mobile-hero-photo-height) + var(--mobile-hero-bottom-gap)) !important;
     padding: 0 !important;
     margin: 0 !important;
     width: 100% !important;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .hero-editorial-shell {
-    height: 100svh !important;
+    height: calc(var(--mobile-hero-photo-top) + var(--mobile-hero-photo-height) + var(--mobile-hero-bottom-gap)) !important;
     padding: 0 !important;
     margin: 0 !important;
     max-width: none !important;
+    position: relative !important;
   }
 
   .hero-editorial-stage {
-    min-height: 100svh !important;
-    height: 100svh !important;
+    min-height: calc(var(--mobile-hero-photo-top) + var(--mobile-hero-photo-height) + var(--mobile-hero-bottom-gap)) !important;
+    height: calc(var(--mobile-hero-photo-top) + var(--mobile-hero-photo-height) + var(--mobile-hero-bottom-gap)) !important;
     max-width: none !important;
     margin: 0 !important;
     border-radius: 0 !important;
@@ -8658,39 +8662,72 @@ ul {
 
   .hero-editorial-main-photo {
     position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100svh !important;
+    top: var(--mobile-hero-photo-top) !important;
+    left: 12px !important;
+    right: 12px !important;
+    width: auto !important;
+    height: var(--mobile-hero-photo-height) !important;
     margin: 0 !important;
-    border-radius: 0 !important;
+    border-radius: 28px 28px 10px 28px !important;
     overflow: hidden;
+    border: 1px solid rgba(61, 98, 173, 0.16) !important;
+    box-shadow: 0 14px 32px rgba(26, 63, 94, 0.1) !important;
+  }
+
+  .hero-editorial-main-photo::before {
+    content: "KUROYANAGI CLINIC";
+    position: absolute;
+    top: 26px;
+    left: 18px;
+    z-index: 4;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.18em;
+    line-height: 1.55;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-shadow: 0 2px 12px rgba(17, 52, 82, 0.28);
+    pointer-events: none;
+  }
+
+  .hero-editorial-main-photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    background: linear-gradient(90deg, rgba(15, 65, 105, 0.22), rgba(61, 98, 173, 0.1) 46%, rgba(255, 255, 255, 0.06));
+    pointer-events: none;
   }
 
   .hero-editorial-main-photo img {
     width: 100% !important;
-    height: 100svh !important;
+    height: 100% !important;
     object-fit: cover !important;
-    border-radius: 0 !important;
+    object-position: center center !important;
+    border-radius: inherit !important;
+  }
+
+  .hero-editorial-slider img:nth-child(3) {
+    object-position: right center !important;
   }
 
   .hero-editorial-catch {
-    top: 48% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
+    top: 49% !important;
+    left: auto !important;
+    right: 42px !important;
+    transform: translateY(-50%) !important;
     width: auto !important;
     display: flex;
     justify-content: center;
-    z-index: 10;
+    z-index: 12;
   }
 
   .hero-editorial-catch .catch-line {
-    font-size: 24px !important;
+    font-size: 18px !important;
     background: rgba(255, 255, 255, 0.95) !important;
-    padding: 12px 8px !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+    padding: 12px 7px !important;
+    box-shadow: 0 10px 24px rgba(26, 63, 94, 0.12) !important;
     border-radius: 4px;
-    margin: 0 2px !important;
+    margin: 0 3px !important;
   }
 
   .hero-editorial-nav,
@@ -8699,6 +8736,44 @@ ul {
   .hero-editorial-scroll,
   .hero-editorial-news {
     display: none !important;
+  }
+
+  .hero-editorial-schedule-mobile {
+    display: none !important;
+  }
+
+  .hero-editorial-scroll {
+    display: flex !important;
+    top: calc(var(--mobile-hero-photo-top) + var(--mobile-hero-photo-height) - 21px) !important;
+    left: 50% !important;
+    bottom: auto !important;
+    transform: translateX(-50%) !important;
+    width: 108px !important;
+    height: 42px !important;
+    padding: 0 18px !important;
+    border-radius: 999px !important;
+    flex-direction: row !important;
+    gap: 10px !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    border: 1px solid rgba(61, 98, 173, 0.14) !important;
+    box-shadow: 0 10px 24px rgba(26, 63, 94, 0.1) !important;
+  }
+
+  .hero-editorial-scroll .scroll-text {
+    writing-mode: horizontal-tb !important;
+    margin: 0 !important;
+    letter-spacing: 0.18em !important;
+    font-size: 0.68rem !important;
+    color: var(--primary-blue) !important;
+  }
+
+  .hero-editorial-scroll .scroll-line {
+    width: 1px !important;
+    height: 18px !important;
+  }
+
+  .features-sticky-section {
+    padding-top: 38px;
   }
 
   /* Reset container padding for mobile hero */
@@ -8719,6 +8794,14 @@ ul {
   }
 }
 
+@media (max-width: 1024px) and (max-height: 700px) {
+
+  .hero-editorial {
+    --mobile-hero-photo-height: clamp(420px, 62svh, 480px);
+    --mobile-hero-bottom-gap: 64px;
+  }
+}
+
 /* Mobile Action Bar */
 .mobile-action-bar {
   position: fixed;
@@ -8732,12 +8815,6 @@ ul {
   z-index: 2000;
   box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
   border-top: 1px solid #eee;
-  transform: translateY(100%);
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.mobile-action-bar.visible {
-  transform: translateY(0);
 }
 
 @media (max-width: 1024px) {
@@ -8877,7 +8954,7 @@ ul {
   .news-main-title {
     margin-bottom: 0 !important;
     text-align: left !important;
-    font-size: 1.5rem !important;
+    font-size: 1.12rem !important;
     letter-spacing: 0.2em !important;
     font-weight: 600 !important;
     margin-top: 0 !important;
@@ -8977,29 +9054,99 @@ ul {
   }
 
   /* NEWS レイアウト修正 */
+  .news-section {
+    margin-top: -32px !important;
+    padding: 0 0 56px !important;
+    background: var(--fv-bg) !important;
+  }
+
+  .news-section .container {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    overflow: visible !important;
+  }
+
   .news-inner {
     display: flex !important;
     flex-direction: column !important;
     padding: 0 !important;
-    gap: 16px !important;
+    gap: 12px !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    position: relative !important;
+  }
+
+  .news-inner::before {
+    content: none !important;
+    display: none !important;
   }
 
   .news-title-area {
     text-align: left !important;
-    align-items: flex-start !important;
+    align-items: center !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
     padding: 0 !important;
-    margin-bottom: 8px !important;
+    margin-bottom: 6px !important;
+    column-gap: 12px !important;
+    row-gap: 6px !important;
+  }
+
+  .news-title-area::before {
+    content: "!";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    color: var(--primary-blue);
+    border: 2px solid rgba(61, 98, 173, 0.32);
+    background: #eef6fb;
+    font-weight: 700;
+    flex: 0 0 auto;
+  }
+
+  .news-title-area .news-label-group {
+    order: 2;
+    margin: 0 !important;
+  }
+
+  .news-title-area .news-main-title {
+    order: 1;
+  }
+
+  .news-title-area .news-label-deco {
+    width: 22px !important;
+    opacity: 0.65 !important;
   }
 
   .news-list-area {
     gap: 0 !important;
+    border-top: 1px solid rgba(61, 98, 173, 0.1) !important;
+    min-width: 0 !important;
   }
 
   .news-item {
     flex-direction: column !important;
     align-items: flex-start !important;
-    gap: 14px !important;
-    padding: 22px 0 !important;
+    gap: 6px !important;
+    padding: 14px 26px 14px 0 !important;
+    position: relative !important;
+    border-bottom-color: rgba(61, 98, 173, 0.28) !important;
+  }
+
+  .news-item::after {
+    content: "→";
+    position: absolute;
+    right: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-blue);
+    font-weight: 700;
+    line-height: 1;
   }
 
   .news-meta {
@@ -9008,14 +9155,34 @@ ul {
     min-width: auto !important;
     gap: 10px !important;
     width: 100% !important;
+    align-items: center !important;
+    min-width: 0 !important;
+  }
+
+  .news-date {
+    font-size: 0.76rem !important;
+    color: #647284 !important;
+  }
+
+  .news-tag {
+    padding: 2px 9px !important;
+    font-size: 0.62rem !important;
+    background: #eef6fb !important;
+    border-color: rgba(61, 98, 173, 0.22) !important;
   }
 
   .news-title {
-    font-size: 0.9rem !important;
+    font-size: 0.82rem !important;
     width: 100% !important;
-    line-height: 1.9 !important;
+    line-height: 1.65 !important;
     overflow-wrap: anywhere !important;
     word-break: break-all !important;
+    min-width: 0 !important;
+    color: #174061 !important;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    text-decoration-color: rgba(61, 98, 173, 0.32);
   }
 
   /* Header Fixes */
@@ -9053,7 +9220,6 @@ ul {
     font-size: clamp(1rem, 4.6vw, 1.18rem) !important;
   }
 
-  .news-main-title,
   .info-ja,
   .access-title-block h2 {
     font-size: 1.3rem !important;
