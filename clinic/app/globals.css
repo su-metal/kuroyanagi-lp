@@ -2788,7 +2788,7 @@ ul {
 
 .hero-editorial-stage {
   position: relative;
-  min-height: clamp(820px, 84vh, 880px);
+  min-height: clamp(620px, 84vh, 880px);
   max-width: none;
   margin: 0 auto;
   overflow: hidden;
@@ -8647,7 +8647,7 @@ ul {
 @media (max-width: 1024px) {
   .hero-editorial {
     --mobile-hero-photo-top: calc(var(--mobile-header-half-height) + var(--mobile-hero-header-center-offset));
-    --mobile-hero-photo-height: clamp(460px, 62svh, 560px);
+    --mobile-hero-photo-height: clamp(520px, 72svh, 640px);
     --mobile-hero-bottom-gap: 8px;
     min-height: calc(var(--mobile-hero-photo-top) + var(--mobile-hero-photo-height) + var(--mobile-hero-bottom-gap)) !important;
     height: calc(var(--mobile-hero-photo-top) + var(--mobile-hero-photo-height) + var(--mobile-hero-bottom-gap)) !important;
@@ -8815,7 +8815,7 @@ ul {
 @media (max-width: 1024px) and (max-height: 700px) {
 
   .hero-editorial {
-    --mobile-hero-photo-height: clamp(420px, 62svh, 480px);
+    --mobile-hero-photo-height: clamp(480px, 70svh, 540px);
     --mobile-hero-bottom-gap: 8px;
   }
 }
@@ -9074,7 +9074,7 @@ ul {
   /* NEWS レイアウト修正 */
   .news-section {
     margin-top: 0 !important;
-    padding: 24px 0 64px !important;
+    padding: 0 0 64px !important;
     background: #fff !important;
   }
 
