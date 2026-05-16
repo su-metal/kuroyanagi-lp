@@ -8617,7 +8617,17 @@ ul {
 @media (max-width: 1024px) {
   :root {
     --mobile-header-height: 64px;
-    --mobile-hero-header-gap: 76px;
+    --mobile-header-half-height: 32px;
+    --mobile-hero-header-center-offset: 0px;
+    --mobile-menu-safe-right: 84px;
+  }
+
+  .header {
+    height: 0 !important;
+    min-height: 0 !important;
+    position: absolute !important;
+    inset: 0 0 auto 0 !important;
+    background: transparent !important;
   }
 
   .header-menu-button {
@@ -8636,7 +8646,7 @@ ul {
 /* Hero Editorial Mobile Overrides */
 @media (max-width: 1024px) {
   .hero-editorial {
-    --mobile-hero-photo-top: calc(var(--mobile-header-height) + var(--mobile-hero-header-gap));
+    --mobile-hero-photo-top: calc(var(--mobile-header-half-height) + var(--mobile-hero-header-center-offset));
     --mobile-hero-photo-height: clamp(460px, 62svh, 560px);
     --mobile-hero-bottom-gap: 8px;
     min-height: calc(var(--mobile-hero-photo-top) + var(--mobile-hero-photo-height) + var(--mobile-hero-bottom-gap)) !important;
@@ -8676,7 +8686,7 @@ ul {
     width: auto !important;
     height: var(--mobile-hero-photo-height) !important;
     margin: 0 !important;
-    border-radius: 28px 28px 10px 28px !important;
+    border-radius: 28px !important;
     overflow: hidden;
     border: 0 !important;
     box-shadow: none !important;
@@ -8721,7 +8731,7 @@ ul {
   .hero-editorial-catch {
     top: 49% !important;
     left: auto !important;
-    right: 42px !important;
+    right: var(--mobile-menu-safe-right) !important;
     transform: translateY(-50%) !important;
     width: auto !important;
     display: flex;
@@ -9064,7 +9074,7 @@ ul {
   /* NEWS レイアウト修正 */
   .news-section {
     margin-top: 0 !important;
-    padding: 0 0 56px !important;
+    padding: 24px 0 64px !important;
     background: #fff !important;
   }
 
@@ -9236,5 +9246,42 @@ ul {
   .news-inner {
     padding-left: 0 !important;
     padding-right: 0 !important;
+  }
+}
+
+/* Final mobile FV placement: image top aligns to the middle of the mobile header. */
+@media (max-width: 1024px) {
+  :root {
+    --mobile-header-height: 64px;
+    --mobile-header-half-height: 44px;
+  }
+
+  .header {
+    position: absolute !important;
+    inset: 0 0 auto 0 !important;
+    height: var(--mobile-header-height) !important;
+    min-height: var(--mobile-header-height) !important;
+    background: transparent !important;
+  }
+
+  .hero-editorial {
+    --mobile-hero-photo-top: var(--mobile-header-half-height);
+    --mobile-hero-bottom-gap: 48px;
+    min-height: calc(var(--mobile-hero-photo-top) + var(--mobile-hero-photo-height) + var(--mobile-hero-bottom-gap)) !important;
+    height: calc(var(--mobile-hero-photo-top) + var(--mobile-hero-photo-height) + var(--mobile-hero-bottom-gap)) !important;
+  }
+
+  .hero-editorial-shell,
+  .hero-editorial-stage {
+    min-height: calc(var(--mobile-hero-photo-top) + var(--mobile-hero-photo-height) + var(--mobile-hero-bottom-gap)) !important;
+    height: calc(var(--mobile-hero-photo-top) + var(--mobile-hero-photo-height) + var(--mobile-hero-bottom-gap)) !important;
+  }
+
+  .hero-editorial-main-photo {
+    top: var(--mobile-hero-photo-top) !important;
+  }
+
+  .hero-editorial-scroll {
+    top: calc(var(--mobile-hero-photo-top) + var(--mobile-hero-photo-height) - 21px) !important;
   }
 }
